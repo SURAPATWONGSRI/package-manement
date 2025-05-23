@@ -18,10 +18,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           <h1 className="text-4xl font-bold text-white mb-4">
             Package Management
           </h1>
-          <p className="text-muted-foreground text-center max-w-md">
+          {/* <p className="text-muted-foreground text-center max-w-md">
             ระบบจัดการพัสดุที่ทันสมัย ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ
             รวดเร็ว และแม่นยำ
-          </p>
+          </p> */}
         </div>
       </div>
 

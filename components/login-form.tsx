@@ -1,6 +1,7 @@
 "use client";
 import { signIn } from "@/lib/auth-client";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -9,6 +10,7 @@ import { Label } from "./ui/label";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   // Handle form submit
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -35,7 +37,11 @@ const LoginForm = () => {
           onError: (ctx) => {
             toast.error(ctx.error.message);
           },
-          onSuccess: () => {},
+          onSuccess: () => {
+            toast.success("Login successfully");
+            // Redirect to the dashboard or home page
+            router.push("/profile");
+          },
         }
       );
     } catch (error) {

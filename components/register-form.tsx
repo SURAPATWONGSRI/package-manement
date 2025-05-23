@@ -1,4 +1,5 @@
 "use client";
+
 import { signUp } from "@/lib/auth-client";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -8,88 +9,107 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-interface SignUpWithLineIdParams {
-  name: string;
-  email: string;
-  password: string;
-  lineId?: string; // ใช้ ? เพื่อให้เป็น optional
+// ✅ แบบใหม่: เรียก API route ไปอัปเดต lineId หลังสมัคร
+async function updateLineId(email: string, lineId: string) {
+  const res = await fetch("/api/update-line-id", {
+    method: "POST",
+    body: JSON.stringify({ email, lineId }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to update lineId");
+  }
 }
 
 const RegisterForm = () => {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
-  // Handle form submit
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
 
     const name = String(formData.get("name"));
-    if (!name) return toast.error("Please enter your name");
-
-    const password = String(formData.get("password"));
-    if (!password) return toast.error("Please enter your password");
-
     const email = String(formData.get("email"));
-    if (!email) return toast.error("Please enter your email");
-
-    // ยังคงเก็บค่า lineId ไว้ แต่ไม่ส่งไปกับ signUp.email
+    const password = String(formData.get("password"));
+    const confirmPassword = String(formData.get("confirmPassword"));
     const lineId = String(formData.get("lineId") || "");
+
+    if (!name || !email || !password || !confirmPassword) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
 
     try {
       await signUp.email(
+        { name, email, password },
         {
-          name,
-          email,
-          password,
-        },
-        {
-          onRequest: () => {
-            setIsPending(true);
-          },
-          onResponse: () => {
-            setIsPending(false);
-          },
+          onRequest: () => setIsPending(true),
+          onResponse: () => setIsPending(false),
           onError: (ctx) => {
             toast.error(ctx.error.message);
           },
-          onSuccess: () => {
-            toast.success("Register successfully");
+          onSuccess: async () => {
+            // ✅ update lineId หลัง sign up สำเร็จ
+            if (lineId) {
+              try {
+                await updateLineId(email, lineId);
+              } catch (err) {
+                console.error("Update lineId failed:", err);
+              }
+            }
+
+            toast.success("Register success");
             router.push("/login");
           },
         }
       );
-    } catch (error) {
-      console.error("Registration error:", error);
-      toast.error("An unexpected error occurred");
-      setIsPending(false); // ตั้งค่า isPending เป็น false ในกรณีเกิดข้อผิดพลาด
+    } catch (err) {
+      console.error(err);
+      toast.error("Unexpected error");
+      setIsPending(false);
     }
   }
+
   return (
     <form onSubmit={handleSubmit} className="max-w-sm w-full space-y-4">
+      {/* Name */}
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input id="name" name="name" />
       </div>
+
+      {/* Email */}
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input type="email" id="email" name="email" />
       </div>
 
+      {/* Line ID */}
       <div className="space-y-2">
-        <Label htmlFor="lineId">LINE ID (ไม่บังคับ)</Label>
-        <Input
-          id="lineId"
-          name="lineId"
-          placeholder="กรอก LINE ID ของคุณ (ถ้ามี)"
-        />
+        <Label htmlFor="lineId">LINE ID (optional)</Label>
+        <Input id="lineId" name="lineId" placeholder="LINE ID (ถ้ามี)" />
       </div>
 
+      {/* Password */}
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
         <Input type="password" id="password" name="password" />
       </div>
 
+      {/* Confirm Password */}
+      <div className="space-y-2">
+        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Input type="password" id="confirmPassword" name="confirmPassword" />
+      </div>
+
+      {/* Submit Button */}
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? (
           <>
