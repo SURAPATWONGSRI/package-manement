@@ -57,9 +57,15 @@ export const auth = betterAuth({
   plugins: [nextCookies()],
   user: {
     modelName: "User",
-    fields: {
-      name: "name",
-      email: "email",
+    additionalFields: {
+      role: {
+        type: ["USER", "ADMIN"],
+        input: false,
+      },
+      lineId: {
+        type: "string",
+        input: false,
+      },
     },
   },
 });

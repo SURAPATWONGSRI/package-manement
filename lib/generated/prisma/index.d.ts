@@ -40,6 +40,23 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
 export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const UserRole: {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+}
+
+export type UserRole = $Enums.UserRole
+
+export const UserRole: typeof $Enums.UserRole
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -2397,6 +2414,7 @@ export namespace Prisma {
     lineId: string | null
     emailVerified: boolean | null
     image: string | null
+    role: $Enums.UserRole | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -2410,6 +2428,7 @@ export namespace Prisma {
     lineId: string | null
     emailVerified: boolean | null
     image: string | null
+    role: $Enums.UserRole | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -2423,6 +2442,7 @@ export namespace Prisma {
     lineId: number
     emailVerified: number
     image: number
+    role: number
     deletedAt: number
     isDeleted: number
     _all: number
@@ -2438,6 +2458,7 @@ export namespace Prisma {
     lineId?: true
     emailVerified?: true
     image?: true
+    role?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -2451,6 +2472,7 @@ export namespace Prisma {
     lineId?: true
     emailVerified?: true
     image?: true
+    role?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -2464,6 +2486,7 @@ export namespace Prisma {
     lineId?: true
     emailVerified?: true
     image?: true
+    role?: true
     deletedAt?: true
     isDeleted?: true
     _all?: true
@@ -2550,6 +2573,7 @@ export namespace Prisma {
     lineId: string | null
     emailVerified: boolean
     image: string | null
+    role: $Enums.UserRole
     deletedAt: Date | null
     isDeleted: boolean
     _count: UserCountAggregateOutputType | null
@@ -2580,6 +2604,7 @@ export namespace Prisma {
     lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    role?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -2597,6 +2622,7 @@ export namespace Prisma {
     lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    role?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2610,6 +2636,7 @@ export namespace Prisma {
     lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    role?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2623,11 +2650,12 @@ export namespace Prisma {
     lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    role?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -2653,6 +2681,7 @@ export namespace Prisma {
       lineId: string | null
       emailVerified: boolean
       image: string | null
+      role: $Enums.UserRole
       deletedAt: Date | null
       isDeleted: boolean
     }, ExtArgs["result"]["user"]>
@@ -3089,6 +3118,7 @@ export namespace Prisma {
     readonly lineId: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'Boolean'>
     readonly image: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'UserRole'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
   }
@@ -6951,6 +6981,7 @@ export namespace Prisma {
     lineId: 'lineId',
     emailVerified: 'emailVerified',
     image: 'image',
+    role: 'role',
     deletedAt: 'deletedAt',
     isDeleted: 'isDeleted'
   };
@@ -7074,6 +7105,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'UserRole'
+   */
+  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole[]'
+   */
+  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -7172,6 +7217,7 @@ export namespace Prisma {
     lineId?: StringNullableFilter<"User"> | string | null
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
@@ -7188,6 +7234,7 @@ export namespace Prisma {
     lineId?: SortOrderInput | SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
+    role?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     sessions?: SessionOrderByRelationAggregateInput
@@ -7207,6 +7254,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
@@ -7223,6 +7271,7 @@ export namespace Prisma {
     lineId?: SortOrderInput | SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
+    role?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -7242,6 +7291,7 @@ export namespace Prisma {
     lineId?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
   }
@@ -7583,6 +7633,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -7599,6 +7650,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -7615,6 +7667,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -7631,6 +7684,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -7647,6 +7701,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -7660,6 +7715,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -7673,6 +7729,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -8123,6 +8180,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
   export type SessionListRelationFilter = {
     every?: SessionWhereInput
     some?: SessionWhereInput
@@ -8162,6 +8226,7 @@ export namespace Prisma {
     lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    role?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8175,6 +8240,7 @@ export namespace Prisma {
     lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    role?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8188,6 +8254,7 @@ export namespace Prisma {
     lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    role?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8208,6 +8275,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type SessionCountOrderByAggregateInput = {
@@ -8410,6 +8487,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole
   }
 
   export type SessionUpdateManyWithoutUserNestedInput = {
@@ -8654,6 +8735,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8671,6 +8759,16 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
   export type UserCreateWithoutPostsInput = {
     id?: string
     createdAt: Date | string
@@ -8680,6 +8778,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -8695,6 +8794,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -8726,6 +8826,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -8741,6 +8842,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -8963,6 +9065,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -8978,6 +9081,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -9009,6 +9113,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -9024,6 +9129,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -9039,6 +9145,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -9054,6 +9161,7 @@ export namespace Prisma {
     lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    role?: $Enums.UserRole
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -9085,6 +9193,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -9100,6 +9209,7 @@ export namespace Prisma {
     lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput

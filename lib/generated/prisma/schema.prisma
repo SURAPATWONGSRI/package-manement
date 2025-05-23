@@ -8,6 +8,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model Post {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
@@ -26,18 +31,18 @@ model Post {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   createdAt     DateTime
   updatedAt     DateTime
   name          String
   email         String
-  lineId        String?  @unique
+  lineId        String?   @unique
   emailVerified Boolean
   image         String?
-
-  sessions Session[]
-  accounts Account[]
-  posts    Post[]
+  role          UserRole  @default(USER)
+  sessions      Session[]
+  accounts      Account[]
+  posts         Post[]
 
   deletedAt DateTime?
   isDeleted Boolean   @default(false)
