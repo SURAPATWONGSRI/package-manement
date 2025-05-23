@@ -8,12 +8,12 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-type SignUpParams = {
+interface SignUpWithLineIdParams {
   name: string;
   email: string;
   password: string;
-  lineId?: string;
-};
+  lineId?: string; // ใช้ ? เพื่อให้เป็น optional
+}
 
 const RegisterForm = () => {
   const [isPending, setIsPending] = useState(false);
@@ -42,8 +42,7 @@ const RegisterForm = () => {
           name,
           email,
           password,
-          lineId: lineId || undefined,
-        } as SignUpParams,
+        },
         {
           onRequest: () => {
             setIsPending(true);
