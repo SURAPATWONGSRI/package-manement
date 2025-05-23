@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "@/lib/auth-client";
+import { signInEmailAction } from "@/actions/sign-in-email";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
 const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
   // Handle form submit
@@ -17,38 +17,17 @@ const LoginForm = () => {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
 
-    const password = String(formData.get("password"));
-    if (!password) return toast.error("Please enter your password");
+    setIsPending(true);
 
-    const email = String(formData.get("email"));
-    if (!email) return toast.error("Please enter your email");
+    const { error } = await signInEmailAction(formData);
 
-    setIsLoading(true);
+    setIsPending(false);
 
-    try {
-      await signIn.email(
-        {
-          email,
-          password,
-        },
-        {
-          onRequest: () => {},
-          onResponse: () => {},
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-          onSuccess: () => {
-            toast.success("Login successfully");
-            // Redirect to the dashboard or home page
-            router.push("/profile");
-          },
-        }
-      );
-    } catch (error) {
-      console.error("Login error:", error);
-      toast.error("An unexpected error occurred");
-    } finally {
-      setIsLoading(false);
+    if (error) {
+      toast.error(error);
+    } else {
+      toast.success("Login successful");
+      router.push("/profile");
     }
   }
   return (
@@ -62,8 +41,8 @@ const LoginForm = () => {
         <Input type="password" id="password" name="password" required />
       </div>
 
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? (
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Login...
