@@ -1,5 +1,9 @@
 import RegisterForm from "@/components/register-form";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "ลงทะเบียน",
+};
 const page = () => {
   return (
     <div className="px-8 py-16 container mx-auto max-w-screen-lg space-y-8">

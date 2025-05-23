@@ -1,6 +1,11 @@
 import { SignOutButton } from "@/components/sign-out-button";
 import { auth } from "@/lib/auth";
+import type { Metadata } from "next";
 import { headers } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "โปรไฟล์",
+};
 
 export default async function page() {
   const session = await auth.api.getSession({
