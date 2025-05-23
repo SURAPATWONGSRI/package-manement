@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* ส่วนด้านซ้าย: รูปภาพหรือ banner */}
-      <div className="hidden md:flex md:w-1/2 bg-primary relative">
+      <div className="hidden md:flex md:w-1/2 bg-primary relative ">
         <div className="absolute inset-0 flex items-center justify-center p-10 flex-col">
           <h1 className="text-4xl font-bold text-white mb-4">
             Package Management

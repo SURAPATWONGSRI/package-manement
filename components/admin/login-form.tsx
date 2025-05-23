@@ -17,7 +17,7 @@ const AdminLoginForm = ({
   redirectUrl = "/admin/dashboard",
   onSuccess,
 }: LoginFormProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -30,8 +30,6 @@ const AdminLoginForm = ({
     const password = String(formData.get("password"));
     if (!password) return toast.error("กรุณากรอกรหัสผ่าน");
 
-    setIsLoading(true);
-
     try {
       await signIn.email(
         {
@@ -39,6 +37,12 @@ const AdminLoginForm = ({
           password,
         },
         {
+          onRequest: () => {
+            setIsPending(true);
+          },
+          onResponse: () => {
+            setIsPending(false);
+          },
           onError: (ctx) => {
             toast.error(
               ctx.error.message || "เข้าสู่ระบบล้มเหลว กรุณาลองใหม่อีกครั้ง"
@@ -59,8 +63,6 @@ const AdminLoginForm = ({
     } catch (error) {
       console.error("Login error:", error);
       toast.error("เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองใหม่อีกครั้ง");
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -74,7 +76,7 @@ const AdminLoginForm = ({
           name="email"
           placeholder="กรอกอีเมลของคุณ"
           required
-          disabled={isLoading}
+          disabled={isPending}
           autoComplete="email"
         />
       </div>
@@ -95,13 +97,13 @@ const AdminLoginForm = ({
           name="password"
           placeholder="กรอกรหัสผ่านของคุณ"
           required
-          disabled={isLoading}
+          disabled={isPending}
           autoComplete="current-password"
         />
       </div>
 
-      <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ? (
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             กำลังเข้าสู่ระบบ...
