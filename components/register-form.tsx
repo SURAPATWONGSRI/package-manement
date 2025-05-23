@@ -1,6 +1,6 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signUpEmailAction } from "@/actions/sign-up-email";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,19 +8,6 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-
-// ✅ แบบใหม่: เรียก API route ไปอัปเดต lineId หลังสมัคร
-async function updateLineId(email: string, lineId: string) {
-  const res = await fetch("/api/update-line-id", {
-    method: "POST",
-    body: JSON.stringify({ email, lineId }),
-    headers: { "Content-Type": "application/json" },
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to update lineId");
-  }
-}
 
 const RegisterForm = () => {
   const [isPending, setIsPending] = useState(false);
@@ -30,50 +17,17 @@ const RegisterForm = () => {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
 
-    const name = String(formData.get("name"));
-    const email = String(formData.get("email"));
-    const password = String(formData.get("password"));
-    const confirmPassword = String(formData.get("confirmPassword"));
-    const lineId = String(formData.get("lineId") || "");
+    setIsPending(true);
 
-    if (!name || !email || !password || !confirmPassword) {
-      toast.error("Please fill all required fields");
-      return;
-    }
+    const { error } = await signUpEmailAction(formData);
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
+    setIsPending(false);
 
-    try {
-      await signUp.email(
-        { name, email, password },
-        {
-          onRequest: () => setIsPending(true),
-          onResponse: () => setIsPending(false),
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-          onSuccess: async () => {
-            // ✅ update lineId หลัง sign up สำเร็จ
-            if (lineId) {
-              try {
-                await updateLineId(email, lineId);
-              } catch (err) {
-                console.error("Update lineId failed:", err);
-              }
-            }
-
-            toast.success("Register success");
-            router.push("/login");
-          },
-        }
-      );
-    } catch (err) {
-      console.error(err);
-      toast.error("Unexpected error");
-      setIsPending(false);
+    if (error) {
+      toast.error(error);
+    } else {
+      toast.success("Register success");
+      router.push("/login");
     }
   }
 

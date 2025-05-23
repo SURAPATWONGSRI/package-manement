@@ -1,3 +1,4 @@
+import { hashPassword, verifyPassword } from "@/lib/argon2";
 import { prisma } from "@/lib/prisma";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
@@ -10,9 +11,15 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 8,
     autoSignIn: false,
+    password: {
+      hash: hashPassword,
+      verify: verifyPassword,
+    },
   },
   advanced: {
-    generateId: false,
+    database: {
+      generateId: false,
+    },
   },
   user: {
     modelName: "User",
