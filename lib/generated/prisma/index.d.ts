@@ -1298,6 +1298,8 @@ export namespace Prisma {
     title: string | null
     content: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type PostMaxAggregateOutputType = {
@@ -1307,6 +1309,8 @@ export namespace Prisma {
     title: string | null
     content: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -1316,6 +1320,8 @@ export namespace Prisma {
     title: number
     content: number
     userId: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -1327,6 +1333,8 @@ export namespace Prisma {
     title?: true
     content?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -1336,6 +1344,8 @@ export namespace Prisma {
     title?: true
     content?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -1345,6 +1355,8 @@ export namespace Prisma {
     title?: true
     content?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -1427,6 +1439,8 @@ export namespace Prisma {
     title: string
     content: string
     userId: string
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: PostCountAggregateOutputType | null
     _min: PostMinAggregateOutputType | null
     _max: PostMaxAggregateOutputType | null
@@ -1453,6 +1467,8 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -1463,6 +1479,8 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -1473,6 +1491,8 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -1483,9 +1503,11 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "content" | "userId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "content" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -1508,6 +1530,8 @@ export namespace Prisma {
       title: string
       content: string
       userId: string
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -1938,6 +1962,8 @@ export namespace Prisma {
     readonly title: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
     readonly userId: FieldRef<"Post", 'String'>
+    readonly deletedAt: FieldRef<"Post", 'DateTime'>
+    readonly isDeleted: FieldRef<"Post", 'Boolean'>
   }
     
 
@@ -2368,8 +2394,11 @@ export namespace Prisma {
     updatedAt: Date | null
     name: string | null
     email: string | null
+    lineId: string | null
     emailVerified: boolean | null
     image: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2378,8 +2407,11 @@ export namespace Prisma {
     updatedAt: Date | null
     name: string | null
     email: string | null
+    lineId: string | null
     emailVerified: boolean | null
     image: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2388,8 +2420,11 @@ export namespace Prisma {
     updatedAt: number
     name: number
     email: number
+    lineId: number
     emailVerified: number
     image: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -2400,8 +2435,11 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     email?: true
+    lineId?: true
     emailVerified?: true
     image?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2410,8 +2448,11 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     email?: true
+    lineId?: true
     emailVerified?: true
     image?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2420,8 +2461,11 @@ export namespace Prisma {
     updatedAt?: true
     name?: true
     email?: true
+    lineId?: true
     emailVerified?: true
     image?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -2503,8 +2547,11 @@ export namespace Prisma {
     updatedAt: Date
     name: string
     email: string
+    lineId: string | null
     emailVerified: boolean
     image: string | null
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2530,8 +2577,11 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     email?: boolean
+    lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -2544,8 +2594,11 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     email?: boolean
+    lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2554,8 +2607,11 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     email?: boolean
+    lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2564,11 +2620,14 @@ export namespace Prisma {
     updatedAt?: boolean
     name?: boolean
     email?: boolean
+    lineId?: boolean
     emailVerified?: boolean
     image?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "emailVerified" | "image", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -2591,8 +2650,11 @@ export namespace Prisma {
       updatedAt: Date
       name: string
       email: string
+      lineId: string | null
       emailVerified: boolean
       image: string | null
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3024,8 +3086,11 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly lineId: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'Boolean'>
     readonly image: FieldRef<"User", 'String'>
+    readonly deletedAt: FieldRef<"User", 'DateTime'>
+    readonly isDeleted: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -3523,6 +3588,8 @@ export namespace Prisma {
     ipAddress: string | null
     userAgent: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type SessionMaxAggregateOutputType = {
@@ -3534,6 +3601,8 @@ export namespace Prisma {
     ipAddress: string | null
     userAgent: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type SessionCountAggregateOutputType = {
@@ -3545,6 +3614,8 @@ export namespace Prisma {
     ipAddress: number
     userAgent: number
     userId: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -3558,6 +3629,8 @@ export namespace Prisma {
     ipAddress?: true
     userAgent?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type SessionMaxAggregateInputType = {
@@ -3569,6 +3642,8 @@ export namespace Prisma {
     ipAddress?: true
     userAgent?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type SessionCountAggregateInputType = {
@@ -3580,6 +3655,8 @@ export namespace Prisma {
     ipAddress?: true
     userAgent?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -3664,6 +3741,8 @@ export namespace Prisma {
     ipAddress: string | null
     userAgent: string | null
     userId: string
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -3692,6 +3771,8 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -3704,6 +3785,8 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -3716,6 +3799,8 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -3728,9 +3813,11 @@ export namespace Prisma {
     ipAddress?: boolean
     userAgent?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "userId", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3755,6 +3842,8 @@ export namespace Prisma {
       ipAddress: string | null
       userAgent: string | null
       userId: string
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -4187,6 +4276,8 @@ export namespace Prisma {
     readonly ipAddress: FieldRef<"Session", 'String'>
     readonly userAgent: FieldRef<"Session", 'String'>
     readonly userId: FieldRef<"Session", 'String'>
+    readonly deletedAt: FieldRef<"Session", 'DateTime'>
+    readonly isDeleted: FieldRef<"Session", 'Boolean'>
   }
     
 
@@ -4625,6 +4716,8 @@ export namespace Prisma {
     scope: string | null
     password: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type AccountMaxAggregateOutputType = {
@@ -4641,6 +4734,8 @@ export namespace Prisma {
     scope: string | null
     password: string | null
     userId: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type AccountCountAggregateOutputType = {
@@ -4657,6 +4752,8 @@ export namespace Prisma {
     scope: number
     password: number
     userId: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -4675,6 +4772,8 @@ export namespace Prisma {
     scope?: true
     password?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type AccountMaxAggregateInputType = {
@@ -4691,6 +4790,8 @@ export namespace Prisma {
     scope?: true
     password?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type AccountCountAggregateInputType = {
@@ -4707,6 +4808,8 @@ export namespace Prisma {
     scope?: true
     password?: true
     userId?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -4796,6 +4899,8 @@ export namespace Prisma {
     scope: string | null
     password: string | null
     userId: string
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: AccountCountAggregateOutputType | null
     _min: AccountMinAggregateOutputType | null
     _max: AccountMaxAggregateOutputType | null
@@ -4829,6 +4934,8 @@ export namespace Prisma {
     scope?: boolean
     password?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
@@ -4846,6 +4953,8 @@ export namespace Prisma {
     scope?: boolean
     password?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
@@ -4863,6 +4972,8 @@ export namespace Prisma {
     scope?: boolean
     password?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
@@ -4880,9 +4991,11 @@ export namespace Prisma {
     scope?: boolean
     password?: boolean
     userId?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "userId", ExtArgs["result"]["account"]>
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["account"]>
   export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -4912,6 +5025,8 @@ export namespace Prisma {
       scope: string | null
       password: string | null
       userId: string
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["account"]>
     composites: {}
   }
@@ -5349,6 +5464,8 @@ export namespace Prisma {
     readonly scope: FieldRef<"Account", 'String'>
     readonly password: FieldRef<"Account", 'String'>
     readonly userId: FieldRef<"Account", 'String'>
+    readonly deletedAt: FieldRef<"Account", 'DateTime'>
+    readonly isDeleted: FieldRef<"Account", 'Boolean'>
   }
     
 
@@ -5780,6 +5897,8 @@ export namespace Prisma {
     identifier: string | null
     value: string | null
     expiresAt: Date | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type VerificationMaxAggregateOutputType = {
@@ -5789,6 +5908,8 @@ export namespace Prisma {
     identifier: string | null
     value: string | null
     expiresAt: Date | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type VerificationCountAggregateOutputType = {
@@ -5798,6 +5919,8 @@ export namespace Prisma {
     identifier: number
     value: number
     expiresAt: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -5809,6 +5932,8 @@ export namespace Prisma {
     identifier?: true
     value?: true
     expiresAt?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type VerificationMaxAggregateInputType = {
@@ -5818,6 +5943,8 @@ export namespace Prisma {
     identifier?: true
     value?: true
     expiresAt?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type VerificationCountAggregateInputType = {
@@ -5827,6 +5954,8 @@ export namespace Prisma {
     identifier?: true
     value?: true
     expiresAt?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -5909,6 +6038,8 @@ export namespace Prisma {
     identifier: string
     value: string
     expiresAt: Date
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: VerificationCountAggregateOutputType | null
     _min: VerificationMinAggregateOutputType | null
     _max: VerificationMaxAggregateOutputType | null
@@ -5935,6 +6066,8 @@ export namespace Prisma {
     identifier?: boolean
     value?: boolean
     expiresAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5944,6 +6077,8 @@ export namespace Prisma {
     identifier?: boolean
     value?: boolean
     expiresAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5953,6 +6088,8 @@ export namespace Prisma {
     identifier?: boolean
     value?: boolean
     expiresAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectScalar = {
@@ -5962,9 +6099,11 @@ export namespace Prisma {
     identifier?: boolean
     value?: boolean
     expiresAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type VerificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "identifier" | "value" | "expiresAt", ExtArgs["result"]["verification"]>
+  export type VerificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "identifier" | "value" | "expiresAt" | "deletedAt" | "isDeleted", ExtArgs["result"]["verification"]>
 
   export type $VerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Verification"
@@ -5976,6 +6115,8 @@ export namespace Prisma {
       identifier: string
       value: string
       expiresAt: Date
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["verification"]>
     composites: {}
   }
@@ -6405,6 +6546,8 @@ export namespace Prisma {
     readonly identifier: FieldRef<"Verification", 'String'>
     readonly value: FieldRef<"Verification", 'String'>
     readonly expiresAt: FieldRef<"Verification", 'DateTime'>
+    readonly deletedAt: FieldRef<"Verification", 'DateTime'>
+    readonly isDeleted: FieldRef<"Verification", 'Boolean'>
   }
     
 
@@ -6791,7 +6934,9 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     title: 'title',
     content: 'content',
-    userId: 'userId'
+    userId: 'userId',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -6803,8 +6948,11 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     name: 'name',
     email: 'email',
+    lineId: 'lineId',
     emailVerified: 'emailVerified',
-    image: 'image'
+    image: 'image',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -6818,7 +6966,9 @@ export namespace Prisma {
     token: 'token',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
-    userId: 'userId'
+    userId: 'userId',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -6837,7 +6987,9 @@ export namespace Prisma {
     refreshTokenExpiresAt: 'refreshTokenExpiresAt',
     scope: 'scope',
     password: 'password',
-    userId: 'userId'
+    userId: 'userId',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -6849,7 +7001,9 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     identifier: 'identifier',
     value: 'value',
-    expiresAt: 'expiresAt'
+    expiresAt: 'expiresAt',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
@@ -6946,6 +7100,8 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     userId?: StringFilter<"Post"> | string
+    deletedAt?: DateTimeNullableFilter<"Post"> | Date | string | null
+    isDeleted?: BoolFilter<"Post"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -6956,6 +7112,8 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -6969,6 +7127,8 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     userId?: StringFilter<"Post"> | string
+    deletedAt?: DateTimeNullableFilter<"Post"> | Date | string | null
+    isDeleted?: BoolFilter<"Post"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -6979,6 +7139,8 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
     _min?: PostMinOrderByAggregateInput
@@ -6994,6 +7156,8 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Post"> | string
     content?: StringWithAggregatesFilter<"Post"> | string
     userId?: StringWithAggregatesFilter<"Post"> | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Post"> | boolean
   }
 
   export type UserWhereInput = {
@@ -7005,8 +7169,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    lineId?: StringNullableFilter<"User"> | string | null
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
+    deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
@@ -7018,8 +7185,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    lineId?: SortOrderInput | SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
@@ -7028,6 +7198,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    lineId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -7036,10 +7207,12 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
+    deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
-  }, "id" | "email">
+  }, "id" | "lineId" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7047,8 +7220,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    lineId?: SortOrderInput | SortOrder
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -7063,8 +7239,11 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    lineId?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type SessionWhereInput = {
@@ -7079,6 +7258,8 @@ export namespace Prisma {
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -7091,6 +7272,8 @@ export namespace Prisma {
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -7106,6 +7289,8 @@ export namespace Prisma {
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "token">
 
@@ -7118,6 +7303,8 @@ export namespace Prisma {
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -7135,6 +7322,8 @@ export namespace Prisma {
     ipAddress?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userId?: StringWithAggregatesFilter<"Session"> | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Session"> | boolean
   }
 
   export type AccountWhereInput = {
@@ -7154,6 +7343,8 @@ export namespace Prisma {
     scope?: StringNullableFilter<"Account"> | string | null
     password?: StringNullableFilter<"Account"> | string | null
     userId?: StringFilter<"Account"> | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -7171,6 +7362,8 @@ export namespace Prisma {
     scope?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -7191,6 +7384,8 @@ export namespace Prisma {
     scope?: StringNullableFilter<"Account"> | string | null
     password?: StringNullableFilter<"Account"> | string | null
     userId?: StringFilter<"Account"> | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -7208,6 +7403,8 @@ export namespace Prisma {
     scope?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: AccountCountOrderByAggregateInput
     _max?: AccountMaxOrderByAggregateInput
     _min?: AccountMinOrderByAggregateInput
@@ -7230,6 +7427,8 @@ export namespace Prisma {
     scope?: StringNullableWithAggregatesFilter<"Account"> | string | null
     password?: StringNullableWithAggregatesFilter<"Account"> | string | null
     userId?: StringWithAggregatesFilter<"Account"> | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Account"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Account"> | boolean
   }
 
   export type VerificationWhereInput = {
@@ -7242,6 +7441,8 @@ export namespace Prisma {
     identifier?: StringFilter<"Verification"> | string
     value?: StringFilter<"Verification"> | string
     expiresAt?: DateTimeFilter<"Verification"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Verification"> | Date | string | null
+    isDeleted?: BoolFilter<"Verification"> | boolean
   }
 
   export type VerificationOrderByWithRelationInput = {
@@ -7251,6 +7452,8 @@ export namespace Prisma {
     identifier?: SortOrder
     value?: SortOrder
     expiresAt?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
   }
 
   export type VerificationWhereUniqueInput = Prisma.AtLeast<{
@@ -7263,6 +7466,8 @@ export namespace Prisma {
     identifier?: StringFilter<"Verification"> | string
     value?: StringFilter<"Verification"> | string
     expiresAt?: DateTimeFilter<"Verification"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Verification"> | Date | string | null
+    isDeleted?: BoolFilter<"Verification"> | boolean
   }, "id">
 
   export type VerificationOrderByWithAggregationInput = {
@@ -7272,6 +7477,8 @@ export namespace Prisma {
     identifier?: SortOrder
     value?: SortOrder
     expiresAt?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: VerificationCountOrderByAggregateInput
     _max?: VerificationMaxOrderByAggregateInput
     _min?: VerificationMinOrderByAggregateInput
@@ -7287,6 +7494,8 @@ export namespace Prisma {
     identifier?: StringWithAggregatesFilter<"Verification"> | string
     value?: StringWithAggregatesFilter<"Verification"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Verification"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Verification"> | boolean
   }
 
   export type PostCreateInput = {
@@ -7295,6 +7504,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     user: UserCreateNestedOneWithoutPostsInput
   }
 
@@ -7305,6 +7516,8 @@ export namespace Prisma {
     title: string
     content: string
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type PostUpdateInput = {
@@ -7313,6 +7526,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
@@ -7323,6 +7538,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostCreateManyInput = {
@@ -7332,6 +7549,8 @@ export namespace Prisma {
     title: string
     content: string
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type PostUpdateManyMutationInput = {
@@ -7340,6 +7559,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -7349,6 +7570,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserCreateInput = {
@@ -7357,8 +7580,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -7370,8 +7596,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -7383,8 +7612,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -7396,8 +7628,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -7409,8 +7644,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7419,8 +7657,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7429,8 +7670,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionCreateInput = {
@@ -7441,6 +7685,8 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     user: UserCreateNestedOneWithoutSessionsInput
   }
 
@@ -7453,6 +7699,8 @@ export namespace Prisma {
     ipAddress?: string | null
     userAgent?: string | null
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUpdateInput = {
@@ -7463,6 +7711,8 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
@@ -7475,6 +7725,8 @@ export namespace Prisma {
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionCreateManyInput = {
@@ -7486,6 +7738,8 @@ export namespace Prisma {
     ipAddress?: string | null
     userAgent?: string | null
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUpdateManyMutationInput = {
@@ -7496,6 +7750,8 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionUncheckedUpdateManyInput = {
@@ -7507,6 +7763,8 @@ export namespace Prisma {
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountCreateInput = {
@@ -7522,6 +7780,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
     password?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     user: UserCreateNestedOneWithoutAccountsInput
   }
 
@@ -7539,6 +7799,8 @@ export namespace Prisma {
     scope?: string | null
     password?: string | null
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountUpdateInput = {
@@ -7554,6 +7816,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutAccountsNestedInput
   }
 
@@ -7571,6 +7835,8 @@ export namespace Prisma {
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountCreateManyInput = {
@@ -7587,6 +7853,8 @@ export namespace Prisma {
     scope?: string | null
     password?: string | null
     userId: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountUpdateManyMutationInput = {
@@ -7602,6 +7870,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountUncheckedUpdateManyInput = {
@@ -7618,6 +7888,8 @@ export namespace Prisma {
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VerificationCreateInput = {
@@ -7627,6 +7899,8 @@ export namespace Prisma {
     identifier: string
     value: string
     expiresAt: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type VerificationUncheckedCreateInput = {
@@ -7636,6 +7910,8 @@ export namespace Prisma {
     identifier: string
     value: string
     expiresAt: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type VerificationUpdateInput = {
@@ -7645,6 +7921,8 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VerificationUncheckedUpdateInput = {
@@ -7654,6 +7932,8 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VerificationCreateManyInput = {
@@ -7663,6 +7943,8 @@ export namespace Prisma {
     identifier: string
     value: string
     expiresAt: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type VerificationUpdateManyMutationInput = {
@@ -7672,6 +7954,8 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VerificationUncheckedUpdateManyInput = {
@@ -7681,6 +7965,8 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     value?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7709,9 +7995,30 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -7721,6 +8028,8 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type PostMaxOrderByAggregateInput = {
@@ -7730,6 +8039,8 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -7739,6 +8050,8 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -7773,9 +8086,26 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -7811,11 +8141,6 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -7834,8 +8159,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -7844,8 +8172,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -7854,16 +8185,11 @@ export namespace Prisma {
     updatedAt?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    lineId?: SortOrder
     emailVerified?: SortOrder
     image?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7893,6 +8219,8 @@ export namespace Prisma {
     ipAddress?: SortOrder
     userAgent?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type SessionMaxOrderByAggregateInput = {
@@ -7904,6 +8232,8 @@ export namespace Prisma {
     ipAddress?: SortOrder
     userAgent?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
@@ -7915,17 +8245,8 @@ export namespace Prisma {
     ipAddress?: SortOrder
     userAgent?: SortOrder
     userId?: SortOrder
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type AccountCountOrderByAggregateInput = {
@@ -7942,6 +8263,8 @@ export namespace Prisma {
     scope?: SortOrder
     password?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type AccountMaxOrderByAggregateInput = {
@@ -7958,6 +8281,8 @@ export namespace Prisma {
     scope?: SortOrder
     password?: SortOrder
     userId?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type AccountMinOrderByAggregateInput = {
@@ -7974,20 +8299,8 @@ export namespace Prisma {
     scope?: SortOrder
     password?: SortOrder
     userId?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type VerificationCountOrderByAggregateInput = {
@@ -7997,6 +8310,8 @@ export namespace Prisma {
     identifier?: SortOrder
     value?: SortOrder
     expiresAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type VerificationMaxOrderByAggregateInput = {
@@ -8006,6 +8321,8 @@ export namespace Prisma {
     identifier?: SortOrder
     value?: SortOrder
     expiresAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type VerificationMinOrderByAggregateInput = {
@@ -8015,6 +8332,8 @@ export namespace Prisma {
     identifier?: SortOrder
     value?: SortOrder
     expiresAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type UserCreateNestedOneWithoutPostsInput = {
@@ -8029,6 +8348,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -8079,10 +8406,6 @@ export namespace Prisma {
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
     createMany?: PostCreateManyUserInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -8193,10 +8516,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -8228,6 +8547,22 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8272,9 +8607,37 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -8289,14 +8652,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8316,50 +8671,17 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type UserCreateWithoutPostsInput = {
     id: string
     createdAt: Date | string
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
   }
@@ -8370,8 +8692,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8398,8 +8723,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
   }
@@ -8410,8 +8738,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8424,6 +8755,8 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUncheckedCreateWithoutUserInput = {
@@ -8434,6 +8767,8 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionCreateOrConnectWithoutUserInput = {
@@ -8459,6 +8794,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
     password?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountUncheckedCreateWithoutUserInput = {
@@ -8474,6 +8811,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
     password?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountCreateOrConnectWithoutUserInput = {
@@ -8492,6 +8831,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type PostUncheckedCreateWithoutUserInput = {
@@ -8500,6 +8841,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type PostCreateOrConnectWithoutUserInput = {
@@ -8540,6 +8883,8 @@ export namespace Prisma {
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -8575,6 +8920,8 @@ export namespace Prisma {
     scope?: StringNullableFilter<"Account"> | string | null
     password?: StringNullableFilter<"Account"> | string | null
     userId?: StringFilter<"Account"> | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
   }
 
   export type PostUpsertWithWhereUniqueWithoutUserInput = {
@@ -8603,6 +8950,8 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     content?: StringFilter<"Post"> | string
     userId?: StringFilter<"Post"> | string
+    deletedAt?: DateTimeNullableFilter<"Post"> | Date | string | null
+    isDeleted?: BoolFilter<"Post"> | boolean
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -8611,8 +8960,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
   }
@@ -8623,8 +8975,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8651,8 +9006,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
   }
@@ -8663,8 +9021,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8675,8 +9036,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
   }
@@ -8687,8 +9051,11 @@ export namespace Prisma {
     updatedAt: Date | string
     name: string
     email: string
+    lineId?: string | null
     emailVerified: boolean
     image?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8715,8 +9082,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
   }
@@ -8727,8 +9097,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8741,6 +9114,8 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountCreateManyUserInput = {
@@ -8756,6 +9131,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
     password?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type PostCreateManyUserInput = {
@@ -8764,6 +9141,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     title: string
     content: string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -8774,6 +9153,8 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionUncheckedUpdateWithoutUserInput = {
@@ -8784,6 +9165,8 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionUncheckedUpdateManyWithoutUserInput = {
@@ -8794,6 +9177,8 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -8809,6 +9194,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountUncheckedUpdateWithoutUserInput = {
@@ -8824,6 +9211,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountUncheckedUpdateManyWithoutUserInput = {
@@ -8839,6 +9228,8 @@ export namespace Prisma {
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUpdateWithoutUserInput = {
@@ -8847,6 +9238,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateWithoutUserInput = {
@@ -8855,6 +9248,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateManyWithoutUserInput = {
@@ -8863,6 +9258,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
 
