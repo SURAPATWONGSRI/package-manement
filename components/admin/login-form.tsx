@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "@/lib/auth-client";
+import { signInEmailAction } from "@/actions/sign-in-email";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,61 +8,26 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 
-interface LoginFormProps {
-  redirectUrl?: string;
-  onSuccess?: () => void;
-}
-
-const AdminLoginForm = ({
-  redirectUrl = "/admin/dashboard",
-  onSuccess,
-}: LoginFormProps) => {
+const AdminLoginForm = () => {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
+  // Handle form submit
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
 
-    const email = String(formData.get("email"));
-    if (!email) return toast.error("กรุณากรอกอีเมล");
+    setIsPending(true);
 
-    const password = String(formData.get("password"));
-    if (!password) return toast.error("กรุณากรอกรหัสผ่าน");
+    const { error } = await signInEmailAction(formData);
 
-    try {
-      await signIn.email(
-        {
-          email,
-          password,
-        },
-        {
-          onRequest: () => {
-            setIsPending(true);
-          },
-          onResponse: () => {
-            setIsPending(false);
-          },
-          onError: (ctx) => {
-            toast.error(
-              ctx.error.message || "เข้าสู่ระบบล้มเหลว กรุณาลองใหม่อีกครั้ง"
-            );
-          },
-          onSuccess: () => {
-            toast.success("เข้าสู่ระบบสำเร็จ");
+    setIsPending(false);
 
-            if (onSuccess) {
-              onSuccess();
-            } else {
-              router.push(redirectUrl);
-              router.refresh();
-            }
-          },
-        }
-      );
-    } catch (error) {
-      console.error("Login error:", error);
-      toast.error("เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองใหม่อีกครั้ง");
+    if (error) {
+      toast.error(error);
+    } else {
+      toast.success("Login successful");
+      router.push("/admin/dashboard");
     }
   }
 

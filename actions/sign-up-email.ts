@@ -1,7 +1,8 @@
 "use server";
 
-import { auth } from "@/lib/auth";
+import { auth, ErrorCode } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { APIError } from "better-auth/api";
 
 export async function signUpEmailAction(formData: FormData) {
   const name = String(formData.get("name"));
@@ -46,9 +47,15 @@ export async function signUpEmailAction(formData: FormData) {
 
     return { error: null };
   } catch (error) {
-    console.error("Registration error:", error);
-    if (error instanceof Error) {
-      return { error: "Oops! Something went wrong while registering" };
+    if (error instanceof APIError) {
+      const errCode = error.body ? (error.body.code as ErrorCode) : "UNKNOW";
+
+      switch (errCode) {
+        case "USER_ALREADY_EXISTS":
+          return { error: "Oops! Something went wrong. Please try again." };
+        default:
+          return { error: error.message };
+      }
     }
     return { error: "Internal Server Error" };
   }
