@@ -1,29 +1,22 @@
-import ReturnButton from "@/components/return-button";
-import { auth } from "@/lib/auth";
+import { withAdminAuth, type AdminPageProps } from "@/lib/with-admin-auth";
 import { Metadata } from "next";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
-export default async function page() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) redirect("/admin");
-
-  if (session.user.role !== "ADMIN") {
-    return (
-      <div className="px-8 py-16 container mx-auto max-w-screen-lg space-y-8">
-        <div className="space-y-8">
-          <ReturnButton href={"/profile"} label="profile"></ReturnButton>
-          <h1 className="text-xl font-bold">Admin Dashboard</h1>
-        </div>
+function AdminDashboardPage({ session }: AdminPageProps) {
+  return (
+    <div className="space-y-6 md:space-y-8 w-full">
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1 sm:mb-2">
+          Admin Dashboard
+        </h1>
+        <p className="text-muted-foreground">
+          Welcome 👋, {session?.user?.name || "Administrator"}.
+        </p>
       </div>
-    );
-  }
-
-  return <p>YOU ARE ADMIN!!</p>;
+    </div>
+  );
 }
+
+export default withAdminAuth(AdminDashboardPage);
