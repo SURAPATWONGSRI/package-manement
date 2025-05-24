@@ -1,3 +1,4 @@
+import { sendEmailAction } from "@/actions/send-email.action";
 import { hashPassword, verifyPassword } from "@/lib/argon2";
 import { ac, roles } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
@@ -20,6 +21,25 @@ export const auth = betterAuth({
     password: {
       hash: hashPassword,
       verify: verifyPassword,
+    },
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    expiresIn: 60, // 1 hour
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      const link = new URL(url);
+      link.searchParams.set("callbackURL", "/verify");
+
+      await sendEmailAction({
+        to: user.email,
+        subject: "กรุณายืนยันอีเมลของคุณ",
+        meta: {
+          description: "กรุณาคลิกที่ลิงก์ด้านล่างเพื่อยืนยันอีเมลของคุณ",
+          link: String(link),
+        },
+      });
     },
   },
   hooks: {

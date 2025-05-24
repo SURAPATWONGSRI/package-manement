@@ -53,7 +53,8 @@ const RegisterForm = () => {
           // Show warning toast but still consider it a success
           toast.warning(warning);
         }
-        toast.success("Register success");
+        toast.success("ลงทะเบียนเรียบร้อย กรุณาตรวจสอบอีเมลเพื่อยืนยันตัวตน");
+
         router.push("/login");
       }
     } catch (err) {
