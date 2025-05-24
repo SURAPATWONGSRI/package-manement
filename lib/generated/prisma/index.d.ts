@@ -2415,6 +2415,9 @@ export namespace Prisma {
     emailVerified: boolean | null
     image: string | null
     role: $Enums.UserRole | null
+    banned: boolean | null
+    banReason: string | null
+    banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -2429,6 +2432,9 @@ export namespace Prisma {
     emailVerified: boolean | null
     image: string | null
     role: $Enums.UserRole | null
+    banned: boolean | null
+    banReason: string | null
+    banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -2443,6 +2449,9 @@ export namespace Prisma {
     emailVerified: number
     image: number
     role: number
+    banned: number
+    banReason: number
+    banExpires: number
     deletedAt: number
     isDeleted: number
     _all: number
@@ -2459,6 +2468,9 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    banned?: true
+    banReason?: true
+    banExpires?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -2473,6 +2485,9 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    banned?: true
+    banReason?: true
+    banExpires?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -2487,6 +2502,9 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    banned?: true
+    banReason?: true
+    banExpires?: true
     deletedAt?: true
     isDeleted?: true
     _all?: true
@@ -2574,6 +2592,9 @@ export namespace Prisma {
     emailVerified: boolean
     image: string | null
     role: $Enums.UserRole
+    banned: boolean | null
+    banReason: string | null
+    banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean
     _count: UserCountAggregateOutputType | null
@@ -2605,6 +2626,9 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    banned?: boolean
+    banReason?: boolean
+    banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -2623,6 +2647,9 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    banned?: boolean
+    banReason?: boolean
+    banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2637,6 +2664,9 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    banned?: boolean
+    banReason?: boolean
+    banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2651,11 +2681,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    banned?: boolean
+    banReason?: boolean
+    banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -2682,6 +2715,9 @@ export namespace Prisma {
       emailVerified: boolean
       image: string | null
       role: $Enums.UserRole
+      banned: boolean | null
+      banReason: string | null
+      banExpires: Date | null
       deletedAt: Date | null
       isDeleted: boolean
     }, ExtArgs["result"]["user"]>
@@ -3119,6 +3155,9 @@ export namespace Prisma {
     readonly emailVerified: FieldRef<"User", 'Boolean'>
     readonly image: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly banned: FieldRef<"User", 'Boolean'>
+    readonly banReason: FieldRef<"User", 'String'>
+    readonly banExpires: FieldRef<"User", 'DateTime'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
   }
@@ -3617,6 +3656,7 @@ export namespace Prisma {
     token: string | null
     ipAddress: string | null
     userAgent: string | null
+    impersonatedBy: string | null
     userId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
@@ -3630,6 +3670,7 @@ export namespace Prisma {
     token: string | null
     ipAddress: string | null
     userAgent: string | null
+    impersonatedBy: string | null
     userId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
@@ -3643,6 +3684,7 @@ export namespace Prisma {
     token: number
     ipAddress: number
     userAgent: number
+    impersonatedBy: number
     userId: number
     deletedAt: number
     isDeleted: number
@@ -3658,6 +3700,7 @@ export namespace Prisma {
     token?: true
     ipAddress?: true
     userAgent?: true
+    impersonatedBy?: true
     userId?: true
     deletedAt?: true
     isDeleted?: true
@@ -3671,6 +3714,7 @@ export namespace Prisma {
     token?: true
     ipAddress?: true
     userAgent?: true
+    impersonatedBy?: true
     userId?: true
     deletedAt?: true
     isDeleted?: true
@@ -3684,6 +3728,7 @@ export namespace Prisma {
     token?: true
     ipAddress?: true
     userAgent?: true
+    impersonatedBy?: true
     userId?: true
     deletedAt?: true
     isDeleted?: true
@@ -3770,6 +3815,7 @@ export namespace Prisma {
     token: string
     ipAddress: string | null
     userAgent: string | null
+    impersonatedBy: string | null
     userId: string
     deletedAt: Date | null
     isDeleted: boolean
@@ -3800,6 +3846,7 @@ export namespace Prisma {
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    impersonatedBy?: boolean
     userId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
@@ -3814,6 +3861,7 @@ export namespace Prisma {
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    impersonatedBy?: boolean
     userId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
@@ -3828,6 +3876,7 @@ export namespace Prisma {
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    impersonatedBy?: boolean
     userId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
@@ -3842,12 +3891,13 @@ export namespace Prisma {
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    impersonatedBy?: boolean
     userId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "impersonatedBy" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3871,6 +3921,7 @@ export namespace Prisma {
       token: string
       ipAddress: string | null
       userAgent: string | null
+      impersonatedBy: string | null
       userId: string
       deletedAt: Date | null
       isDeleted: boolean
@@ -4305,6 +4356,7 @@ export namespace Prisma {
     readonly token: FieldRef<"Session", 'String'>
     readonly ipAddress: FieldRef<"Session", 'String'>
     readonly userAgent: FieldRef<"Session", 'String'>
+    readonly impersonatedBy: FieldRef<"Session", 'String'>
     readonly userId: FieldRef<"Session", 'String'>
     readonly deletedAt: FieldRef<"Session", 'DateTime'>
     readonly isDeleted: FieldRef<"Session", 'Boolean'>
@@ -6982,6 +7034,9 @@ export namespace Prisma {
     emailVerified: 'emailVerified',
     image: 'image',
     role: 'role',
+    banned: 'banned',
+    banReason: 'banReason',
+    banExpires: 'banExpires',
     deletedAt: 'deletedAt',
     isDeleted: 'isDeleted'
   };
@@ -6997,6 +7052,7 @@ export namespace Prisma {
     token: 'token',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
+    impersonatedBy: 'impersonatedBy',
     userId: 'userId',
     deletedAt: 'deletedAt',
     isDeleted: 'isDeleted'
@@ -7218,6 +7274,9 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    banned?: BoolNullableFilter<"User"> | boolean | null
+    banReason?: StringNullableFilter<"User"> | string | null
+    banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
@@ -7235,6 +7294,9 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
     role?: SortOrder
+    banned?: SortOrderInput | SortOrder
+    banReason?: SortOrderInput | SortOrder
+    banExpires?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     sessions?: SessionOrderByRelationAggregateInput
@@ -7255,6 +7317,9 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    banned?: BoolNullableFilter<"User"> | boolean | null
+    banReason?: StringNullableFilter<"User"> | string | null
+    banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     sessions?: SessionListRelationFilter
@@ -7272,6 +7337,9 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
     role?: SortOrder
+    banned?: SortOrderInput | SortOrder
+    banReason?: SortOrderInput | SortOrder
+    banExpires?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -7292,6 +7360,9 @@ export namespace Prisma {
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    banned?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
+    banReason?: StringNullableWithAggregatesFilter<"User"> | string | null
+    banExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
   }
@@ -7307,6 +7378,7 @@ export namespace Prisma {
     token?: StringFilter<"Session"> | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
     deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     isDeleted?: BoolFilter<"Session"> | boolean
@@ -7321,6 +7393,7 @@ export namespace Prisma {
     token?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    impersonatedBy?: SortOrderInput | SortOrder
     userId?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
@@ -7338,6 +7411,7 @@ export namespace Prisma {
     expiresAt?: DateTimeFilter<"Session"> | Date | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
     deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     isDeleted?: BoolFilter<"Session"> | boolean
@@ -7352,6 +7426,7 @@ export namespace Prisma {
     token?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    impersonatedBy?: SortOrderInput | SortOrder
     userId?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
@@ -7371,6 +7446,7 @@ export namespace Prisma {
     token?: StringWithAggregatesFilter<"Session"> | string
     ipAddress?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    impersonatedBy?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userId?: StringWithAggregatesFilter<"Session"> | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"Session"> | boolean
@@ -7634,6 +7710,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -7651,6 +7730,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -7668,6 +7750,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -7685,6 +7770,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -7702,6 +7790,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -7716,6 +7807,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -7730,6 +7824,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -7742,6 +7839,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     user: UserCreateNestedOneWithoutSessionsInput
@@ -7755,6 +7853,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     userId: string
     deletedAt?: Date | string | null
     isDeleted?: boolean
@@ -7768,6 +7867,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutSessionsNestedInput
@@ -7781,6 +7881,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -7794,6 +7895,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     userId: string
     deletedAt?: Date | string | null
     isDeleted?: boolean
@@ -7807,6 +7909,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -7819,6 +7922,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -8187,6 +8291,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type SessionListRelationFilter = {
     every?: SessionWhereInput
     some?: SessionWhereInput
@@ -8227,6 +8336,9 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    banned?: SortOrder
+    banReason?: SortOrder
+    banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8241,6 +8353,9 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    banned?: SortOrder
+    banReason?: SortOrder
+    banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8255,6 +8370,9 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    banned?: SortOrder
+    banReason?: SortOrder
+    banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -8287,6 +8405,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -8295,6 +8421,7 @@ export namespace Prisma {
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    impersonatedBy?: SortOrder
     userId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
@@ -8308,6 +8435,7 @@ export namespace Prisma {
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    impersonatedBy?: SortOrder
     userId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
@@ -8321,6 +8449,7 @@ export namespace Prisma {
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    impersonatedBy?: SortOrder
     userId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
@@ -8491,6 +8620,10 @@ export namespace Prisma {
 
   export type EnumUserRoleFieldUpdateOperationsInput = {
     set?: $Enums.UserRole
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type SessionUpdateManyWithoutUserNestedInput = {
@@ -8742,6 +8875,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8769,6 +8907,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type UserCreateWithoutPostsInput = {
     id?: string
     createdAt: Date | string
@@ -8779,6 +8925,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -8795,6 +8944,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -8827,6 +8979,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -8843,6 +8998,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -8857,6 +9015,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -8869,6 +9028,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -8984,6 +9144,7 @@ export namespace Prisma {
     token?: StringFilter<"Session"> | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
     userId?: StringFilter<"Session"> | string
     deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     isDeleted?: BoolFilter<"Session"> | boolean
@@ -9066,6 +9227,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -9082,6 +9246,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -9114,6 +9281,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -9130,6 +9300,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -9146,6 +9319,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -9162,6 +9338,9 @@ export namespace Prisma {
     emailVerified: boolean
     image?: string | null
     role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -9194,6 +9373,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -9210,6 +9392,9 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -9224,6 +9409,7 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -9263,6 +9449,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9275,6 +9462,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9287,6 +9475,7 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }

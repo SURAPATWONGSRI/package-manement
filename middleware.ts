@@ -8,9 +8,16 @@ export async function middleware(req: NextRequest) {
   const isLoggedIn = !!session;
   const pathname = nextUrl.pathname;
 
+  // กำหนดเส้นทางต่างๆ
   const isAdminRoot = pathname === "/admin";
   const isAdminProtected =
     pathname.startsWith("/admin") && pathname !== "/admin";
+  const isLoginPage = pathname === "/login";
+
+  // ถ้าล็อกอินแล้ว ห้ามเข้า /login
+  if (isLoggedIn && isLoginPage) {
+    return NextResponse.redirect(new URL("/profile", req.url));
+  }
 
   // ✅ ไม่ login แต่พยายามเข้า admin route (ยกเว้น /admin เองที่เป็นหน้า login)
   if (!isLoggedIn && isAdminProtected) {
@@ -26,5 +33,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/admin"],
+  matcher: ["/admin/:path*", "/admin", "/login"],
 };

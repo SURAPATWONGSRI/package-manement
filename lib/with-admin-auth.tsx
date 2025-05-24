@@ -1,4 +1,3 @@
-import AccessDenied from "@/components/admin/access-denied";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -21,9 +20,9 @@ export function withAdminAuth<T extends AdminPageProps>(
       redirect("/admin");
     }
 
-    // ถ้าไม่ใช่ admin ให้แสดง AccessDenied component
+    // ถ้าไม่ใช่ admin ให้ redirect ไปหน้า profile
     if (session.user.role !== "ADMIN") {
-      return <AccessDenied />;
+      redirect("/profile");
     }
 
     // ถ้าผ่านการตรวจสอบทั้งหมด ส่ง session ที่ไม่เป็น null ไปให้ Component

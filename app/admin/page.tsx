@@ -1,4 +1,5 @@
 import AdminLoginForm from "@/components/admin/login-form";
+import { Printer } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,21 +8,15 @@ export const metadata: Metadata = {
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-svh flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-sm">
-        {/* หัวข้อ */}
-
-        {/* การ์ดแบบฟอร์ม */}
-        <div className="bg-card border rounded-lg p-6 shadow-sm">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold">Admin Planel</h1>
-            <p className="text-sm text-muted-foreground">
-              เข้าสู่ระบบเพื่อจัดการระบบ
-            </p>
+    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
+      <div className="flex w-full max-w-sm flex-col gap-6">
+        <a href="#" className="flex items-center gap-2 self-center font-medium">
+          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+            <Printer className="size-4" />
           </div>
-
-          <AdminLoginForm />
-        </div>
+          Back-Office.
+        </a>
+        <AdminLoginForm />
       </div>
     </div>
   );

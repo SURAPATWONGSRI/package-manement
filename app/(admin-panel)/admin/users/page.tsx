@@ -1,3 +1,7 @@
+import {
+  DeleteUserButton,
+  PlaceholderDeleteUserButton,
+} from "@/components/delete-user-button";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -7,10 +11,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withAdminAuth, type AdminPageProps } from "@/lib/with-admin-auth";
-import { Edit, Loader2, Trash2 } from "lucide-react";
+import { Edit, Loader2 } from "lucide-react";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -29,19 +35,33 @@ function LoadingState() {
 
 // Component สำหรับแสดงตารางข้อมูลผู้ใช้
 async function UsersTable() {
-  // ดึงข้อมูลผู้ใช้ (จะมีการรอให้เสร็จโดยอัตโนมัติเพราะเป็น async component)
-  const users = await prisma.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      lineId: true,
-      role: true,
-    },
-    orderBy: {
-      createdAt: "desc",
+  const headerList = await headers();
+
+  // ดึงข้อมูลผู้ใช้จาก better-auth
+  const { users: authUsers } = await auth.api.listUsers({
+    headers: headerList,
+    query: {
+      sortBy: "name",
     },
   });
+
+  // ดึงข้อมูล lineId จาก Prisma
+  const userIds = authUsers.map((user) => user.id);
+  const dbUsers = await prisma.user.findMany({
+    where: { id: { in: userIds } },
+    select: { id: true, lineId: true },
+  });
+
+  // รวมข้อมูล
+  const userLineIds = Object.fromEntries(
+    dbUsers.map((user) => [user.id, user.lineId])
+  );
+
+  // เพิ่ม lineId เข้าไปในข้อมูลผู้ใช้
+  const users = authUsers.map((user) => ({
+    ...user,
+    lineId: userLineIds[user.id] || null,
+  }));
 
   return (
     <div className="w-full rounded-md border">
@@ -106,9 +126,11 @@ async function UsersTable() {
                     <Button variant="ghost" size="icon">
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon">
-                      <Trash2 className="h-4 w-4 text-destructive" />
-                    </Button>
+                    {user.role === "USER" ? (
+                      <DeleteUserButton userId={user.id} />
+                    ) : (
+                      <PlaceholderDeleteUserButton />
+                    )}
                   </div>
                 </TableCell>
               </TableRow>

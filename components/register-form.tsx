@@ -1,6 +1,6 @@
 "use client";
 
-import { signUpEmailAction } from "@/actions/sign-up-email";
+import { signUpEmailAction } from "@/actions/sign-up-email.action";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -17,17 +17,50 @@ const RegisterForm = () => {
     evt.preventDefault();
     const formData = new FormData(evt.target as HTMLFormElement);
 
+    // Validate name field
+    const name = formData.get("name") as string;
+    if (!name || name.trim() === "") {
+      toast.error("กรุณากรอกชื่อ");
+      return;
+    }
+
+    // Validate lineId if provided
+    const lineId = formData.get("lineId") as string;
+    if (lineId && lineId.trim() !== "") {
+      // LINE ID should not contain spaces
+      if (lineId.includes(" ")) {
+        toast.error("LINE ID ไม่ควรมีช่องว่าง");
+        return;
+      }
+
+      // LINE ID should be at least 3 characters
+      if (lineId.trim().length < 3) {
+        toast.error("LINE ID ควรมีความยาวอย่างน้อย 3 ตัวอักษร");
+        return;
+      }
+    }
+
     setIsPending(true);
 
-    const { error } = await signUpEmailAction(formData);
+    try {
+      console.log("Submitting registration with name:", name);
+      const { error, warning } = await signUpEmailAction(formData);
 
-    setIsPending(false);
-
-    if (error) {
-      toast.error(error);
-    } else {
-      toast.success("Register success");
-      router.push("/login");
+      if (error) {
+        toast.error(error);
+      } else {
+        if (warning) {
+          // Show warning toast but still consider it a success
+          toast.warning(warning);
+        }
+        toast.success("Register success");
+        router.push("/login");
+      }
+    } catch (err) {
+      console.error("Registration error:", err);
+      toast.error("เกิดข้อผิดพลาดในการลงทะเบียน กรุณาลองใหม่อีกครั้ง");
+    } finally {
+      setIsPending(false);
     }
   }
 
@@ -36,7 +69,13 @@ const RegisterForm = () => {
       {/* Name */}
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" />
+        <Input
+          id="name"
+          name="name"
+          required
+          placeholder="Your full name"
+          aria-required="true"
+        />
       </div>
 
       {/* Email */}
@@ -48,7 +87,18 @@ const RegisterForm = () => {
       {/* Line ID */}
       <div className="space-y-2">
         <Label htmlFor="lineId">LINE ID (optional)</Label>
-        <Input id="lineId" name="lineId" placeholder="LINE ID (ถ้ามี)" />
+        <Input
+          id="lineId"
+          name="lineId"
+          placeholder="LINE ID (ถ้ามี)"
+          aria-description="Your LINE ID for communication purposes"
+          minLength={3}
+          pattern="[^\s]+"
+          title="LINE ID should not contain spaces"
+        />
+        <p className="text-xs text-gray-500">
+          LINE ID จะใช้สำหรับการติดต่อกับคุณ (ไม่จำเป็นต้องกรอก)
+        </p>
       </div>
 
       {/* Password */}
