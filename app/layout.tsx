@@ -6,18 +6,18 @@ import "./globals.css";
 const LineSeedTH = localFont({
   src: [
     {
-      path: "../public/fonts/TH/LINESeedSansTH_W_Rg.woff2",
-      weight: "400", // เปลี่ยนเป็น 400 ซึ่งเป็นค่ามาตรฐานสำหรับ regular
-      style: "normal",
-    },
-    {
       path: "../public/fonts/TH/LINESeedSansTH_W_Th.woff2",
       weight: "100",
       style: "normal",
     },
     {
+      path: "../public/fonts/TH/LINESeedSansTH_W_Rg.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
       path: "../public/fonts/TH/LINESeedSansTH_W_Bd.woff2",
-      weight: "700", // เปลี่ยนเป็น 700 ซึ่งเป็นค่ามาตรฐานสำหรับ bold
+      weight: "700",
       style: "normal",
     },
     {
@@ -27,24 +27,24 @@ const LineSeedTH = localFont({
     },
   ],
   variable: "--font-lineseed-th",
-  display: "swap", // เพิ่ม display: swap เพื่อการแสดงผลที่ดีขึ้น
+  display: "swap",
 });
 
 const LineSeedEN = localFont({
   src: [
-    {
-      path: "../public/fonts/EN/LINESeedSans_W_Rg.woff2",
-      weight: "300", // เปลี่ยนเป็น 400
-      style: "normal",
-    },
     {
       path: "../public/fonts/EN/LINESeedSans_W_Th.woff2",
       weight: "100",
       style: "normal",
     },
     {
+      path: "../public/fonts/EN/LINESeedSans_W_Rg.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
       path: "../public/fonts/EN/LINESeedSans_W_Bd.woff2",
-      weight: "600", // เปลี่ยนเป็น 700
+      weight: "600",
       style: "normal",
     },
     {
@@ -54,7 +54,7 @@ const LineSeedEN = localFont({
     },
   ],
   variable: "--font-lineseed-en",
-  display: "swap", // เพิ่ม display: swap
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`${LineSeedTH.variable} ${LineSeedEN.variable}`}>

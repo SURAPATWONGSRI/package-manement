@@ -11,7 +11,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { UserRoleSelect } from "@/components/user-role-select";
 import { auth } from "@/lib/auth";
+import { UserRole } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { withAdminAuth, type AdminPageProps } from "@/lib/with-admin-auth";
 import { Edit, Loader2 } from "lucide-react";
@@ -93,33 +95,10 @@ async function UsersTable() {
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.lineId || "-"}</TableCell>
                 <TableCell>
-                  <div
-                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
-                      user.role === "ADMIN"
-                        ? "bg-destructive/10 text-destructive ring-1 ring-inset ring-destructive/20"
-                        : "bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-600/20"
-                    }`}
-                  >
-                    {user.role === "ADMIN" && (
-                      <svg
-                        className="h-1.5 w-1.5 fill-destructive"
-                        viewBox="0 0 6 6"
-                        aria-hidden="true"
-                      >
-                        <circle cx="3" cy="3" r="3" />
-                      </svg>
-                    )}
-                    {user.role !== "ADMIN" && (
-                      <svg
-                        className="h-1.5 w-1.5 fill-sky-500"
-                        viewBox="0 0 6 6"
-                        aria-hidden="true"
-                      >
-                        <circle cx="3" cy="3" r="3" />
-                      </svg>
-                    )}
-                    {user.role}
-                  </div>
+                  <UserRoleSelect
+                    userId={user.id}
+                    role={user.role as UserRole}
+                  />
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
