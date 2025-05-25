@@ -69,36 +69,51 @@ export async function signInEmailAction(formData: FormData) {
       const errorMessage = error.message.toLowerCase();
       console.log("Error message lowercase:", errorMessage);
 
-      // ถ้ามี APIError จาก Better Auth
+      // Get error code using the pattern from your snippet
       const errorObj = error as any;
-      if (errorObj.code || errorObj.statusCode) {
-        console.log(
-          "Error code/statusCode:",
-          errorObj.code || errorObj.statusCode
-        );
-      }
+      const errCode = errorObj.body ? errorObj.body.code : "UNKNOWN";
+      console.dir(error, { depth: 5 });
 
-      // ตรวจสอบข้อความผิดพลาดเกี่ยวกับผู้ใช้ไม่พบ
-      if (
-        errorMessage.includes("not found") ||
-        errorMessage.includes("no user") ||
-        errorMessage.includes("user not found")
-      ) {
-        return { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" };
-      }
+      // Handle specific error codes
+      switch (errCode) {
+        case "EMAIL_NOT_VERIFIED":
+          // Redirect to verify page with error parameter
+          return { redirect: "/verify?error=email_not_verified" };
+        case "INVALID_CREDENTIALS":
+        case "USER_NOT_FOUND":
+        case "INVALID_PASSWORD":
+          return { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" };
+        case "RATE_LIMITED":
+          return {
+            error:
+              "คุณได้พยายามเข้าสู่ระบบหลายครั้งเกินไป โปรดลองอีกครั้งในภายหลัง",
+          };
+        case "ACCOUNT_DISABLED":
+          return {
+            error: "บัญชีนี้ถูกระงับการใช้งาน โปรดติดต่อผู้ดูแลระบบ",
+          };
+        default:
+          // Fallback to checking error message strings
+          if (
+            errorMessage.includes("not found") ||
+            errorMessage.includes("no user") ||
+            errorMessage.includes("user not found")
+          ) {
+            return { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" };
+          }
 
-      // ตรวจสอบข้อความผิดพลาดเกี่ยวกับรหัสผ่าน
-      if (
-        errorMessage.includes("password") ||
-        errorMessage.includes("invalid password") ||
-        errorMessage.includes("credential") ||
-        errorMessage.includes("invalid") ||
-        errorMessage.includes("authentication failed")
-      ) {
-        return { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" };
-      }
+          if (
+            errorMessage.includes("password") ||
+            errorMessage.includes("invalid password") ||
+            errorMessage.includes("credential") ||
+            errorMessage.includes("invalid") ||
+            errorMessage.includes("authentication failed")
+          ) {
+            return { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" };
+          }
 
-      return { error: error.message };
+          return { error: error.message };
+      }
     }
 
     return { error: "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง" };
