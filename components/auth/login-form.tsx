@@ -1,13 +1,13 @@
 "use client";
 import { signInEmailAction } from "@/actions/sign-in-email.action";
-import { AlertCircle, Loader2 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 
 const LoginForm = () => {
   const [isPending, setIsPending] = useState(false);
@@ -66,9 +66,8 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} className="max-w-sm w-full space-y-4">
       {errorMessage && (
-        <Alert variant="destructive" className="mb-4">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>เข้าสู่ระบบไม่สำเร็จ</AlertTitle>
+        <Alert variant="destructive" className="mb-4 bg-destructive/10">
+          <AlertTitle className="font-semibold">Error</AlertTitle>
           <AlertDescription>{errorMessage}</AlertDescription>
         </Alert>
       )}

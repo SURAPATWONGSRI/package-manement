@@ -1,9 +1,6 @@
 "use client";
 import { deleteUserAction } from "@/actions/delete-user.action";
-import { TrashIcon } from "lucide-react";
-import React from "react";
-import { toast } from "sonner";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,13 +9,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "@/components/ui/tooltip";
+import { TrashIcon } from "lucide-react";
+import React from "react";
+import { toast } from "sonner";
 
 interface DeleteUserButtonProps {
   userId: string;

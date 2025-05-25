@@ -1,7 +1,7 @@
 "use client";
 
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/admin/sidebar/nav-main";
+import { NavUser } from "@/components/admin/sidebar/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -9,12 +9,12 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { signOut, useSession } from "@/lib/auth-client";
 import { LayoutDashboard, Printer, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { signOut, useSession } from "../lib/auth-client";
 import { TeamSwitcher } from "./team-switcher";
 
 type UserData = {

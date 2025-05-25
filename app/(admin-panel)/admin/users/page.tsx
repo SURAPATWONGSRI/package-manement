@@ -1,7 +1,8 @@
 import {
   DeleteUserButton,
   PlaceholderDeleteUserButton,
-} from "@/components/delete-user-button";
+} from "@/components/admin/delete-user-button";
+import { UserRoleSelect } from "@/components/admin/user-role-select";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -11,7 +12,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { UserRoleSelect } from "@/components/user-role-select";
 import { auth } from "@/lib/auth";
 import { UserRole } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";

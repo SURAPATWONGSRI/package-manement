@@ -1,5 +1,5 @@
+import { SendVerificationEmailForm } from "@/components/auth/send-verification-email-form";
 import ReturnButton from "@/components/return-button";
-import { SendVerificationEmailForm } from "@/components/send-verification-email-form";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -8,13 +8,21 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  searchParams: Promise<{ error: string }>;
+  searchParams: Promise<{ error?: string; token?: string }>;
 }
 
 export default async function Page({ searchParams }: PageProps) {
-  const error = (await searchParams).error;
+  const params = await searchParams;
+  const error = params.error;
+  const token = params.token;
 
-  if (!error) redirect("/profile");
+  // ถ้ามี token แสดงว่าเป็นการยืนยันอีเมลจากลิงก์ในอีเมล
+  // เปลี่ยนเส้นทางไปยังหน้า login พร้อมแสดง alert ว่ายืนยันสำเร็จ
+  if (token) {
+    redirect("/login?verification=success");
+  }
+
+  if (!error) redirect("/login?verification=success");
 
   return (
     <div className="px-8 py-16 container mx-auto max-w-screen-lg space-y-8">
@@ -26,7 +34,7 @@ export default async function Page({ searchParams }: PageProps) {
 
       <p className="text-destructive">
         <span className="capitalize">
-          {error.replace(/_/g, " ").replace(/-/g, " ")}
+          {error?.replace(/_/g, " ").replace(/-/g, " ")}
         </span>{" "}
         - กรุณากรอกอีเมลอีกครั้งเพื่อยืนยันตัวตนใหม่.
       </p>

@@ -4,19 +4,24 @@ import transporter from "@/lib/nodemailer";
 
 const styles = {
   container:
-    "max-width:600px;margin:20px auto;padding:30px;border-radius:8px;background-color:#f8f9fa;font-family:Arial,sans-serif;box-shadow:0 4px 6px rgba(0,0,0,0.1)",
-  header: "margin-bottom:25px;text-align:center",
-  // logo: "width:120px;margin-bottom:15px",
-  title: "font-size:24px;font-weight:600;color:#333;margin-bottom:5px",
-  subtitle: "font-size:16px;color:#666;margin-bottom:20px",
-  divider: "border:none;height:1px;background-color:#e0e0e0;margin:20px 0",
-  content: "padding:15px 0",
-  paragraph: "font-size:16px;line-height:1.6;color:#444;margin-bottom:20px",
+    "max-width:600px;margin:20px auto;padding:30px;border-radius:12px;background-color:#ffffff;font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;box-shadow:0 4px 10px rgba(0,0,0,0.05);border:1px solid #f1f1f1",
+  header: "margin-bottom:30px;text-align:center",
+  title:
+    "font-size:28px;font-weight:700;color:#171717;margin-bottom:8px;letter-spacing:-0.025em",
+  subtitle: "font-size:16px;color:#6b7280;margin-bottom:0;font-weight:400",
+  divider: "border:none;height:1px;background-color:#f3f4f6;margin:24px 0",
+  content: "padding:0",
+  paragraph: "font-size:16px;line-height:1.7;color:#374151;margin-bottom:24px",
   button:
-    "display:inline-block;padding:12px 24px;background-color:#4f46e5;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:500;text-align:center;transition:background-color 0.2s",
-  buttonContainer: "margin:25px 0;text-align:center",
+    "display:inline-block;padding:12px 28px;background-color:#000000;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:500;text-align:center;transition:all 0.2s ease;font-size:15px;border:1px solid #000000;box-shadow:0 1px 2px rgba(0,0,0,0.05)",
+  buttonHover: "background-color:#ffffff;color:#000000;",
+  buttonContainer: "margin:32px 0;text-align:center",
   footer:
-    "margin-top:30px;font-size:12px;color:#888;text-align:center;border-top:1px solid #e0e0e0;padding-top:20px",
+    "margin-top:32px;font-size:13px;color:#6b7280;text-align:center;border-top:1px solid #f3f4f6;padding-top:24px",
+  logo: "width:40px;height:40px;border-radius:9999px;background-color:#000000;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:20px;font-weight:bold",
+  infoBox:
+    "background-color:#f9fafb;border-radius:8px;padding:16px;margin-bottom:24px;border-left:4px solid #000000",
+  infoText: "margin:0;font-size:14px;color:#4b5563",
 };
 
 export async function sendEmailAction({
@@ -36,28 +41,53 @@ export async function sendEmailAction({
     to,
     subject: `Package Management - ${subject}`,
     html: `
-      <div style="${styles.container}">
-        <div style="${styles.header}">
+      <!DOCTYPE html>
+      <html lang="th">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${subject}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      </head>
+      <body style="margin:0;padding:0;background-color:#f9fafb;color:#374151;">
+        <div style="${styles.container}">
+          <div style="${styles.header}">
 
-          <h1 style="${styles.title}">${subject}</h1>
-          <p style="${styles.subtitle}">Package Management System</p>
-        </div>
+            <h1 style="${styles.title}">${subject}</h1>
+            <p style="${styles.subtitle}">Package Management System</p>
+          </div>
 
-        <hr style="${styles.divider}">
+          <hr style="${styles.divider}">
 
-        <div style="${styles.content}">
-          <p style="${styles.paragraph}">${meta.description}</p>
+          <div style="${styles.content}">
+            <div style="${styles.infoBox}">
+              <p style="${
+                styles.infoText
+              }">โปรดดำเนินการโดยเร็วที่สุดเพื่อความปลอดภัยของบัญชีของคุณ</p>
+            </div>
 
-          <div style="${styles.buttonContainer}">
-            <a href="${meta.link}" style="${styles.button}">ดำเนินการต่อ</a>
+            <p style="${styles.paragraph}">${meta.description}</p>
+
+            <div style="${styles.buttonContainer}">
+              <a href="${meta.link}" style="${
+      styles.button
+    }" onmouseover="this.style='${
+      styles.button + styles.buttonHover
+    }'" onmouseout="this.style='${styles.button}'">ยืนยันอีเมล</a>
+            </div>
+
+            <p style="${
+              styles.paragraph
+            }">หากคุณไม่ได้เป็นผู้ร้องขอการดำเนินการนี้ คุณสามารถละเว้นอีเมลฉบับนี้ได้</p>
+          </div>
+
+          <div style="${styles.footer}">
+            <p>© ${new Date().getFullYear()} Package Management System. All rights reserved.</p>
+            <p>หากมีคำถามหรือต้องการความช่วยเหลือ กรุณาติดต่อผู้ดูแลระบบ</p>
           </div>
         </div>
-
-        <div style="${styles.footer}">
-          <p>© ${new Date().getFullYear()} Package Management System. All rights reserved.</p>
-          <p>If you didn't request this email, please ignore it or contact support.</p>
-        </div>
-      </div>
+      </body>
+      </html>
     `,
   };
 

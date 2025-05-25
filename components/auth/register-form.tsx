@@ -1,13 +1,13 @@
 "use client";
 
 import { signUpEmailAction } from "@/actions/sign-up-email.action";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 
 const RegisterForm = () => {
   const [isPending, setIsPending] = useState(false);
@@ -53,9 +53,10 @@ const RegisterForm = () => {
           // Show warning toast but still consider it a success
           toast.warning(warning);
         }
-        toast.success("ลงทะเบียนเรียบร้อย กรุณาตรวจสอบอีเมลเพื่อยืนยันตัวตน");
+        toast.success("ลงทะเบียนสำเร็จ กรุณาตรวจสอบอีเมลเพื่อยืนยัน");
 
-        router.push("/login");
+        // เปลี่ยนเส้นทางให้ไปที่หน้า login พร้อม parameter แจ้งให้ยืนยันอีเมล
+        router.push("/login?verification=required");
       }
     } catch (err) {
       console.error("Registration error:", err);
@@ -91,14 +92,14 @@ const RegisterForm = () => {
         <Input
           id="lineId"
           name="lineId"
-          placeholder="LINE ID (ถ้ามี)"
+          placeholder="Your LINE ID (optional)"
           aria-description="Your LINE ID for communication purposes"
           minLength={3}
           pattern="[^\s]+"
           title="LINE ID should not contain spaces"
         />
-        <p className="text-xs text-gray-500">
-          LINE ID จะใช้สำหรับการติดต่อกับคุณ (ไม่จำเป็นต้องกรอก)
+        <p className="text-xs text-muted-foreground">
+          LINE ID จะใช้สำหรับการติดต่อกับคุณ
         </p>
       </div>
 
