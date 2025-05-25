@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -84,7 +85,15 @@ const LoginForm = () => {
         />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <div className="flex justify-between items-center gap-2">
+          <Label htmlFor="password">Password</Label>
+          <Link
+            href={"/forgot-password"}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            Forgot Password?
+          </Link>
+        </div>
         <Input
           type="password"
           id="password"

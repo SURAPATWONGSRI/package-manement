@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReactNode } from "react";
 
 interface AuthLayoutProps {
@@ -13,8 +14,15 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* ส่วนด้านซ้าย: รูปภาพหรือ banner */}
-      <div className="hidden md:flex md:w-1/2 bg-primary relative ">
-        <div className="absolute inset-0 flex items-center justify-center p-10 flex-col">
+      <div className="hidden md:flex md:w-1/2 bg-foreground relative">
+        <Image
+          src="/assets/images/bg.jpg"
+          fill
+          alt="Background Image"
+          className="object-cover opacity-20 "
+          priority
+        />
+        <div className="absolute inset-0 flex items-center justify-center p-10 flex-col z-10">
           <h1 className="text-4xl font-bold text-white mb-4">
             Package Management
           </h1>

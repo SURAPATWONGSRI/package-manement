@@ -69,50 +69,67 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit} className="max-w-sm w-full space-y-4">
       {/* Name */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <Label htmlFor="name">Name</Label>
         <Input
           id="name"
           name="name"
           required
-          placeholder="Your full name"
+          placeholder="Enter Your Full Name"
           aria-required="true"
         />
       </div>
 
       {/* Email */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" name="email" />
+        <Input
+          type="email"
+          placeholder="Enter Your Email"
+          id="email"
+          name="email"
+        />
       </div>
 
       {/* Line ID */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <Label htmlFor="lineId">LINE ID (optional)</Label>
         <Input
           id="lineId"
           name="lineId"
-          placeholder="Your LINE ID (optional)"
+          placeholder="Enter Your LINE ID"
           aria-description="Your LINE ID for communication purposes"
-          minLength={3}
-          pattern="[^\s]+"
-          title="LINE ID should not contain spaces"
+          minLength={4}
+          maxLength={20}
+          pattern="^[a-z][a-z0-9._-]{3,19}$"
+          title="LINE ID must be 4–20 characters, start with a letter, and contain only lowercase letters, numbers, dots, dashes, or underscores."
         />
+
         <p className="text-xs text-muted-foreground">
           LINE ID จะใช้สำหรับการติดต่อกับคุณ
         </p>
       </div>
 
       {/* Password */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <Label htmlFor="password">Password</Label>
-        <Input type="password" id="password" name="password" />
+        <Input
+          type="password"
+          placeholder="Enter Your Password"
+          id="password"
+          name="password"
+        />
       </div>
 
       {/* Confirm Password */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <Label htmlFor="confirmPassword">Confirm Password</Label>
-        <Input type="password" id="confirmPassword" name="confirmPassword" />
+        <Input
+          type="password"
+          placeholder="Enter Your Confirm Password"
+          id="confirmPassword"
+          name="confirmPassword"
+        />
       </div>
 
       {/* Submit Button */}
