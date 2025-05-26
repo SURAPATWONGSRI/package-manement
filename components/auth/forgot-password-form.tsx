@@ -3,13 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { sendVerificationEmail } from "@/lib/auth-client";
-import { Loader2 } from "lucide-react"; // Import Loader2 from lucide-react
+import { Loader2 } from "lucide-react"; // Import Lucide icons
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export const SendVerificationEmailForm = () => {
+import { forgetPassword } from "@/lib/auth-client";
+
+export const ForgotPasswordForm = () => {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
@@ -20,9 +21,9 @@ export const SendVerificationEmailForm = () => {
 
     if (!email) return toast.error("กรุณากรอกอีเมลของคุณ");
 
-    await sendVerificationEmail({
+    await forgetPassword({
       email,
-      callbackURL: "/verify",
+      redirectTo: "/reset-password",
       fetchOptions: {
         onRequest: () => {
           setIsPending(true);
@@ -34,8 +35,8 @@ export const SendVerificationEmailForm = () => {
           toast.error(ctx.error.message);
         },
         onSuccess: () => {
-          toast.success("Verification email sent successfully");
-          router.push("/verify/success");
+          toast.success("Reset link sent to your email!");
+          router.push("/forgot-password/success");
         },
       },
     });
@@ -44,7 +45,7 @@ export const SendVerificationEmailForm = () => {
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
       <div className="grid gap-2">
         <Label htmlFor="email" className="text-sm font-medium">
-          อีเมล
+          Email
         </Label>
         <Input
           type="email"
@@ -54,9 +55,6 @@ export const SendVerificationEmailForm = () => {
           className="h-10"
           autoComplete="email"
         />
-        <p className="text-sm text-muted-foreground">
-          เราจะส่งลิงก์ยืนยันตัวตนไปยังอีเมลของคุณ
-        </p>
       </div>
 
       <Button
@@ -72,7 +70,7 @@ export const SendVerificationEmailForm = () => {
             กำลังส่ง...
           </>
         ) : (
-          "ส่งอีเมลยืนยันอีกครั้ง"
+          <>Send Reset Link</>
         )}
       </Button>
     </form>

@@ -7,7 +7,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { admin } from "better-auth/plugins";
-import { UserRole } from "./generated/prisma";
+import { UserRole } from "../lib/generated/prisma";
 import { getValidDomain, normalizeName } from "./utils";
 
 export const auth = betterAuth({
@@ -23,10 +23,20 @@ export const auth = betterAuth({
       verify: verifyPassword,
     },
     requireEmailVerification: true,
+    sendResetPassword: async ({ user, url }) => {
+      await sendEmailAction({
+        to: user.email,
+        subject: "Reset Your Password",
+        meta: {
+          description: "Please click the link below to reset your password",
+          link: url,
+        },
+      });
+    },
   },
   emailVerification: {
     sendOnSignUp: true,
-    expiresIn: 60, // 1 hour
+    // expiresIn: 60,
     autoSignInAfterVerification: false,
     sendVerificationEmail: async ({ user, url }) => {
       const link = new URL(url);

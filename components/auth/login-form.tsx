@@ -29,34 +29,22 @@ const LoginForm = () => {
       console.log("Login action result:", result);
 
       if (result.error) {
-        // มีข้อผิดพลาด แสดง error และไม่นำทางไปที่อื่น
+        // Handle error case
         console.log("Login error detected:", result.error);
         setErrorMessage(result.error);
         setIsPending(false);
-        return; // ออกจากฟังก์ชันทันทีเมื่อพบข้อผิดพลาด
+        return;
       }
 
-      // ตรวจสอบอีกรอบว่าไม่มีข้อผิดพลาดจริงๆ
-      if (result.error === null) {
-        console.log("Login successful, redirecting...");
-        // ล็อกอินสำเร็จ
-        setIsPending(false);
-        toast.success("เข้าสู่ระบบสำเร็จ");
+      // Success case
+      console.log("Login successful, redirecting...");
+      setIsPending(false);
+      toast.success("เข้าสู่ระบบสำเร็จ");
 
-        // ดีเลย์การนำทางเล็กน้อยเพื่อให้แน่ใจว่า state ถูกอัปเดต
-        setTimeout(() => {
-          router.push("/profile");
-        }, 100);
-      } else {
-        // กรณีที่ result.error ไม่ใช่ null แต่ก็ไม่ได้เป็น string ที่มีค่า
-        console.error("Unexpected error state:", result);
-        setErrorMessage(
-          "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง"
-        );
-        setIsPending(false);
-      }
+      // Navigate to profile page
+      router.push("/profile");
     } catch (error) {
-      // จับข้อผิดพลาดที่อาจเกิดขึ้นระหว่างการเรียก API
+      // Handle unexpected errors
       console.error("Unexpected error during login:", error);
       setErrorMessage(
         "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง"

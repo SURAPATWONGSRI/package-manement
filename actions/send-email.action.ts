@@ -73,7 +73,7 @@ export async function sendEmailAction({
       styles.button
     }" onmouseover="this.style='${
       styles.button + styles.buttonHover
-    }'" onmouseout="this.style='${styles.button}'">ยืนยันอีเมล</a>
+    }'" onmouseout="this.style='${styles.button}'">Continue</a>
             </div>
 
             <p style="${

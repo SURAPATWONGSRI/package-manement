@@ -21,7 +21,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           <h1 className="text-4xl font-bold text-secondary mb-4">
             Package Management
           </h1>
-          <p className="text-secondary/70  max-w-md">
+          <p className="text-secondary/70 text-center  max-w-md">
             ระบบจัดการพัสดุที่ทันสมัย ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ
             รวดเร็ว และแม่นยำ
           </p>
