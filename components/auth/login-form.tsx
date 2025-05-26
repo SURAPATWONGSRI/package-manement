@@ -89,7 +89,7 @@ const LoginForm = () => {
           <Label htmlFor="password">Password</Label>
           <Link
             href={"/forgot-password"}
-            className="text-xs text-muted-foreground hover:text-foreground"
+            className="text-xs italic hover:underline text-muted-foreground hover:text-foreground"
           >
             Forgot Password?
           </Link>

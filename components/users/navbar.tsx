@@ -1,44 +1,19 @@
 "use client";
 
-import { NavMain } from "@/components/admin/sidebar/nav-main";
-import { NavUser } from "@/components/admin/sidebar/nav-user";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar";
 import { signOut, useSession } from "@/lib/auth-client";
-import { LayoutDashboard, Printer, Users } from "lucide-react";
+import { Package } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import * as React from "react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { TeamSwitcher } from "./team-switcher";
+import { NavUserMain } from "./nav-user";
 
 type UserData = {
   name: string;
   email: string;
   avatar: string;
 };
-
-const navItems = [
-  { title: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-  { title: "Users", href: "/admin/users", icon: Users },
-];
-// This is sample data.
-const data = {
-  teams: [
-    {
-      name: "Back Office",
-      logo: Printer,
-      plan: "Enterprise",
-    },
-  ],
-};
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function NavbarUser() {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -79,23 +54,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       toast.error("Failed to sign out");
     }
   };
+
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain
-          items={navItems.map(({ href, ...rest }) => ({
-            url: href,
-            ...rest,
-          }))}
-        />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={userData} onSignOut={handleSignOut} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+    <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex h-16 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
+        <Link
+          href="/"
+          className="flex items-center gap-3 font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-2 py-1"
+          aria-label="Package Management Homepage"
+        >
+          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+            <Package className="h-5 w-5" />
+          </div>
+          <span className="hidden md:inline-block text-lg font-semibold">
+            Package Management
+          </span>
+        </Link>
+
+        <div className="flex items-center">
+          {session?.user && (
+            <NavUserMain user={userData} onSignOut={handleSignOut} />
+          )}
+        </div>
+      </div>
+    </nav>
   );
 }

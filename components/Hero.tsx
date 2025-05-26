@@ -15,17 +15,16 @@ const Hero = () => {
       <div className="relative z-10 container">
         <div className="mx-auto flex max-w-5xl flex-col items-center">
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="rounded-xl bg-background/30 p-4 shadow-sm backdrop-blur-sm">
+            <div className="rounded-xl bg-primary p-4 shadow-sm backdrop-blur-sm">
               <img
                 src="https://shadcnblocks.com/images/block/block-3.svg"
                 alt="logo"
-                className="h-16"
+                className="h-16 bg-secondary rounded-lg"
               />
             </div>
             <div>
               <h1 className="mb-6 text-2xl font-bold tracking-tight text-pretty lg:text-5xl">
-                Build your next project with{" "}
-                <span className="text-primary">Blocks</span>
+                Senior-Project
               </h1>
               <p className="mx-auto max-w-3xl text-muted-foreground lg:text-xl">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig
@@ -50,7 +49,12 @@ const Hero = () => {
                 {[
                   ["TypeScript", "typescript-icon.svg"],
                   ["Next.js", "nextjs-icon.svg"],
+                  ["Neon", "neon-icon.svg"],
+                  ["Prisma ORM", "light-prisma-svgrepo-com.svg"],
+                  ["PostgreSQL", "postgresql-icon.svg"],
 
+                  ["Better Auth", "Better Auth_dark.svg"],
+                  ["Omise", "omiseco-icon.svg"],
                   ["shadcn/ui", "shadcn-ui-icon.svg"],
                   ["Tailwind CSS", "tailwind-icon.svg"],
                 ].map(([label, img], i) => (
@@ -63,9 +67,9 @@ const Hero = () => {
                     )}
                   >
                     <img
-                      src={`https://shadcnblocks.com/images/block/logos/${img}`}
+                      src={`https://armzdhwelkuwwftkvoap.supabase.co/storage/v1/object/public/profile//${img}`}
                       alt={`${label} logo`}
-                      className="h-6 saturate-0 transition-all group-hover:saturate-100"
+                      className="h-6 saturate-100 transition-all group-hover:saturate-100"
                     />
                   </a>
                 ))}
