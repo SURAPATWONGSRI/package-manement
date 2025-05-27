@@ -1,3 +1,4 @@
+import { UserUpdateForm } from "@/components/auth/update-user-form";
 import { SignOutButton } from "@/components/sign-out-button";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
@@ -40,9 +41,32 @@ export default async function page() {
         <Button>MANAGE OWN POST</Button>
         <Button disabled={!FULL_POST_ACCESS.success}>MANAGE ALL POST</Button>
       </div>
+
+      {session.user.image ? (
+        <img
+          src={session.user.image}
+          alt={session.user.name || "User Avatar"}
+          className="size-24 rounded-md  object-cover"
+        />
+      ) : (
+        <div className="size-32 rounded-md bg-primary/5 flex items-center justify-center ">
+          <p className="text-2xl font-medium">
+            {session.user.name.slice(0, 1).toUpperCase()}
+          </p>
+        </div>
+      )}
       <pre className="text-sm overflow-clip">
         {JSON.stringify(session, null, 2)}
       </pre>
+
+      <div className="space-y-4 p-4 rounded-b-md border border-t-8 border-blue-500">
+        <h2 className="text-2xl font-semibold">Update User</h2>
+
+        <UserUpdateForm
+          name={session.user.name}
+          image={session.user.image ?? ""}
+        />
+      </div>
     </div>
   );
 }

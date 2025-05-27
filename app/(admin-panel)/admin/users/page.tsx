@@ -2,8 +2,9 @@ import {
   DeleteUserButton,
   PlaceholderDeleteUserButton,
 } from "@/components/admin/delete-user-button";
+import { EditUserButton } from "@/components/admin/edit-user-button";
 import { UserRoleSelect } from "@/components/admin/user-role-select";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Table,
   TableBody,
@@ -16,7 +17,7 @@ import { auth } from "@/lib/auth";
 import { UserRole } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { withAdminAuth, type AdminPageProps } from "@/lib/with-admin-auth";
-import { Edit, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import { Suspense } from "react";
@@ -51,7 +52,7 @@ async function UsersTable() {
   const userIds = authUsers.map((user) => user.id);
   const dbUsers = await prisma.user.findMany({
     where: { id: { in: userIds } },
-    select: { id: true, lineId: true },
+    select: { id: true, lineId: true, image: true },
   });
 
   // รวมข้อมูล
@@ -59,10 +60,15 @@ async function UsersTable() {
     dbUsers.map((user) => [user.id, user.lineId])
   );
 
-  // เพิ่ม lineId เข้าไปในข้อมูลผู้ใช้
+  const userImages = Object.fromEntries(
+    dbUsers.map((user) => [user.id, user.image])
+  );
+
+  // เพิ่ม lineId และ image เข้าไปในข้อมูลผู้ใช้
   const users = authUsers.map((user) => ({
     ...user,
     lineId: userLineIds[user.id] || null,
+    image: userImages[user.id] || null,
   }));
 
   return (
@@ -74,6 +80,7 @@ async function UsersTable() {
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Line_Id</TableHead>
+            <TableHead>Image</TableHead>
             <TableHead>Role</TableHead>
             <TableHead className="text-right">Actions</TableHead>
           </TableRow>
@@ -81,7 +88,7 @@ async function UsersTable() {
         <TableBody>
           {users.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={6} className="h-24 text-center">
+              <TableCell colSpan={7} className="h-24 text-center">
                 ไม่พบข้อมูลผู้ใช้
               </TableCell>
             </TableRow>
@@ -95,6 +102,20 @@ async function UsersTable() {
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.lineId || "-"}</TableCell>
                 <TableCell>
+                  {user.image ? (
+                    <div className="flex items-center">
+                      <Avatar className="h-8 w-8 mr-2 rounded-lg">
+                        <AvatarImage src={user.image} alt={user.name} />
+                        <AvatarFallback>
+                          {user.name.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                    </div>
+                  ) : (
+                    <span className="text-muted-foreground">Null</span>
+                  )}
+                </TableCell>
+                <TableCell>
                   <UserRoleSelect
                     userId={user.id}
                     role={user.role as UserRole}
@@ -102,9 +123,13 @@ async function UsersTable() {
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
-                    <Button variant="ghost" size="icon">
-                      <Edit className="h-4 w-4" />
-                    </Button>
+                    <EditUserButton
+                      userId={user.id}
+                      userName={user.name}
+                      userEmail={user.email}
+                      userLineId={user.lineId}
+                      userImage={user.image}
+                    />
                     {user.role === "USER" ? (
                       <DeleteUserButton userId={user.id} />
                     ) : (

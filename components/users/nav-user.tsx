@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, LogOut } from "lucide-react";
+import { ChevronDown, LogOut, User } from "lucide-react";
 
 interface usertypes {
   user: {
@@ -22,10 +22,10 @@ interface usertypes {
 
 export function NavUserMain({ user, onSignOut }: usertypes) {
   return (
-    <div className="flex items-center gap-1">
-      <div className="hidden md:flex flex-col items-end mr-3">
+    <div className="flex items-center gap-2">
+      <div className="hidden md:flex flex-col items-end mr-2">
         <span className="truncate font-semibold text-sm">{user.name}</span>
-        <span className="truncate text-xs text-muted-foreground">
+        <span className="truncate text-xs text-muted-foreground/80">
           {user.email}
         </span>
       </div>
@@ -34,45 +34,61 @@ export function NavUserMain({ user, onSignOut }: usertypes) {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="relative flex items-center gap-1 rounded-full p-0 pl-0 pr-1 overflow-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="relative flex items-center gap-1.5 rounded-full p-0 pl-0 pr-1 overflow-hidden hover:bg-secondary/60 transition-colors"
             aria-label="User menu"
           >
-            <Avatar className="h-9 w-9">
+            <Avatar className="h-8 w-8 ring-2 ring-background">
               <AvatarImage src={user.avatar || undefined} alt={user.name} />
-              <AvatarFallback className="bg-primary/10 text-primary">
+              <AvatarFallback className="bg-primary/10 text-primary font-medium">
                 {user.name.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
-            <ChevronDown className="h-3 w-3 text-muted-foreground" />
+            <ChevronDown className="h-3 w-3 text-muted-foreground/70" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-64 p-2 shadow-lg border border-border/40 rounded-xl"
+          className="w-64 p-1.5 shadow-lg rounded-xl border border-border/30 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
           align="end"
           forceMount
         >
-          <div className="flex flex-col space-y-3 p-2">
+          <div className="flex flex-col space-y-2 p-2">
             <div className="flex items-center gap-3">
-              <Avatar className="h-12 w-12 ">
+              <Avatar className="h-10 w-10 ring-2 ring-primary/10">
                 <AvatarImage src={user.avatar || undefined} alt={user.name} />
-                <AvatarFallback className="bg-primary/10 text-primary">
+                <AvatarFallback className="bg-primary/10 text-primary font-medium">
                   {user.name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <p className="text-base font-semibold leading-none">
+                <p className="text-sm font-semibold leading-none">
                   {user.name}
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground/80 mt-1">
                   {user.email}
                 </p>
               </div>
             </div>
           </div>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={onSignOut}>
-            <LogOut className="mr-2 h-4 w-4 text-destructive" />
-            <span className="text-destructive">Log out</span>
+          <DropdownMenuSeparator className="my-1" />
+          <DropdownMenuItem asChild>
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-xs font-medium rounded-lg h-9 px-2 hover:bg-secondary/60"
+              onClick={() => (window.location.href = "/profile")}
+            >
+              <User className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
+              โปรไฟล์
+            </Button>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Button
+              variant="ghost"
+              className="w-full justify-start text-xs font-medium rounded-lg h-9 px-2 text-destructive/90 hover:text-destructive hover:bg-destructive/10"
+              onClick={onSignOut}
+            >
+              <LogOut className="mr-2 h-3.5 w-3.5" />
+              ออกจากระบบ
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

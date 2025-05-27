@@ -70,7 +70,10 @@ export async function signUpEmailAction(
         console.log("Name not set correctly, updating name to:", name);
         await prisma.user.update({
           where: { email },
-          data: { name },
+          data: {
+            name,
+            role: "USER", // Explicitly set the role to USER
+          },
         });
 
         // Verify the update worked
@@ -112,7 +115,10 @@ export async function signUpEmailAction(
           // Update the lineId
           const updatedUser = await prisma.user.update({
             where: { email },
-            data: { lineId },
+            data: {
+              lineId,
+              role: "USER", // Explicitly set the role to USER
+            },
           });
 
           console.log("User after lineId update:", updatedUser);
@@ -127,7 +133,10 @@ export async function signUpEmailAction(
 
           const updatedUser = await prisma.user.update({
             where: { email },
-            data: { lineId },
+            data: {
+              lineId,
+              role: "USER", // Explicitly set the role to USER
+            },
           });
 
           console.log("User after retry lineId update:", updatedUser);
