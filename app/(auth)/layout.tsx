@@ -9,27 +9,33 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* ส่วนด้านซ้าย: รูปภาพหรือ banner */}
-      <div className="hidden md:flex md:w-1/2 bg-foreground relative ">
-        <Image
-          src="/assets/images/bg.jpg"
-          fill
-          alt="Background Image"
-          className="object-cover opacity-20  "
-          priority
-        />
-        <div className="absolute inset-0 flex items-center justify-center p-10 flex-col z-10">
-          <h1 className="text-4xl font-bold text-secondary mb-4">
-            Package Management
-          </h1>
-          <p className="text-secondary/70 text-center  max-w-md">
-            ระบบจัดการพัสดุที่ทันสมัย ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ
-            รวดเร็ว และแม่นยำ
-          </p>
+      <div className="hidden md:block md:w-1/2 bg-foreground relative overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/assets/images/bg.jpg"
+            fill
+            alt="Background Image"
+            className="object-cover opacity-20"
+            priority
+            sizes="50vw"
+            style={{ objectPosition: "center" }}
+          />
+        </div>
+        <div className="relative z-10 flex items-center justify-center p-10 flex-col w-full h-full">
+          <div className="max-w-md text-center">
+            <h1 className="text-4xl font-bold text-secondary mb-6">
+              Package Management
+            </h1>
+            <p className="text-secondary/80 text-lg">
+              ระบบจัดการพัสดุที่ทันสมัย
+              ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ รวดเร็ว และแม่นยำ
+            </p>
+          </div>
         </div>
       </div>
 
       {/* ส่วนด้านขวา: แบบฟอร์ม authentication */}
-      <div className="flex-1 flex items-center  justify-center p-6 md:p-10 bg-background">
+      <div className="flex-1 flex items-center justify-center p-6 md:p-10 bg-background">
         <div className="w-full max-w-md">
           {/* แบบฟอร์ม (children) */}
           {children}

@@ -1,36 +1,26 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="container flex items-center justify-center min-h-screen py-12">
-      <Card className="w-full max-w-md border-muted/40 shadow-sm">
-        <CardHeader className="space-y-1 flex flex-col items-center text-center pb-2">
-          <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-            <CheckCircle className="h-6 w-6 text-primary" />
-          </div>
-          <CardTitle className="text-2xl font-semibold tracking-tight">
-            Success!
-          </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            You have a send password reset link to your email.
-          </CardDescription>
-        </CardHeader>
+    <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16">
+      <div className="flex flex-col items-center space-y-8 w-full max-w-md">
+        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+          <CheckCircle className="h-8 w-8 text-primary" />
+        </div>
 
-        <CardFooter className="flex flex-col space-y-2 pt-0">
-          <Button asChild variant="default" className="w-full">
-            <Link href="/login">เข้าสู่ระบบ</Link>
-          </Button>
-        </CardFooter>
-      </Card>
+        <div className="text-center space-y-2 w-full">
+          <h1 className="text-2xl font-semibold tracking-tight">สำเร็จ</h1>
+          <p className="text-muted-foreground">
+            You have a send password reset link to your email.
+          </p>
+        </div>
+
+        <Button asChild variant="default" className="w-full">
+          <Link href="/login">เข้าสู่ระบบ</Link>
+        </Button>
+      </div>
     </div>
   );
 }
