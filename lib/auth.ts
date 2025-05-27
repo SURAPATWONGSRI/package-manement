@@ -89,6 +89,10 @@ export const auth = betterAuth({
   },
   session: {
     expiresIn: 30 * 24 * 60 * 60, // 30 days
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60,
+    },
   },
   advanced: {
     database: {
@@ -103,6 +107,24 @@ export const auth = betterAuth({
       ac,
       roles,
     }),
+    // customSession(async ({ user, session }) => {
+    //   return {
+    //     session: {
+    //       expiresAt: session.expiresAt,
+    //       token: session.token,
+    //       userAgent: session.userAgent,
+    //     },
+    //     user: {
+    //       id: user.id,
+    //       name: user.name,
+    //       email: user.email,
+    //       image: user.image,
+    //       createdAt: user.createdAt,
+    //       roles: user.role,
+    //       lineId: user.lineId || null,
+    //     },
+    //   };
+    // }),
   ],
   databaseHooks: {
     user: {

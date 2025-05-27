@@ -5,14 +5,24 @@ export async function POST(request: Request) {
   try {
     const { email, lineId } = await request.json();
 
-    if (!email || !lineId) {
-      return NextResponse.json(
-        { error: "Missing email or lineId" },
-        { status: 400 }
-      );
+    if (!email) {
+      return NextResponse.json({ error: "Missing email" }, { status: 400 });
     }
 
-    // Check if lineId is already in use by another user
+    // Check if lineId is null or empty - if so, we are removing the lineId
+    if (lineId === null || lineId === "") {
+      await prisma.user.update({
+        where: { email },
+        data: { lineId: null },
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: "LINE ID has been removed",
+      });
+    }
+
+    // If lineId is provided, check if it's already in use
     const existingUser = await prisma.user.findUnique({
       where: { lineId },
       select: { email: true },
