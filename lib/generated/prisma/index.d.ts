@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model PackageSelection
+ * 
+ */
+export type PackageSelection = $Result.DefaultSelection<Prisma.$PackageSelectionPayload>
+/**
  * Model Post
  * 
  */
@@ -50,11 +55,39 @@ export namespace $Enums {
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
+
+export const SymbolType: {
+  EURUSD: 'EURUSD',
+  USDJPY: 'USDJPY',
+  GOLD: 'GOLD',
+  BTCUSD: 'BTCUSD'
+};
+
+export type SymbolType = (typeof SymbolType)[keyof typeof SymbolType]
+
+
+export const Timeframe: {
+  M15: 'M15',
+  M30: 'M30',
+  H1: 'H1',
+  D1: 'D1'
+};
+
+export type Timeframe = (typeof Timeframe)[keyof typeof Timeframe]
+
 }
 
 export type UserRole = $Enums.UserRole
 
 export const UserRole: typeof $Enums.UserRole
+
+export type SymbolType = $Enums.SymbolType
+
+export const SymbolType: typeof $Enums.SymbolType
+
+export type Timeframe = $Enums.Timeframe
+
+export const Timeframe: typeof $Enums.Timeframe
 
 /**
  * ##  Prisma Client ʲˢ
@@ -63,8 +96,8 @@ export const UserRole: typeof $Enums.UserRole
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Posts
- * const posts = await prisma.post.findMany()
+ * // Fetch zero or more PackageSelections
+ * const packageSelections = await prisma.packageSelection.findMany()
  * ```
  *
  *
@@ -84,8 +117,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Posts
-   * const posts = await prisma.post.findMany()
+   * // Fetch zero or more PackageSelections
+   * const packageSelections = await prisma.packageSelection.findMany()
    * ```
    *
    *
@@ -182,6 +215,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.packageSelection`: Exposes CRUD operations for the **PackageSelection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PackageSelections
+    * const packageSelections = await prisma.packageSelection.findMany()
+    * ```
+    */
+  get packageSelection(): Prisma.PackageSelectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.post`: Exposes CRUD operations for the **Post** model.
     * Example usage:
     * ```ts
@@ -670,6 +713,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    PackageSelection: 'PackageSelection',
     Post: 'Post',
     User: 'User',
     Session: 'Session',
@@ -693,10 +737,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "post" | "user" | "session" | "account" | "verification"
+      modelProps: "packageSelection" | "post" | "user" | "session" | "account" | "verification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      PackageSelection: {
+        payload: Prisma.$PackageSelectionPayload<ExtArgs>
+        fields: Prisma.PackageSelectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PackageSelectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PackageSelectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          findFirst: {
+            args: Prisma.PackageSelectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PackageSelectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          findMany: {
+            args: Prisma.PackageSelectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>[]
+          }
+          create: {
+            args: Prisma.PackageSelectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          createMany: {
+            args: Prisma.PackageSelectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PackageSelectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>[]
+          }
+          delete: {
+            args: Prisma.PackageSelectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          update: {
+            args: Prisma.PackageSelectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.PackageSelectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PackageSelectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PackageSelectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.PackageSelectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
+          }
+          aggregate: {
+            args: Prisma.PackageSelectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePackageSelection>
+          }
+          groupBy: {
+            args: Prisma.PackageSelectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PackageSelectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PackageSelectionCountArgs<ExtArgs>
+            result: $Utils.Optional<PackageSelectionCountAggregateOutputType> | number
+          }
+        }
+      }
       Post: {
         payload: Prisma.$PostPayload<ExtArgs>
         fields: Prisma.PostFieldRefs
@@ -1151,6 +1269,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    packageSelection?: PackageSelectionOmit
     post?: PostOmit
     user?: UserOmit
     session?: SessionOmit
@@ -1253,12 +1372,14 @@ export namespace Prisma {
     sessions: number
     accounts: number
     posts: number
+    packages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
+    packages?: boolean | UserCountOutputTypeCountPackagesArgs
   }
 
   // Custom InputTypes
@@ -1293,10 +1414,1200 @@ export namespace Prisma {
     where?: PostWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPackagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PackageSelectionWhereInput
+  }
+
 
   /**
    * Models
    */
+
+  /**
+   * Model PackageSelection
+   */
+
+  export type AggregatePackageSelection = {
+    _count: PackageSelectionCountAggregateOutputType | null
+    _avg: PackageSelectionAvgAggregateOutputType | null
+    _sum: PackageSelectionSumAggregateOutputType | null
+    _min: PackageSelectionMinAggregateOutputType | null
+    _max: PackageSelectionMaxAggregateOutputType | null
+  }
+
+  export type PackageSelectionAvgAggregateOutputType = {
+    payPrice: number | null
+  }
+
+  export type PackageSelectionSumAggregateOutputType = {
+    payPrice: number | null
+  }
+
+  export type PackageSelectionMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    name: string | null
+    email: string | null
+    symbol: string | null
+    timeframe: string | null
+    startDate: Date | null
+    endDate: Date | null
+    payPrice: number | null
+    paid: boolean | null
+  }
+
+  export type PackageSelectionMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    name: string | null
+    email: string | null
+    symbol: string | null
+    timeframe: string | null
+    startDate: Date | null
+    endDate: Date | null
+    payPrice: number | null
+    paid: boolean | null
+  }
+
+  export type PackageSelectionCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    name: number
+    email: number
+    symbol: number
+    timeframe: number
+    startDate: number
+    endDate: number
+    payPrice: number
+    paid: number
+    _all: number
+  }
+
+
+  export type PackageSelectionAvgAggregateInputType = {
+    payPrice?: true
+  }
+
+  export type PackageSelectionSumAggregateInputType = {
+    payPrice?: true
+  }
+
+  export type PackageSelectionMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    name?: true
+    email?: true
+    symbol?: true
+    timeframe?: true
+    startDate?: true
+    endDate?: true
+    payPrice?: true
+    paid?: true
+  }
+
+  export type PackageSelectionMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    name?: true
+    email?: true
+    symbol?: true
+    timeframe?: true
+    startDate?: true
+    endDate?: true
+    payPrice?: true
+    paid?: true
+  }
+
+  export type PackageSelectionCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    name?: true
+    email?: true
+    symbol?: true
+    timeframe?: true
+    startDate?: true
+    endDate?: true
+    payPrice?: true
+    paid?: true
+    _all?: true
+  }
+
+  export type PackageSelectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PackageSelection to aggregate.
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PackageSelections to fetch.
+     */
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PackageSelectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PackageSelections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PackageSelections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PackageSelections
+    **/
+    _count?: true | PackageSelectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PackageSelectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PackageSelectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PackageSelectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PackageSelectionMaxAggregateInputType
+  }
+
+  export type GetPackageSelectionAggregateType<T extends PackageSelectionAggregateArgs> = {
+        [P in keyof T & keyof AggregatePackageSelection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePackageSelection[P]>
+      : GetScalarType<T[P], AggregatePackageSelection[P]>
+  }
+
+
+
+
+  export type PackageSelectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PackageSelectionWhereInput
+    orderBy?: PackageSelectionOrderByWithAggregationInput | PackageSelectionOrderByWithAggregationInput[]
+    by: PackageSelectionScalarFieldEnum[] | PackageSelectionScalarFieldEnum
+    having?: PackageSelectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PackageSelectionCountAggregateInputType | true
+    _avg?: PackageSelectionAvgAggregateInputType
+    _sum?: PackageSelectionSumAggregateInputType
+    _min?: PackageSelectionMinAggregateInputType
+    _max?: PackageSelectionMaxAggregateInputType
+  }
+
+  export type PackageSelectionGroupByOutputType = {
+    id: string
+    createdAt: Date
+    updatedAt: Date
+    userId: string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date
+    endDate: Date
+    payPrice: number
+    paid: boolean
+    _count: PackageSelectionCountAggregateOutputType | null
+    _avg: PackageSelectionAvgAggregateOutputType | null
+    _sum: PackageSelectionSumAggregateOutputType | null
+    _min: PackageSelectionMinAggregateOutputType | null
+    _max: PackageSelectionMaxAggregateOutputType | null
+  }
+
+  type GetPackageSelectionGroupByPayload<T extends PackageSelectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PackageSelectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PackageSelectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PackageSelectionGroupByOutputType[P]>
+            : GetScalarType<T[P], PackageSelectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PackageSelectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    name?: boolean
+    email?: boolean
+    symbol?: boolean
+    timeframe?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    payPrice?: boolean
+    paid?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["packageSelection"]>
+
+  export type PackageSelectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    name?: boolean
+    email?: boolean
+    symbol?: boolean
+    timeframe?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    payPrice?: boolean
+    paid?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["packageSelection"]>
+
+  export type PackageSelectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    name?: boolean
+    email?: boolean
+    symbol?: boolean
+    timeframe?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    payPrice?: boolean
+    paid?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["packageSelection"]>
+
+  export type PackageSelectionSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    name?: boolean
+    email?: boolean
+    symbol?: boolean
+    timeframe?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    payPrice?: boolean
+    paid?: boolean
+  }
+
+  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "name" | "email" | "symbol" | "timeframe" | "startDate" | "endDate" | "payPrice" | "paid", ExtArgs["result"]["packageSelection"]>
+  export type PackageSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PackageSelectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type PackageSelectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $PackageSelectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PackageSelection"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      createdAt: Date
+      updatedAt: Date
+      userId: string
+      name: string
+      email: string
+      symbol: string
+      timeframe: string
+      startDate: Date
+      endDate: Date
+      payPrice: number
+      paid: boolean
+    }, ExtArgs["result"]["packageSelection"]>
+    composites: {}
+  }
+
+  type PackageSelectionGetPayload<S extends boolean | null | undefined | PackageSelectionDefaultArgs> = $Result.GetResult<Prisma.$PackageSelectionPayload, S>
+
+  type PackageSelectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PackageSelectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PackageSelectionCountAggregateInputType | true
+    }
+
+  export interface PackageSelectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PackageSelection'], meta: { name: 'PackageSelection' } }
+    /**
+     * Find zero or one PackageSelection that matches the filter.
+     * @param {PackageSelectionFindUniqueArgs} args - Arguments to find a PackageSelection
+     * @example
+     * // Get one PackageSelection
+     * const packageSelection = await prisma.packageSelection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PackageSelectionFindUniqueArgs>(args: SelectSubset<T, PackageSelectionFindUniqueArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PackageSelection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PackageSelectionFindUniqueOrThrowArgs} args - Arguments to find a PackageSelection
+     * @example
+     * // Get one PackageSelection
+     * const packageSelection = await prisma.packageSelection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PackageSelectionFindUniqueOrThrowArgs>(args: SelectSubset<T, PackageSelectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PackageSelection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionFindFirstArgs} args - Arguments to find a PackageSelection
+     * @example
+     * // Get one PackageSelection
+     * const packageSelection = await prisma.packageSelection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PackageSelectionFindFirstArgs>(args?: SelectSubset<T, PackageSelectionFindFirstArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PackageSelection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionFindFirstOrThrowArgs} args - Arguments to find a PackageSelection
+     * @example
+     * // Get one PackageSelection
+     * const packageSelection = await prisma.packageSelection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PackageSelectionFindFirstOrThrowArgs>(args?: SelectSubset<T, PackageSelectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PackageSelections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PackageSelections
+     * const packageSelections = await prisma.packageSelection.findMany()
+     * 
+     * // Get first 10 PackageSelections
+     * const packageSelections = await prisma.packageSelection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const packageSelectionWithIdOnly = await prisma.packageSelection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PackageSelectionFindManyArgs>(args?: SelectSubset<T, PackageSelectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PackageSelection.
+     * @param {PackageSelectionCreateArgs} args - Arguments to create a PackageSelection.
+     * @example
+     * // Create one PackageSelection
+     * const PackageSelection = await prisma.packageSelection.create({
+     *   data: {
+     *     // ... data to create a PackageSelection
+     *   }
+     * })
+     * 
+     */
+    create<T extends PackageSelectionCreateArgs>(args: SelectSubset<T, PackageSelectionCreateArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PackageSelections.
+     * @param {PackageSelectionCreateManyArgs} args - Arguments to create many PackageSelections.
+     * @example
+     * // Create many PackageSelections
+     * const packageSelection = await prisma.packageSelection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PackageSelectionCreateManyArgs>(args?: SelectSubset<T, PackageSelectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PackageSelections and returns the data saved in the database.
+     * @param {PackageSelectionCreateManyAndReturnArgs} args - Arguments to create many PackageSelections.
+     * @example
+     * // Create many PackageSelections
+     * const packageSelection = await prisma.packageSelection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PackageSelections and only return the `id`
+     * const packageSelectionWithIdOnly = await prisma.packageSelection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PackageSelectionCreateManyAndReturnArgs>(args?: SelectSubset<T, PackageSelectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PackageSelection.
+     * @param {PackageSelectionDeleteArgs} args - Arguments to delete one PackageSelection.
+     * @example
+     * // Delete one PackageSelection
+     * const PackageSelection = await prisma.packageSelection.delete({
+     *   where: {
+     *     // ... filter to delete one PackageSelection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PackageSelectionDeleteArgs>(args: SelectSubset<T, PackageSelectionDeleteArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PackageSelection.
+     * @param {PackageSelectionUpdateArgs} args - Arguments to update one PackageSelection.
+     * @example
+     * // Update one PackageSelection
+     * const packageSelection = await prisma.packageSelection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PackageSelectionUpdateArgs>(args: SelectSubset<T, PackageSelectionUpdateArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PackageSelections.
+     * @param {PackageSelectionDeleteManyArgs} args - Arguments to filter PackageSelections to delete.
+     * @example
+     * // Delete a few PackageSelections
+     * const { count } = await prisma.packageSelection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PackageSelectionDeleteManyArgs>(args?: SelectSubset<T, PackageSelectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PackageSelections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PackageSelections
+     * const packageSelection = await prisma.packageSelection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PackageSelectionUpdateManyArgs>(args: SelectSubset<T, PackageSelectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PackageSelections and returns the data updated in the database.
+     * @param {PackageSelectionUpdateManyAndReturnArgs} args - Arguments to update many PackageSelections.
+     * @example
+     * // Update many PackageSelections
+     * const packageSelection = await prisma.packageSelection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PackageSelections and only return the `id`
+     * const packageSelectionWithIdOnly = await prisma.packageSelection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PackageSelectionUpdateManyAndReturnArgs>(args: SelectSubset<T, PackageSelectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PackageSelection.
+     * @param {PackageSelectionUpsertArgs} args - Arguments to update or create a PackageSelection.
+     * @example
+     * // Update or create a PackageSelection
+     * const packageSelection = await prisma.packageSelection.upsert({
+     *   create: {
+     *     // ... data to create a PackageSelection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PackageSelection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PackageSelectionUpsertArgs>(args: SelectSubset<T, PackageSelectionUpsertArgs<ExtArgs>>): Prisma__PackageSelectionClient<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PackageSelections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionCountArgs} args - Arguments to filter PackageSelections to count.
+     * @example
+     * // Count the number of PackageSelections
+     * const count = await prisma.packageSelection.count({
+     *   where: {
+     *     // ... the filter for the PackageSelections we want to count
+     *   }
+     * })
+    **/
+    count<T extends PackageSelectionCountArgs>(
+      args?: Subset<T, PackageSelectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PackageSelectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PackageSelection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PackageSelectionAggregateArgs>(args: Subset<T, PackageSelectionAggregateArgs>): Prisma.PrismaPromise<GetPackageSelectionAggregateType<T>>
+
+    /**
+     * Group by PackageSelection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PackageSelectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PackageSelectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PackageSelectionGroupByArgs['orderBy'] }
+        : { orderBy?: PackageSelectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PackageSelectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPackageSelectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PackageSelection model
+   */
+  readonly fields: PackageSelectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PackageSelection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PackageSelectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PackageSelection model
+   */
+  interface PackageSelectionFieldRefs {
+    readonly id: FieldRef<"PackageSelection", 'String'>
+    readonly createdAt: FieldRef<"PackageSelection", 'DateTime'>
+    readonly updatedAt: FieldRef<"PackageSelection", 'DateTime'>
+    readonly userId: FieldRef<"PackageSelection", 'String'>
+    readonly name: FieldRef<"PackageSelection", 'String'>
+    readonly email: FieldRef<"PackageSelection", 'String'>
+    readonly symbol: FieldRef<"PackageSelection", 'String'>
+    readonly timeframe: FieldRef<"PackageSelection", 'String'>
+    readonly startDate: FieldRef<"PackageSelection", 'DateTime'>
+    readonly endDate: FieldRef<"PackageSelection", 'DateTime'>
+    readonly payPrice: FieldRef<"PackageSelection", 'Float'>
+    readonly paid: FieldRef<"PackageSelection", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PackageSelection findUnique
+   */
+  export type PackageSelectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter, which PackageSelection to fetch.
+     */
+    where: PackageSelectionWhereUniqueInput
+  }
+
+  /**
+   * PackageSelection findUniqueOrThrow
+   */
+  export type PackageSelectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter, which PackageSelection to fetch.
+     */
+    where: PackageSelectionWhereUniqueInput
+  }
+
+  /**
+   * PackageSelection findFirst
+   */
+  export type PackageSelectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter, which PackageSelection to fetch.
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PackageSelections to fetch.
+     */
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PackageSelections.
+     */
+    cursor?: PackageSelectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PackageSelections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PackageSelections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PackageSelections.
+     */
+    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
+  }
+
+  /**
+   * PackageSelection findFirstOrThrow
+   */
+  export type PackageSelectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter, which PackageSelection to fetch.
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PackageSelections to fetch.
+     */
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PackageSelections.
+     */
+    cursor?: PackageSelectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PackageSelections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PackageSelections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PackageSelections.
+     */
+    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
+  }
+
+  /**
+   * PackageSelection findMany
+   */
+  export type PackageSelectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter, which PackageSelections to fetch.
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PackageSelections to fetch.
+     */
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PackageSelections.
+     */
+    cursor?: PackageSelectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PackageSelections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PackageSelections.
+     */
+    skip?: number
+    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
+  }
+
+  /**
+   * PackageSelection create
+   */
+  export type PackageSelectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PackageSelection.
+     */
+    data: XOR<PackageSelectionCreateInput, PackageSelectionUncheckedCreateInput>
+  }
+
+  /**
+   * PackageSelection createMany
+   */
+  export type PackageSelectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PackageSelections.
+     */
+    data: PackageSelectionCreateManyInput | PackageSelectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PackageSelection createManyAndReturn
+   */
+  export type PackageSelectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many PackageSelections.
+     */
+    data: PackageSelectionCreateManyInput | PackageSelectionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PackageSelection update
+   */
+  export type PackageSelectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PackageSelection.
+     */
+    data: XOR<PackageSelectionUpdateInput, PackageSelectionUncheckedUpdateInput>
+    /**
+     * Choose, which PackageSelection to update.
+     */
+    where: PackageSelectionWhereUniqueInput
+  }
+
+  /**
+   * PackageSelection updateMany
+   */
+  export type PackageSelectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PackageSelections.
+     */
+    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyInput>
+    /**
+     * Filter which PackageSelections to update
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * Limit how many PackageSelections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PackageSelection updateManyAndReturn
+   */
+  export type PackageSelectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * The data used to update PackageSelections.
+     */
+    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyInput>
+    /**
+     * Filter which PackageSelections to update
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * Limit how many PackageSelections to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PackageSelection upsert
+   */
+  export type PackageSelectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PackageSelection to update in case it exists.
+     */
+    where: PackageSelectionWhereUniqueInput
+    /**
+     * In case the PackageSelection found by the `where` argument doesn't exist, create a new PackageSelection with this data.
+     */
+    create: XOR<PackageSelectionCreateInput, PackageSelectionUncheckedCreateInput>
+    /**
+     * In case the PackageSelection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PackageSelectionUpdateInput, PackageSelectionUncheckedUpdateInput>
+  }
+
+  /**
+   * PackageSelection delete
+   */
+  export type PackageSelectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    /**
+     * Filter which PackageSelection to delete.
+     */
+    where: PackageSelectionWhereUniqueInput
+  }
+
+  /**
+   * PackageSelection deleteMany
+   */
+  export type PackageSelectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PackageSelections to delete
+     */
+    where?: PackageSelectionWhereInput
+    /**
+     * Limit how many PackageSelections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PackageSelection without action
+   */
+  export type PackageSelectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model Post
@@ -2634,6 +3945,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    packages?: boolean | User$packagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2693,6 +4005,7 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    packages?: boolean | User$packagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2704,6 +4017,7 @@ export namespace Prisma {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
+      packages: Prisma.$PackageSelectionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3117,6 +4431,7 @@ export namespace Prisma {
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    packages<T extends User$packagesArgs<ExtArgs> = {}>(args?: Subset<T, User$packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3617,6 +4932,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
+  }
+
+  /**
+   * User.packages
+   */
+  export type User$packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    where?: PackageSelectionWhereInput
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    cursor?: PackageSelectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
   }
 
   /**
@@ -7010,6 +8349,24 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const PackageSelectionScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    name: 'name',
+    email: 'email',
+    symbol: 'symbol',
+    timeframe: 'timeframe',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    payPrice: 'payPrice',
+    paid: 'paid'
+  };
+
+  export type PackageSelectionScalarFieldEnum = (typeof PackageSelectionScalarFieldEnum)[keyof typeof PackageSelectionScalarFieldEnum]
+
+
   export const PostScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
@@ -7154,6 +8511,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -7190,6 +8561,98 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type PackageSelectionWhereInput = {
+    AND?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
+    OR?: PackageSelectionWhereInput[]
+    NOT?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
+    id?: StringFilter<"PackageSelection"> | string
+    createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    userId?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
+    email?: StringFilter<"PackageSelection"> | string
+    symbol?: StringFilter<"PackageSelection"> | string
+    timeframe?: StringFilter<"PackageSelection"> | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    payPrice?: FloatFilter<"PackageSelection"> | number
+    paid?: BoolFilter<"PackageSelection"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type PackageSelectionOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    payPrice?: SortOrder
+    paid?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PackageSelectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
+    OR?: PackageSelectionWhereInput[]
+    NOT?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
+    createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    userId?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
+    email?: StringFilter<"PackageSelection"> | string
+    symbol?: StringFilter<"PackageSelection"> | string
+    timeframe?: StringFilter<"PackageSelection"> | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    payPrice?: FloatFilter<"PackageSelection"> | number
+    paid?: BoolFilter<"PackageSelection"> | boolean
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type PackageSelectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    payPrice?: SortOrder
+    paid?: SortOrder
+    _count?: PackageSelectionCountOrderByAggregateInput
+    _avg?: PackageSelectionAvgOrderByAggregateInput
+    _max?: PackageSelectionMaxOrderByAggregateInput
+    _min?: PackageSelectionMinOrderByAggregateInput
+    _sum?: PackageSelectionSumOrderByAggregateInput
+  }
+
+  export type PackageSelectionScalarWhereWithAggregatesInput = {
+    AND?: PackageSelectionScalarWhereWithAggregatesInput | PackageSelectionScalarWhereWithAggregatesInput[]
+    OR?: PackageSelectionScalarWhereWithAggregatesInput[]
+    NOT?: PackageSelectionScalarWhereWithAggregatesInput | PackageSelectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PackageSelection"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
+    userId?: StringWithAggregatesFilter<"PackageSelection"> | string
+    name?: StringWithAggregatesFilter<"PackageSelection"> | string
+    email?: StringWithAggregatesFilter<"PackageSelection"> | string
+    symbol?: StringWithAggregatesFilter<"PackageSelection"> | string
+    timeframe?: StringWithAggregatesFilter<"PackageSelection"> | string
+    startDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
+    payPrice?: FloatWithAggregatesFilter<"PackageSelection"> | number
+    paid?: BoolWithAggregatesFilter<"PackageSelection"> | boolean
+  }
 
   export type PostWhereInput = {
     AND?: PostWhereInput | PostWhereInput[]
@@ -7282,6 +8745,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    packages?: PackageSelectionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7302,6 +8766,7 @@ export namespace Prisma {
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
+    packages?: PackageSelectionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7325,6 +8790,7 @@ export namespace Prisma {
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
     posts?: PostListRelationFilter
+    packages?: PackageSelectionListRelationFilter
   }, "id" | "lineId" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7624,6 +9090,110 @@ export namespace Prisma {
     isDeleted?: BoolWithAggregatesFilter<"Verification"> | boolean
   }
 
+  export type PackageSelectionCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
+    user: UserCreateNestedOneWithoutPackagesInput
+  }
+
+  export type PackageSelectionUncheckedCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
+  }
+
+  export type PackageSelectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    user?: UserUpdateOneRequiredWithoutPackagesNestedInput
+  }
+
+  export type PackageSelectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackageSelectionCreateManyInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
+  }
+
+  export type PackageSelectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackageSelectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type PostCreateInput = {
     id?: string
     createdAt?: Date | string
@@ -7718,6 +9288,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7738,6 +9309,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -7758,6 +9330,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7778,6 +9351,7 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8156,15 +9730,15 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -8175,6 +9749,126 @@ export namespace Prisma {
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type PackageSelectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    payPrice?: SortOrder
+    paid?: SortOrder
+  }
+
+  export type PackageSelectionAvgOrderByAggregateInput = {
+    payPrice?: SortOrder
+  }
+
+  export type PackageSelectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    payPrice?: SortOrder
+    paid?: SortOrder
+  }
+
+  export type PackageSelectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    payPrice?: SortOrder
+    paid?: SortOrder
+  }
+
+  export type PackageSelectionSumOrderByAggregateInput = {
+    payPrice?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type SortOrderInput = {
@@ -8215,38 +9909,6 @@ export namespace Prisma {
     isDeleted?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -8259,14 +9921,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -8314,6 +9968,12 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
+  export type PackageSelectionListRelationFilter = {
+    every?: PackageSelectionWhereInput
+    some?: PackageSelectionWhereInput
+    none?: PackageSelectionWhereInput
+  }
+
   export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -8323,6 +9983,10 @@ export namespace Prisma {
   }
 
   export type PostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PackageSelectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8542,9 +10206,9 @@ export namespace Prisma {
     isDeleted?: SortOrder
   }
 
-  export type UserCreateNestedOneWithoutPostsInput = {
-    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+  export type UserCreateNestedOneWithoutPackagesInput = {
+    create?: XOR<UserCreateWithoutPackagesInput, UserUncheckedCreateWithoutPackagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPackagesInput
     connect?: UserWhereUniqueInput
   }
 
@@ -8556,12 +10220,34 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutPackagesNestedInput = {
+    create?: XOR<UserCreateWithoutPackagesInput, UserUncheckedCreateWithoutPackagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPackagesInput
+    upsert?: UserUpsertWithoutPackagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPackagesInput, UserUpdateWithoutPackagesInput>, UserUncheckedUpdateWithoutPackagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutPostsInput = {
+    create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPostsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -8593,6 +10279,13 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
+  export type PackageSelectionCreateNestedManyWithoutUserInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+  }
+
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -8612,6 +10305,13 @@ export namespace Prisma {
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
     createMany?: PostCreateManyUserInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type PackageSelectionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -8668,6 +10368,20 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
+  export type PackageSelectionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    upsert?: PackageSelectionUpsertWithWhereUniqueWithoutUserInput | PackageSelectionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    set?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    disconnect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    delete?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    update?: PackageSelectionUpdateWithWhereUniqueWithoutUserInput | PackageSelectionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PackageSelectionUpdateManyWithWhereWithoutUserInput | PackageSelectionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
@@ -8708,6 +10422,20 @@ export namespace Prisma {
     update?: PostUpdateWithWhereUniqueWithoutUserInput | PostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PostUpdateManyWithWhereWithoutUserInput | PostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type PackageSelectionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    upsert?: PackageSelectionUpsertWithWhereUniqueWithoutUserInput | PackageSelectionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    set?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    disconnect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    delete?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    update?: PackageSelectionUpdateWithWhereUniqueWithoutUserInput | PackageSelectionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PackageSelectionUpdateManyWithWhereWithoutUserInput | PackageSelectionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -8763,15 +10491,15 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -8821,6 +10549,41 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -8844,14 +10607,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -8915,6 +10670,102 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type UserCreateWithoutPackagesInput = {
+    id?: string
+    createdAt: Date | string
+    updatedAt: Date | string
+    name: string
+    email: string
+    lineId?: string | null
+    emailVerified: boolean
+    image?: string | null
+    role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPackagesInput = {
+    id?: string
+    createdAt: Date | string
+    updatedAt: Date | string
+    name: string
+    email: string
+    lineId?: string | null
+    emailVerified: boolean
+    image?: string | null
+    role?: $Enums.UserRole
+    banned?: boolean | null
+    banReason?: string | null
+    banExpires?: Date | string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPackagesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPackagesInput, UserUncheckedCreateWithoutPackagesInput>
+  }
+
+  export type UserUpsertWithoutPackagesInput = {
+    update: XOR<UserUpdateWithoutPackagesInput, UserUncheckedUpdateWithoutPackagesInput>
+    create: XOR<UserCreateWithoutPackagesInput, UserUncheckedCreateWithoutPackagesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPackagesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPackagesInput, UserUncheckedUpdateWithoutPackagesInput>
+  }
+
+  export type UserUpdateWithoutPackagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPackagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    lineId?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    banReason?: NullableStringFieldUpdateOperationsInput | string | null
+    banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type UserCreateWithoutPostsInput = {
     id?: string
     createdAt: Date | string
@@ -8932,6 +10783,7 @@ export namespace Prisma {
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -8951,6 +10803,7 @@ export namespace Prisma {
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -8986,6 +10839,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -9005,6 +10859,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SessionCreateWithoutUserInput = {
@@ -9117,6 +10972,44 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PackageSelectionCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
+  }
+
+  export type PackageSelectionUncheckedCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
+  }
+
+  export type PackageSelectionCreateOrConnectWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PackageSelectionCreateManyUserInputEnvelope = {
+    data: PackageSelectionCreateManyUserInput | PackageSelectionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
@@ -9217,6 +11110,40 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"Post"> | boolean
   }
 
+  export type PackageSelectionUpsertWithWhereUniqueWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    update: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
+    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PackageSelectionUpdateWithWhereUniqueWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    data: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PackageSelectionUpdateManyWithWhereWithoutUserInput = {
+    where: PackageSelectionScalarWhereInput
+    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PackageSelectionScalarWhereInput = {
+    AND?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+    OR?: PackageSelectionScalarWhereInput[]
+    NOT?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+    id?: StringFilter<"PackageSelection"> | string
+    createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    userId?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
+    email?: StringFilter<"PackageSelection"> | string
+    symbol?: StringFilter<"PackageSelection"> | string
+    timeframe?: StringFilter<"PackageSelection"> | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    payPrice?: FloatFilter<"PackageSelection"> | number
+    paid?: BoolFilter<"PackageSelection"> | boolean
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     createdAt: Date | string
@@ -9234,6 +11161,7 @@ export namespace Prisma {
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -9253,6 +11181,7 @@ export namespace Prisma {
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -9288,6 +11217,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -9307,6 +11237,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -9326,6 +11257,7 @@ export namespace Prisma {
     isDeleted?: boolean
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -9345,6 +11277,7 @@ export namespace Prisma {
     isDeleted?: boolean
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -9380,6 +11313,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -9399,6 +11333,7 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -9439,6 +11374,20 @@ export namespace Prisma {
     content: string
     deletedAt?: Date | string | null
     isDeleted?: boolean
+  }
+
+  export type PackageSelectionCreateManyUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    name: string
+    email: string
+    symbol: string
+    timeframe: string
+    startDate: Date | string
+    endDate: Date | string
+    payPrice: number
+    paid?: boolean
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -9559,6 +11508,48 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackageSelectionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackageSelectionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PackageSelectionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    symbol?: StringFieldUpdateOperationsInput | string
+    timeframe?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    payPrice?: FloatFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
 
