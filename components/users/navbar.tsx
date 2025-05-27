@@ -1,7 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "@/lib/auth-client";
-import { Package } from "lucide-react";
+import { ArrowUp01 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ type UserData = {
   name: string;
   email: string;
   avatar: string;
+  isAdmin?: boolean;
 };
 export function NavbarUser() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export function NavbarUser() {
         email: session.user.email || "",
         // แก้ไขตรงนี้: ใช้ image จาก session หรือใช้ค่าเริ่มต้น
         avatar: session.user.image || "",
+        isAdmin: session.user.role === "ADMIN" || false,
       });
     }
   }, [session]);
@@ -64,10 +66,10 @@ export function NavbarUser() {
           aria-label="Package Management Homepage"
         >
           <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-            <Package className="h-5 w-5" />
+            <ArrowUp01 className="h-5 w-5" />
           </div>
           <span className="hidden md:inline-block text-lg font-semibold">
-            Package Management
+            Package
           </span>
         </Link>
 

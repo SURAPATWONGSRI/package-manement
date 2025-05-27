@@ -23,12 +23,12 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
         </div>
         <div className="relative z-10 flex items-center justify-center p-10 flex-col w-full h-full">
           <div className="max-w-md text-center">
-            <h1 className="text-4xl font-bold text-secondary mb-6">
-              Package Management
-            </h1>
+            <h1 className="text-4xl font-bold text-secondary mb-6">Package</h1>
             <p className="text-secondary/80 text-lg">
-              ระบบจัดการพัสดุที่ทันสมัย
-              ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ รวดเร็ว และแม่นยำ
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perspiciatis nam eaque possimus ullam! Doloremque placeat libero
+              reprehenderit natus sint, in fuga, reiciendis id earum omnis fugit
+              rerum dignissimos odit debitis!
             </p>
           </div>
         </div>

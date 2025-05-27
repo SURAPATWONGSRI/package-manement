@@ -33,12 +33,15 @@ export default async function page() {
       },
     },
   });
+
+  // Check if user is admin based on permissions result
+  const isAdmin = FULL_POST_ACCESS.success;
   return (
     <div className="container mx-auto max-w-4xl py-10 px-4 md:px-6">
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           {session.user.image ? (
-            <Avatar className="h-24 w-24 border-4 border-background">
+            <Avatar className="h-24 w-24 border-4 rounded-xl border-background">
               <AvatarImage
                 src={session.user.image}
                 alt={session.user.name || "User Avatar"}
@@ -64,7 +67,7 @@ export default async function page() {
                 <span>{session.user.lineId}</span>
               </div>
             )}
-            {FULL_POST_ACCESS.success && (
+            {isAdmin && (
               <Badge className="mt-2" variant="default">
                 Admin
               </Badge>
@@ -75,7 +78,9 @@ export default async function page() {
         <Separator className="my-4" />
 
         <Tabs defaultValue="profile" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList
+            className={`grid w-full grid-cols-2 bg-muted text-muted-foreground `}
+          >
             <TabsTrigger value="profile">
               <User className="h-4 w-4 mr-1" />
               ข้อมูลส่วนตัว

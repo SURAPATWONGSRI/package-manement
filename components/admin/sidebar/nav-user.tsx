@@ -15,7 +15,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, House, LogOut } from "lucide-react";
+import Link from "next/link";
 
 export function NavUser({
   user,
@@ -79,9 +80,15 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem asChild className="cursor-pointer">
+              <Link href={"/main"}>
+                <House className="mr-2 size-4 " />
+                <p className="text-md">Home</p>
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={onSignOut}>
               <LogOut className="mr-2 size-4 text-destructive" />
-              <p className="text-destructive">Log out</p>
+              <p className="text-destructive text-sm">Log out</p>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

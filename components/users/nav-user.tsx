@@ -9,13 +9,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, LogOut, User } from "lucide-react";
+import { ChevronDown, LogOut, ShieldUser, User } from "lucide-react";
 
 interface usertypes {
   user: {
     name: string;
     email: string;
     avatar: string;
+    isAdmin?: boolean;
   };
   onSignOut?: () => void;
 }
@@ -34,7 +35,7 @@ export function NavUserMain({ user, onSignOut }: usertypes) {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="relative flex items-center gap-1.5 rounded-full p-0 pl-0 pr-1 overflow-hidden hover:bg-secondary/60 transition-colors"
+            className="relative flex items-center gap-1.5 rounded-full p-0 pl-0 pr-1 overflow-hidden"
             aria-label="User menu"
           >
             <Avatar className="h-8 w-8 ring-2 ring-background">
@@ -70,6 +71,18 @@ export function NavUserMain({ user, onSignOut }: usertypes) {
             </div>
           </div>
           <DropdownMenuSeparator className="my-1" />
+          {user.isAdmin && (
+            <DropdownMenuItem asChild>
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-xs font-medium rounded-lg h-9 px-2 hover:bg-secondary/60"
+                onClick={() => (window.location.href = "/admin/dashboard")}
+              >
+                <ShieldUser className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
+                Admin Planel
+              </Button>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem asChild>
             <Button
               variant="ghost"
@@ -80,6 +93,7 @@ export function NavUserMain({ user, onSignOut }: usertypes) {
               โปรไฟล์
             </Button>
           </DropdownMenuItem>
+
           <DropdownMenuItem asChild>
             <Button
               variant="ghost"

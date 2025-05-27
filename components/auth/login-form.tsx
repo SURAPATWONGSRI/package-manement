@@ -41,8 +41,8 @@ const LoginForm = () => {
       setIsPending(false);
       toast.success("เข้าสู่ระบบสำเร็จ");
 
-      // Navigate to profile page
-      router.push("/profile");
+      // Navigate to main page
+      router.push("/main");
     } catch (error) {
       // Handle unexpected errors
       console.error("Unexpected error during login:", error);
