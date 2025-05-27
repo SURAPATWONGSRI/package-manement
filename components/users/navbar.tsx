@@ -61,7 +61,7 @@ export function NavbarUser() {
     <nav className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
         <Link
-          href="/"
+          href="/main"
           className="flex items-center gap-3 font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-2 py-1"
           aria-label="Package Management Homepage"
         >

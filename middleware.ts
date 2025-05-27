@@ -13,10 +13,16 @@ export async function middleware(req: NextRequest) {
   const isAdminProtected =
     pathname.startsWith("/admin") && pathname !== "/admin";
   const isLoginPage = pathname === "/login";
+  const isProfilePage = pathname === "/profile";
 
   // ถ้าล็อกอินแล้ว ห้ามเข้า /login
   if (isLoggedIn && isLoginPage) {
     return NextResponse.redirect(new URL("/profile", req.url));
+  }
+
+  // ถ้าไม่ได้ล็อกอินแล้วเข้าหน้า /profile ให้กลับไป /login
+  if (!isLoggedIn && isProfilePage) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   // ✅ ไม่ login แต่พยายามเข้า admin route (ยกเว้น /admin เองที่เป็นหน้า login)
@@ -33,5 +39,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/admin", "/login"],
+  matcher: ["/admin/:path*", "/admin", "/login", "/profile"],
 };

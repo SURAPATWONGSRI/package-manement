@@ -49,7 +49,7 @@ const Hero = () => {
                 {[
                   ["TypeScript", "typescript-icon.svg"],
                   ["Next.js", "nextjs-icon.svg"],
-                  ["Neon", "neon-icon.svg"],
+                  ["Supabase", "supabase.svg"],
                   ["Prisma ORM", "light-prisma-svgrepo-com.svg"],
                   ["PostgreSQL", "postgresql-icon.svg"],
 
