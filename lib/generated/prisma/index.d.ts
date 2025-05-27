@@ -1369,17 +1369,17 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    sessions: number
     accounts: number
-    posts: number
     packages: number
+    posts: number
+    sessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-    posts?: boolean | UserCountOutputTypeCountPostsArgs
     packages?: boolean | UserCountOutputTypeCountPackagesArgs
+    posts?: boolean | UserCountOutputTypeCountPostsArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
 
   // Custom InputTypes
@@ -1396,15 +1396,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SessionWhereInput
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AccountWhereInput
+  export type UserCountOutputTypeCountPackagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PackageSelectionWhereInput
   }
 
   /**
@@ -1417,8 +1417,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPackagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PackageSelectionWhereInput
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
   }
 
 
@@ -1439,11 +1439,11 @@ export namespace Prisma {
   }
 
   export type PackageSelectionAvgAggregateOutputType = {
-    payPrice: number | null
+    payPrice: Decimal | null
   }
 
   export type PackageSelectionSumAggregateOutputType = {
-    payPrice: number | null
+    payPrice: Decimal | null
   }
 
   export type PackageSelectionMinAggregateOutputType = {
@@ -1451,14 +1451,10 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
-    name: string | null
-    email: string | null
-    symbol: string | null
-    timeframe: string | null
-    startDate: Date | null
-    endDate: Date | null
-    payPrice: number | null
+    payPrice: Decimal | null
     paid: boolean | null
+    email: string | null
+    name: string | null
   }
 
   export type PackageSelectionMaxAggregateOutputType = {
@@ -1466,14 +1462,10 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
-    name: string | null
-    email: string | null
-    symbol: string | null
-    timeframe: string | null
-    startDate: Date | null
-    endDate: Date | null
-    payPrice: number | null
+    payPrice: Decimal | null
     paid: boolean | null
+    email: string | null
+    name: string | null
   }
 
   export type PackageSelectionCountAggregateOutputType = {
@@ -1481,14 +1473,11 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     userId: number
-    name: number
-    email: number
-    symbol: number
-    timeframe: number
-    startDate: number
-    endDate: number
+    packages: number
     payPrice: number
     paid: number
+    email: number
+    name: number
     _all: number
   }
 
@@ -1506,14 +1495,10 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    name?: true
-    email?: true
-    symbol?: true
-    timeframe?: true
-    startDate?: true
-    endDate?: true
     payPrice?: true
     paid?: true
+    email?: true
+    name?: true
   }
 
   export type PackageSelectionMaxAggregateInputType = {
@@ -1521,14 +1506,10 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    name?: true
-    email?: true
-    symbol?: true
-    timeframe?: true
-    startDate?: true
-    endDate?: true
     payPrice?: true
     paid?: true
+    email?: true
+    name?: true
   }
 
   export type PackageSelectionCountAggregateInputType = {
@@ -1536,14 +1517,11 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
-    name?: true
-    email?: true
-    symbol?: true
-    timeframe?: true
-    startDate?: true
-    endDate?: true
+    packages?: true
     payPrice?: true
     paid?: true
+    email?: true
+    name?: true
     _all?: true
   }
 
@@ -1638,14 +1616,11 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     userId: string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date
-    endDate: Date
-    payPrice: number
+    packages: JsonValue
+    payPrice: Decimal
     paid: boolean
+    email: string
+    name: string
     _count: PackageSelectionCountAggregateOutputType | null
     _avg: PackageSelectionAvgAggregateOutputType | null
     _sum: PackageSelectionSumAggregateOutputType | null
@@ -1672,14 +1647,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    name?: boolean
-    email?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    startDate?: boolean
-    endDate?: boolean
+    packages?: boolean
     payPrice?: boolean
     paid?: boolean
+    email?: boolean
+    name?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageSelection"]>
 
@@ -1688,14 +1660,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    name?: boolean
-    email?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    startDate?: boolean
-    endDate?: boolean
+    packages?: boolean
     payPrice?: boolean
     paid?: boolean
+    email?: boolean
+    name?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageSelection"]>
 
@@ -1704,14 +1673,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    name?: boolean
-    email?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    startDate?: boolean
-    endDate?: boolean
+    packages?: boolean
     payPrice?: boolean
     paid?: boolean
+    email?: boolean
+    name?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageSelection"]>
 
@@ -1720,17 +1686,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    name?: boolean
-    email?: boolean
-    symbol?: boolean
-    timeframe?: boolean
-    startDate?: boolean
-    endDate?: boolean
+    packages?: boolean
     payPrice?: boolean
     paid?: boolean
+    email?: boolean
+    name?: boolean
   }
 
-  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "name" | "email" | "symbol" | "timeframe" | "startDate" | "endDate" | "payPrice" | "paid", ExtArgs["result"]["packageSelection"]>
+  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "packages" | "payPrice" | "paid" | "email" | "name", ExtArgs["result"]["packageSelection"]>
   export type PackageSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -1751,14 +1714,11 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       userId: string
-      name: string
-      email: string
-      symbol: string
-      timeframe: string
-      startDate: Date
-      endDate: Date
-      payPrice: number
+      packages: Prisma.JsonValue
+      payPrice: Prisma.Decimal
       paid: boolean
+      email: string
+      name: string
     }, ExtArgs["result"]["packageSelection"]>
     composites: {}
   }
@@ -2187,14 +2147,11 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"PackageSelection", 'DateTime'>
     readonly updatedAt: FieldRef<"PackageSelection", 'DateTime'>
     readonly userId: FieldRef<"PackageSelection", 'String'>
-    readonly name: FieldRef<"PackageSelection", 'String'>
-    readonly email: FieldRef<"PackageSelection", 'String'>
-    readonly symbol: FieldRef<"PackageSelection", 'String'>
-    readonly timeframe: FieldRef<"PackageSelection", 'String'>
-    readonly startDate: FieldRef<"PackageSelection", 'DateTime'>
-    readonly endDate: FieldRef<"PackageSelection", 'DateTime'>
-    readonly payPrice: FieldRef<"PackageSelection", 'Float'>
+    readonly packages: FieldRef<"PackageSelection", 'Json'>
+    readonly payPrice: FieldRef<"PackageSelection", 'Decimal'>
     readonly paid: FieldRef<"PackageSelection", 'Boolean'>
+    readonly email: FieldRef<"PackageSelection", 'String'>
+    readonly name: FieldRef<"PackageSelection", 'String'>
   }
     
 
@@ -3942,10 +3899,10 @@ export namespace Prisma {
     banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    posts?: boolean | User$postsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4002,10 +3959,10 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    posts?: boolean | User$postsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
+    posts?: boolean | User$postsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -4014,10 +3971,10 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
-      posts: Prisma.$PostPayload<ExtArgs>[]
       packages: Prisma.$PackageSelectionPayload<ExtArgs>[]
+      posts: Prisma.$PostPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4428,10 +4385,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     packages<T extends User$packagesArgs<ExtArgs> = {}>(args?: Subset<T, User$packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4863,30 +4820,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.sessions
-   */
-  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: SessionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: SessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionInclude<ExtArgs> | null
-    where?: SessionWhereInput
-    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
-    cursor?: SessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
-  }
-
-  /**
    * User.accounts
    */
   export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4908,6 +4841,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
+  }
+
+  /**
+   * User.packages
+   */
+  export type User$packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PackageSelection
+     */
+    select?: PackageSelectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PackageSelection
+     */
+    omit?: PackageSelectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PackageSelectionInclude<ExtArgs> | null
+    where?: PackageSelectionWhereInput
+    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
+    cursor?: PackageSelectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
   }
 
   /**
@@ -4935,27 +4892,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.packages
+   * User.sessions
    */
-  export type User$packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PackageSelection
+     * Select specific fields to fetch from the Session
      */
-    select?: PackageSelectionSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the PackageSelection
+     * Omit specific fields from the Session
      */
-    omit?: PackageSelectionOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PackageSelectionInclude<ExtArgs> | null
-    where?: PackageSelectionWhereInput
-    orderBy?: PackageSelectionOrderByWithRelationInput | PackageSelectionOrderByWithRelationInput[]
-    cursor?: PackageSelectionWhereUniqueInput
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PackageSelectionScalarFieldEnum | PackageSelectionScalarFieldEnum[]
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
   }
 
   /**
@@ -8354,14 +8311,11 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
-    name: 'name',
-    email: 'email',
-    symbol: 'symbol',
-    timeframe: 'timeframe',
-    startDate: 'startDate',
-    endDate: 'endDate',
+    packages: 'packages',
     payPrice: 'payPrice',
-    paid: 'paid'
+    paid: 'paid',
+    email: 'email',
+    name: 'name'
   };
 
   export type PackageSelectionScalarFieldEnum = (typeof PackageSelectionScalarFieldEnum)[keyof typeof PackageSelectionScalarFieldEnum]
@@ -8461,12 +8415,28 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -8511,16 +8481,30 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Json'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
   /**
-   * Reference to a field of type 'Float[]'
+   * Reference to a field of type 'QueryMode'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -8570,14 +8554,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
     updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
     userId?: StringFilter<"PackageSelection"> | string
-    name?: StringFilter<"PackageSelection"> | string
-    email?: StringFilter<"PackageSelection"> | string
-    symbol?: StringFilter<"PackageSelection"> | string
-    timeframe?: StringFilter<"PackageSelection"> | string
-    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    payPrice?: FloatFilter<"PackageSelection"> | number
+    packages?: JsonFilter<"PackageSelection">
+    payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolFilter<"PackageSelection"> | boolean
+    email?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -8586,14 +8567,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
+    packages?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -8605,14 +8583,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
     updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
     userId?: StringFilter<"PackageSelection"> | string
-    name?: StringFilter<"PackageSelection"> | string
-    email?: StringFilter<"PackageSelection"> | string
-    symbol?: StringFilter<"PackageSelection"> | string
-    timeframe?: StringFilter<"PackageSelection"> | string
-    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    payPrice?: FloatFilter<"PackageSelection"> | number
+    packages?: JsonFilter<"PackageSelection">
+    payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolFilter<"PackageSelection"> | boolean
+    email?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -8621,14 +8596,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
+    packages?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     _count?: PackageSelectionCountOrderByAggregateInput
     _avg?: PackageSelectionAvgOrderByAggregateInput
     _max?: PackageSelectionMaxOrderByAggregateInput
@@ -8644,14 +8616,11 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
     userId?: StringWithAggregatesFilter<"PackageSelection"> | string
-    name?: StringWithAggregatesFilter<"PackageSelection"> | string
-    email?: StringWithAggregatesFilter<"PackageSelection"> | string
-    symbol?: StringWithAggregatesFilter<"PackageSelection"> | string
-    timeframe?: StringWithAggregatesFilter<"PackageSelection"> | string
-    startDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
-    endDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
-    payPrice?: FloatWithAggregatesFilter<"PackageSelection"> | number
+    packages?: JsonWithAggregatesFilter<"PackageSelection">
+    payPrice?: DecimalWithAggregatesFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolWithAggregatesFilter<"PackageSelection"> | boolean
+    email?: StringWithAggregatesFilter<"PackageSelection"> | string
+    name?: StringWithAggregatesFilter<"PackageSelection"> | string
   }
 
   export type PostWhereInput = {
@@ -8742,10 +8711,10 @@ export namespace Prisma {
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
-    sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
-    posts?: PostListRelationFilter
     packages?: PackageSelectionListRelationFilter
+    posts?: PostListRelationFilter
+    sessions?: SessionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8763,10 +8732,10 @@ export namespace Prisma {
     banExpires?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
-    sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
-    posts?: PostOrderByRelationAggregateInput
     packages?: PackageSelectionOrderByRelationAggregateInput
+    posts?: PostOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8787,11 +8756,11 @@ export namespace Prisma {
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
-    sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
-    posts?: PostListRelationFilter
     packages?: PackageSelectionListRelationFilter
-  }, "id" | "lineId" | "email">
+    posts?: PostListRelationFilter
+    sessions?: SessionListRelationFilter
+  }, "id" | "email" | "lineId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -9094,14 +9063,11 @@ export namespace Prisma {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
+    email: string
+    name: string
     user: UserCreateNestedOneWithoutPackagesInput
   }
 
@@ -9110,28 +9076,22 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
+    email: string
+    name: string
   }
 
   export type PackageSelectionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutPackagesNestedInput
   }
 
@@ -9140,14 +9100,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type PackageSelectionCreateManyInput = {
@@ -9155,28 +9112,22 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
+    email: string
+    name: string
   }
 
   export type PackageSelectionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type PackageSelectionUncheckedUpdateManyInput = {
@@ -9184,14 +9135,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostCreateInput = {
@@ -9285,10 +9233,10 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9306,10 +9254,10 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -9327,10 +9275,10 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9348,10 +9296,10 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9729,16 +9677,39 @@ export namespace Prisma {
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -9756,14 +9727,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
+    packages?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
   }
 
   export type PackageSelectionAvgOrderByAggregateInput = {
@@ -9775,14 +9743,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
   }
 
   export type PackageSelectionMinOrderByAggregateInput = {
@@ -9790,14 +9754,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    symbol?: SortOrder
-    timeframe?: SortOrder
-    startDate?: SortOrder
-    endDate?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
   }
 
   export type PackageSelectionSumOrderByAggregateInput = {
@@ -9835,21 +9795,47 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -9950,22 +9936,10 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type SessionListRelationFilter = {
-    every?: SessionWhereInput
-    some?: SessionWhereInput
-    none?: SessionWhereInput
-  }
-
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
     none?: AccountWhereInput
-  }
-
-  export type PostListRelationFilter = {
-    every?: PostWhereInput
-    some?: PostWhereInput
-    none?: PostWhereInput
   }
 
   export type PackageSelectionListRelationFilter = {
@@ -9974,11 +9948,23 @@ export namespace Prisma {
     none?: PackageSelectionWhereInput
   }
 
-  export type SessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type PostListRelationFilter = {
+    every?: PostWhereInput
+    some?: PostWhereInput
+    none?: PostWhereInput
+  }
+
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
   }
 
   export type AccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PackageSelectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9986,7 +9972,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type PackageSelectionOrderByRelationAggregateInput = {
+  export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10220,12 +10206,12 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -10258,25 +10244,11 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
-  export type SessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
     createMany?: AccountCreateManyUserInputEnvelope
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-  }
-
-  export type PostCreateNestedManyWithoutUserInput = {
-    create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
-    createMany?: PostCreateManyUserInputEnvelope
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
   export type PackageSelectionCreateNestedManyWithoutUserInput = {
@@ -10286,7 +10258,14 @@ export namespace Prisma {
     connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
   }
 
-  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+  export type PostCreateNestedManyWithoutUserInput = {
+    create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
+    createMany?: PostCreateManyUserInputEnvelope
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+  }
+
+  export type SessionCreateNestedManyWithoutUserInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
@@ -10300,6 +10279,13 @@ export namespace Prisma {
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
+  export type PackageSelectionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+  }
+
   export type PostUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
@@ -10307,11 +10293,11 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type PackageSelectionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
-    createMany?: PackageSelectionCreateManyUserInputEnvelope
-    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -10324,20 +10310,6 @@ export namespace Prisma {
 
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
-  }
-
-  export type SessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
-    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SessionCreateManyUserInputEnvelope
-    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -10354,20 +10326,6 @@ export namespace Prisma {
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
   }
 
-  export type PostUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
-    upsert?: PostUpsertWithWhereUniqueWithoutUserInput | PostUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PostCreateManyUserInputEnvelope
-    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-    update?: PostUpdateWithWhereUniqueWithoutUserInput | PostUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PostUpdateManyWithWhereWithoutUserInput | PostUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
   export type PackageSelectionUpdateManyWithoutUserNestedInput = {
     create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
@@ -10382,7 +10340,21 @@ export namespace Prisma {
     deleteMany?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
   }
 
-  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+  export type PostUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
+    upsert?: PostUpsertWithWhereUniqueWithoutUserInput | PostUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PostCreateManyUserInputEnvelope
+    set?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    disconnect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    delete?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
+    update?: PostUpdateWithWhereUniqueWithoutUserInput | PostUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PostUpdateManyWithWhereWithoutUserInput | PostUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
+  }
+
+  export type SessionUpdateManyWithoutUserNestedInput = {
     create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
@@ -10410,6 +10382,20 @@ export namespace Prisma {
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
   }
 
+  export type PackageSelectionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
+    upsert?: PackageSelectionUpsertWithWhereUniqueWithoutUserInput | PackageSelectionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PackageSelectionCreateManyUserInputEnvelope
+    set?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    disconnect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    delete?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
+    update?: PackageSelectionUpdateWithWhereUniqueWithoutUserInput | PackageSelectionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PackageSelectionUpdateManyWithWhereWithoutUserInput | PackageSelectionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+  }
+
   export type PostUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<PostCreateWithoutUserInput, PostUncheckedCreateWithoutUserInput> | PostCreateWithoutUserInput[] | PostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
@@ -10424,18 +10410,18 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type PackageSelectionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput> | PackageSelectionCreateWithoutUserInput[] | PackageSelectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PackageSelectionCreateOrConnectWithoutUserInput | PackageSelectionCreateOrConnectWithoutUserInput[]
-    upsert?: PackageSelectionUpsertWithWhereUniqueWithoutUserInput | PackageSelectionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PackageSelectionCreateManyUserInputEnvelope
-    set?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
-    disconnect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
-    delete?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
-    connect?: PackageSelectionWhereUniqueInput | PackageSelectionWhereUniqueInput[]
-    update?: PackageSelectionUpdateWithWhereUniqueWithoutUserInput | PackageSelectionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PackageSelectionUpdateManyWithWhereWithoutUserInput | PackageSelectionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -10491,15 +10477,15 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -10548,21 +10534,44 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -10685,9 +10694,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPackagesInput = {
@@ -10705,9 +10714,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPackagesInput = {
@@ -10741,9 +10750,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPackagesInput = {
@@ -10761,9 +10770,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPostsInput = {
@@ -10781,9 +10790,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -10801,9 +10810,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -10837,9 +10846,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -10857,45 +10866,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type SessionCreateWithoutUserInput = {
-    id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
-    expiresAt: Date | string
-    token: string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-  }
-
-  export type SessionUncheckedCreateWithoutUserInput = {
-    id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
-    expiresAt: Date | string
-    token: string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-  }
-
-  export type SessionCreateOrConnectWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
-  }
-
-  export type SessionCreateManyUserInputEnvelope = {
-    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
-    skipDuplicates?: boolean
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -10942,6 +10915,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PackageSelectionCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
+    paid?: boolean
+    email: string
+    name: string
+  }
+
+  export type PackageSelectionUncheckedCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
+    paid?: boolean
+    email: string
+    name: string
+  }
+
+  export type PackageSelectionCreateOrConnectWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PackageSelectionCreateManyUserInputEnvelope = {
+    data: PackageSelectionCreateManyUserInput | PackageSelectionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostCreateWithoutUserInput = {
     id?: string
     createdAt?: Date | string
@@ -10972,75 +10977,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PackageSelectionCreateWithoutUserInput = {
+  export type SessionCreateWithoutUserInput = {
     id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
-    paid?: boolean
+    createdAt: Date | string
+    updatedAt: Date | string
+    expiresAt: Date | string
+    token: string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
-  export type PackageSelectionUncheckedCreateWithoutUserInput = {
+  export type SessionUncheckedCreateWithoutUserInput = {
     id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
-    paid?: boolean
+    createdAt: Date | string
+    updatedAt: Date | string
+    expiresAt: Date | string
+    token: string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
-  export type PackageSelectionCreateOrConnectWithoutUserInput = {
-    where: PackageSelectionWhereUniqueInput
-    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
-  }
-
-  export type PackageSelectionCreateManyUserInputEnvelope = {
-    data: PackageSelectionCreateManyUserInput | PackageSelectionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+  export type SessionCreateOrConnectWithoutUserInput = {
     where: SessionWhereUniqueInput
-    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
     create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
-    where: SessionWhereUniqueInput
-    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SessionUpdateManyWithWhereWithoutUserInput = {
-    where: SessionScalarWhereInput
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SessionScalarWhereInput = {
-    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    OR?: SessionScalarWhereInput[]
-    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
-    id?: StringFilter<"Session"> | string
-    createdAt?: DateTimeFilter<"Session"> | Date | string
-    updatedAt?: DateTimeFilter<"Session"> | Date | string
-    expiresAt?: DateTimeFilter<"Session"> | Date | string
-    token?: StringFilter<"Session"> | string
-    ipAddress?: StringNullableFilter<"Session"> | string | null
-    userAgent?: StringNullableFilter<"Session"> | string | null
-    impersonatedBy?: StringNullableFilter<"Session"> | string | null
-    userId?: StringFilter<"Session"> | string
-    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    isDeleted?: BoolFilter<"Session"> | boolean
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -11080,6 +11050,37 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"Account"> | boolean
   }
 
+  export type PackageSelectionUpsertWithWhereUniqueWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    update: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
+    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type PackageSelectionUpdateWithWhereUniqueWithoutUserInput = {
+    where: PackageSelectionWhereUniqueInput
+    data: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PackageSelectionUpdateManyWithWhereWithoutUserInput = {
+    where: PackageSelectionScalarWhereInput
+    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PackageSelectionScalarWhereInput = {
+    AND?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+    OR?: PackageSelectionScalarWhereInput[]
+    NOT?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
+    id?: StringFilter<"PackageSelection"> | string
+    createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
+    userId?: StringFilter<"PackageSelection"> | string
+    packages?: JsonFilter<"PackageSelection">
+    payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
+    paid?: BoolFilter<"PackageSelection"> | boolean
+    email?: StringFilter<"PackageSelection"> | string
+    name?: StringFilter<"PackageSelection"> | string
+  }
+
   export type PostUpsertWithWhereUniqueWithoutUserInput = {
     where: PostWhereUniqueInput
     update: XOR<PostUpdateWithoutUserInput, PostUncheckedUpdateWithoutUserInput>
@@ -11110,38 +11111,37 @@ export namespace Prisma {
     isDeleted?: BoolFilter<"Post"> | boolean
   }
 
-  export type PackageSelectionUpsertWithWhereUniqueWithoutUserInput = {
-    where: PackageSelectionWhereUniqueInput
-    update: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
-    create: XOR<PackageSelectionCreateWithoutUserInput, PackageSelectionUncheckedCreateWithoutUserInput>
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type PackageSelectionUpdateWithWhereUniqueWithoutUserInput = {
-    where: PackageSelectionWhereUniqueInput
-    data: XOR<PackageSelectionUpdateWithoutUserInput, PackageSelectionUncheckedUpdateWithoutUserInput>
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
   }
 
-  export type PackageSelectionUpdateManyWithWhereWithoutUserInput = {
-    where: PackageSelectionScalarWhereInput
-    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyWithoutUserInput>
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type PackageSelectionScalarWhereInput = {
-    AND?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
-    OR?: PackageSelectionScalarWhereInput[]
-    NOT?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
-    id?: StringFilter<"PackageSelection"> | string
-    createdAt?: DateTimeFilter<"PackageSelection"> | Date | string
-    updatedAt?: DateTimeFilter<"PackageSelection"> | Date | string
-    userId?: StringFilter<"PackageSelection"> | string
-    name?: StringFilter<"PackageSelection"> | string
-    email?: StringFilter<"PackageSelection"> | string
-    symbol?: StringFilter<"PackageSelection"> | string
-    timeframe?: StringFilter<"PackageSelection"> | string
-    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
-    payPrice?: FloatFilter<"PackageSelection"> | number
-    paid?: BoolFilter<"PackageSelection"> | boolean
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    id?: StringFilter<"Session"> | string
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
+    expiresAt?: DateTimeFilter<"Session"> | Date | string
+    token?: StringFilter<"Session"> | string
+    ipAddress?: StringNullableFilter<"Session"> | string | null
+    userAgent?: StringNullableFilter<"Session"> | string | null
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
+    userId?: StringFilter<"Session"> | string
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -11160,8 +11160,8 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -11180,8 +11180,8 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -11216,8 +11216,8 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -11236,8 +11236,8 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -11255,9 +11255,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -11275,9 +11275,9 @@ export namespace Prisma {
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -11311,9 +11311,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -11331,22 +11331,9 @@ export namespace Prisma {
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type SessionCreateManyUserInput = {
-    id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
-    expiresAt: Date | string
-    token: string
-    ipAddress?: string | null
-    userAgent?: string | null
-    impersonatedBy?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -11366,6 +11353,17 @@ export namespace Prisma {
     isDeleted?: boolean
   }
 
+  export type PackageSelectionCreateManyUserInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    packages: JsonNullValueInput | InputJsonValue
+    payPrice: Decimal | DecimalJsLike | number | string
+    paid?: boolean
+    email: string
+    name: string
+  }
+
   export type PostCreateManyUserInput = {
     id?: string
     createdAt?: Date | string
@@ -11376,57 +11374,17 @@ export namespace Prisma {
     isDeleted?: boolean
   }
 
-  export type PackageSelectionCreateManyUserInput = {
+  export type SessionCreateManyUserInput = {
     id?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    name: string
-    email: string
-    symbol: string
-    timeframe: string
-    startDate: Date | string
-    endDate: Date | string
-    payPrice: number
-    paid?: boolean
-  }
-
-  export type SessionUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type SessionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type SessionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    token?: StringFieldUpdateOperationsInput | string
-    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt: Date | string
+    updatedAt: Date | string
+    expiresAt: Date | string
+    token: string
+    ipAddress?: string | null
+    userAgent?: string | null
+    impersonatedBy?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -11480,6 +11438,39 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type PackageSelectionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PackageSelectionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PackageSelectionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    packages?: JsonNullValueInput | InputJsonValue
+    payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
   export type PostUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11510,46 +11501,43 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type PackageSelectionUpdateWithoutUserInput = {
+  export type SessionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
-    paid?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type PackageSelectionUncheckedUpdateWithoutUserInput = {
+  export type SessionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
-    paid?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type PackageSelectionUncheckedUpdateManyWithoutUserInput = {
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    symbol?: StringFieldUpdateOperationsInput | string
-    timeframe?: StringFieldUpdateOperationsInput | string
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    payPrice?: FloatFieldUpdateOperationsInput | number
-    paid?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    token?: StringFieldUpdateOperationsInput | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

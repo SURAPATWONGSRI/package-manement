@@ -4,9 +4,112 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+}
+
+model PackageSelection {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  packages  Json     // Store all packages as a JSON array
+  payPrice  Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
+  paid      Boolean  @default(false)
+  email     String
+  name      String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("package_selections")
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  title     String
+  content   String
+  userId    String
+  deletedAt DateTime?
+  isDeleted Boolean   @default(false)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("posts")
+}
+
+model User {
+  id            String             @id @default(uuid())
+  createdAt     DateTime
+  updatedAt     DateTime
+  name          String
+  email         String             @unique
+  lineId        String?            @unique
+  emailVerified Boolean
+  image         String?
+  role          UserRole           @default(USER)
+  banned        Boolean?
+  banReason     String?
+  banExpires    DateTime?
+  deletedAt     DateTime?
+  isDeleted     Boolean            @default(false)
+  accounts      Account[]
+  packages      PackageSelection[]
+  posts         Post[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id             String    @id @default(uuid())
+  createdAt      DateTime
+  updatedAt      DateTime
+  expiresAt      DateTime
+  token          String    @unique
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  userId         String
+  deletedAt      DateTime?
+  isDeleted      Boolean   @default(false)
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(uuid())
+  createdAt             DateTime
+  updatedAt             DateTime
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  userId                String
+  deletedAt             DateTime?
+  isDeleted             Boolean   @default(false)
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("accounts")
+}
+
+model Verification {
+  id         String    @id @default(uuid())
+  createdAt  DateTime?
+  updatedAt  DateTime?
+  identifier String
+  value      String
+  expiresAt  DateTime
+  deletedAt  DateTime?
+  isDeleted  Boolean   @default(false)
+
+  @@map("verifications")
 }
 
 enum UserRole {
@@ -26,126 +129,4 @@ enum Timeframe {
   M30
   H1
   D1
-}
-
-model PackageSelection {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  userId     String
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  name       String   // เก็บชื่อผู้ใช้ ณ เวลาที่เลือกแพ็กเกจ (อาจต่างจากชื่อปัจจุบันในตาราง User)
-  email      String   // เก็บอีเมลผู้ใช้ ณ เวลาที่เลือกแพ็กเกจ (อาจต่างจากอีเมลปัจจุบันในตาราง User)
-
-  symbol     String
-  timeframe  String
-  startDate  DateTime
-  endDate    DateTime
-  payPrice   Float
-  paid       Boolean   @default(false)
-
-  @@map("package_selections")
-}
-
-
-
-
-model Post {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  title     String
-  content   String
-
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  deletedAt DateTime?
-  isDeleted Boolean   @default(false)
-
-  @@map("posts")
-}
-
-model User {
-  id            String    @id @default(uuid())
-  createdAt     DateTime
-  updatedAt     DateTime
-  name          String
-  email         String
-  lineId        String?   @unique
-  emailVerified Boolean
-  image         String?
-  role          UserRole @default(USER)
-
-  banned        Boolean?
-  banReason     String?
-  banExpires    DateTime?
-
-  sessions      Session[]
-  accounts      Account[]
-  posts         Post[]
-  packages      PackageSelection[]
-
-  deletedAt     DateTime?
-  isDeleted     Boolean   @default(false)
-
-  @@unique([email])
-  @@map("users")
-}
-
-model Session {
-  id        String   @id @default(uuid())
-  createdAt DateTime
-  updatedAt DateTime
-  expiresAt DateTime
-  token     String   @unique
-  ipAddress String?
-  userAgent String?
-  impersonatedBy String?
-
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  deletedAt DateTime?
-  isDeleted Boolean   @default(false)
-
-  @@map("sessions")
-}
-
-model Account {
-  id                    String    @id @default(uuid())
-  createdAt             DateTime
-  updatedAt             DateTime
-  accountId             String
-  providerId            String
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  deletedAt             DateTime?
-  isDeleted             Boolean   @default(false)
-
-  @@map("accounts")
-}
-
-model Verification {
-  id         String    @id @default(uuid())
-  createdAt  DateTime?
-  updatedAt  DateTime?
-  identifier String
-  value      String
-  expiresAt  DateTime
-
-  deletedAt  DateTime?
-  isDeleted  Boolean   @default(false)
-
-  @@map("verifications")
 }

@@ -94,7 +94,7 @@ const MainPage = () => {
 
     // Fixed amount of 100 baht for all packages (regardless of count)
     const amount = `100.${formattedDecimal}`;
-    const payPrice = 100; // Store exact amount without random digits for db
+    const payPrice = parseFloat(`100.${formattedDecimal}`); // Include decimal part in the price
 
     // Create a params object with selections
     const params = new URLSearchParams();

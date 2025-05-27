@@ -24,7 +24,7 @@ export default function PaymentPage() {
 
   // Get parameters from URL
   const amount = searchParams.get("amount") || "100.00";
-  const payPrice = parseFloat(searchParams.get("payPrice") || "100");
+  const payPrice = parseFloat(searchParams.get("payPrice") || "100"); // This will now include the decimal part
   const packagesStr = searchParams.get("packages") || "";
   const startDateStr =
     searchParams.get("startDate") || new Date().toISOString();
@@ -80,12 +80,17 @@ export default function PaymentPage() {
         }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to save package selections");
+        console.error("API Error:", result);
+        throw new Error(result.error || "Failed to save package selections");
       }
 
+      console.log("Package selections saved:", result);
+
       // Navigate to confirmation page
-      router.push("/confirmation");
+      router.push("/payment/sucess");
     } catch (error) {
       console.error("Error saving package selections:", error);
       alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง");
