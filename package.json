@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev --turbopack",
-    "build": "prisma generate && ANALYZE=false next build",
-    "build:analyze": "prisma generate && ANALYZE=true next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
