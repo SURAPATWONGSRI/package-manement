@@ -43,6 +43,3 @@ next-env.d.ts
 
 # pirsma
 /src/lib/generated
-
-# Local Netlify folder
-.netlify
