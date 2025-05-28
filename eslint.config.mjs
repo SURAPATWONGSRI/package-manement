@@ -10,15 +10,8 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.config({
+  ...compat.conifg({
     extends: ["next/core-web-vitals", "next/typescript"],
-    rules: {
-      // Performance rules
-      "react/no-array-index-key": "warn", // Warn about using array indices as keys
-      "react/jsx-no-constructed-context-values": "warn", // Avoid creating objects in JSX
-      "react-hooks/exhaustive-deps": "warn", // Enforce proper dependency arrays
-      "no-console": process.env.NODE_ENV === "production" ? "warn" : "off", // Warn about console in production
-    },
     ignorePatterns: ["src/lib/generated/**/*.ts"],
   }),
 ];
