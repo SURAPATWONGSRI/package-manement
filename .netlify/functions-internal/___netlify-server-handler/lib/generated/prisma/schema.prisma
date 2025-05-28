@@ -1,0 +1,137 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../lib/generated/prisma"
+  binaryTargets = ["native", "darwin-arm64", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model PackageSelection {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  packages  Json // Store all packages as a JSON array
+  payPrice  Decimal  @db.Decimal(10, 2) // Total price with 2 decimal places
+  startDate DateTime // Package start date
+  endDate   DateTime // Package end date
+  paid      Boolean  @default(false)
+  email     String
+  name      String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("package_selections")
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  title     String
+  content   String
+  userId    String
+  deletedAt DateTime?
+  isDeleted Boolean   @default(false)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("posts")
+}
+
+model User {
+  id              String             @id @default(uuid())
+  createdAt       DateTime
+  updatedAt       DateTime
+  username        String?            @unique
+  displayUsername String?
+  name            String
+  email           String             @unique
+  lineId          String?            @unique
+  emailVerified   Boolean
+  image           String?
+  role            UserRole           @default(USER)
+  banned          Boolean?
+  banReason       String?
+  banExpires      DateTime?
+  deletedAt       DateTime?
+  isDeleted       Boolean            @default(false)
+  accounts        Account[]
+  packages        PackageSelection[]
+  posts           Post[]
+  sessions        Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id             String    @id @default(uuid())
+  createdAt      DateTime
+  updatedAt      DateTime
+  expiresAt      DateTime
+  token          String    @unique
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  userId         String
+  deletedAt      DateTime?
+  isDeleted      Boolean   @default(false)
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(uuid())
+  createdAt             DateTime
+  updatedAt             DateTime
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  userId                String
+  deletedAt             DateTime?
+  isDeleted             Boolean   @default(false)
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("accounts")
+}
+
+model Verification {
+  id         String    @id @default(uuid())
+  createdAt  DateTime?
+  updatedAt  DateTime?
+  identifier String
+  value      String
+  expiresAt  DateTime
+  deletedAt  DateTime?
+  isDeleted  Boolean   @default(false)
+
+  @@map("verifications")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum SymbolType {
+  EURUSD
+  USDJPY
+  GOLD
+  BTCUSD
+}
+
+enum Timeframe {
+  M15
+  M30
+  H1
+  D1
+}

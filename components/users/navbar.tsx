@@ -3,7 +3,7 @@
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { NavUserMain } from "./nav-user";
 
@@ -13,7 +13,30 @@ type UserData = {
   avatar: string;
   isAdmin?: boolean;
 };
-export function NavbarUser() {
+
+// Extract Logo component to prevent re-rendering when user state changes
+const Logo = memo(function Logo() {
+  return (
+    <Link
+      href="/main"
+      className="flex items-center gap-3 font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-2 py-1"
+      aria-label="Package Management Homepage"
+    >
+      <span className="hidden md:inline-block text-lg font-semibold">
+        Package
+      </span>
+    </Link>
+  );
+});
+
+// Extract UserSkeleton to a separate component
+const UserSkeleton = memo(function UserSkeleton() {
+  return (
+    <div className="h-8 w-8 rounded-full bg-slate-200 animate-pulse"></div>
+  );
+});
+
+export const NavbarUser = memo(function NavbarUser() {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -25,12 +48,12 @@ export function NavbarUser() {
     avatar: "",
   });
 
-  // Mount effect
+  // Mount effect - runs only once
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Update user data effect
+  // Update user data effect - only runs when session changes
   useEffect(() => {
     if (session?.user) {
       setUserData({
@@ -42,7 +65,8 @@ export function NavbarUser() {
     }
   }, [session]);
 
-  const handleSignOut = async () => {
+  // Memoize sign out handler to prevent recreation on each render
+  const handleSignOut = useCallback(async () => {
     try {
       await signOut({
         fetchOptions: {
@@ -59,30 +83,22 @@ export function NavbarUser() {
       console.error("Sign out error:", error);
       toast.error("Failed to sign out");
     }
-  };
+  }, [router]);
+
+  // Memoize the user component to avoid re-renders
+  const userComponent = useMemo(() => {
+    if (mounted && session?.user) {
+      return <NavUserMain user={userData} onSignOut={handleSignOut} />;
+    }
+    return <UserSkeleton />;
+  }, [mounted, session?.user, userData, handleSignOut]);
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
-        <Link
-          href="/main"
-          className="flex items-center gap-3 font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-2 py-1"
-          aria-label="Package Management Homepage"
-        >
-          <span className="hidden md:inline-block text-lg font-semibold">
-            Package
-          </span>
-        </Link>
-
-        <div className="flex items-center">
-          {mounted && session?.user && (
-            <NavUserMain user={userData} onSignOut={handleSignOut} />
-          )}
-          {(!mounted || !session?.user) && (
-            <div className="h-8 w-8 rounded-full bg-slate-200 animate-pulse"></div>
-          )}
-        </div>
+        <Logo />
+        <div className="flex items-center">{userComponent}</div>
       </div>
     </nav>
   );
-}
+});
