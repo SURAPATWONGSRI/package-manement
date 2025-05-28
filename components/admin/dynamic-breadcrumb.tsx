@@ -49,17 +49,19 @@ export function DynamicBreadcrumb({ className }: { className?: string }) {
               {segmentTitles[pathSegments[0]] || pathSegments[0]}
             </Link>
             <ChevronRight className="mx-1 size-3 text-muted-foreground" />
-            <span className="text-sm font-medium">{currentTitle}</span>
+            <span className="text-sm font-medium font-sans">
+              {currentTitle}
+            </span>
           </>
         )}
 
         {!isMobileView && pathSegments.length > 0 && (
-          <span className="text-sm font-medium">{currentTitle}</span>
+          <span className="text-sm font-medium font-sans">{currentTitle}</span>
         )}
       </div>
 
       {/* Desktop view - full breadcrumb */}
-      <Breadcrumb className="hidden md:flex">
+      <Breadcrumb className="hidden font-sans md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href="/admin">Home</BreadcrumbLink>

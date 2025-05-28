@@ -24,6 +24,20 @@ const RegisterForm = () => {
       return;
     }
 
+    // Validate username field
+    const username = formData.get("username") as string;
+    if (!username || username.trim() === "") {
+      toast.error("กรุณากรอก Username");
+      return;
+    }
+
+    // Username validation: only allow letters, numbers, and underscores
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if (!usernameRegex.test(username)) {
+      toast.error("Username ต้องประกอบด้วยตัวอักษร ตัวเลข หรือ _ เท่านั้น");
+      return;
+    }
+
     // Validate lineId if provided
     const lineId = formData.get("lineId") as string;
     if (lineId && lineId.trim() !== "") {
@@ -43,7 +57,12 @@ const RegisterForm = () => {
     setIsPending(true);
 
     try {
-      console.log("Submitting registration with name:", name);
+      console.log(
+        "Submitting registration with name:",
+        name,
+        "username:",
+        username
+      );
       const { error, warning } = await signUpEmailAction(formData);
 
       if (error) {
@@ -80,6 +99,23 @@ const RegisterForm = () => {
         />
       </div>
 
+      {/* Username - New Field */}
+      <div className="space-y-2 ">
+        <Label htmlFor="username">Username</Label>
+        <Input
+          id="username"
+          name="username"
+          required
+          placeholder="Enter Your Username"
+          aria-required="true"
+          pattern="^[a-zA-Z0-9_]+$"
+          title="Username must contain only letters, numbers, and underscores"
+        />
+        <p className="text-xs text-muted-foreground">
+          Username ใช้สำหรับเข้าสู่ระบบ (ตัวอักษร ตัวเลข และ _ เท่านั้น)
+        </p>
+      </div>
+
       {/* Email */}
       <div className="space-y-2 ">
         <Label htmlFor="email">Email</Label>
@@ -88,6 +124,7 @@ const RegisterForm = () => {
           placeholder="Enter Your Email"
           id="email"
           name="email"
+          required
         />
       </div>
 
@@ -104,7 +141,6 @@ const RegisterForm = () => {
           pattern="^[a-z][a-z0-9._-]{3,19}$"
           title="LINE ID must be 4–20 characters, start with a letter, and contain only lowercase letters, numbers, dots, dashes, or underscores."
         />
-
         <p className="text-xs text-muted-foreground">
           LINE ID จะใช้สำหรับการติดต่อกับคุณ
         </p>
@@ -118,6 +154,7 @@ const RegisterForm = () => {
           placeholder="Enter Your Password"
           id="password"
           name="password"
+          required
         />
       </div>
 
@@ -129,6 +166,7 @@ const RegisterForm = () => {
           placeholder="Enter Your Confirm Password"
           id="confirmPassword"
           name="confirmPassword"
+          required
         />
       </div>
 

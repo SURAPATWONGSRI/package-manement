@@ -1,7 +1,6 @@
 "use client";
 
 import { signOut, useSession } from "@/lib/auth-client";
-import { ArrowUp01 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -70,9 +69,6 @@ export function NavbarUser() {
           className="flex items-center gap-3 font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-2 py-1"
           aria-label="Package Management Homepage"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
-            <ArrowUp01 className="h-5 w-5" />
-          </div>
           <span className="hidden md:inline-block text-lg font-semibold">
             Package
           </span>

@@ -1,11 +1,19 @@
 import type { auth } from "@/lib/auth";
 import { ac, roles } from "@/lib/permissions";
-import { adminClient, inferAdditionalFields } from "better-auth/client/plugins";
+import {
+  adminClient,
+  inferAdditionalFields,
+  usernameClient,
+} from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
 const authClient = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  plugins: [inferAdditionalFields<typeof auth>(), adminClient({ ac, roles })],
+  plugins: [
+    inferAdditionalFields<typeof auth>(),
+    adminClient({ ac, roles }),
+    usernameClient(),
+  ],
 });
 
 export const {
@@ -19,4 +27,5 @@ export const {
   resetPassword,
   updateUser,
   getSession,
+  // ❌ ลบ usernameClient ออกไป — ไม่ใช่ method ที่ available ใน object นี้
 } = authClient;

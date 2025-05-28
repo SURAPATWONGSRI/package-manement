@@ -15,21 +15,60 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { ChevronsUpDown, House, LogOut } from "lucide-react";
+import { ChevronsUpDown, House, LogOut, User } from "lucide-react";
 import Link from "next/link";
 
-export function NavUser({
-  user,
-  onSignOut,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
+// Define proper types for component props
+interface UserProfile {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+interface NavUserProps {
+  user: UserProfile;
   onSignOut?: () => void;
-}) {
+}
+
+// Component to render user avatar consistently
+const UserAvatar = ({
+  user,
+  className = "h-8 w-8 rounded-lg",
+}: {
+  user: UserProfile;
+  className?: string;
+}) => {
+  const userInitial = user.name.charAt(0).toUpperCase();
+
+  return (
+    <Avatar className={className}>
+      <AvatarImage
+        src={user.avatar || undefined}
+        alt={`${user.name}'s avatar`}
+      />
+      <AvatarFallback className="rounded-lg bg-zinc-100">
+        {userInitial}
+      </AvatarFallback>
+    </Avatar>
+  );
+};
+
+export function NavUser({ user, onSignOut }: NavUserProps) {
   const { isMobile } = useSidebar();
+
+  // Navigation menu items
+  const menuItems = [
+    {
+      href: "/admin/profile",
+      icon: <User className="mr-2 size-4" aria-hidden="true" />,
+      label: "Profile",
+    },
+    {
+      href: "/main",
+      icon: <House className="mr-2 size-4" aria-hidden="true" />,
+      label: "Home",
+    },
+  ];
 
   return (
     <SidebarMenu>
@@ -39,22 +78,18 @@ export function NavUser({
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              aria-label="User menu"
             >
-              <Avatar className="h-8 w-8 rounded-lg ">
-                <AvatarImage src={user.avatar || undefined} alt={user.name} />
-                <AvatarFallback className="rounded-lg bg-zinc-100">
-                  {user.name.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
+              <UserAvatar user={user} />
               <div className="flex flex-col gap-0.5 overflow-hidden text-left">
-                <span className="truncate font-semibold text-sm">
+                <span className="truncate font-medium font-sans text-sm">
                   {user.name}
                 </span>
-                <span className="truncate text-xs text-muted-foreground">
+                <span className="truncate text-xs font-sans text-muted-foreground">
                   {user.email}
                 </span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronsUpDown className="ml-auto size-4" aria-hidden="true" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -65,30 +100,38 @@ export function NavUser({
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="px-2 py-1.5 flex items-center gap-2">
-                <Avatar className="h-8 w-8 rounded-lg bg-zinc-100">
-                  <AvatarImage src={user.avatar || undefined} alt={user.name} />
-                  <AvatarFallback className="rounded-lg bg-zinc-100">
-                    {user.name.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
+                <UserAvatar user={user} />
                 <div>
-                  <div className="text-sm font-semibold">{user.name}</div>
-                  <div className="text-xs text-muted-foreground truncate">
+                  <div className="text-sm font-sans font-medium">
+                    {user.name}
+                  </div>
+                  <div className="text-xs font-sans font-medium text-muted-foreground truncate">
                     {user.email}
                   </div>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link href={"/main"}>
-                <House className="mr-2 size-4 " />
-                <p className="text-md">Home</p>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={onSignOut}>
-              <LogOut className="mr-2 size-4 text-destructive" />
-              <p className="text-destructive text-sm">Log out</p>
+
+            {menuItems.map((item, index) => (
+              <DropdownMenuItem asChild key={index}>
+                <Link
+                  href={item.href}
+                  className="flex items-center  cursor-pointer"
+                >
+                  {item.icon}
+                  <span className="text-sm font-sans ">{item.label}</span>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+
+            <DropdownMenuItem
+              onClick={onSignOut}
+              className="text-destructive"
+              aria-label="Log out"
+            >
+              <LogOut className="mr-2 size-4" aria-hidden="true" />
+              <span className="text-sm font-sans">Log out</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

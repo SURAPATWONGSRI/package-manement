@@ -11,6 +11,25 @@ export async function signUpEmailAction(
   const name = String(formData.get("name"));
   if (!name) return { error: "กรุณากรอกชื่อ" };
 
+  const username = String(formData.get("username"));
+  if (!username) return { error: "กรุณากรอก Username" };
+
+  // Validate username format (only allow letters, numbers, and underscores)
+  const usernameRegex = /^[a-zA-Z0-9_]+$/;
+  if (!usernameRegex.test(username)) {
+    return { error: "Username ต้องประกอบด้วยตัวอักษร ตัวเลข หรือ _ เท่านั้น" };
+  }
+
+  // Check if username already exists
+  const existingUsername = await prisma.user.findUnique({
+    where: { username },
+    select: { id: true },
+  });
+
+  if (existingUsername) {
+    return { error: "Username นี้ถูกใช้งานแล้ว กรุณาเลือก Username อื่น" };
+  }
+
   const email = String(formData.get("email"));
   if (!email) return { error: "กรุณากรอกอีเมล" };
 
@@ -36,7 +55,7 @@ export async function signUpEmailAction(
   }
 
   try {
-    console.log("Registering user with name:", name);
+    console.log("Registering user with name:", name, "username:", username);
 
     // Get headers for consistent context
     const headerData = await headers();
@@ -46,6 +65,7 @@ export async function signUpEmailAction(
       headers: headerData,
       body: {
         name,
+        username,
         email,
         password,
       },
@@ -66,26 +86,41 @@ export async function signUpEmailAction(
 
       if (!user) {
         console.error("User not found after registration");
-      } else if (!user.name || user.name !== name) {
-        console.log("Name not set correctly, updating name to:", name);
-        await prisma.user.update({
-          where: { email },
-          data: {
-            name,
-            role: "USER", // Explicitly set the role to USER
-          },
-        });
-
-        // Verify the update worked
-        const updatedUser = await prisma.user.findUnique({
-          where: { email },
-        });
-        console.log("User after name update:", updatedUser);
       } else {
-        console.log("Name set correctly:", user.name);
+        // Check and update name if needed
+        const needsUpdate =
+          !user.name ||
+          user.name !== name ||
+          !user.username ||
+          user.username !== username;
+
+        if (needsUpdate) {
+          console.log(
+            "User details need update. Updating to name:",
+            name,
+            "username:",
+            username
+          );
+          await prisma.user.update({
+            where: { email },
+            data: {
+              name,
+              username,
+              role: "USER", // Explicitly set the role to USER
+            },
+          });
+
+          // Verify the update worked
+          const updatedUser = await prisma.user.findUnique({
+            where: { email },
+          });
+          console.log("User after details update:", updatedUser);
+        } else {
+          console.log("User details set correctly:", user.name, user.username);
+        }
       }
     } catch (err) {
-      console.error("Failed to verify/update name:", err);
+      console.error("Failed to verify/update user details:", err);
     }
 
     // 2. Update lineId if provided
@@ -158,7 +193,7 @@ export async function signUpEmailAction(
 
       switch (errCode) {
         case "USER_ALREADY_EXISTS":
-          return { error: "Oops! Something went wrong. Please try again." };
+          return { error: "อีเมลหรือ Username นี้ถูกใช้งานแล้ว" };
         default:
           return { error: error.message };
       }
