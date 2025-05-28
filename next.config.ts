@@ -23,9 +23,9 @@ const nextConfig: NextConfig = {
     // Optimize packages by including only what's needed
     optimizeCss: true,
     // Server components (already enabled by default in App Router)
-    serverComponents: true,
+
     // Specify in-memory cache size
-    isrMemoryCacheSize: 50, // MB
+
     // Pre-fetch critical pages on hover
     workerThreads: true,
     // Optimize package imports
