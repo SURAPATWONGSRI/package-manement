@@ -139,65 +139,78 @@ export async function signInEmailAction(formData: FormData) {
     // จัดการกับข้อความผิดพลาดตามรหัสข้อผิดพลาด
     console.error("Login error details:", error);
 
-    // ตรวจสอบรูปแบบข้อผิดพลาดที่หลากหลาย
-    if (error instanceof Error) {
-      const errorMessage = error.message.toLowerCase();
+    try {
+      // ตรวจสอบรูปแบบข้อผิดพลาดที่หลากหลาย
+      if (error instanceof Error) {
+        const errorMessage = error.message.toLowerCase();
 
-      // Get error code using the pattern from your snippet
-      const errorObj = error as any;
-      const errCode = errorObj.body ? errorObj.body.code : "UNKNOWN";
+        // Safely extract error code
+        let errCode = "UNKNOWN";
+        try {
+          const errorObj = error as any;
+          errCode = errorObj.body?.code || "UNKNOWN";
+        } catch (e) {
+          console.error("Error extracting error code:", e);
+        }
 
-      // Handle specific error codes
-      switch (errCode) {
-        case "EMAIL_NOT_VERIFIED":
-          return { redirect: "/verify?error=email_not_verified" };
+        // Handle specific error codes
+        switch (errCode) {
+          case "EMAIL_NOT_VERIFIED":
+            return { redirect: "/verify?error=email_not_verified" };
 
-        case "INVALID_CREDENTIALS":
-        case "USER_NOT_FOUND":
-        case "INVALID_PASSWORD":
-          return loginMethod === "email"
-            ? { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" }
-            : { error: "Username หรือรหัสผ่านไม่ถูกต้อง" };
-
-        case "RATE_LIMITED":
-          return {
-            error:
-              "คุณได้พยายามเข้าสู่ระบบหลายครั้งเกินไป โปรดลองอีกครั้งในภายหลัง",
-          };
-
-        case "ACCOUNT_DISABLED":
-          return {
-            error: "บัญชีนี้ถูกระงับการใช้งาน โปรดติดต่อผู้ดูแลระบบ",
-          };
-
-        default:
-          // Fallback to checking error message strings
-          if (
-            errorMessage.includes("not found") ||
-            errorMessage.includes("no user") ||
-            errorMessage.includes("user not found")
-          ) {
+          case "INVALID_CREDENTIALS":
+          case "USER_NOT_FOUND":
+          case "INVALID_PASSWORD":
             return loginMethod === "email"
               ? { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" }
               : { error: "Username หรือรหัสผ่านไม่ถูกต้อง" };
-          }
 
-          if (
-            errorMessage.includes("password") ||
-            errorMessage.includes("invalid password") ||
-            errorMessage.includes("credential") ||
-            errorMessage.includes("invalid") ||
-            errorMessage.includes("authentication failed")
-          ) {
-            return loginMethod === "email"
-              ? { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" }
-              : { error: "Username หรือรหัสผ่านไม่ถูกต้อง" };
-          }
+          case "RATE_LIMITED":
+            return {
+              error:
+                "คุณได้พยายามเข้าสู่ระบบหลายครั้งเกินไป โปรดลองอีกครั้งในภายหลัง",
+            };
 
-          return { error: error.message };
+          case "ACCOUNT_DISABLED":
+            return {
+              error: "บัญชีนี้ถูกระงับการใช้งาน โปรดติดต่อผู้ดูแลระบบ",
+            };
+
+          default:
+            // Fallback to checking error message strings
+            if (
+              errorMessage.includes("not found") ||
+              errorMessage.includes("no user") ||
+              errorMessage.includes("user not found")
+            ) {
+              return loginMethod === "email"
+                ? { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" }
+                : { error: "Username หรือรหัสผ่านไม่ถูกต้อง" };
+            }
+
+            if (
+              errorMessage.includes("password") ||
+              errorMessage.includes("invalid password") ||
+              errorMessage.includes("credential") ||
+              errorMessage.includes("invalid") ||
+              errorMessage.includes("authentication failed")
+            ) {
+              return loginMethod === "email"
+                ? { error: "อีเมลหรือรหัสผ่านไม่ถูกต้อง" }
+                : { error: "Username หรือรหัสผ่านไม่ถูกต้อง" };
+            }
+
+            // Generic error handling to prevent server-side rendering errors
+            return {
+              error: "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง",
+            };
+        }
       }
+    } catch (nestedError) {
+      console.error("Error in error handling:", nestedError);
     }
 
+    // Default fallback error message
     return { error: "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง" };
   }
 }
