@@ -8,7 +8,7 @@ function AdminDashboardPage({ session }: AdminPageProps) {
   return (
     <div className="space-y-6 md:space-y-8 w-full">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1 sm:mb-2">
+        <h1 className="text-xl sm:text-3xl font-bold tracking-tight mb-1 sm:mb-2">
           Admin Dashboard
         </h1>
         <p className="text-muted-foreground">

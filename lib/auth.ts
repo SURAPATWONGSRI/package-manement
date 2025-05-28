@@ -95,14 +95,13 @@ const RATE_LIMIT_WINDOW = 60 * 5; // 5 minutes
 const CACHE_TTL = 5 * 60; // 5 minutes
 
 // Rate limiting function with improved performance
-async function checkRateLimit(ip: string, action: string) {
+async function checkRateLimit(ip: string, action: string): Promise<number> {
   if (!ip || ip === "unknown") return 1; // Skip rate limiting for unknown IPs
 
-  const key = `rl:${action}:${ip}`; // Shorter key name for better performance
-  let attempts: number;
+  const key = `rl:${action}:${ip}`;
 
   try {
-    attempts = await redis.incr(key);
+    const attempts = await redis.incr(key);
 
     // Set expiry on first attempt
     if (attempts === 1) {
@@ -114,32 +113,35 @@ async function checkRateLimit(ip: string, action: string) {
         message: "Too many attempts. Please try again later.",
       });
     }
+
+    return attempts;
   } catch (error) {
-    // Check if it's our own rate limit error that we just threw
+    // Only re-throw if it's our own rate limit error
     if (error instanceof APIError && (error as any).status === 429) {
       throw error;
     }
+
     // Log Redis errors but don't block auth
     console.error("[Rate Limit] Redis error:", error);
     return 1;
   }
-
-  return attempts;
 }
 
-// Session caching function with optimized performance
-async function getCachedSession(token: string) {
+// Session caching functions
+async function getCachedSession(token: string): Promise<any> {
   if (!token) return null;
+
   try {
-    return await redis.get(`sess:${token}`); // Shorter key names
+    return await redis.get(`sess:${token}`);
   } catch (error) {
     console.error("[Session Cache] Redis get error:", error);
     return null;
   }
 }
 
-async function setCachedSession(token: string, data: any) {
+async function setCachedSession(token: string, data: any): Promise<void> {
   if (!token || !data) return;
+
   try {
     await redis.set(`sess:${token}`, data, { ex: CACHE_TTL });
   } catch (error) {

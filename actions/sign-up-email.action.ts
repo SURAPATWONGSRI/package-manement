@@ -5,9 +5,114 @@ import { prisma } from "@/lib/prisma";
 import { APIError } from "better-auth/api";
 import { headers } from "next/headers";
 
+type SignUpResult = {
+  error: string | null;
+  warning?: string;
+};
+
+/**
+ * Updates user details to ensure consistency
+ */
+async function updateUserDetails(
+  email: string,
+  name: string,
+  username: string
+): Promise<void> {
+  try {
+    // Wait a moment for the database to update
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (!user) {
+      return;
+    }
+
+    // Check if update is needed
+    const needsUpdate =
+      !user.name ||
+      user.name !== name ||
+      !user.username ||
+      user.username !== username;
+
+    if (needsUpdate) {
+      await prisma.user.update({
+        where: { email },
+        data: {
+          name,
+          username,
+          role: "USER", // Explicitly set the role to USER
+        },
+      });
+    }
+  } catch (err) {
+    // Swallow error - this is a non-critical operation
+  }
+}
+
+/**
+ * Updates user's LINE ID
+ */
+async function updateUserLineId(
+  email: string,
+  lineId: string
+): Promise<{ warning?: string }> {
+  try {
+    // Wait to ensure user creation is complete
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Check if lineId is already in use
+    const existingUserWithLineId = await prisma.user.findUnique({
+      where: { lineId },
+      select: { email: true },
+    });
+
+    if (existingUserWithLineId) {
+      return {
+        warning:
+          "LINE ID ที่คุณใส่ถูกใช้ไปแล้ว บัญชีได้ถูกสร้างแต่ไม่ได้ใส่ LINE ID",
+      };
+    }
+
+    // Update the lineId
+    await prisma.user.update({
+      where: { email },
+      data: {
+        lineId,
+        role: "USER",
+      },
+    });
+
+    return {};
+  } catch (err) {
+    // Try one more time after a longer delay
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      await prisma.user.update({
+        where: { email },
+        data: {
+          lineId,
+          role: "USER",
+        },
+      });
+
+      return {};
+    } catch (retryErr) {
+      return {
+        warning:
+          "บัญชีได้ถูกสร้างแล้ว แต่ไม่สามารถบันทึก LINE ID ได้ คุณสามารถเพิ่ม LINE ID ในภายหลังได้",
+      };
+    }
+  }
+}
+
 export async function signUpEmailAction(
   formData: FormData
-): Promise<{ error: string | null; warning?: string }> {
+): Promise<SignUpResult> {
+  // Extract and validate form fields
   const name = String(formData.get("name"));
   if (!name) return { error: "กรุณากรอกชื่อ" };
 
@@ -40,29 +145,18 @@ export async function signUpEmailAction(
   if (!confirmPassword) return { error: "รหัสผ่านไม่ตรงกัน" };
 
   // Get lineId if provided, ensure it's properly trimmed
-  const rawLineId = formData.get("lineId");
-  let lineId = rawLineId ? String(rawLineId).trim() : null;
-
-  if (lineId === "") {
-    // If lineId is just whitespace, set it to null
-    lineId = null;
-  }
-
-  console.log("Processing lineId:", lineId);
+  const lineId = formData.get("lineId")
+    ? String(formData.get("lineId")).trim() || null
+    : null;
 
   if (password !== confirmPassword) {
     return { error: "รหัสผ่านไม่ตรงกัน" };
   }
 
   try {
-    console.log("Registering user with name:", name, "username:", username);
-
-    // Get headers for consistent context
-    const headerData = await headers();
-
-    // 1. Register the user with auth system
-    const response = await auth.api.signUpEmail({
-      headers: headerData,
+    // Register the user with auth system
+    await auth.api.signUpEmail({
+      headers: await headers(),
       body: {
         name,
         username,
@@ -71,118 +165,14 @@ export async function signUpEmailAction(
       },
     });
 
-    console.log("Registration response:", response);
+    // Ensure user data is consistent
+    await updateUserDetails(email, name, username);
 
-    // ตรวจสอบและอัปเดตชื่อผู้ใช้ถ้าจำเป็น
-    try {
-      // Wait a moment for the database to update
-      await new Promise((resolve) => setTimeout(resolve, 100));
-
-      const user = await prisma.user.findUnique({
-        where: { email },
-      });
-
-      console.log("User after registration:", user);
-
-      if (!user) {
-        console.error("User not found after registration");
-      } else {
-        // Check and update name if needed
-        const needsUpdate =
-          !user.name ||
-          user.name !== name ||
-          !user.username ||
-          user.username !== username;
-
-        if (needsUpdate) {
-          console.log(
-            "User details need update. Updating to name:",
-            name,
-            "username:",
-            username
-          );
-          await prisma.user.update({
-            where: { email },
-            data: {
-              name,
-              username,
-              role: "USER", // Explicitly set the role to USER
-            },
-          });
-
-          // Verify the update worked
-          const updatedUser = await prisma.user.findUnique({
-            where: { email },
-          });
-          console.log("User after details update:", updatedUser);
-        } else {
-          console.log("User details set correctly:", user.name, user.username);
-        }
-      }
-    } catch (err) {
-      console.error("Failed to verify/update user details:", err);
-    }
-
-    // 2. Update lineId if provided
+    // Update lineId if provided
     if (lineId) {
-      try {
-        console.log("Updating lineId for user:", email, "to:", lineId);
-
-        // Wait a moment to ensure user creation is complete
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        // Check if lineId is already in use
-        const existingUserWithLineId = await prisma.user.findUnique({
-          where: { lineId },
-          select: { email: true },
-        });
-
-        if (existingUserWithLineId) {
-          console.error(
-            `LineId ${lineId} is already in use by user ${existingUserWithLineId.email}`
-          );
-          return {
-            error: null,
-            warning:
-              "LINE ID ที่คุณใส่ถูกใช้ไปแล้ว บัญชีได้ถูกสร้างแต่ไม่ได้ใส่ LINE ID",
-          };
-        } else {
-          // Update the lineId
-          const updatedUser = await prisma.user.update({
-            where: { email },
-            data: {
-              lineId,
-              role: "USER", // Explicitly set the role to USER
-            },
-          });
-
-          console.log("User after lineId update:", updatedUser);
-        }
-      } catch (err) {
-        console.error("Failed to update lineId:", err, "for email:", email);
-
-        // Try one more time after a longer delay
-        try {
-          console.log("Retrying lineId update...");
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-
-          const updatedUser = await prisma.user.update({
-            where: { email },
-            data: {
-              lineId,
-              role: "USER", // Explicitly set the role to USER
-            },
-          });
-
-          console.log("User after retry lineId update:", updatedUser);
-        } catch (retryErr) {
-          console.error("Final lineId update attempt failed:", retryErr);
-          return {
-            error: null,
-            warning:
-              "บัญชีได้ถูกสร้างแล้ว แต่ไม่สามารถบันทึก LINE ID ได้ คุณสามารถเพิ่ม LINE ID ในภายหลังได้",
-          };
-        }
+      const lineIdResult = await updateUserLineId(email, lineId);
+      if (lineIdResult.warning) {
+        return { error: null, warning: lineIdResult.warning };
       }
     }
 
