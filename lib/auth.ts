@@ -14,63 +14,16 @@ import { getValidDomain, normalizeName } from "./utils";
 // Initialize Redis client as a singleton
 const getRedisClient = (() => {
   let instance: Redis | null = null;
-  let useMemoryFallback = false;
-
-  // Function to create a memory-based fallback
-  function createMemoryFallback() {
-    console.warn("[Upstash Redis] Using memory fallback");
-    const cache = new Map<string, any>();
-    const expiryTimes = new Map<string, number>();
-
-    return {
-      incr: async (key: string) => {
-        const current = (cache.get(key) || 0) + 1;
-        cache.set(key, current);
-        return current;
-      },
-      expire: async (key: string, seconds: number) => {
-        expiryTimes.set(key, Date.now() + seconds * 1000);
-        return true;
-      },
-      get: async (key: string) => {
-        const expiry = expiryTimes.get(key);
-        if (expiry && expiry < Date.now()) {
-          cache.delete(key);
-          expiryTimes.delete(key);
-          return null;
-        }
-        return cache.get(key) || null;
-      },
-      set: async (key: string, value: any, options?: { ex?: number }) => {
-        cache.set(key, value);
-        if (options?.ex) {
-          expiryTimes.set(key, Date.now() + options.ex * 1000);
-        }
-        return "OK";
-      },
-      ping: async () => "PONG",
-    } as unknown as Redis;
-  }
 
   return () => {
-    // Return existing instance if already created
     if (instance) return instance;
-
-    // If we already determined we need to use the fallback, skip Redis initialization
-    if (useMemoryFallback) {
-      return createMemoryFallback();
-    }
 
     try {
       const url = process.env.UPSTASH_REDIS_REST_URL;
       const token = process.env.UPSTASH_REDIS_REST_TOKEN;
 
       if (!url || !token) {
-        console.warn(
-          "[Upstash Redis] Configuration missing, using memory fallback"
-        );
-        useMemoryFallback = true;
-        return createMemoryFallback();
+        throw new Error("Redis configuration missing");
       }
 
       instance = new Redis({
@@ -80,33 +33,54 @@ const getRedisClient = (() => {
         retry: { retries: 3 }, // Add retry strategy
       });
 
-      // Verify the connection works
-      const ping = async () => {
-        try {
-          await instance!.ping();
-          console.log("[Upstash Redis] Connection established");
-          return true;
-        } catch (err) {
-          console.error("[Upstash Redis] Connection failed:", err);
-          return false;
-        }
-      };
-
-      // Only test connection in development to avoid blocking
+      // Log connection only in development
       if (process.env.NODE_ENV === "development") {
-        ping().catch(() => {
-          // If ping fails, switch to memory fallback
-          useMemoryFallback = true;
-          instance = createMemoryFallback();
-        });
+        instance
+          .ping()
+          .then(() => {
+            console.log("[Upstash Redis] Connection established");
+          })
+          .catch(console.error);
       }
 
       return instance;
     } catch (error) {
       console.error("[Upstash Redis] Initialization error:", error);
 
-      useMemoryFallback = true;
-      instance = createMemoryFallback();
+      // Create a memory-based fallback with better performance
+      const cache = new Map<string, any>();
+      const expiryTimes = new Map<string, number>();
+
+      instance = {
+        incr: async (key: string) => {
+          const current = (cache.get(key) || 0) + 1;
+          cache.set(key, current);
+          return current;
+        },
+        expire: async (key: string, seconds: number) => {
+          expiryTimes.set(key, Date.now() + seconds * 1000);
+          return true;
+        },
+        get: async (key: string) => {
+          const expiry = expiryTimes.get(key);
+          if (expiry && expiry < Date.now()) {
+            cache.delete(key);
+            expiryTimes.delete(key);
+            return null;
+          }
+          return cache.get(key) || null;
+        },
+        set: async (key: string, value: any, options?: { ex?: number }) => {
+          cache.set(key, value);
+          if (options?.ex) {
+            expiryTimes.set(key, Date.now() + options.ex * 1000);
+          }
+          return "OK";
+        },
+        ping: async () => "PONG",
+      } as unknown as Redis;
+
+      console.warn("[Upstash Redis] Using memory fallback");
       return instance;
     }
   };

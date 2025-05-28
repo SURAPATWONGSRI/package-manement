@@ -42,14 +42,6 @@ const LoginForm = () => {
         return;
       }
 
-      if (result.redirect) {
-        // Handle redirect case
-        console.log("Redirect required:", result.redirect);
-        router.push(result.redirect);
-        setIsPending(false);
-        return;
-      }
-
       // Success case
       console.log("Login successful, redirecting...");
       setIsPending(false);
@@ -60,13 +52,9 @@ const LoginForm = () => {
     } catch (error) {
       // Handle unexpected errors
       console.error("Unexpected error during login:", error);
-      // More detailed error reporting
-      const errorMessage =
-        error instanceof Error
-          ? `เกิดข้อผิดพลาด: ${error.message}`
-          : "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง";
-
-      setErrorMessage(errorMessage);
+      setErrorMessage(
+        "เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองอีกครั้งในภายหลัง"
+      );
       setIsPending(false);
     }
   }

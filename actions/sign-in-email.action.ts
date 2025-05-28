@@ -87,26 +87,14 @@ export async function signInEmailAction(formData: FormData) {
 
     try {
       // ใช้ better-auth API โดยส่งอีเมล (จาก username หรือจากการกรอกโดยตรง)
-      console.log("Preparing headers for auth request");
-      const requestHeaders = await headers().catch((err) => {
-        console.error("Error getting headers:", err);
-        return new Headers();
+      const response = await auth.api.signInEmail({
+        headers: await headers(),
+        body: {
+          email: userEmail, // ตอนนี้เรารู้แล้วว่า userEmail ไม่ใช่ undefined
+          password,
+        },
+        asResponse: true,
       });
-
-      console.log("Sending auth request");
-      const response = await auth.api
-        .signInEmail({
-          headers: requestHeaders,
-          body: {
-            email: userEmail, // ตอนนี้เรารู้แล้วว่า userEmail ไม่ใช่ undefined
-            password,
-          },
-          asResponse: true,
-        })
-        .catch((err) => {
-          console.error("Error in auth.api.signInEmail call:", err);
-          throw err;
-        });
 
       // ตรวจสอบสถานะของการตอบกลับ
       if (!response.ok) {
