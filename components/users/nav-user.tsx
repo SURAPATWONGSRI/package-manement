@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, LogOut, ShieldUser, User } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface usertypes {
   user: {
@@ -22,6 +23,34 @@ interface usertypes {
 }
 
 export function NavUserMain({ user, onSignOut }: usertypes) {
+  // Add client-side only rendering to prevent hydration mismatch
+  const [isClient, setIsClient] = useState(false);
+
+  // This effect runs only on the client after hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // If not yet on client, render a simplified version to avoid hydration mismatch
+  if (!isClient) {
+    return (
+      <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          className="relative flex items-center gap-1.5 rounded-full p-0 pl-0 pr-1 overflow-hidden"
+          aria-label="User menu"
+        >
+          <Avatar className="h-8 w-8 ring-2 ring-background">
+            <AvatarFallback className="bg-primary/10 text-primary font-medium">
+              {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+            </AvatarFallback>
+          </Avatar>
+        </Button>
+      </div>
+    );
+  }
+
+  // Full component rendered only on client
   return (
     <div className="flex items-center gap-2">
       <div className="hidden md:flex flex-col items-end mr-2">

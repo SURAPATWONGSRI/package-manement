@@ -1452,6 +1452,8 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: string | null
     payPrice: Decimal | null
+    startDate: Date | null
+    endDate: Date | null
     paid: boolean | null
     email: string | null
     name: string | null
@@ -1463,6 +1465,8 @@ export namespace Prisma {
     updatedAt: Date | null
     userId: string | null
     payPrice: Decimal | null
+    startDate: Date | null
+    endDate: Date | null
     paid: boolean | null
     email: string | null
     name: string | null
@@ -1475,6 +1479,8 @@ export namespace Prisma {
     userId: number
     packages: number
     payPrice: number
+    startDate: number
+    endDate: number
     paid: number
     email: number
     name: number
@@ -1496,6 +1502,8 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     payPrice?: true
+    startDate?: true
+    endDate?: true
     paid?: true
     email?: true
     name?: true
@@ -1507,6 +1515,8 @@ export namespace Prisma {
     updatedAt?: true
     userId?: true
     payPrice?: true
+    startDate?: true
+    endDate?: true
     paid?: true
     email?: true
     name?: true
@@ -1519,6 +1529,8 @@ export namespace Prisma {
     userId?: true
     packages?: true
     payPrice?: true
+    startDate?: true
+    endDate?: true
     paid?: true
     email?: true
     name?: true
@@ -1618,6 +1630,8 @@ export namespace Prisma {
     userId: string
     packages: JsonValue
     payPrice: Decimal
+    startDate: Date
+    endDate: Date
     paid: boolean
     email: string
     name: string
@@ -1649,6 +1663,8 @@ export namespace Prisma {
     userId?: boolean
     packages?: boolean
     payPrice?: boolean
+    startDate?: boolean
+    endDate?: boolean
     paid?: boolean
     email?: boolean
     name?: boolean
@@ -1662,6 +1678,8 @@ export namespace Prisma {
     userId?: boolean
     packages?: boolean
     payPrice?: boolean
+    startDate?: boolean
+    endDate?: boolean
     paid?: boolean
     email?: boolean
     name?: boolean
@@ -1675,6 +1693,8 @@ export namespace Prisma {
     userId?: boolean
     packages?: boolean
     payPrice?: boolean
+    startDate?: boolean
+    endDate?: boolean
     paid?: boolean
     email?: boolean
     name?: boolean
@@ -1688,12 +1708,14 @@ export namespace Prisma {
     userId?: boolean
     packages?: boolean
     payPrice?: boolean
+    startDate?: boolean
+    endDate?: boolean
     paid?: boolean
     email?: boolean
     name?: boolean
   }
 
-  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "packages" | "payPrice" | "paid" | "email" | "name", ExtArgs["result"]["packageSelection"]>
+  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "packages" | "payPrice" | "startDate" | "endDate" | "paid" | "email" | "name", ExtArgs["result"]["packageSelection"]>
   export type PackageSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -1716,6 +1738,8 @@ export namespace Prisma {
       userId: string
       packages: Prisma.JsonValue
       payPrice: Prisma.Decimal
+      startDate: Date
+      endDate: Date
       paid: boolean
       email: string
       name: string
@@ -2149,6 +2173,8 @@ export namespace Prisma {
     readonly userId: FieldRef<"PackageSelection", 'String'>
     readonly packages: FieldRef<"PackageSelection", 'Json'>
     readonly payPrice: FieldRef<"PackageSelection", 'Decimal'>
+    readonly startDate: FieldRef<"PackageSelection", 'DateTime'>
+    readonly endDate: FieldRef<"PackageSelection", 'DateTime'>
     readonly paid: FieldRef<"PackageSelection", 'Boolean'>
     readonly email: FieldRef<"PackageSelection", 'String'>
     readonly name: FieldRef<"PackageSelection", 'String'>
@@ -8313,6 +8339,8 @@ export namespace Prisma {
     userId: 'userId',
     packages: 'packages',
     payPrice: 'payPrice',
+    startDate: 'startDate',
+    endDate: 'endDate',
     paid: 'paid',
     email: 'email',
     name: 'name'
@@ -8556,6 +8584,8 @@ export namespace Prisma {
     userId?: StringFilter<"PackageSelection"> | string
     packages?: JsonFilter<"PackageSelection">
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
@@ -8569,6 +8599,8 @@ export namespace Prisma {
     userId?: SortOrder
     packages?: SortOrder
     payPrice?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
@@ -8585,6 +8617,8 @@ export namespace Prisma {
     userId?: StringFilter<"PackageSelection"> | string
     packages?: JsonFilter<"PackageSelection">
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
@@ -8598,6 +8632,8 @@ export namespace Prisma {
     userId?: SortOrder
     packages?: SortOrder
     payPrice?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
@@ -8618,6 +8654,8 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"PackageSelection"> | string
     packages?: JsonWithAggregatesFilter<"PackageSelection">
     payPrice?: DecimalWithAggregatesFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeWithAggregatesFilter<"PackageSelection"> | Date | string
     paid?: BoolWithAggregatesFilter<"PackageSelection"> | boolean
     email?: StringWithAggregatesFilter<"PackageSelection"> | string
     name?: StringWithAggregatesFilter<"PackageSelection"> | string
@@ -9065,6 +9103,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -9078,6 +9118,8 @@ export namespace Prisma {
     userId: string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -9089,6 +9131,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -9102,6 +9146,8 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -9114,6 +9160,8 @@ export namespace Prisma {
     userId: string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -9125,6 +9173,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -9137,6 +9187,8 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -9729,6 +9781,8 @@ export namespace Prisma {
     userId?: SortOrder
     packages?: SortOrder
     payPrice?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
@@ -9744,6 +9798,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     payPrice?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
@@ -9755,6 +9811,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     userId?: SortOrder
     payPrice?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
@@ -10921,6 +10979,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -10932,6 +10992,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -11076,6 +11138,8 @@ export namespace Prisma {
     userId?: StringFilter<"PackageSelection"> | string
     packages?: JsonFilter<"PackageSelection">
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFilter<"PackageSelection"> | Date | string
+    endDate?: DateTimeFilter<"PackageSelection"> | Date | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
@@ -11359,6 +11423,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
@@ -11444,6 +11510,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -11455,6 +11523,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -11466,6 +11536,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: JsonNullValueInput | InputJsonValue
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string

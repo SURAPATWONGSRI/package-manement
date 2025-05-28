@@ -242,7 +242,7 @@ const MainPage = () => {
       </div>
 
       {/* Global start date selector */}
-      <div className="max-w-md ml-0 mt-12 border p-6 rounded-lg shadow-sm">
+      <Card className="max-w-md ml-0 mt-12 border p-6 rounded-lg shadow-sm">
         <div className="space-y-2">
           <Label htmlFor="startDate" className="text-lg font-medium">
             Package Start Date
@@ -272,23 +272,14 @@ const MainPage = () => {
         </div>
 
         {startDate && (
-          <div className="mt-4 bg-slate-50 p-4 rounded-md border border-slate-100">
+          <div className="mt-4 bg-secondary p-4 rounded-md ">
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <p className="text-sm text-slate-600">
-                  เเพ็กเกจมีอายุได้แค่3เดือน
+                <p className="text-sm text-muted-foreground">
+                  เเพ็กเกจมีอายุได้แค่ 3เดือน
                 </p>
-                <p className="font-medium mt-1 text-slate-800">
+                <p className="font-medium mt-1 text-secondary-foreground">
                   หมดอายุ: {endDate ? format(endDate, "PPP") : ""}
-                </p>
-              </div>
-              <div className="flex-shrink-0 ml-4 text-right">
-                <p className="text-xs text-slate-500">ราคา</p>
-                <p className="font-semibold text-emerald-600 text-lg">
-                  ฿100.xx
-                </p>
-                <p className="text-xs text-slate-500">
-                  ยอดจริงจะปรากฏในหน้าถัดไป
                 </p>
               </div>
             </div>
@@ -299,7 +290,8 @@ const MainPage = () => {
         <div className="mt-6">
           <Button
             onClick={handlePayment}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            variant={"default"}
+            className="w-full"
             size="lg"
             disabled={
               !startDate ||
@@ -317,12 +309,12 @@ const MainPage = () => {
               : "ชำระเงิน"}
           </Button>
           {startDate && (
-            <p className="text-xs text-center mt-2 text-slate-500">
+            <p className="text-xs text-center mt-2 text-muted-foreground">
               การสมัครของคุณจะเริ่มในวันที่ {format(startDate, "d MMMM yyyy")}
             </p>
           )}
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

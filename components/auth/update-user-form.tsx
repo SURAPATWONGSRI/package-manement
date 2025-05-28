@@ -1,6 +1,6 @@
 "use client";
 
-import { updateUser } from "@/lib/auth-client";
+import { getSession, updateUser } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ interface UserUpdateFormProps {
   name: string;
   image: string;
   lineId: string | null;
-  email: string; // เพิ่ม email เพื่อใช้กับ API update-line-id
+  email: string;
 }
 
 export const UserUpdateForm = ({
@@ -22,6 +22,7 @@ export const UserUpdateForm = ({
   email,
 }: UserUpdateFormProps) => {
   const [isPending, setIsPending] = React.useState(false);
+  const [isRefreshing, setIsRefreshing] = React.useState(false);
   const router = useRouter();
 
   async function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
@@ -41,6 +42,8 @@ export const UserUpdateForm = ({
         return;
       }
 
+      let sessionNeedsRefresh = false;
+
       // อัพเดทชื่อและรูปภาพด้วย better-auth API
       if (newName || newImage) {
         await updateUser({
@@ -52,6 +55,8 @@ export const UserUpdateForm = ({
             },
           },
         });
+
+        sessionNeedsRefresh = true;
       }
 
       // อัพเดท lineId ด้วย API เฉพาะ ถ้ามีการเปลี่ยนแปลง
@@ -72,6 +77,24 @@ export const UserUpdateForm = ({
         if (!lineIdResponse.ok) {
           throw new Error(lineIdResult.error || "Failed to update Line ID");
         }
+
+        sessionNeedsRefresh = true;
+      }
+
+      // Refresh session if needed
+      if (sessionNeedsRefresh) {
+        setIsRefreshing(true);
+        toast.info("กำลังอัพเดทข้อมูลผู้ใช้...");
+
+        // Refresh session
+        await getSession({
+          query: {
+            disableCookieCache: true,
+            disableRefresh: false,
+          },
+        });
+
+        setIsRefreshing(false);
       }
 
       toast.success("ข้อมูลผู้ใช้อัพเดทเรียบร้อยแล้ว");
@@ -113,8 +136,16 @@ export const UserUpdateForm = ({
         />
       </div>
 
-      <Button type="submit" disabled={isPending} className="w-full">
-        {isPending ? "กำลังอัพเดทข้อมูล..." : "อัพเดทข้อมูล"}
+      <Button
+        type="submit"
+        disabled={isPending || isRefreshing}
+        className="w-full"
+      >
+        {isPending
+          ? "กำลังอัพเดทข้อมูล..."
+          : isRefreshing
+          ? "กำลังรีเฟรชข้อมูล..."
+          : "อัพเดทข้อมูล"}
       </Button>
     </form>
   );

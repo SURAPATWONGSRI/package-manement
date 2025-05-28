@@ -18,20 +18,25 @@ export function NavbarUser() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  // สร้าง state เพื่อเก็บข้อมูลผู้ใช้
+  // Use client-side rendering for user data to avoid hydration mismatch
+  const [mounted, setMounted] = useState(false);
   const [userData, setUserData] = useState<UserData>({
-    name: "Loading...",
+    name: "",
     email: "",
     avatar: "",
   });
 
-  // อัพเดตข้อมูลผู้ใช้เมื่อ session เปลี่ยนแปลง
+  // Mount effect
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Update user data effect
   useEffect(() => {
     if (session?.user) {
       setUserData({
         name: session.user.name || "User",
         email: session.user.email || "",
-        // แก้ไขตรงนี้: ใช้ image จาก session หรือใช้ค่าเริ่มต้น
         avatar: session.user.image || "",
         isAdmin: session.user.role === "ADMIN" || false,
       });
@@ -74,8 +79,11 @@ export function NavbarUser() {
         </Link>
 
         <div className="flex items-center">
-          {session?.user && (
+          {mounted && session?.user && (
             <NavUserMain user={userData} onSignOut={handleSignOut} />
+          )}
+          {(!mounted || !session?.user) && (
+            <div className="h-8 w-8 rounded-full bg-slate-200 animate-pulse"></div>
           )}
         </div>
       </div>

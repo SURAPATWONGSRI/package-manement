@@ -16,6 +16,8 @@ model PackageSelection {
   userId    String
   packages  Json     // Store all packages as a JSON array
   payPrice  Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
+  startDate DateTime // Package start date
+  endDate   DateTime // Package end date
   paid      Boolean  @default(false)
   email     String
   name      String

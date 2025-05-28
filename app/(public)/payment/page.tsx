@@ -109,15 +109,15 @@ export default function PaymentPage() {
       <Card className="p-6">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold">ชำระเงิน</h1>
-          <p className="text-slate-500 text-sm mt-1">
-            สแกน QR Code PromptPay เพื่อชำระเงิน
+          <p className="text-muted-foreground text-sm mt-1">
+            สแกน QR Code เพื่อชำระเงิน
           </p>
         </div>
 
         {/* QR Code placeholder */}
-        <div className="bg-slate-100 rounded-md flex items-center justify-center h-64 mb-6 border">
+        <div className="bg-secondary rounded-md flex items-center justify-center h-64 mb-6 border">
           <div className="text-center">
-            <p className="text-slate-500 mb-2">QR Code Placeholder</p>
+            <p className="text-muted-foreground mb-2">QR Code Placeholder</p>
             <p className="font-medium">PromptPay QR จะปรากฏที่นี่</p>
           </div>
         </div>
@@ -125,14 +125,14 @@ export default function PaymentPage() {
         <div className="border rounded-md p-4 mb-6">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <p className="text-sm text-slate-500">จำนวนเงิน</p>
-              <p className="text-2xl font-bold text-emerald-600">฿{amount}</p>
+              <p className="text-sm text-muted-foreground">จำนวนเงิน</p>
+              <p className="text-2xl font-bold text-primary">฿{amount}</p>
             </div>
           </div>
 
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-slate-500">แพ็กเกจ</span>
+              <span className="text-muted-foreground">แพ็กเกจ</span>
               <span className="font-medium">
                 {packages.length === 3
                   ? "ทั้ง 3 แพ็กเกจ"
@@ -145,7 +145,7 @@ export default function PaymentPage() {
             {/* Show package details */}
             {packageDetails.map((pkg) => (
               <div key={pkg.id} className="flex justify-between">
-                <span className="text-slate-500">แพ็กเกจ {pkg.id}</span>
+                <span className="text-muted-foreground">แพ็กเกจ {pkg.id}</span>
                 <span className="font-medium">
                   {pkg.symbol} / {pkg.timeframe}
                 </span>
@@ -153,13 +153,13 @@ export default function PaymentPage() {
             ))}
 
             <div className="flex justify-between">
-              <span className="text-slate-500">วันเริ่มต้น</span>
+              <span className="text-muted-foreground">วันเริ่มต้น</span>
               <span className="font-medium">
                 {format(startDate, "d MMMM yyyy")}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-slate-500">วันหมดอายุ</span>
+              <span className="text-muted-foreground">วันหมดอายุ</span>
               <span className="font-medium">
                 {format(endDate, "d MMMM yyyy")}
               </span>

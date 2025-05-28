@@ -47,6 +47,8 @@ export async function POST(req: Request) {
           email: selection.email || "unknown@example.com",
           packages: [],
           payPrice: 0.0, // Will be overwritten with the actual price
+          startDate: new Date(selection.startDate),
+          endDate: new Date(selection.endDate),
         };
       }
 
@@ -88,6 +90,8 @@ export async function POST(req: Request) {
             email: userData.email,
             packages: userData.packages,
             payPrice: userData.payPrice.toString(), // Convert to string for Prisma Decimal
+            startDate: userData.startDate,
+            endDate: userData.endDate,
             paid: true,
           },
         });
