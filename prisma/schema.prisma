@@ -55,6 +55,7 @@ model User {
   banned        Boolean?
   banReason     String?
   banExpires    DateTime?
+  stripeCustomerId String?
   deletedAt     DateTime?
   isDeleted     Boolean            @default(false)
   accounts      Account[]

@@ -3714,6 +3714,7 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
+    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -3733,6 +3734,7 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
+    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
   }
@@ -3752,6 +3754,7 @@ export namespace Prisma {
     banned: number
     banReason: number
     banExpires: number
+    stripeCustomerId: number
     deletedAt: number
     isDeleted: number
     _all: number
@@ -3773,6 +3776,7 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
+    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -3792,6 +3796,7 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
+    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
   }
@@ -3811,6 +3816,7 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
+    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
     _all?: true
@@ -3903,6 +3909,7 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
+    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean
     _count: UserCountAggregateOutputType | null
@@ -3939,6 +3946,7 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
+    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -3963,6 +3971,7 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
+    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3982,6 +3991,7 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
+    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }, ExtArgs["result"]["user"]>
@@ -4001,11 +4011,12 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
+    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "stripeCustomerId" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
@@ -4039,6 +4050,7 @@ export namespace Prisma {
       banned: boolean | null
       banReason: string | null
       banExpires: Date | null
+      stripeCustomerId: string | null
       deletedAt: Date | null
       isDeleted: boolean
     }, ExtArgs["result"]["user"]>
@@ -4482,6 +4494,7 @@ export namespace Prisma {
     readonly banned: FieldRef<"User", 'Boolean'>
     readonly banReason: FieldRef<"User", 'String'>
     readonly banExpires: FieldRef<"User", 'DateTime'>
+    readonly stripeCustomerId: FieldRef<"User", 'String'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
   }
@@ -8404,6 +8417,7 @@ export namespace Prisma {
     banned: 'banned',
     banReason: 'banReason',
     banExpires: 'banExpires',
+    stripeCustomerId: 'stripeCustomerId',
     deletedAt: 'deletedAt',
     isDeleted: 'isDeleted'
   };
@@ -8777,6 +8791,7 @@ export namespace Prisma {
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
@@ -8800,6 +8815,7 @@ export namespace Prisma {
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
@@ -8826,6 +8842,7 @@ export namespace Prisma {
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
     accounts?: AccountListRelationFilter
@@ -8849,6 +8866,7 @@ export namespace Prisma {
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -8874,6 +8892,7 @@ export namespace Prisma {
     banned?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
     banReason?: StringNullableWithAggregatesFilter<"User"> | string | null
     banExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
   }
@@ -9323,6 +9342,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -9346,6 +9366,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -9369,6 +9390,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -9392,6 +9414,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -9415,6 +9438,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
   }
@@ -9434,6 +9458,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -9453,6 +9478,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -10101,6 +10127,7 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
+    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -10120,6 +10147,7 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
+    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -10139,6 +10167,7 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
+    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
   }
@@ -10810,6 +10839,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -10832,6 +10862,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -10870,6 +10901,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -10892,6 +10924,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -10914,6 +10947,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -10936,6 +10970,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -10974,6 +11009,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -10996,6 +11032,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -11297,6 +11334,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -11319,6 +11357,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -11357,6 +11396,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -11379,6 +11419,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -11401,6 +11442,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
@@ -11423,6 +11465,7 @@ export namespace Prisma {
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
+    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
@@ -11461,6 +11504,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
@@ -11483,6 +11527,7 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput

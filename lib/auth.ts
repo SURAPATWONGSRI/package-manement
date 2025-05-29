@@ -2,12 +2,14 @@ import { sendEmailAction } from "@/actions/send-email.action";
 import { hashPassword, verifyPassword } from "@/lib/argon2";
 import { ac, roles } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
+import { stripe } from "@better-auth/stripe";
 import { Redis } from "@upstash/redis";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { admin, username } from "better-auth/plugins";
+import Stripe from "stripe";
 import { UserRole } from "../lib/generated/prisma";
 import { getValidDomain, normalizeName } from "./utils";
 
@@ -88,6 +90,10 @@ const getRedisClient = (() => {
 
 // Get Redis instance
 const redis = getRedisClient();
+
+const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-05-28.basil",
+});
 
 // Cache configuration
 const RATE_LIMIT_ATTEMPTS = 5;
@@ -286,6 +292,12 @@ export const auth = betterAuth({
       adminRoles: [UserRole.ADMIN],
       ac,
       roles,
+    }),
+
+    stripe({
+      stripeClient,
+      stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET!,
+      createCustomerOnSignUp: true,
     }),
   ],
   databaseHooks: {

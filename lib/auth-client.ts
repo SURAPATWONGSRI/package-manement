@@ -1,5 +1,6 @@
 import type { auth } from "@/lib/auth";
 import { ac, roles } from "@/lib/permissions";
+import { stripeClient } from "@better-auth/stripe/client";
 import {
   adminClient,
   inferAdditionalFields,
@@ -13,6 +14,7 @@ const authClient = createAuthClient({
     inferAdditionalFields<typeof auth>(),
     adminClient({ ac, roles }),
     usernameClient(),
+    stripeClient(),
   ],
 });
 
@@ -27,5 +29,5 @@ export const {
   resetPassword,
   updateUser,
   getSession,
-  // ❌ ลบ usernameClient ออกไป — ไม่ใช่ method ที่ available ใน object นี้
+  stripe, // Add stripe methods
 } = authClient;

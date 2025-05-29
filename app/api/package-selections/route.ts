@@ -47,8 +47,8 @@ export async function POST(req: Request) {
           email: selection.email || "unknown@example.com",
           packages: [],
           payPrice: 0.0, // Will be overwritten with the actual price
-          startDate: new Date(selection.startDate),
-          endDate: new Date(selection.endDate),
+          startDateISO: selection.startDate, // Store ISO string for conversion
+          endDateISO: selection.endDate, // Store ISO string for conversion
         };
       }
 
@@ -56,8 +56,8 @@ export async function POST(req: Request) {
       acc[selection.userId].packages.push({
         symbol: validateSymbol(selection.symbol),
         timeframe: validateTimeframe(selection.timeframe),
-        startDate: new Date(selection.startDate),
-        endDate: new Date(selection.endDate),
+        startDate: selection.startDate,
+        endDate: selection.endDate,
       });
 
       // Since we want the total to be 100.xx for all packages,
@@ -83,21 +83,60 @@ export async function POST(req: Request) {
           typeof userData.payPrice
         );
 
-        const result = await prisma.packageSelection.create({
-          data: {
+        // Get the paid status from the first selection (all should be the same)
+        const paidStatus = selections.find(
+          (s) => s.userId === userData.userId
+        )?.paid;
+
+        // Use raw SQL to insert with Thailand timezone conversion
+        const result = await prisma.$executeRaw`
+          INSERT INTO package_selections (
+            id,
+            "userId",
+            name,
+            email,
+            packages,
+            "payPrice",
+            "startDate",
+            "endDate",
+            paid,
+            "createdAt",
+            "updatedAt"
+          ) VALUES (
+            gen_random_uuid(),
+            ${userData.userId},
+            ${userData.name},
+            ${userData.email},
+            ${JSON.stringify(userData.packages)}::jsonb,
+            ${userData.payPrice.toString()}::decimal(10,2),
+            (${
+              userData.startDateISO
+            }::timestamptz AT TIME ZONE 'Asia/Bangkok')::timestamp,
+            (${
+              userData.endDateISO
+            }::timestamptz AT TIME ZONE 'Asia/Bangkok')::timestamp,
+            ${paidStatus},
+            (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp,
+            (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp
+          )
+        `;
+
+        // Get the created record for response
+        const createdRecord = await prisma.packageSelection.findFirst({
+          where: {
             userId: userData.userId,
-            name: userData.name,
-            email: userData.email,
-            packages: userData.packages,
-            payPrice: userData.payPrice.toString(), // Convert to string for Prisma Decimal
-            startDate: userData.startDate,
-            endDate: userData.endDate,
-            paid: true,
+            payPrice: userData.payPrice.toString(),
+          },
+          orderBy: {
+            createdAt: "desc",
           },
         });
 
-        createdSelections.push(result);
-        console.log("Created package selection:", result);
+        createdSelections.push(createdRecord);
+        console.log(
+          "Created package selection with Thailand timezone:",
+          createdRecord
+        );
       } catch (error) {
         console.error("Error creating package selection:", error);
         throw error;
@@ -106,7 +145,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "Package selections saved successfully",
+      message: "Package selections saved successfully with Thailand timezone",
       data: createdSelections,
     });
   } catch (error: any) {

@@ -1,5 +1,4 @@
 import { Package } from "lucide-react";
-import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,20 +15,6 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <div className="flex gap-6">
-              <Link
-                href="/privacy"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Terms of Service
-              </Link>
-            </div>
             <p className="text-center text-xs text-muted-foreground">
               © {currentYear} Package Management. All rights reserved.
             </p>
