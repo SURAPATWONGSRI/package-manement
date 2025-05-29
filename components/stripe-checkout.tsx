@@ -235,7 +235,7 @@ function PaymentForm({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle>ชำระเงินด้วย PromptPay</CardTitle>
@@ -252,7 +252,7 @@ function PaymentForm({
         </Alert>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="grid gap-4">
         <Card>
           <CardContent className="pt-6">
             <PaymentElement

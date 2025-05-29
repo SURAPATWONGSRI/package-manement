@@ -167,37 +167,27 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
 
   return (
     <>
-      <div className="text-center space-y-4">
-        {selectedPackages.length > 0 && (
-          <div className="space-y-2">
-            <div className="text-lg font-semibold">
-              ราคารวม: ฿{totalPrice.toFixed(2)}
-            </div>
-            <div className="text-sm text-amber-600 bg-amber-50 mt-2 p-2 rounded">
-              <strong>สำคัญ:</strong>{" "}
-              กรุณาชำระเงินตามจำนวนที่ระบุไว้อย่างถูกต้อง
-              ระบบจะจับคู่การชำระเงินของคุณโดยใช้เลขทศนิยมเฉพาะนี้
-            </div>
-          </div>
-        )}
-        <Button
-          onClick={handlePaymentClick}
-          disabled={!isFormValid || loading}
-          size="lg"
-          className="w-full md:w-auto"
-        >
-          {loading
-            ? "กำลังเตรียมการชำระเงิน..."
-            : !session?.user
-            ? "เข้าสู่ระบบเพื่อชำระเงิน"
-            : isFormValid
-            ? "ชำระเงิน"
-            : "กรุณาเลือกแพ็คเกจและวันที่"}
-        </Button>
+      <div className="grid gap-6">
+        <div className="grid place-items-center">
+          <Button
+            onClick={handlePaymentClick}
+            disabled={!isFormValid || loading}
+            size="lg"
+            className="w-full max-w-md"
+          >
+            {loading
+              ? "กำลังเตรียมการชำระเงิน..."
+              : !session?.user
+              ? "เข้าสู่ระบบเพื่อชำระเงิน"
+              : isFormValid
+              ? "ชำระเงิน"
+              : "กรุณาเลือกแพ็คเกจและวันที่"}
+          </Button>
+        </div>
       </div>
 
       <Dialog open={showPaymentModal} onOpenChange={setShowPaymentModal}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl">รายละเอียดการชำระเงิน</DialogTitle>
             <DialogDescription>
@@ -206,7 +196,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
           </DialogHeader>
 
           {/* Package Details */}
-          <div className="space-y-4">
+          <div className="grid gap-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
@@ -214,39 +204,40 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                   แพ็คเกจที่เลือก ({selectedPackages.length} แพ็คเกจ)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                {selectedPackages.map((pkg, index) => (
-                  <div
-                    key={pkg.packageId}
-                    className="border rounded-lg p-4 space-y-2"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-semibold text-base">
-                        Package {pkg.packageId}
-                      </h4>
-                      <div className="flex space-x-2">
-                        <Badge
-                          variant="default"
-                          className="bg-blue-100 text-blue-800"
-                        >
-                          <TrendingUp className="h-3 w-3 mr-1" />
-                          {pkg.symbol}
-                        </Badge>
-                        <Badge variant="outline">{pkg.timeframe}</Badge>
+              <CardContent>
+                <div className="grid gap-4">
+                  {selectedPackages.map((pkg, index) => (
+                    <div key={pkg.packageId} className="border rounded-lg p-4">
+                      <div className="grid gap-3">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-semibold text-base">
+                            Package {pkg.packageId}
+                          </h4>
+                          <div className="flex space-x-2">
+                            <Badge
+                              variant="default"
+                              className="bg-blue-100 text-blue-800"
+                            >
+                              <TrendingUp className="h-3 w-3 mr-1" />
+                              {pkg.symbol}
+                            </Badge>
+                            <Badge variant="outline">{pkg.timeframe}</Badge>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                          <div>
+                            <span>สัญลักษณ์การเทรด: </span>
+                            <span className="font-medium">{pkg.symbol}</span>
+                          </div>
+                          <div>
+                            <span>ช่วงเวลา: </span>
+                            <span className="font-medium">{pkg.timeframe}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      <p>
-                        สัญลักษณ์การเทรด:{" "}
-                        <span className="font-medium">{pkg.symbol}</span>
-                      </p>
-                      <p>
-                        ช่วงเวลา:{" "}
-                        <span className="font-medium">{pkg.timeframe}</span>
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
@@ -259,28 +250,24 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                     ระยะเวลาใช้งาน
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2">
+                <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-gray-600">วันที่เริ่มต้น</p>
+                      <p className="text-sm text-muted-foreground">
+                        วันที่เริ่มต้น
+                      </p>
                       <p className="font-semibold">
                         {format(startDate, "dd MMMM yyyy", { locale: th })}
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">วันที่สิ้นสุด</p>
+                      <p className="text-sm text-muted-foreground">
+                        วันที่สิ้นสุด
+                      </p>
                       <p className="font-semibold">
                         {format(endDate, "dd MMMM yyyy", { locale: th })}
                       </p>
                     </div>
-                  </div>
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <p className="text-sm text-blue-800">
-                      ระยะเวลา: <span className="font-semibold">3 เดือน</span>
-                    </p>
-                    <p className="text-xs text-blue-600 mt-1">
-                      เวลาที่บันทึก: ตามเวลาประเทศไทย (UTC+7)
-                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -291,13 +278,12 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
               <CardHeader>
                 <CardTitle className="text-lg">สรุปการชำระเงิน</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="space-y-2">
+              <CardContent>
+                <div className="grid gap-3">
                   <div className="flex justify-between text-sm">
                     <span>จำนวนแพ็คเกจ:</span>
                     <span>{selectedPackages.length} แพ็คเกจ</span>
                   </div>
-
                   <Separator />
                   <div className="flex justify-between text-lg font-bold">
                     <span>ยอดรวมทั้งหมด:</span>
@@ -306,27 +292,22 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                     </span>
                   </div>
                 </div>
-                <div className="bg-amber-50 p-3 rounded-lg border border-amber-200">
-                  <p className="text-sm text-amber-800">
-                    <strong>หมายเหตุ:</strong>{" "}
-                    ราคานี้รวมทุกแพ็คเกจที่เลือกไว้แล้ว และมีผลใช้งานเป็นเวลา 3
-                    เดือน
-                  </p>
-                </div>
               </CardContent>
             </Card>
           </div>
 
           {/* Payment Component */}
           {isFormValid && startDate && (
-            <StripeCheckout
-              amount={totalPrice}
-              packages={selectedPackages}
-              startDate={startDate}
-              endDate={endDate}
-              onPaymentSuccess={handlePaymentSuccess}
-              onPaymentError={handlePaymentError}
-            />
+            <div className="grid">
+              <StripeCheckout
+                amount={totalPrice}
+                packages={selectedPackages}
+                startDate={startDate}
+                endDate={endDate}
+                onPaymentSuccess={handlePaymentSuccess}
+                onPaymentError={handlePaymentError}
+              />
+            </div>
           )}
         </DialogContent>
       </Dialog>

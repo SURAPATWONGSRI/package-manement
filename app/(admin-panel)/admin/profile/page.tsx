@@ -37,7 +37,7 @@ export default async function page() {
   // Check if user is admin based on permissions result
   const isAdmin = FULL_POST_ACCESS.success;
   return (
-    <div className="container mx-auto max-w-4xl py-10 px-4 md:px-6">
+    <div className="space-y-6 md:space-y-8 w-full">
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           {session.user.image ? (

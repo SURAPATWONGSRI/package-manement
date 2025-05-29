@@ -26,13 +26,13 @@ export function DateSelector({
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-4">เลือกวันที่เริ่มใช้งาน</h3>
+      <h3 className="text-lg font-semibold mb-4">วันที่เริ่มใช้งาน</h3>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             className={cn(
-              "w-full md:w-auto justify-start text-left font-normal",
+              "w-full justify-start text-left font-normal",
               !startDate && "text-muted-foreground"
             )}
           >

@@ -161,3 +161,60 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    // Fetch all package selections from the database
+    const packageSelections = await prisma.packageSelection.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+      },
+    });
+
+    // Transform the data to ensure proper formatting
+    const formattedSelections = packageSelections.map((selection) => ({
+      id: selection.id,
+      createdAt: selection.createdAt.toISOString(),
+      updatedAt: selection.updatedAt.toISOString(),
+      userId: selection.userId,
+      name: selection.name,
+      email: selection.email,
+      packages: selection.packages,
+      payPrice: parseFloat(selection.payPrice.toString()),
+      startDate: selection.startDate.toISOString(),
+      endDate: selection.endDate.toISOString(),
+      paid: selection.paid,
+      stripeCustomerId: selection.stripeCustomerId,
+      user: selection.user,
+    }));
+
+    return NextResponse.json({
+      success: true,
+      message: "Package selections retrieved successfully",
+      data: formattedSelections,
+      count: formattedSelections.length,
+    });
+  } catch (error: any) {
+    console.error("Error fetching package selections:", error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Internal server error",
+        message: error.message,
+        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+      },
+      { status: 500 }
+    );
+  }
+}

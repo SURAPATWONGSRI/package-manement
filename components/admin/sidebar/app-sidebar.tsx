@@ -10,7 +10,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { signOut, useSession } from "@/lib/auth-client";
-import { LayoutDashboard, Printer, Users } from "lucide-react";
+import { LayoutDashboard, Printer, ReceiptText, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -26,6 +26,7 @@ type UserData = {
 const navItems = [
   { title: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
   { title: "Users", href: "/admin/users", icon: Users },
+  { title: "Purchase Order", href: "/admin/purchase-order", icon: ReceiptText },
 ];
 // This is sample data.
 const data = {
@@ -52,14 +53,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   // อัพเดตข้อมูลผู้ใช้เมื่อ session เปลี่ยนแปลง
   useEffect(() => {
     if (session?.user) {
+      // Check if user is verified and has admin role
+      if (!session.user.emailVerified) {
+        toast.error("Account not verified. Logging out...");
+        handleSignOut();
+        return;
+      }
+
+      if (session.user.role !== "ADMIN") {
+        toast.error("Access denied. Admin privileges required.");
+        router.push("/main");
+        return;
+      }
+
       setUserData({
         name: session.user.name || "User",
         email: session.user.email || "",
-        // แก้ไขตรงนี้: ใช้ image จาก session หรือใช้ค่าเริ่มต้น
         avatar: session.user.image || "",
       });
+    } else {
+      // No session, redirect to admin login
+      router.push("/admin");
     }
-  }, [session]);
+  }, [session, router]);
 
   const handleSignOut = async () => {
     try {
