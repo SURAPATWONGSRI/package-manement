@@ -1,9 +1,11 @@
+import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
 import { withAdminAuth, type AdminPageProps } from "@/lib/with-admin-auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
+
 function AdminDashboardPage({ session }: AdminPageProps) {
   return (
     <div className="space-y-6 md:space-y-8 w-full">
@@ -15,6 +17,8 @@ function AdminDashboardPage({ session }: AdminPageProps) {
           Welcome 👋, {session?.user?.name || "Administrator"}.
         </p>
       </div>
+
+      <DashboardOverview />
     </div>
   );
 }
