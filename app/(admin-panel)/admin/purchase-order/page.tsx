@@ -88,7 +88,11 @@ const PurchaseOrderPage = () => {
 
   const formatDate = (dateString: string) => {
     try {
-      return format(new Date(dateString), "dd MMM yyyy", { locale: th });
+      // Since the date is already in Thailand timezone from the server,
+      // format it directly with Thailand timezone
+      return format(new Date(dateString), "dd MMM yyyy", {
+        locale: th,
+      });
     } catch {
       return "Invalid Date";
     }
@@ -96,7 +100,16 @@ const PurchaseOrderPage = () => {
 
   const formatDateTime = (dateString: string) => {
     try {
-      return format(new Date(dateString), "dd MMM yyyy HH:mm", { locale: th });
+      // Since the date is already in Thailand timezone from the server,
+      // format it directly with Thailand timezone
+      return new Intl.DateTimeFormat("th-TH", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Asia/Bangkok", // Ensure consistent Thailand timezone display
+      }).format(new Date(dateString));
     } catch {
       return "Invalid Date";
     }

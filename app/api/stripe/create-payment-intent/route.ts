@@ -22,6 +22,14 @@ export async function POST(req: Request) {
       );
     }
 
+    // Convert dates to Thailand timezone
+    const convertToThailandTime = (isoString: string) => {
+      const date = new Date(isoString);
+      // Add 7 hours for Thailand timezone
+      date.setHours(date.getHours() + 7);
+      return date.toISOString();
+    };
+
     // Create payment intent with PromptPay support
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert to cents
@@ -32,15 +40,22 @@ export async function POST(req: Request) {
         userName: metadata.userName || "",
         userEmail: metadata.userEmail || "",
         packages: metadata.packages || "[]",
-        startDate: metadata.startDate || new Date().toISOString(),
-        endDate: metadata.endDate || new Date().toISOString(),
+        startDate:
+          metadata.startDate && metadata.startDate !== "null"
+            ? convertToThailandTime(metadata.startDate)
+            : new Date().toISOString(),
+        endDate:
+          metadata.endDate && metadata.endDate !== "null"
+            ? convertToThailandTime(metadata.endDate)
+            : new Date().toISOString(),
         payPrice: metadata.payPrice || amount.toString(),
         integration: "package_management",
+        timezone: "Asia/Bangkok",
       },
     });
 
     console.log(
-      "Created payment intent with metadata:",
+      "Created payment intent with Thailand timezone metadata:",
       paymentIntent.metadata
     );
 

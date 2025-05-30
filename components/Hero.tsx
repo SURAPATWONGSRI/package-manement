@@ -168,7 +168,7 @@ const Hero = () => {
                   ["Prisma ORM", "light-prisma-svgrepo-com.svg"],
                   ["PostgreSQL", "postgresql-icon.svg"],
                   ["Better Auth", "Better Auth_dark.svg"],
-                  ["Omise", "omiseco-icon.svg"],
+                  ["Stripe", "stripe-ar21.svg"],
                   ["shadcn/ui", "shadcn-ui-icon.svg"],
                   ["Tailwind CSS", "tailwind-icon.svg"],
                 ].map(([label, img], i) => (

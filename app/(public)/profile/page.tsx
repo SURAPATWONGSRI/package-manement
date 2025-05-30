@@ -64,11 +64,13 @@ export default async function page() {
             {session.user.lineId && (
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-muted-foreground">Line ID:</span>
-                <span>{session.user.lineId}</span>
+                <span className="font-medium font-sans">
+                  {session.user.lineId}
+                </span>
               </div>
             )}
             {isAdmin && (
-              <Badge className="mt-2" variant="default">
+              <Badge className="mt-2 rounded-lg" variant="default">
                 Admin
               </Badge>
             )}

@@ -14,52 +14,79 @@ export async function PATCH(req: Request) {
     }
 
     // Update the payment status for the most recent record matching userId and payPrice
-    const updatedRecord = await prisma.packageSelection.updateMany({
-      where: {
-        userId: userId,
-        payPrice: payPrice.toString(),
-        paid: false, // Only update records that are currently unpaid
-      },
-      data: {
-        paid: paid,
-        updatedAt: new Date(),
-      },
-    });
+    // Use Thailand timezone for updatedAt
+    const updatedRecord = await prisma.$executeRaw`
+      UPDATE package_selections
+      SET
+        paid = ${paid}::boolean,
+        "updatedAt" = (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp
+      WHERE
+        "userId" = ${userId}
+        AND "payPrice" = ${payPrice.toString()}::decimal(10,2)
+        AND paid = false
+    `;
 
-    if (updatedRecord.count === 0) {
+    if (updatedRecord === 0) {
       return NextResponse.json(
         { error: "No matching unpaid records found to update" },
         { status: 404 }
       );
     }
 
-    // Fetch the updated record(s) to return
-    const updatedRecords = await prisma.packageSelection.findMany({
+    // Fetch the updated record(s) with Thailand timezone
+    const updatedRecords = await prisma.$queryRaw`
+      SELECT
+        id,
+        "userId",
+        name,
+        email,
+        packages,
+        "payPrice",
+        "startDate" AT TIME ZONE 'Asia/Bangkok' as "startDate",
+        "endDate" AT TIME ZONE 'Asia/Bangkok' as "endDate",
+        paid,
+        "stripeCustomerId",
+        "createdAt" AT TIME ZONE 'Asia/Bangkok' as "createdAt",
+        "updatedAt" AT TIME ZONE 'Asia/Bangkok' as "updatedAt"
+      FROM package_selections
+      WHERE
+        "userId" = ${userId}
+        AND "payPrice" = ${payPrice.toString()}::decimal(10,2)
+        AND paid = ${paid}::boolean
+      ORDER BY "updatedAt" DESC
+    `;
+
+    // Fetch user data for the records
+    const users = await prisma.user.findMany({
       where: {
-        userId: userId,
-        payPrice: payPrice.toString(),
-        paid: paid,
+        id: userId,
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-            image: true,
-          },
-        },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        image: true,
       },
     });
 
+    const user = users[0] || null;
+
+    // Format the response data
+    const formattedRecords = (updatedRecords as any[]).map((record) => ({
+      ...record,
+      createdAt: new Date(record.createdAt).toISOString(),
+      updatedAt: new Date(record.updatedAt).toISOString(),
+      startDate: new Date(record.startDate).toISOString(),
+      endDate: new Date(record.endDate).toISOString(),
+      payPrice: parseFloat(record.payPrice.toString()),
+      user: user,
+    }));
+
     return NextResponse.json({
       success: true,
-      message: `Payment status updated successfully. ${updatedRecord.count} record(s) updated.`,
-      data: updatedRecords,
-      count: updatedRecord.count,
+      message: `Payment status updated successfully in Thailand timezone. ${updatedRecord} record(s) updated.`,
+      data: formattedRecords,
+      count: Number(updatedRecord),
     });
   } catch (error: any) {
     console.error("Error updating payment status:", error);

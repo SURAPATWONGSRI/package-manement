@@ -84,7 +84,6 @@ export const UserUpdateForm = ({
       // Refresh session if needed
       if (sessionNeedsRefresh) {
         setIsRefreshing(true);
-        toast.info("กำลังอัพเดทข้อมูลผู้ใช้...");
 
         // Refresh session
         await getSession({

@@ -112,7 +112,7 @@ async function UsersTable() {
                       </Avatar>
                     </div>
                   ) : (
-                    <span className="text-muted-foreground">Null</span>
+                    <span className="text-muted-foreground">ไม่มี</span>
                   )}
                 </TableCell>
                 <TableCell>

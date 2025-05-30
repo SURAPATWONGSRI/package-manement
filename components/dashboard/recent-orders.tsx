@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { memo, useMemo } from "react";
 
 interface PackageSelection {
   id: string;
@@ -21,32 +22,49 @@ interface RecentOrdersProps {
   orders: PackageSelection[];
 }
 
-export function RecentOrders({ orders }: RecentOrdersProps) {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("th-TH", {
-      style: "currency",
-      currency: "THB",
-    }).format(price);
-  };
+const RecentOrdersComponent = ({ orders }: RecentOrdersProps) => {
+  // Memoize expensive calculations
+  const formatPrice = useMemo(
+    () => (price: number) =>
+      new Intl.NumberFormat("th-TH", {
+        style: "currency",
+        currency: "THB",
+      }).format(price),
+    []
+  );
 
-  const formatDate = (dateString: string) => {
-    return new Intl.DateTimeFormat("th-TH", {
+  const formatDate = useMemo(() => {
+    const formatter = new Intl.DateTimeFormat("th-TH", {
       year: "numeric",
       month: "short",
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
-    }).format(new Date(dateString));
-  };
+      timeZone: "Asia/Bangkok",
+    });
 
-  const getInitials = (name: string) => {
-    return name
-      .split(" ")
-      .map((word) => word.charAt(0))
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
-  };
+    return (dateString: string) => {
+      try {
+        return formatter.format(new Date(dateString));
+      } catch {
+        return "Invalid Date";
+      }
+    };
+  }, []);
+
+  const getInitials = useMemo(
+    () => (name: string) =>
+      name
+        .split(" ")
+        .map((word) => word.charAt(0))
+        .join("")
+        .toUpperCase()
+        .slice(0, 2),
+    []
+  );
+
+  // Memoize the displayed orders
+  const displayedOrders = useMemo(() => orders.slice(0, 5), [orders]);
 
   return (
     <Card>
@@ -55,7 +73,7 @@ export function RecentOrders({ orders }: RecentOrdersProps) {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {orders.slice(0, 5).map((order) => (
+          {displayedOrders.map((order) => (
             <div
               key={order.id}
               className="flex items-center justify-between space-x-4"
@@ -78,7 +96,7 @@ export function RecentOrders({ orders }: RecentOrdersProps) {
               </div>
               <div className="flex items-center space-x-2">
                 <Badge
-                  className=" rounded-md"
+                  className="rounded-md"
                   variant={order.paid ? "default" : "secondary"}
                 >
                   {order.paid ? "ชำระแล้ว" : "รอชำระ"}
@@ -103,4 +121,6 @@ export function RecentOrders({ orders }: RecentOrdersProps) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export const RecentOrders = memo(RecentOrdersComponent);

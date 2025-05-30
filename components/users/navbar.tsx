@@ -32,7 +32,7 @@ const Logo = memo(function Logo() {
 // Extract UserSkeleton to a separate component
 const UserSkeleton = memo(function UserSkeleton() {
   return (
-    <div className="h-8 w-8 rounded-full bg-slate-200 animate-pulse"></div>
+    <div className="h-8 w-8 rounded-full bg-secondary animate-pulse"></div>
   );
 });
 
