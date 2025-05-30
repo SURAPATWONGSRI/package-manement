@@ -76,26 +76,15 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
 
     try {
       setLoading(true);
-      // Don't save to database yet - only show payment modal
-      setShowPaymentModal(true);
-    } catch (error) {
-      console.error("Error in payment process:", error);
-      toast.error("เกิดข้อผิดพลาดในการเตรียมการชำระเงิน");
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const handlePaymentSuccess = async () => {
-    try {
-      // Save to database after successful payment
+      // Save to database first with paid=false
       const packageSelections = selectedPackages.map((pkg) => ({
         symbol: pkg.symbol,
         timeframe: pkg.timeframe,
-        startDate: startDate!.toISOString(), // Send as ISO string, server will convert
-        endDate: endDate.toISOString(), // Send as ISO string, server will convert
+        startDate: startDate!.toISOString(),
+        endDate: endDate.toISOString(),
         payPrice: totalPrice,
-        paid: true, // Set to true since payment was successful
+        paid: false, // Set to false initially
         userId: session!.user.id,
         name: session!.user.name || "",
         email: session!.user.email || "",
@@ -118,7 +107,46 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
         throw new Error(dbResult.error || "Failed to save package selections");
       }
 
-      console.log("Package selections saved to DB:", dbResult);
+      console.log("Package selections saved to DB with paid=false:", dbResult);
+
+      // Now show payment modal
+      setShowPaymentModal(true);
+    } catch (error) {
+      console.error("Error in payment process:", error);
+      toast.error("เกิดข้อผิดพลาดในการเตรียมการชำระเงิน");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    try {
+      // Update payment status to paid=true after successful payment
+      const updateResponse = await fetch(
+        "/api/package-selections/update-payment",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: session!.user.id,
+            payPrice: totalPrice,
+            paid: true,
+          }),
+        }
+      );
+
+      const updateResult = await updateResponse.json();
+
+      if (!updateResponse.ok) {
+        console.error("Update Error:", updateResult);
+        throw new Error(
+          updateResult.error || "Failed to update payment status"
+        );
+      }
+
+      console.log("Payment status updated to paid=true:", updateResult);
 
       // Send Discord webhook notification
       try {
@@ -150,10 +178,10 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
       // Redirect to public success page
       router.push("/payment/success");
     } catch (error) {
-      console.error("Error saving package selections:", error);
+      console.error("Error updating payment status:", error);
       setShowPaymentModal(false);
       toast.error(
-        "ชำระเงินสำเร็จ แต่เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาติดต่อฝ่ายสนับสนุน"
+        "ชำระเงินสำเร็จ แต่เกิดข้อผิดพลาดในการอัพเดทสถานะ กรุณาติดต่อฝ่ายสนับสนุน"
       );
       // Still redirect to success page since payment went through
       router.push("/payment/success");

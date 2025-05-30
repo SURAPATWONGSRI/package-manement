@@ -206,9 +206,9 @@ const PurchaseOrderPage = () => {
                     <TableCell>
                       <Badge
                         className="rounded-md"
-                        variant={selection.paid ? "default" : "destructive"}
+                        variant={selection.paid ? "default" : "secondary"}
                       >
-                        {selection.paid ? "ชำระแล้ว" : "ยังไม่ชำระ"}
+                        {selection.paid ? "ชำระแล้ว" : "ยกเลิกชำระ"}
                       </Badge>
                     </TableCell>
                     <TableCell>

@@ -84,9 +84,8 @@ export async function POST(req: Request) {
         );
 
         // Get the paid status from the first selection (all should be the same)
-        const paidStatus = selections.find(
-          (s) => s.userId === userData.userId
-        )?.paid;
+        const paidStatus =
+          selections.find((s) => s.userId === userData.userId)?.paid ?? false; // Default to false if not specified
 
         // Use raw SQL to insert with Thailand timezone conversion
         const result = await prisma.$executeRaw`
@@ -115,7 +114,7 @@ export async function POST(req: Request) {
             (${
               userData.endDateISO
             }::timestamptz AT TIME ZONE 'Asia/Bangkok')::timestamp,
-            ${paidStatus},
+            ${paidStatus}::boolean,
             (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp,
             (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp
           )
