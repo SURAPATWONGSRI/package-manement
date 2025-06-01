@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
 
   // ถ้าล็อกอินแล้ว ห้ามเข้า /login
   if (isLoggedIn && isLoginPage) {
-    return NextResponse.redirect(new URL("/profile", req.url));
+    return NextResponse.redirect(new URL("/main", req.url));
   }
 
   // ถ้าล็อกอินแล้ว ห้ามเข้า /register และให้ไปที่ /main แทน

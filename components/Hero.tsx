@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 
@@ -75,10 +76,13 @@ const Hero = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <img
+        <Image
           alt="background"
           src="https://shadcnblocks.com/images/block/patterns/square-alt-grid.svg"
           className="opacity-90 [mask-image:radial-gradient(75%_75%_at_center,white,transparent)]"
+          width={1200}
+          height={800}
+          priority
         />
       </motion.div>
 
@@ -99,10 +103,12 @@ const Hero = () => {
                 transition: { duration: 0.3 },
               }}
             >
-              <img
+              <Image
                 src="https://shadcnblocks.com/images/block/block-3.svg"
                 alt="logo"
                 className="h-16 bg-secondary rounded-lg"
+                width={64}
+                height={64}
               />
             </motion.div>
 
@@ -187,13 +193,18 @@ const Hero = () => {
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <motion.img
-                      src={`https://armzdhwelkuwwftkvoap.supabase.co/storage/v1/object/public/profile//${img}`}
-                      alt={`${label} logo`}
-                      className="h-6 saturate-100 transition-all group-hover:saturate-100"
+                    <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                    />
+                    >
+                      <Image
+                        src={`https://armzdhwelkuwwftkvoap.supabase.co/storage/v1/object/public/profile//${img}`}
+                        alt={`${label} logo`}
+                        className="h-6 saturate-100 transition-all group-hover:saturate-100"
+                        width={24}
+                        height={24}
+                      />
+                    </motion.div>
                   </motion.a>
                 ))}
               </motion.div>

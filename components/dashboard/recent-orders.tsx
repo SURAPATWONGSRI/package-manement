@@ -72,52 +72,54 @@ const RecentOrdersComponent = ({ orders }: RecentOrdersProps) => {
         <CardTitle>คำสั่งซื้อล่าสุด</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          {displayedOrders.map((order) => (
-            <div
-              key={order.id}
-              className="flex items-center justify-between space-x-4"
-            >
-              <div className="flex items-center space-x-4">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={order.user.image} />
-                  <AvatarFallback className="text-xs">
-                    {getInitials(order.user.name || order.name)}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {order.user.name || order.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {order.user.email || order.email}
-                  </p>
+        {orders.length === 0 ? (
+          <div className="flex items-center justify-center py-8">
+            <p className="text-muted-foreground">ไม่มีคำสั่งซื้อ</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {displayedOrders.map((order) => (
+              <div
+                key={order.id}
+                className="flex items-center justify-between p-3 rounded-lg border bg-card/50 hover:bg-card transition-colors"
+              >
+                <div className="flex items-center space-x-3">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage src={order.user.image} />
+                    <AvatarFallback className="text-xs font-medium">
+                      {getInitials(order.user.name || order.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium truncate">
+                      {order.user.name || order.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {order.user.email || order.email}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="text-right">
+                    <p className="text-sm font-semibold">
+                      {formatPrice(order.payPrice)}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {formatDate(order.createdAt)}
+                    </p>
+                  </div>
+                  <Badge
+                    variant={order.paid ? "default" : "secondary"}
+                    className="shrink-0"
+                  >
+                    {order.paid ? "ชำระแล้ว" : "ยกเลิกชำระ"}
+                  </Badge>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Badge
-                  className="rounded-md"
-                  variant={order.paid ? "default" : "secondary"}
-                >
-                  {order.paid ? "ชำระแล้ว" : "รอชำระ"}
-                </Badge>
-                <div className="text-right">
-                  <p className="text-sm font-medium">
-                    {formatPrice(order.payPrice)}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {formatDate(order.createdAt)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-          {orders.length === 0 && (
-            <p className="text-center text-muted-foreground py-4">
-              ไม่มีคำสั่งซื้อ
-            </p>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </CardContent>
     </Card>
   );

@@ -24,6 +24,12 @@ model PackageSelection {
   stripeCustomerId String?
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId]) // สำหรับ query by userId
+  @@index([createdAt]) // สำหรับ orderBy createdAt
+  @@index([paid]) // สำหรับ filter by paid status
+  @@index([email]) // สำหรับ search by email
+  @@index([userId, payPrice]) // สำหรับ findFirst query ใน POST
+  @@index([startDate, endDate]) // สำหรับ date range queries
   @@map("package_selections")
 }
 

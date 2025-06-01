@@ -15,9 +15,15 @@ import {
 } from "@/components/ui/chart";
 import { Cell, Pie, PieChart } from "recharts";
 
+interface Package {
+  packageId: string;
+  symbol: string;
+  timeframe: string;
+}
+
 interface PackageSelection {
   id: string;
-  packages: any[];
+  packages: Package[];
 }
 
 interface PackageDistributionChartProps {

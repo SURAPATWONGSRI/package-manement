@@ -47,7 +47,7 @@ export async function updateUserAction({
     }
 
     // Prepare update data
-    const updateData: Record<string, any> = {};
+    const updateData: Record<string, string | null> = {};
 
     if (name && name !== currentUser.name) {
       updateData.name = name;

@@ -152,7 +152,7 @@ async function AdminUserPage({}: AdminPageProps) {
   return (
     <div className="space-y-6 md:space-y-8 w-full">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1 sm:mb-2">
+        <h1 className="text-2xl sm:text-1xl font-bold tracking-tight mb-1 sm:mb-2">
           Users
         </h1>
         <p className="text-muted-foreground">จัดการข้อมูลผู้ใช้ทั้งหมดในระบบ</p>

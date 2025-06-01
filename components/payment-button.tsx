@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { useSession } from "@/lib/auth-client";
 import { addMonths, format } from "date-fns";
 import { th } from "date-fns/locale";
-import { Calendar, Package, TrendingUp } from "lucide-react";
+import { Calendar, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -52,7 +52,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
   };
 
   const selectedPackages = Object.entries(selections)
-    .filter(([_, selection]) => selection.symbol && selection.timeframe)
+    .filter(([, selection]) => selection.symbol && selection.timeframe)
     .map(([packageId, selection]) => ({
       packageId: parseInt(packageId),
       symbol: selection.symbol,
@@ -209,13 +209,13 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
               ? "เข้าสู่ระบบเพื่อชำระเงิน"
               : isFormValid
               ? "ชำระเงิน"
-              : "กรุณาเลือกแพ็คเกจและวันที่"}
+              : "กรุณาเลือกแพ็คเกจ"}
           </Button>
         </div>
       </div>
 
       <Dialog open={showPaymentModal} onOpenChange={setShowPaymentModal}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl">รายละเอียดการชำระเงิน</DialogTitle>
             <DialogDescription>
@@ -223,120 +223,131 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
             </DialogDescription>
           </DialogHeader>
 
-          {/* Package Details */}
-          <div className="grid gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-lg">
-                  <Package className="h-5 w-5 mr-2" />
-                  แพ็คเกจที่เลือก ({selectedPackages.length} แพ็คเกจ)
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-4">
-                  {selectedPackages.map((pkg, index) => (
-                    <div key={pkg.packageId} className="border rounded-lg p-4">
-                      <div className="grid gap-3">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-semibold text-base">
-                            Package {pkg.packageId}
-                          </h4>
-                          <div className="flex space-x-2">
-                            <Badge
-                              variant="default"
-                              className="bg-blue-100 text-blue-800"
-                            >
-                              <TrendingUp className="h-3 w-3 mr-1" />
-                              {pkg.symbol}
-                            </Badge>
-                            <Badge variant="outline">{pkg.timeframe}</Badge>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                          <div>
-                            <span>สัญลักษณ์การเทรด: </span>
-                            <span className="font-medium">{pkg.symbol}</span>
-                          </div>
-                          <div>
-                            <span>ช่วงเวลา: </span>
-                            <span className="font-medium">{pkg.timeframe}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Date Information */}
-            {startDate && (
+          {/* Main Layout: Left side for details, Right side for payment */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left Side - Package Details */}
+            <div className="space-y-6">
+              {/* Package Details */}
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center text-lg">
-                    <Calendar className="h-5 w-5 mr-2" />
-                    ระยะเวลาใช้งาน
+                    <Package className="h-5 w-5 mr-2" />
+                    แพ็คเกจที่เลือก ({selectedPackages.length} แพ็คเกจ)
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        วันที่เริ่มต้น
-                      </p>
-                      <p className="font-semibold">
-                        {format(startDate, "dd MMMM yyyy", { locale: th })}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        วันที่สิ้นสุด
-                      </p>
-                      <p className="font-semibold">
-                        {format(endDate, "dd MMMM yyyy", { locale: th })}
-                      </p>
-                    </div>
+                  <div className="grid gap-4">
+                    {selectedPackages.map((pkg) => (
+                      <div
+                        key={pkg.packageId}
+                        className="border rounded-lg p-4"
+                      >
+                        <div className="grid gap-3">
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-semibold text-base">
+                              Package {pkg.packageId}
+                            </h4>
+                            <div className="flex space-x-2">
+                              <Badge variant="default">{pkg.symbol}</Badge>
+                              <Badge variant="outline">{pkg.timeframe}</Badge>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-1 gap-2 text-sm text-muted-foreground">
+                            <div>
+                              <span>Symbol: </span>
+                              <span className="font-medium">{pkg.symbol}</span>
+                            </div>
+                            <div>
+                              <span>Period: </span>
+                              <span className="font-medium">
+                                {pkg.timeframe}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
-            )}
 
-            {/* Payment Summary */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">สรุปการชำระเงิน</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-3">
-                  <div className="flex justify-between text-sm">
-                    <span>จำนวนแพ็คเกจ:</span>
-                    <span>{selectedPackages.length} แพ็คเกจ</span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>ยอดรวมทั้งหมด:</span>
-                    <span className="text-green-600">
-                      ฿{totalPrice.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Payment Component */}
-          {isFormValid && startDate && (
-            <div className="grid">
-              <StripeCheckout
-                amount={totalPrice}
-                packages={selectedPackages}
-                startDate={startDate}
-                endDate={endDate}
-                onPaymentSuccess={handlePaymentSuccess}
-                onPaymentError={handlePaymentError}
-              />
+              {/* Date Information */}
+              {startDate && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-lg">
+                      <Calendar className="h-5 w-5 mr-2" />
+                      ระยะเวลาใช้งาน
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          Period Start
+                        </p>
+                        <p className="font-semibold">
+                          {format(startDate, "dd MMMM yyyy", { locale: th })}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">
+                          Period End
+                        </p>
+                        <p className="font-semibold">
+                          {format(endDate, "dd MMMM yyyy", { locale: th })}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
-          )}
+
+            {/* Right Side - Payment Summary and Checkout */}
+            <div className="space-y-6">
+              {/* Payment Summary */}
+              <Card className="sticky top-0">
+                <CardHeader>
+                  <CardTitle className="text-lg">สรุปการชำระเงิน</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4">
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span>จำนวนแพ็คเกจ:</span>
+                        <span>{selectedPackages.length} แพ็คเกจ</span>
+                      </div>
+
+                      <Separator />
+                      <div className="flex justify-between text-lg font-bold">
+                        <span>ยอดรวมทั้งหมด:</span>
+                        <span className="text-emerald-500">
+                          ฿{totalPrice.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Payment Component */}
+                    {isFormValid && startDate && (
+                      <div className="mt-6">
+                        <StripeCheckout
+                          amount={totalPrice}
+                          packages={selectedPackages}
+                          startDate={startDate}
+                          endDate={endDate}
+                          onPaymentSuccess={handlePaymentSuccess}
+                          onPaymentError={handlePaymentError}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Additional Information */}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </>

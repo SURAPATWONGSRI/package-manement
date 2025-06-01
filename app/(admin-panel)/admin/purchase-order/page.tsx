@@ -2,7 +2,15 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -13,8 +21,8 @@ import {
 } from "@/components/ui/table";
 import { format } from "date-fns";
 import { th } from "date-fns/locale";
-import { RefreshCw } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Loader2, RefreshCw, Search, X } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface PackageItem {
@@ -43,8 +51,16 @@ const PurchaseOrderPage = () => {
   const [packageSelections, setPackageSelections] = useState<
     PackageSelection[]
   >([]);
+  const [filteredSelections, setFilteredSelections] = useState<
+    PackageSelection[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Filter states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [symbolFilter, setSymbolFilter] = useState<string>("all");
 
   const fetchPackageSelections = async () => {
     try {
@@ -82,17 +98,66 @@ const PurchaseOrderPage = () => {
     }
   };
 
+  // Filter function
+  const filterSelections = useCallback(() => {
+    let filtered = packageSelections;
+
+    if (searchTerm) {
+      filtered = filtered.filter(
+        (selection) =>
+          selection.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          selection.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((selection) => {
+        if (statusFilter === "paid") return selection.paid;
+        if (statusFilter === "unpaid") return !selection.paid;
+        return true;
+      });
+    }
+
+    if (symbolFilter !== "all") {
+      filtered = filtered.filter((selection) =>
+        selection.packages.some((pkg) => pkg.symbol === symbolFilter)
+      );
+    }
+
+    setFilteredSelections(filtered);
+  }, [packageSelections, searchTerm, statusFilter, symbolFilter]);
+
+  const getUniqueSymbols = () => {
+    const symbols = new Set<string>();
+    packageSelections.forEach((selection) => {
+      selection.packages.forEach((pkg) => {
+        symbols.add(pkg.symbol);
+      });
+    });
+    return Array.from(symbols).sort();
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setStatusFilter("all");
+    setSymbolFilter("all");
+  };
+
+  const hasActiveFilters =
+    searchTerm || statusFilter !== "all" || symbolFilter !== "all";
+
   useEffect(() => {
     fetchPackageSelections();
+    document.title = "Purchase Orders - Admin Panel";
   }, []);
+
+  useEffect(() => {
+    filterSelections();
+  }, [filterSelections]);
 
   const formatDate = (dateString: string) => {
     try {
-      // Since the date is already in Thailand timezone from the server,
-      // format it directly with Thailand timezone
-      return format(new Date(dateString), "dd MMM yyyy", {
-        locale: th,
-      });
+      return format(new Date(dateString), "dd MMM yyyy", { locale: th });
     } catch {
       return "Invalid Date";
     }
@@ -100,15 +165,13 @@ const PurchaseOrderPage = () => {
 
   const formatDateTime = (dateString: string) => {
     try {
-      // Since the date is already in Thailand timezone from the server,
-      // format it directly with Thailand timezone
       return new Intl.DateTimeFormat("th-TH", {
         year: "numeric",
         month: "short",
         day: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-        timeZone: "Asia/Bangkok", // Ensure consistent Thailand timezone display
+        timeZone: "Asia/Bangkok",
       }).format(new Date(dateString));
     } catch {
       return "Invalid Date";
@@ -120,8 +183,8 @@ const PurchaseOrderPage = () => {
       <div className="container mx-auto p-6">
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="flex items-center space-x-2">
-            <RefreshCw className="h-6 w-6 animate-spin" />
-            <span>กำลังโหลดข้อมูล...</span>
+            <Loader2 className="h-6 w-6  text-muted-foreground animate-spin" />
+            <span className="text-muted-foreground">กำลังโหลด...</span>
           </div>
         </div>
       </div>
@@ -147,10 +210,13 @@ const PurchaseOrderPage = () => {
   }
 
   return (
-    <div className="space-y-6 md:space-y-8 w-full">
+    <div className="space-y-6 w-full">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold font-sans">Purchase Orders</h1>
+          <h1 className="text-2xl sm:text-1xl font-bold tracking-tight mb-1 sm:mb-2">
+            Purchase Orders
+          </h1>
           <p className="text-muted-foreground">คำสั่งซื้อและข้อมูลแพ็คเกจ</p>
         </div>
         <Button onClick={fetchPackageSelections} variant="outline" size="sm">
@@ -159,16 +225,107 @@ const PurchaseOrderPage = () => {
         </Button>
       </div>
 
+      {/* Minimal Filters */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-4 flex-wrap">
+          {/* Search */}
+          <div className="relative min-w-[300px]">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="ค้นหาชื่อหรืออีเมล..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+
+          {/* Status Filter */}
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger className="w-[150px]">
+              <SelectValue placeholder="สถานะ" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">ทั้งหมด</SelectItem>
+              <SelectItem value="paid">ชำระแล้ว</SelectItem>
+              <SelectItem value="unpaid">ยังไม่ชำระ</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* Symbol Filter */}
+          <Select value={symbolFilter} onValueChange={setSymbolFilter}>
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="สัญลักษณ์" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">ทั้งหมด</SelectItem>
+              {getUniqueSymbols().map((symbol) => (
+                <SelectItem key={symbol} value={symbol}>
+                  {symbol}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          {/* Clear Button */}
+          {hasActiveFilters && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearFilters}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <X className="mr-1 h-4 w-4" />
+              ล้าง
+            </Button>
+          )}
+        </div>
+
+        {/* Active Filters Display */}
+        {hasActiveFilters && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>กรองโดย:</span>
+            <div className="flex gap-2">
+              {searchTerm && (
+                <Badge variant="secondary" className="px-2 py-1">
+                  ค้นหา: &quot;{searchTerm}&quot;
+                </Badge>
+              )}
+              {statusFilter !== "all" && (
+                <Badge variant="secondary" className="px-2 py-1">
+                  สถานะ: {statusFilter === "paid" ? "ชำระแล้ว" : "ยังไม่ชำระ"}
+                </Badge>
+              )}
+              {symbolFilter !== "all" && (
+                <Badge variant="secondary" className="px-2 py-1">
+                  สัญลักษณ์: {symbolFilter}
+                </Badge>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Data Table */}
       <Card>
-        <CardHeader>
-          <CardTitle>
-            รายการคำสั่งซื้อ ({packageSelections.length} รายการ)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {packageSelections.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">ไม่พบข้อมูลคำสั่งซื้อ</p>
+        <CardContent className="p-0">
+          {filteredSelections.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="space-y-2">
+                <p className="text-muted-foreground">
+                  {packageSelections.length === 0
+                    ? "ไม่พบข้อมูลคำสั่งซื้อ"
+                    : "ไม่พบข้อมูลที่ตรงกับการค้นหา"}
+                </p>
+                {hasActiveFilters && (
+                  <Button
+                    variant={"secondary"}
+                    size={"sm"}
+                    onClick={clearFilters}
+                  >
+                    ล้างตัวกรอง
+                  </Button>
+                )}
+              </div>
             </div>
           ) : (
             <Table>
@@ -183,11 +340,13 @@ const PurchaseOrderPage = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {packageSelections.map((selection) => (
+                {filteredSelections.map((selection) => (
                   <TableRow key={selection.id}>
                     <TableCell>
                       <div>
-                        <div className="font-medium">{selection.name}</div>
+                        <div className="font-semibold text-sm">
+                          {selection.name}
+                        </div>
                         <div className="text-sm text-muted-foreground">
                           {selection.email}
                         </div>
@@ -197,35 +356,39 @@ const PurchaseOrderPage = () => {
                       <div className="space-y-1">
                         {selection.packages.map((pkg, index) => (
                           <div key={index} className="flex gap-2">
-                            <Badge variant="secondary">{pkg.symbol}</Badge>
-                            <Badge variant="outline">{pkg.timeframe}</Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              {pkg.symbol}
+                            </Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {pkg.timeframe}
+                            </Badge>
                           </div>
                         ))}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="font-semibold">
-                        ฿{selection.payPrice.toFixed(2)}
+                      <div className="font-semibold text-emerald-500 ">
+                        ฿{selection.payPrice.toLocaleString()}
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div className="text-sm">
+                      <div className="text-xs">
                         <div>{formatDate(selection.startDate)}</div>
-                        <div className="text-muted-foreground">
+                        <div className="text-xs text-muted-foreground">
                           ถึง {formatDate(selection.endDate)}
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
                       <Badge
-                        className="rounded-md"
                         variant={selection.paid ? "default" : "secondary"}
+                        className="text-xs"
                       >
-                        {selection.paid ? "ชำระแล้ว" : "ยกเลิกชำระ"}
+                        {selection.paid ? "ชำระแล้ว" : "ยังไม่ชำระ"}
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-xs text-muted-foreground">
                         {formatDateTime(selection.createdAt)}
                       </div>
                     </TableCell>

@@ -24,19 +24,10 @@ export async function deleteUserAction({ userId }: { userId: string }) {
     await prisma.user.delete({
       where: {
         id: userId,
-        role: "USER", // ตรวจสอบว่าลบได้เฉพาะผู้ใช้ที่มีบทบาทเป็น USER เท่านั้น
+        role: "USER", //ลบได้เฉพาะผู้ใช้ที่มีบทบาทเป็น USER เท่านั้น
       },
     });
-
-    // ไม่จำเป็นต้องเช็คเงื่อนไขนี้อีก เพราะเราเช็คแล้วว่า session.user.id !== userId
-    // if (session.user.id === userId) {
-    //   await auth.api.signOut({
-    //     headers: headersList,
-    //   });
-    //   redirect("/login");
-    // }
-
-    revalidatePath("/admin/users"); // แก้ไขเส้นทางให้ถูกต้อง
+    revalidatePath("/admin/users");
     return { error: null };
   } catch (err) {
     if (isRedirectError(err)) {

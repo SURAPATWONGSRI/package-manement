@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "โปรไฟล์",
+  title: "Profile",
 };
 
 export default async function page() {
@@ -59,11 +59,13 @@ export default async function page() {
           )}
 
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold">{session.user.name}</h1>
-            <p className="text-muted-foreground">{session.user.email}</p>
+            <h1 className="text-2xl font-semibold">{session.user.name}</h1>
+            <p className="text-muted-foreground text-sm">
+              Email : {session.user.email}
+            </p>
             {session.user.lineId && (
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-muted-foreground">Line ID:</span>
+                <span className="text-muted-foreground">Line ID :</span>
                 <span className="font-medium font-sans">
                   {session.user.lineId}
                 </span>

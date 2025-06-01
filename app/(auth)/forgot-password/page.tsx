@@ -11,7 +11,7 @@ export default function page() {
       </div>
 
       <p className="text-muted-foreground">
-        No worries, we'll send you reset instructions{" "}
+        No worries, we&apos;ll send you reset instructions{" "}
       </p>
 
       <ForgotPasswordForm />

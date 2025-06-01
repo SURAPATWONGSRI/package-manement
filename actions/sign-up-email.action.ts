@@ -47,8 +47,9 @@ async function updateUserDetails(
         },
       });
     }
-  } catch (err) {
+  } catch {
     // Swallow error - this is a non-critical operation
+    console.warn(`Failed to update user details for email: ${email}`);
   }
 }
 
@@ -86,7 +87,9 @@ async function updateUserLineId(
     });
 
     return {};
-  } catch (err) {
+  } catch (error) {
+    console.warn(`Failed to update LINE ID for email: ${email}`, error);
+
     // Try one more time after a longer delay
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -100,7 +103,11 @@ async function updateUserLineId(
       });
 
       return {};
-    } catch (retryErr) {
+    } catch (retryError) {
+      console.error(
+        `Failed to update LINE ID after retry for email: ${email}`,
+        retryError
+      );
       return {
         warning:
           "บัญชีได้ถูกสร้างแล้ว แต่ไม่สามารถบันทึก LINE ID ได้ คุณสามารถเพิ่ม LINE ID ในภายหลังได้",

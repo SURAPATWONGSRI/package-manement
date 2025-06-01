@@ -15,14 +15,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { ChevronsUpDown, House, LogOut, User } from "lucide-react";
+import { ChevronsUpDown, House, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 
 // Define proper types for component props
 interface UserProfile {
-  name: string;
-  email: string;
-  avatar: string;
+  name?: string;
+  email?: string;
+  avatar?: string;
 }
 
 interface NavUserProps {
@@ -38,13 +38,13 @@ const UserAvatar = ({
   user: UserProfile;
   className?: string;
 }) => {
-  const userInitial = user.name.charAt(0).toUpperCase();
+  const userInitial = user.name?.charAt(0)?.toUpperCase() || "U";
 
   return (
     <Avatar className={className}>
       <AvatarImage
         src={user.avatar || undefined}
-        alt={`${user.name}'s avatar`}
+        alt={`${user.name || "User"}'s avatar`}
       />
       <AvatarFallback className="rounded-lg bg-zinc-100">
         {userInitial}
@@ -59,14 +59,14 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
   // Navigation menu items
   const menuItems = [
     {
-      href: "/admin/profile",
-      icon: <User className="mr-2 size-4" aria-hidden="true" />,
-      label: "Profile",
-    },
-    {
       href: "/main",
       icon: <House className="mr-2 size-4" aria-hidden="true" />,
-      label: "Home",
+      label: "Back To Main Page",
+    },
+    {
+      href: "/admin/setting",
+      icon: <Settings className="mr-2 size-4" aria-hidden="true" />,
+      label: "Setting",
     },
   ];
 
@@ -83,10 +83,10 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
               <UserAvatar user={user} />
               <div className="flex flex-col gap-0.5 overflow-hidden text-left">
                 <span className="truncate font-medium font-sans text-sm">
-                  {user.name}
+                  {user.name || "User"}
                 </span>
                 <span className="truncate text-xs font-sans text-muted-foreground">
-                  {user.email}
+                  {user.email || "No email"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" aria-hidden="true" />
@@ -103,10 +103,10 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
                 <UserAvatar user={user} />
                 <div>
                   <div className="text-sm font-sans font-medium">
-                    {user.name}
+                    {user.name || "User"}
                   </div>
                   <div className="text-xs font-sans font-medium text-muted-foreground truncate">
-                    {user.email}
+                    {user.email || "No email"}
                   </div>
                 </div>
               </div>

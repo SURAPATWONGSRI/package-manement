@@ -80,7 +80,7 @@ export async function signInEmailAction(
       }
 
       return { error: undefined };
-    } catch (authError) {
+    } catch {
       const errorMessage =
         loginMethod === "email"
           ? "อีเมลหรือรหัสผ่านไม่ถูกต้อง"
@@ -92,7 +92,7 @@ export async function signInEmailAction(
     // Handle API errors by error code
     if (error instanceof Error) {
       // Extract error code
-      const errorObj = error as any;
+      const errorObj = error as Error & { body?: { code?: string } };
       const errCode = errorObj.body?.code || "UNKNOWN";
 
       // Handle specific error codes

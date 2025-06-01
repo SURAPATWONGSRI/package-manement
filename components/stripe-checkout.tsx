@@ -25,9 +25,15 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
+interface Package {
+  packageId: number;
+  symbol: string;
+  timeframe: string;
+}
+
 interface StripeCheckoutProps {
   amount: number;
-  packages: any[];
+  packages: Package[];
   startDate: Date;
   endDate: Date;
   onPaymentSuccess?: () => void;
@@ -165,7 +171,6 @@ export function StripeCheckout({
   return (
     <Elements options={options} stripe={stripePromise}>
       <PaymentForm
-        clientSecret={clientSecret}
         onPaymentSuccess={onPaymentSuccess}
         onPaymentError={onPaymentError}
       />
@@ -174,11 +179,9 @@ export function StripeCheckout({
 }
 
 function PaymentForm({
-  clientSecret,
   onPaymentSuccess,
   onPaymentError,
 }: {
-  clientSecret: string;
   onPaymentSuccess?: () => void;
   onPaymentError?: (error: string) => void;
 }) {

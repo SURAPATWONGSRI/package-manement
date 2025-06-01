@@ -75,13 +75,31 @@ export async function POST(req: Request) {
         )
       `;
 
+      // ...existing code...
+
       const createdRecord = await prisma.packageSelection.findFirst({
         where: {
           userId: userData.userId,
           payPrice: userData.payPrice.toString(),
         },
         orderBy: { createdAt: "desc" },
+        // เพิ่ม select เพื่อลด data transfer
+        select: {
+          id: true,
+          userId: true,
+          name: true,
+          email: true,
+          packages: true,
+          payPrice: true,
+          startDate: true,
+          endDate: true,
+          paid: true,
+          createdAt: true,
+          updatedAt: true,
+        },
       });
+
+      // ...existing code...
 
       createdSelections.push(createdRecord);
     }
@@ -91,12 +109,12 @@ export async function POST(req: Request) {
       message: "Package selections saved successfully",
       data: createdSelections,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error saving package selections:", error);
     return NextResponse.json(
       {
         error: "Internal server error",
-        message: error.message,
+        message: error instanceof Error ? error.message : "Unknown error",
       },
       { status: 500 }
     );
@@ -109,16 +127,32 @@ export async function GET(req: Request) {
     const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 100);
     const offset = (parseInt(searchParams.get("page") || "1") - 1) * limit;
 
+    // เพิ่ม filters สำหรับใช้ประโยชน์จาก indexes
+    const userId = searchParams.get("userId");
+    const paid = searchParams.get("paid");
+    const email = searchParams.get("email");
+
+    const whereClause: {
+      userId?: string;
+      paid?: boolean;
+      email?: { contains: string; mode: "insensitive" };
+    } = {};
+
+    if (userId) whereClause.userId = userId;
+    if (paid !== null) whereClause.paid = paid === "true";
+    if (email) whereClause.email = { contains: email, mode: "insensitive" };
+
     const [packageSelections, totalCount] = await Promise.all([
       prisma.packageSelection.findMany({
+        where: whereClause, // ใช้ where clause เพื่อใช้ประโยชน์จาก indexes
         take: limit,
         skip: offset,
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: "asc" }, // index ที่ createdAt จะช่วยที่นี่
         include: {
           user: { select: { id: true, name: true, email: true, image: true } },
         },
       }),
-      prisma.packageSelection.count(),
+      prisma.packageSelection.count({ where: whereClause }),
     ]);
 
     const formattedSelections = packageSelections.map((selection) => ({
@@ -151,12 +185,12 @@ export async function GET(req: Request) {
         },
       }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     return NextResponse.json(
       {
         success: false,
         error: "Internal server error",
-        message: error.message,
+        message: error instanceof Error ? error.message : "Unknown error",
       },
       { status: 500 }
     );

@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, LogOut, ShieldUser, User } from "lucide-react";
+import { ChevronDown, LogOut, Settings, ShieldUser } from "lucide-react";
 import Link from "next/link";
 import { memo } from "react";
 
@@ -109,11 +109,11 @@ export const NavUserMain = memo(({ user, onSignOut }: NavUserProps) => {
           )}
           <DropdownMenuItem asChild>
             <Link
-              href="/profile"
+              href="/setting"
               className="w-full flex items-center text-xs font-medium rounded-lg h-9 px-2 hover:bg-secondary/60"
             >
-              <User className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
-              โปรไฟล์
+              <Settings className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
+              ตั้งค่า
             </Link>
           </DropdownMenuItem>
 

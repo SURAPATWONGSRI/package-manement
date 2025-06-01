@@ -24,7 +24,7 @@ export default function AccessDenied() {
             Access Denied
           </CardTitle>
           <CardDescription className="text-center">
-            You don't have permission to access the admin dashboard
+            You don&apos;t have permission to access the admin dashboard
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">

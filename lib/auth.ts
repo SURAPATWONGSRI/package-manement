@@ -13,6 +13,20 @@ import Stripe from "stripe";
 import { UserRole } from "../lib/generated/prisma";
 import { getValidDomain, normalizeName } from "./utils";
 
+// Session type definition
+interface SessionData {
+  id: string;
+  userId: string;
+  expiresAt: Date;
+  user?: {
+    id: string;
+    name: string | null;
+    email: string;
+    image: string | null;
+    role: UserRole;
+  };
+}
+
 // Initialize Redis client as a singleton
 const getRedisClient = (() => {
   let instance: Redis | null = null;
@@ -50,12 +64,14 @@ const getRedisClient = (() => {
       console.error("[Upstash Redis] Initialization error:", error);
 
       // Create a memory-based fallback with better performance
-      const cache = new Map<string, any>();
+      const cache = new Map<string, string | number | null>();
       const expiryTimes = new Map<string, number>();
 
       instance = {
         incr: async (key: string) => {
-          const current = (cache.get(key) || 0) + 1;
+          const currentValue = cache.get(key);
+          const current =
+            (typeof currentValue === "number" ? currentValue : 0) + 1;
           cache.set(key, current);
           return current;
         },
@@ -72,7 +88,11 @@ const getRedisClient = (() => {
           }
           return cache.get(key) || null;
         },
-        set: async (key: string, value: any, options?: { ex?: number }) => {
+        set: async (
+          key: string,
+          value: string | number | null,
+          options?: { ex?: number }
+        ) => {
           cache.set(key, value);
           if (options?.ex) {
             expiryTimes.set(key, Date.now() + options.ex * 1000);
@@ -123,7 +143,11 @@ async function checkRateLimit(ip: string, action: string): Promise<number> {
     return attempts;
   } catch (error) {
     // Only re-throw if it's our own rate limit error
-    if (error instanceof APIError && (error as any).status === 429) {
+    if (
+      error instanceof APIError &&
+      "status" in error &&
+      (error as APIError & { status: number }).status === 429
+    ) {
       throw error;
     }
 
@@ -134,7 +158,7 @@ async function checkRateLimit(ip: string, action: string): Promise<number> {
 }
 
 // Session caching functions
-async function getCachedSession(token: string): Promise<any> {
+async function getCachedSession(token: string): Promise<SessionData | null> {
   if (!token) return null;
 
   try {
@@ -145,7 +169,10 @@ async function getCachedSession(token: string): Promise<any> {
   }
 }
 
-async function setCachedSession(token: string, data: any): Promise<void> {
+async function setCachedSession(
+  token: string,
+  data: SessionData
+): Promise<void> {
   if (!token || !data) return;
 
   try {
@@ -171,9 +198,9 @@ export const auth = betterAuth({
     sendResetPassword: async ({ user, url }) => {
       await sendEmailAction({
         to: user.email,
-        subject: "Reset Your Password",
+        subject: "คำร้องขอรีเซ็ตรรหัสผ่าน",
         meta: {
-          description: "Please click the link below to reset your password",
+          description: "คลิกที่ลิงก์เพื่อรีเซ็ตรหัสผ่านของคุณ",
           link: url,
         },
       });
@@ -221,7 +248,7 @@ export const auth = betterAuth({
         }
 
         // Make sure name is normalized and not empty
-        let name = ctx.body.name ? normalizeName(ctx.body.name) : "";
+        const name = ctx.body.name ? normalizeName(ctx.body.name) : "";
         if (!name) {
           throw new APIError("BAD_REQUEST", {
             message: "Name is required.",
@@ -252,7 +279,7 @@ export const auth = betterAuth({
       resolve,
     }: {
       token: string;
-      resolve: () => Promise<any>;
+      resolve: () => Promise<SessionData | null>;
     }) => {
       // Try to get session from cache first
       const cachedSession = await getCachedSession(token);

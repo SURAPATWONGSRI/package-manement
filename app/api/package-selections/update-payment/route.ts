@@ -1,6 +1,22 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+// Define the type for the query result
+interface QueryResult {
+  id: string;
+  userId: string;
+  name: string;
+  email: string;
+  packages: string;
+  payPrice: string;
+  startDate: Date;
+  endDate: Date;
+  paid: boolean;
+  stripeCustomerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();
@@ -72,15 +88,17 @@ export async function PATCH(req: Request) {
     const user = users[0] || null;
 
     // Format the response data
-    const formattedRecords = (updatedRecords as any[]).map((record) => ({
-      ...record,
-      createdAt: new Date(record.createdAt).toISOString(),
-      updatedAt: new Date(record.updatedAt).toISOString(),
-      startDate: new Date(record.startDate).toISOString(),
-      endDate: new Date(record.endDate).toISOString(),
-      payPrice: parseFloat(record.payPrice.toString()),
-      user: user,
-    }));
+    const formattedRecords = (updatedRecords as QueryResult[]).map(
+      (record) => ({
+        ...record,
+        createdAt: new Date(record.createdAt).toISOString(),
+        updatedAt: new Date(record.updatedAt).toISOString(),
+        startDate: new Date(record.startDate).toISOString(),
+        endDate: new Date(record.endDate).toISOString(),
+        payPrice: parseFloat(record.payPrice.toString()),
+        user: user,
+      })
+    );
 
     return NextResponse.json({
       success: true,
@@ -88,15 +106,18 @@ export async function PATCH(req: Request) {
       data: formattedRecords,
       count: Number(updatedRecord),
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error updating payment status:", error);
 
     return NextResponse.json(
       {
         success: false,
         error: "Internal server error",
-        message: error.message,
-        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+        message: error instanceof Error ? error.message : "Unknown error",
+        stack:
+          process.env.NODE_ENV === "development" && error instanceof Error
+            ? error.stack
+            : undefined,
       },
       { status: 500 }
     );

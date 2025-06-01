@@ -22,7 +22,7 @@ export async function POST(req: Request) {
         } = data;
         const packageList = packages
           .map(
-            (pkg: any, index: number) =>
+            (pkg: { packageId: string; symbol: string; timeframe: string }) =>
               `• Package ${pkg.packageId}: ${pkg.symbol} (${pkg.timeframe})`
           )
           .join("\n");
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
         } = data;
         const stripePackageList = stripePackages
           .map(
-            (pkg: any, index: number) =>
+            (pkg: { packageId: string; symbol: string; timeframe: string }) =>
               `• Package ${pkg.packageId}: ${pkg.symbol} (${pkg.timeframe})`
           )
           .join("\n");
@@ -177,10 +177,13 @@ export async function POST(req: Request) {
 
     console.log("Discord webhook sent successfully for type:", type);
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Discord webhook error:", error);
     return NextResponse.json(
-      { error: "Webhook failed", message: error.message },
+      {
+        error: "Webhook failed",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
