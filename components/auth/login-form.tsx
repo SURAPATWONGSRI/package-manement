@@ -4,7 +4,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,6 @@ import { toast } from "sonner";
 const LoginForm = () => {
   const [isPending, setIsPending] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loginMethod, setLoginMethod] = useState<"email" | "username">("email");
   const router = useRouter();
 
   // Handle form submit
@@ -26,10 +24,10 @@ const LoginForm = () => {
     setIsPending(true);
 
     try {
-      console.log(`Starting login process using ${loginMethod}...`);
+      console.log("Starting login process using username...");
 
       // Add the login method to formData
-      formData.append("loginMethod", loginMethod);
+      formData.append("loginMethod", "username");
 
       const result = await signInEmailAction(formData);
       console.log("Login action result:", result);
@@ -68,44 +66,17 @@ const LoginForm = () => {
         </Alert>
       )}
 
-      <Tabs
-        defaultValue="email"
-        className="w-full"
-        onValueChange={(value) => setLoginMethod(value as "email" | "username")}
-      >
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="email">Email</TabsTrigger>
-          <TabsTrigger value="username">Username</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="email" className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              required={loginMethod === "email"}
-              disabled={isPending || loginMethod !== "email"}
-              className={errorMessage ? "border-destructive" : ""}
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="username" className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input
-              type="text"
-              id="username"
-              name="username"
-              required={loginMethod === "username"}
-              disabled={isPending || loginMethod !== "username"}
-              className={errorMessage ? "border-destructive" : ""}
-            />
-          </div>
-        </TabsContent>
-      </Tabs>
+      <div className="space-y-2">
+        <Label htmlFor="username">Username</Label>
+        <Input
+          type="text"
+          id="username"
+          name="username"
+          required
+          disabled={isPending}
+          className={errorMessage ? "border-destructive" : ""}
+        />
+      </div>
 
       <div className="space-y-2">
         <div className="flex justify-between items-center gap-2">

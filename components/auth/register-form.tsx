@@ -111,9 +111,6 @@ const RegisterForm = () => {
           pattern="^[a-zA-Z0-9_]+$"
           title="Username must contain only letters, numbers, and underscores"
         />
-        <p className="text-xs text-muted-foreground">
-          Username ใช้สำหรับเข้าสู่ระบบ (ตัวอักษร ตัวเลข และ _ เท่านั้น)
-        </p>
       </div>
 
       {/* Email */}
@@ -130,7 +127,7 @@ const RegisterForm = () => {
 
       {/* Line ID */}
       <div className="space-y-2 ">
-        <Label htmlFor="lineId">LINE ID (optional)</Label>
+        <Label htmlFor="lineId">LINE ID</Label>
         <Input
           id="lineId"
           name="lineId"
@@ -138,12 +135,10 @@ const RegisterForm = () => {
           aria-description="Your LINE ID for communication purposes"
           minLength={4}
           maxLength={20}
+          required
           pattern="^[a-z][a-z0-9._-]{3,19}$"
           title="LINE ID must be 4–20 characters, start with a letter, and contain only lowercase letters, numbers, dots, dashes, or underscores."
         />
-        <p className="text-xs text-muted-foreground">
-          LINE ID จะใช้สำหรับการติดต่อกับคุณ
-        </p>
       </div>
 
       {/* Password */}
