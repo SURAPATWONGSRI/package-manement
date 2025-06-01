@@ -53,53 +53,19 @@ export async function POST(req: Request) {
       const paidStatus =
         selections.find((s) => s.userId === userData.userId)?.paid ?? false;
 
-      await prisma.$executeRaw`
-        INSERT INTO package_selections (
-          id, "userId", name, email, packages, "payPrice", "startDate", "endDate", paid, "createdAt", "updatedAt"
-        ) VALUES (
-          gen_random_uuid(), ${userData.userId}, ${userData.name}, ${
-        userData.email
-      },
-          ${JSON.stringify(
-            userData.packages
-          )}::jsonb, ${userData.payPrice.toString()}::decimal(10,2),
-          (${
-            userData.startDateISO
-          }::timestamptz AT TIME ZONE 'Asia/Bangkok')::timestamp,
-          (${
-            userData.endDateISO
-          }::timestamptz AT TIME ZONE 'Asia/Bangkok')::timestamp,
-          ${paidStatus}::boolean,
-          (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp,
-          (NOW() AT TIME ZONE 'Asia/Bangkok')::timestamp
-        )
-      `;
-
-      // ...existing code...
-
-      const createdRecord = await prisma.packageSelection.findFirst({
-        where: {
+      // แทนที่ raw SQL ด้วย Prisma client
+      const createdRecord = await prisma.packageSelection.create({
+        data: {
           userId: userData.userId,
+          name: userData.name,
+          email: userData.email,
+          packages: userData.packages,
           payPrice: userData.payPrice.toString(),
-        },
-        orderBy: { createdAt: "desc" },
-        // เพิ่ม select เพื่อลด data transfer
-        select: {
-          id: true,
-          userId: true,
-          name: true,
-          email: true,
-          packages: true,
-          payPrice: true,
-          startDate: true,
-          endDate: true,
-          paid: true,
-          createdAt: true,
-          updatedAt: true,
+          startDate: new Date(userData.startDateISO),
+          endDate: new Date(userData.endDateISO),
+          paid: paidStatus,
         },
       });
-
-      // ...existing code...
 
       createdSelections.push(createdRecord);
     }
@@ -167,7 +133,6 @@ export async function GET(req: Request) {
       startDate: selection.startDate.toISOString(),
       endDate: selection.endDate.toISOString(),
       paid: selection.paid,
-      stripeCustomerId: selection.stripeCustomerId,
       user: selection.user,
     }));
 

@@ -773,10 +773,6 @@ export namespace Prisma {
             args: Prisma.PackageSelectionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.PackageSelectionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>[]
-          }
           delete: {
             args: Prisma.PackageSelectionDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>
@@ -792,10 +788,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.PackageSelectionUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PackageSelectionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PackageSelectionPayload>[]
           }
           upsert: {
             args: Prisma.PackageSelectionUpsertArgs<ExtArgs>
@@ -847,10 +839,6 @@ export namespace Prisma {
             args: Prisma.PostCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.PostCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
-          }
           delete: {
             args: Prisma.PostDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$PostPayload>
@@ -866,10 +854,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.PostUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PostUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostPayload>[]
           }
           upsert: {
             args: Prisma.PostUpsertArgs<ExtArgs>
@@ -921,10 +905,6 @@ export namespace Prisma {
             args: Prisma.UserCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
           delete: {
             args: Prisma.UserDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$UserPayload>
@@ -940,10 +920,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.UserUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           upsert: {
             args: Prisma.UserUpsertArgs<ExtArgs>
@@ -995,10 +971,6 @@ export namespace Prisma {
             args: Prisma.SessionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
-          }
           delete: {
             args: Prisma.SessionDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$SessionPayload>
@@ -1014,10 +986,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.SessionUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           upsert: {
             args: Prisma.SessionUpsertArgs<ExtArgs>
@@ -1069,10 +1037,6 @@ export namespace Prisma {
             args: Prisma.AccountCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.AccountCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
-          }
           delete: {
             args: Prisma.AccountDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$AccountPayload>
@@ -1088,10 +1052,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.AccountUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AccountUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
           }
           upsert: {
             args: Prisma.AccountUpsertArgs<ExtArgs>
@@ -1143,10 +1103,6 @@ export namespace Prisma {
             args: Prisma.VerificationCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.VerificationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>[]
-          }
           delete: {
             args: Prisma.VerificationDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
@@ -1162,10 +1118,6 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.VerificationUpdateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.VerificationUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>[]
           }
           upsert: {
             args: Prisma.VerificationUpsertArgs<ExtArgs>
@@ -1457,7 +1409,6 @@ export namespace Prisma {
     paid: boolean | null
     email: string | null
     name: string | null
-    stripeCustomerId: string | null
   }
 
   export type PackageSelectionMaxAggregateOutputType = {
@@ -1471,7 +1422,6 @@ export namespace Prisma {
     paid: boolean | null
     email: string | null
     name: string | null
-    stripeCustomerId: string | null
   }
 
   export type PackageSelectionCountAggregateOutputType = {
@@ -1486,7 +1436,6 @@ export namespace Prisma {
     paid: number
     email: number
     name: number
-    stripeCustomerId: number
     _all: number
   }
 
@@ -1510,7 +1459,6 @@ export namespace Prisma {
     paid?: true
     email?: true
     name?: true
-    stripeCustomerId?: true
   }
 
   export type PackageSelectionMaxAggregateInputType = {
@@ -1524,7 +1472,6 @@ export namespace Prisma {
     paid?: true
     email?: true
     name?: true
-    stripeCustomerId?: true
   }
 
   export type PackageSelectionCountAggregateInputType = {
@@ -1539,7 +1486,6 @@ export namespace Prisma {
     paid?: true
     email?: true
     name?: true
-    stripeCustomerId?: true
     _all?: true
   }
 
@@ -1641,7 +1587,6 @@ export namespace Prisma {
     paid: boolean
     email: string
     name: string
-    stripeCustomerId: string | null
     _count: PackageSelectionCountAggregateOutputType | null
     _avg: PackageSelectionAvgAggregateOutputType | null
     _sum: PackageSelectionSumAggregateOutputType | null
@@ -1675,41 +1620,10 @@ export namespace Prisma {
     paid?: boolean
     email?: boolean
     name?: boolean
-    stripeCustomerId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["packageSelection"]>
 
-  export type PackageSelectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    userId?: boolean
-    packages?: boolean
-    payPrice?: boolean
-    startDate?: boolean
-    endDate?: boolean
-    paid?: boolean
-    email?: boolean
-    name?: boolean
-    stripeCustomerId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["packageSelection"]>
 
-  export type PackageSelectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    userId?: boolean
-    packages?: boolean
-    payPrice?: boolean
-    startDate?: boolean
-    endDate?: boolean
-    paid?: boolean
-    email?: boolean
-    name?: boolean
-    stripeCustomerId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["packageSelection"]>
 
   export type PackageSelectionSelectScalar = {
     id?: boolean
@@ -1723,17 +1637,10 @@ export namespace Prisma {
     paid?: boolean
     email?: boolean
     name?: boolean
-    stripeCustomerId?: boolean
   }
 
-  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "packages" | "payPrice" | "startDate" | "endDate" | "paid" | "email" | "name" | "stripeCustomerId", ExtArgs["result"]["packageSelection"]>
+  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "packages" | "payPrice" | "startDate" | "endDate" | "paid" | "email" | "name", ExtArgs["result"]["packageSelection"]>
   export type PackageSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PackageSelectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PackageSelectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -1754,7 +1661,6 @@ export namespace Prisma {
       paid: boolean
       email: string
       name: string
-      stripeCustomerId: string | null
     }, ExtArgs["result"]["packageSelection"]>
     composites: {}
   }
@@ -1873,30 +1779,6 @@ export namespace Prisma {
     createMany<T extends PackageSelectionCreateManyArgs>(args?: SelectSubset<T, PackageSelectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many PackageSelections and returns the data saved in the database.
-     * @param {PackageSelectionCreateManyAndReturnArgs} args - Arguments to create many PackageSelections.
-     * @example
-     * // Create many PackageSelections
-     * const packageSelection = await prisma.packageSelection.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PackageSelections and only return the `id`
-     * const packageSelectionWithIdOnly = await prisma.packageSelection.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PackageSelectionCreateManyAndReturnArgs>(args?: SelectSubset<T, PackageSelectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a PackageSelection.
      * @param {PackageSelectionDeleteArgs} args - Arguments to delete one PackageSelection.
      * @example
@@ -1959,36 +1841,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends PackageSelectionUpdateManyArgs>(args: SelectSubset<T, PackageSelectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PackageSelections and returns the data updated in the database.
-     * @param {PackageSelectionUpdateManyAndReturnArgs} args - Arguments to update many PackageSelections.
-     * @example
-     * // Update many PackageSelections
-     * const packageSelection = await prisma.packageSelection.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more PackageSelections and only return the `id`
-     * const packageSelectionWithIdOnly = await prisma.packageSelection.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PackageSelectionUpdateManyAndReturnArgs>(args: SelectSubset<T, PackageSelectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PackageSelectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one PackageSelection.
@@ -2190,7 +2042,6 @@ export namespace Prisma {
     readonly paid: FieldRef<"PackageSelection", 'Boolean'>
     readonly email: FieldRef<"PackageSelection", 'String'>
     readonly name: FieldRef<"PackageSelection", 'String'>
-    readonly stripeCustomerId: FieldRef<"PackageSelection", 'String'>
   }
     
 
@@ -2424,29 +2275,6 @@ export namespace Prisma {
   }
 
   /**
-   * PackageSelection createManyAndReturn
-   */
-  export type PackageSelectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PackageSelection
-     */
-    select?: PackageSelectionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PackageSelection
-     */
-    omit?: PackageSelectionOmit<ExtArgs> | null
-    /**
-     * The data used to create many PackageSelections.
-     */
-    data: PackageSelectionCreateManyInput | PackageSelectionCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PackageSelectionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
    * PackageSelection update
    */
   export type PackageSelectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2488,36 +2316,6 @@ export namespace Prisma {
      * Limit how many PackageSelections to update.
      */
     limit?: number
-  }
-
-  /**
-   * PackageSelection updateManyAndReturn
-   */
-  export type PackageSelectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PackageSelection
-     */
-    select?: PackageSelectionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PackageSelection
-     */
-    omit?: PackageSelectionOmit<ExtArgs> | null
-    /**
-     * The data used to update PackageSelections.
-     */
-    data: XOR<PackageSelectionUpdateManyMutationInput, PackageSelectionUncheckedUpdateManyInput>
-    /**
-     * Filter which PackageSelections to update
-     */
-    where?: PackageSelectionWhereInput
-    /**
-     * Limit how many PackageSelections to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PackageSelectionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2796,29 +2594,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
-  export type PostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    title?: boolean
-    content?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["post"]>
 
-  export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    title?: boolean
-    content?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["post"]>
 
   export type PostSelectScalar = {
     id?: boolean
@@ -2833,12 +2609,6 @@ export namespace Prisma {
 
   export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "content" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -2974,30 +2744,6 @@ export namespace Prisma {
     createMany<T extends PostCreateManyArgs>(args?: SelectSubset<T, PostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Posts and returns the data saved in the database.
-     * @param {PostCreateManyAndReturnArgs} args - Arguments to create many Posts.
-     * @example
-     * // Create many Posts
-     * const post = await prisma.post.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Posts and only return the `id`
-     * const postWithIdOnly = await prisma.post.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PostCreateManyAndReturnArgs>(args?: SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a Post.
      * @param {PostDeleteArgs} args - Arguments to delete one Post.
      * @example
@@ -3060,36 +2806,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends PostUpdateManyArgs>(args: SelectSubset<T, PostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Posts and returns the data updated in the database.
-     * @param {PostUpdateManyAndReturnArgs} args - Arguments to update many Posts.
-     * @example
-     * // Update many Posts
-     * const post = await prisma.post.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Posts and only return the `id`
-     * const postWithIdOnly = await prisma.post.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PostUpdateManyAndReturnArgs>(args: SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Post.
@@ -3521,29 +3237,6 @@ export namespace Prisma {
   }
 
   /**
-   * Post createManyAndReturn
-   */
-  export type PostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * The data used to create many Posts.
-     */
-    data: PostCreateManyInput | PostCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
    * Post update
    */
   export type PostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3585,36 +3278,6 @@ export namespace Prisma {
      * Limit how many Posts to update.
      */
     limit?: number
-  }
-
-  /**
-   * Post updateManyAndReturn
-   */
-  export type PostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * The data used to update Posts.
-     */
-    data: XOR<PostUpdateManyMutationInput, PostUncheckedUpdateManyInput>
-    /**
-     * Filter which Posts to update
-     */
-    where?: PostWhereInput
-    /**
-     * Limit how many Posts to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3727,9 +3390,9 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
-    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
+    stripeCustomerId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -3747,9 +3410,9 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
-    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean | null
+    stripeCustomerId: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -3767,9 +3430,9 @@ export namespace Prisma {
     banned: number
     banReason: number
     banExpires: number
-    stripeCustomerId: number
     deletedAt: number
     isDeleted: number
+    stripeCustomerId: number
     _all: number
   }
 
@@ -3789,9 +3452,9 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
-    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
+    stripeCustomerId?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -3809,9 +3472,9 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
-    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
+    stripeCustomerId?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -3829,9 +3492,9 @@ export namespace Prisma {
     banned?: true
     banReason?: true
     banExpires?: true
-    stripeCustomerId?: true
     deletedAt?: true
     isDeleted?: true
+    stripeCustomerId?: true
     _all?: true
   }
 
@@ -3922,9 +3585,9 @@ export namespace Prisma {
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
-    stripeCustomerId: string | null
     deletedAt: Date | null
     isDeleted: boolean
+    stripeCustomerId: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -3959,9 +3622,9 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
-    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
+    stripeCustomerId?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -3969,45 +3632,7 @@ export namespace Prisma {
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
-  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    username?: boolean
-    displayUsername?: boolean
-    name?: boolean
-    email?: boolean
-    lineId?: boolean
-    emailVerified?: boolean
-    image?: boolean
-    role?: boolean
-    banned?: boolean
-    banReason?: boolean
-    banExpires?: boolean
-    stripeCustomerId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-  }, ExtArgs["result"]["user"]>
 
-  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    username?: boolean
-    displayUsername?: boolean
-    name?: boolean
-    email?: boolean
-    lineId?: boolean
-    emailVerified?: boolean
-    image?: boolean
-    role?: boolean
-    banned?: boolean
-    banReason?: boolean
-    banExpires?: boolean
-    stripeCustomerId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-  }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
@@ -4024,12 +3649,12 @@ export namespace Prisma {
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
-    stripeCustomerId?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
+    stripeCustomerId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "stripeCustomerId" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted" | "stripeCustomerId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
@@ -4037,8 +3662,6 @@ export namespace Prisma {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -4063,9 +3686,9 @@ export namespace Prisma {
       banned: boolean | null
       banReason: string | null
       banExpires: Date | null
-      stripeCustomerId: string | null
       deletedAt: Date | null
       isDeleted: boolean
+      stripeCustomerId: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4184,30 +3807,6 @@ export namespace Prisma {
     createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Users and returns the data saved in the database.
-     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a User.
      * @param {UserDeleteArgs} args - Arguments to delete one User.
      * @example
@@ -4270,36 +3869,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users and returns the data updated in the database.
-     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one User.
@@ -4507,9 +4076,9 @@ export namespace Prisma {
     readonly banned: FieldRef<"User", 'Boolean'>
     readonly banReason: FieldRef<"User", 'String'>
     readonly banExpires: FieldRef<"User", 'DateTime'>
-    readonly stripeCustomerId: FieldRef<"User", 'String'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
+    readonly stripeCustomerId: FieldRef<"User", 'String'>
   }
     
 
@@ -4743,25 +4312,6 @@ export namespace Prisma {
   }
 
   /**
-   * User createManyAndReturn
-   */
-  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
    * User update
    */
   export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4791,32 +4341,6 @@ export namespace Prisma {
    * User updateMany
    */
   export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * User updateManyAndReturn
-   */
-  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
     /**
      * The data used to update Users.
      */
@@ -5227,35 +4751,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
-  export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    expiresAt?: boolean
-    token?: boolean
-    ipAddress?: boolean
-    userAgent?: boolean
-    impersonatedBy?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["session"]>
 
-  export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    expiresAt?: boolean
-    token?: boolean
-    ipAddress?: boolean
-    userAgent?: boolean
-    impersonatedBy?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["session"]>
 
   export type SessionSelectScalar = {
     id?: boolean
@@ -5273,12 +4769,6 @@ export namespace Prisma {
 
   export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "impersonatedBy" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -5417,30 +4907,6 @@ export namespace Prisma {
     createMany<T extends SessionCreateManyArgs>(args?: SelectSubset<T, SessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Sessions and returns the data saved in the database.
-     * @param {SessionCreateManyAndReturnArgs} args - Arguments to create many Sessions.
-     * @example
-     * // Create many Sessions
-     * const session = await prisma.session.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Sessions and only return the `id`
-     * const sessionWithIdOnly = await prisma.session.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SessionCreateManyAndReturnArgs>(args?: SelectSubset<T, SessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a Session.
      * @param {SessionDeleteArgs} args - Arguments to delete one Session.
      * @example
@@ -5503,36 +4969,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends SessionUpdateManyArgs>(args: SelectSubset<T, SessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Sessions and returns the data updated in the database.
-     * @param {SessionUpdateManyAndReturnArgs} args - Arguments to update many Sessions.
-     * @example
-     * // Update many Sessions
-     * const session = await prisma.session.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Sessions and only return the `id`
-     * const sessionWithIdOnly = await prisma.session.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SessionUpdateManyAndReturnArgs>(args: SelectSubset<T, SessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Session.
@@ -5967,29 +5403,6 @@ export namespace Prisma {
   }
 
   /**
-   * Session createManyAndReturn
-   */
-  export type SessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: SessionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: SessionOmit<ExtArgs> | null
-    /**
-     * The data used to create many Sessions.
-     */
-    data: SessionCreateManyInput | SessionCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
    * Session update
    */
   export type SessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6031,36 +5444,6 @@ export namespace Prisma {
      * Limit how many Sessions to update.
      */
     limit?: number
-  }
-
-  /**
-   * Session updateManyAndReturn
-   */
-  export type SessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Session
-     */
-    select?: SessionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Session
-     */
-    omit?: SessionOmit<ExtArgs> | null
-    /**
-     * The data used to update Sessions.
-     */
-    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
-    /**
-     * Filter which Sessions to update
-     */
-    where?: SessionWhereInput
-    /**
-     * Limit how many Sessions to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SessionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6395,43 +5778,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
-  export type AccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    accountId?: boolean
-    providerId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
-    password?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["account"]>
 
-  export type AccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    accountId?: boolean
-    providerId?: boolean
-    accessToken?: boolean
-    refreshToken?: boolean
-    idToken?: boolean
-    accessTokenExpiresAt?: boolean
-    refreshTokenExpiresAt?: boolean
-    scope?: boolean
-    password?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["account"]>
 
   export type AccountSelectScalar = {
     id?: boolean
@@ -6453,12 +5800,6 @@ export namespace Prisma {
 
   export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "userId" | "deletedAt" | "isDeleted", ExtArgs["result"]["account"]>
   export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
@@ -6601,30 +5942,6 @@ export namespace Prisma {
     createMany<T extends AccountCreateManyArgs>(args?: SelectSubset<T, AccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Accounts and returns the data saved in the database.
-     * @param {AccountCreateManyAndReturnArgs} args - Arguments to create many Accounts.
-     * @example
-     * // Create many Accounts
-     * const account = await prisma.account.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Accounts and only return the `id`
-     * const accountWithIdOnly = await prisma.account.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AccountCreateManyAndReturnArgs>(args?: SelectSubset<T, AccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a Account.
      * @param {AccountDeleteArgs} args - Arguments to delete one Account.
      * @example
@@ -6687,36 +6004,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends AccountUpdateManyArgs>(args: SelectSubset<T, AccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Accounts and returns the data updated in the database.
-     * @param {AccountUpdateManyAndReturnArgs} args - Arguments to update many Accounts.
-     * @example
-     * // Update many Accounts
-     * const account = await prisma.account.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Accounts and only return the `id`
-     * const accountWithIdOnly = await prisma.account.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends AccountUpdateManyAndReturnArgs>(args: SelectSubset<T, AccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Account.
@@ -7155,29 +6442,6 @@ export namespace Prisma {
   }
 
   /**
-   * Account createManyAndReturn
-   */
-  export type AccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Account
-     */
-    select?: AccountSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Account
-     */
-    omit?: AccountOmit<ExtArgs> | null
-    /**
-     * The data used to create many Accounts.
-     */
-    data: AccountCreateManyInput | AccountCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
    * Account update
    */
   export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7219,36 +6483,6 @@ export namespace Prisma {
      * Limit how many Accounts to update.
      */
     limit?: number
-  }
-
-  /**
-   * Account updateManyAndReturn
-   */
-  export type AccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Account
-     */
-    select?: AccountSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Account
-     */
-    omit?: AccountOmit<ExtArgs> | null
-    /**
-     * The data used to update Accounts.
-     */
-    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
-    /**
-     * Filter which Accounts to update
-     */
-    where?: AccountWhereInput
-    /**
-     * Limit how many Accounts to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AccountIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7526,27 +6760,7 @@ export namespace Prisma {
     isDeleted?: boolean
   }, ExtArgs["result"]["verification"]>
 
-  export type VerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    identifier?: boolean
-    value?: boolean
-    expiresAt?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-  }, ExtArgs["result"]["verification"]>
 
-  export type VerificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    identifier?: boolean
-    value?: boolean
-    expiresAt?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-  }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectScalar = {
     id?: boolean
@@ -7691,30 +6905,6 @@ export namespace Prisma {
     createMany<T extends VerificationCreateManyArgs>(args?: SelectSubset<T, VerificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Verifications and returns the data saved in the database.
-     * @param {VerificationCreateManyAndReturnArgs} args - Arguments to create many Verifications.
-     * @example
-     * // Create many Verifications
-     * const verification = await prisma.verification.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Verifications and only return the `id`
-     * const verificationWithIdOnly = await prisma.verification.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends VerificationCreateManyAndReturnArgs>(args?: SelectSubset<T, VerificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
      * Delete a Verification.
      * @param {VerificationDeleteArgs} args - Arguments to delete one Verification.
      * @example
@@ -7777,36 +6967,6 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends VerificationUpdateManyArgs>(args: SelectSubset<T, VerificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Verifications and returns the data updated in the database.
-     * @param {VerificationUpdateManyAndReturnArgs} args - Arguments to update many Verifications.
-     * @example
-     * // Update many Verifications
-     * const verification = await prisma.verification.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Verifications and only return the `id`
-     * const verificationWithIdOnly = await prisma.verification.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends VerificationUpdateManyAndReturnArgs>(args: SelectSubset<T, VerificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one Verification.
@@ -8213,25 +7373,6 @@ export namespace Prisma {
   }
 
   /**
-   * Verification createManyAndReturn
-   */
-  export type VerificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Verification
-     */
-    select?: VerificationSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Verification
-     */
-    omit?: VerificationOmit<ExtArgs> | null
-    /**
-     * The data used to create many Verifications.
-     */
-    data: VerificationCreateManyInput | VerificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
    * Verification update
    */
   export type VerificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8257,32 +7398,6 @@ export namespace Prisma {
    * Verification updateMany
    */
   export type VerificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Verifications.
-     */
-    data: XOR<VerificationUpdateManyMutationInput, VerificationUncheckedUpdateManyInput>
-    /**
-     * Filter which Verifications to update
-     */
-    where?: VerificationWhereInput
-    /**
-     * Limit how many Verifications to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Verification updateManyAndReturn
-   */
-  export type VerificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Verification
-     */
-    select?: VerificationSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Verification
-     */
-    omit?: VerificationOmit<ExtArgs> | null
     /**
      * The data used to update Verifications.
      */
@@ -8395,8 +7510,7 @@ export namespace Prisma {
     endDate: 'endDate',
     paid: 'paid',
     email: 'email',
-    name: 'name',
-    stripeCustomerId: 'stripeCustomerId'
+    name: 'name'
   };
 
   export type PackageSelectionScalarFieldEnum = (typeof PackageSelectionScalarFieldEnum)[keyof typeof PackageSelectionScalarFieldEnum]
@@ -8431,9 +7545,9 @@ export namespace Prisma {
     banned: 'banned',
     banReason: 'banReason',
     banExpires: 'banExpires',
-    stripeCustomerId: 'stripeCustomerId',
     deletedAt: 'deletedAt',
-    isDeleted: 'isDeleted'
+    isDeleted: 'isDeleted',
+    stripeCustomerId: 'stripeCustomerId'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8506,14 +7620,6 @@ export namespace Prisma {
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -8523,12 +7629,91 @@ export namespace Prisma {
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const PackageSelectionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    email: 'email',
+    name: 'name'
+  };
+
+  export type PackageSelectionOrderByRelevanceFieldEnum = (typeof PackageSelectionOrderByRelevanceFieldEnum)[keyof typeof PackageSelectionOrderByRelevanceFieldEnum]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const PostOrderByRelevanceFieldEnum: {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    userId: 'userId'
+  };
+
+  export type PostOrderByRelevanceFieldEnum = (typeof PostOrderByRelevanceFieldEnum)[keyof typeof PostOrderByRelevanceFieldEnum]
+
+
+  export const UserOrderByRelevanceFieldEnum: {
+    id: 'id',
+    username: 'username',
+    displayUsername: 'displayUsername',
+    name: 'name',
+    email: 'email',
+    lineId: 'lineId',
+    image: 'image',
+    banReason: 'banReason',
+    stripeCustomerId: 'stripeCustomerId'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const SessionOrderByRelevanceFieldEnum: {
+    id: 'id',
+    token: 'token',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    impersonatedBy: 'impersonatedBy',
+    userId: 'userId'
+  };
+
+  export type SessionOrderByRelevanceFieldEnum = (typeof SessionOrderByRelevanceFieldEnum)[keyof typeof SessionOrderByRelevanceFieldEnum]
+
+
+  export const AccountOrderByRelevanceFieldEnum: {
+    id: 'id',
+    accountId: 'accountId',
+    providerId: 'providerId',
+    accessToken: 'accessToken',
+    refreshToken: 'refreshToken',
+    idToken: 'idToken',
+    scope: 'scope',
+    password: 'password',
+    userId: 'userId'
+  };
+
+  export type AccountOrderByRelevanceFieldEnum = (typeof AccountOrderByRelevanceFieldEnum)[keyof typeof AccountOrderByRelevanceFieldEnum]
+
+
+  export const VerificationOrderByRelevanceFieldEnum: {
+    id: 'id',
+    identifier: 'identifier',
+    value: 'value'
+  };
+
+  export type VerificationOrderByRelevanceFieldEnum = (typeof VerificationOrderByRelevanceFieldEnum)[keyof typeof VerificationOrderByRelevanceFieldEnum]
 
 
   /**
@@ -8544,23 +7729,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String[]'
-   */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -8586,13 +7757,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Decimal[]'
-   */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -8607,23 +7771,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'UserRole[]'
-   */
-  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -8645,7 +7795,6 @@ export namespace Prisma {
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
-    stripeCustomerId?: StringNullableFilter<"PackageSelection"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -8661,8 +7810,8 @@ export namespace Prisma {
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
+    _relevance?: PackageSelectionOrderByRelevanceInput
   }
 
   export type PackageSelectionWhereUniqueInput = Prisma.AtLeast<{
@@ -8680,7 +7829,6 @@ export namespace Prisma {
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
-    stripeCustomerId?: StringNullableFilter<"PackageSelection"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -8696,7 +7844,6 @@ export namespace Prisma {
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
     _count?: PackageSelectionCountOrderByAggregateInput
     _avg?: PackageSelectionAvgOrderByAggregateInput
     _max?: PackageSelectionMaxOrderByAggregateInput
@@ -8719,7 +7866,6 @@ export namespace Prisma {
     paid?: BoolWithAggregatesFilter<"PackageSelection"> | boolean
     email?: StringWithAggregatesFilter<"PackageSelection"> | string
     name?: StringWithAggregatesFilter<"PackageSelection"> | string
-    stripeCustomerId?: StringNullableWithAggregatesFilter<"PackageSelection"> | string | null
   }
 
   export type PostWhereInput = {
@@ -8747,6 +7893,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
+    _relevance?: PostOrderByRelevanceInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -8810,9 +7957,9 @@ export namespace Prisma {
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
-    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     packages?: PackageSelectionListRelationFilter
     posts?: PostListRelationFilter
@@ -8834,13 +7981,14 @@ export namespace Prisma {
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     packages?: PackageSelectionOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8861,9 +8009,9 @@ export namespace Prisma {
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
-    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     packages?: PackageSelectionListRelationFilter
     posts?: PostListRelationFilter
@@ -8885,9 +8033,9 @@ export namespace Prisma {
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -8911,9 +8059,9 @@ export namespace Prisma {
     banned?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
     banReason?: StringNullableWithAggregatesFilter<"User"> | string | null
     banExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
+    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type SessionWhereInput = {
@@ -8947,6 +8095,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
+    _relevance?: SessionOrderByRelevanceInput
   }
 
   export type SessionWhereUniqueInput = Prisma.AtLeast<{
@@ -9040,6 +8189,7 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
+    _relevance?: AccountOrderByRelevanceInput
   }
 
   export type AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -9129,6 +8279,7 @@ export namespace Prisma {
     expiresAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
+    _relevance?: VerificationOrderByRelevanceInput
   }
 
   export type VerificationWhereUniqueInput = Prisma.AtLeast<{
@@ -9179,12 +8330,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
     user: UserCreateNestedOneWithoutPackagesInput
   }
 
@@ -9195,12 +8345,11 @@ export namespace Prisma {
     userId: string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
   }
 
   export type PackageSelectionUpdateInput = {
@@ -9214,7 +8363,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutPackagesNestedInput
   }
 
@@ -9230,7 +8378,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageSelectionCreateManyInput = {
@@ -9240,12 +8387,11 @@ export namespace Prisma {
     userId: string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
   }
 
   export type PackageSelectionUpdateManyMutationInput = {
@@ -9259,7 +8405,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageSelectionUncheckedUpdateManyInput = {
@@ -9274,7 +8419,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostCreateInput = {
@@ -9355,22 +8499,22 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -9379,22 +8523,22 @@ export namespace Prisma {
 
   export type UserUncheckedCreateInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -9416,9 +8560,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -9440,9 +8584,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -9451,22 +8595,22 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -9484,9 +8628,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -9504,9 +8648,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SessionCreateInput = {
@@ -9810,8 +8954,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -9819,14 +8963,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
+    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -9842,7 +8986,7 @@ export namespace Prisma {
 
   export type JsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
+    path?: string
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
@@ -9850,17 +8994,17 @@ export namespace Prisma {
     array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
     lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
@@ -9873,29 +9017,15 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type SortOrderInput = {
+  export type PackageSelectionOrderByRelevanceInput = {
+    fields: PackageSelectionOrderByRelevanceFieldEnum | PackageSelectionOrderByRelevanceFieldEnum[]
     sort: SortOrder
-    nulls?: NullsOrder
+    search: string
   }
 
   export type PackageSelectionCountOrderByAggregateInput = {
@@ -9910,7 +9040,6 @@ export namespace Prisma {
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    stripeCustomerId?: SortOrder
   }
 
   export type PackageSelectionAvgOrderByAggregateInput = {
@@ -9928,7 +9057,6 @@ export namespace Prisma {
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    stripeCustomerId?: SortOrder
   }
 
   export type PackageSelectionMinOrderByAggregateInput = {
@@ -9942,7 +9070,6 @@ export namespace Prisma {
     paid?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    stripeCustomerId?: SortOrder
   }
 
   export type PackageSelectionSumOrderByAggregateInput = {
@@ -9951,8 +9078,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -9960,7 +9087,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
+    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -9969,8 +9096,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -9989,7 +9116,7 @@ export namespace Prisma {
 
   export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
+    path?: string
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
@@ -9997,10 +9124,10 @@ export namespace Prisma {
     array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedJsonFilter<$PrismaModel>
@@ -10009,8 +9136,8 @@ export namespace Prisma {
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
     lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
@@ -10031,33 +9158,26 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type PostOrderByRelevanceInput = {
+    fields: PostOrderByRelevanceFieldEnum | PostOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -10095,8 +9215,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -10107,10 +9227,25 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type EnumUserRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[]
+    notIn?: $Enums.UserRole[]
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
@@ -10159,6 +9294,12 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -10174,9 +9315,9 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
-    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
+    stripeCustomerId?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -10194,9 +9335,9 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
-    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
+    stripeCustomerId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -10214,15 +9355,33 @@ export namespace Prisma {
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
-    stripeCustomerId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
+    stripeCustomerId?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[]
+    notIn?: $Enums.UserRole[]
     not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
@@ -10235,6 +9394,12 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBoolNullableFilter<$PrismaModel>
     _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type SessionOrderByRelevanceInput = {
+    fields: SessionOrderByRelevanceFieldEnum | SessionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type SessionCountOrderByAggregateInput = {
@@ -10277,6 +9442,12 @@ export namespace Prisma {
     userId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
+  }
+
+  export type AccountOrderByRelevanceInput = {
+    fields: AccountOrderByRelevanceFieldEnum | AccountOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type AccountCountOrderByAggregateInput = {
@@ -10331,6 +9502,12 @@ export namespace Prisma {
     userId?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
+  }
+
+  export type VerificationOrderByRelevanceInput = {
+    fields: VerificationOrderByRelevanceFieldEnum | VerificationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type VerificationCountOrderByAggregateInput = {
@@ -10390,10 +9567,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type UserUpdateOneRequiredWithoutPackagesNestedInput = {
@@ -10476,6 +9649,10 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type EnumUserRoleFieldUpdateOperationsInput = {
@@ -10628,8 +9805,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -10637,13 +9814,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -10653,8 +9831,8 @@ export namespace Prisma {
 
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
     lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
@@ -10667,24 +9845,10 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -10692,6 +9856,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -10700,8 +9865,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -10711,8 +9876,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -10731,7 +9896,7 @@ export namespace Prisma {
 
   export type NestedJsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
+    path?: string
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
     string_contains?: string | StringFieldRefInput<$PrismaModel>
     string_starts_with?: string | StringFieldRefInput<$PrismaModel>
@@ -10739,17 +9904,17 @@ export namespace Prisma {
     array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
     array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
     lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
@@ -10770,38 +9935,10 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -10811,8 +9948,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -10823,10 +9960,36 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[]
+    notIn?: $Enums.UserRole[]
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
@@ -10835,10 +9998,28 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[]
+    notIn?: $Enums.UserRole[]
     not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
@@ -10855,22 +10036,22 @@ export namespace Prisma {
 
   export type UserCreateWithoutPackagesInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -10878,22 +10059,22 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutPackagesInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -10930,9 +10111,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -10953,9 +10134,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -10963,22 +10144,22 @@ export namespace Prisma {
 
   export type UserCreateWithoutPostsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -10986,22 +10167,22 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutPostsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -11038,9 +10219,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -11061,9 +10242,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -11119,12 +10300,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
   }
 
   export type PackageSelectionUncheckedCreateWithoutUserInput = {
@@ -11133,12 +10313,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
   }
 
   export type PackageSelectionCreateOrConnectWithoutUserInput = {
@@ -11285,7 +10464,6 @@ export namespace Prisma {
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
     name?: StringFilter<"PackageSelection"> | string
-    stripeCustomerId?: StringNullableFilter<"PackageSelection"> | string | null
   }
 
   export type PostUpsertWithWhereUniqueWithoutUserInput = {
@@ -11353,22 +10531,22 @@ export namespace Prisma {
 
   export type UserCreateWithoutSessionsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -11376,22 +10554,22 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutSessionsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -11428,9 +10606,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -11451,9 +10629,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -11461,22 +10639,22 @@ export namespace Prisma {
 
   export type UserCreateWithoutAccountsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -11484,22 +10662,22 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutAccountsInput = {
     id?: string
-    createdAt: Date | string
-    updatedAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     username?: string | null
     displayUsername?: string | null
     name: string
     email: string
     lineId?: string | null
-    emailVerified: boolean
+    emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
-    stripeCustomerId?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
+    stripeCustomerId?: string | null
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -11536,9 +10714,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -11559,9 +10737,9 @@ export namespace Prisma {
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -11590,12 +10768,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     packages: JsonNullValueInput | InputJsonValue
     payPrice: Decimal | DecimalJsLike | number | string
-    startDate?: Date | string
-    endDate?: Date | string
+    startDate: Date | string
+    endDate: Date | string
     paid?: boolean
     email: string
     name: string
-    stripeCustomerId?: string | null
   }
 
   export type PostCreateManyUserInput = {
@@ -11683,7 +10860,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageSelectionUncheckedUpdateWithoutUserInput = {
@@ -11697,7 +10873,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PackageSelectionUncheckedUpdateManyWithoutUserInput = {
@@ -11711,7 +10886,6 @@ export namespace Prisma {
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostUpdateWithoutUserInput = {

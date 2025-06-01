@@ -4,32 +4,24 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider  = "mysql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+
 }
 
 model PackageSelection {
-  id               String   @id @default(uuid())
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  userId           String
-  packages         Json     // Store all packages as a JSON array
-  payPrice         Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
-  startDate        DateTime  @default(now())// Package start date
-  endDate          DateTime @default(now())// Package end date
-  paid             Boolean  @default(false)
-  email            String
-  name             String
-  stripeCustomerId String?
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])           // สำหรับ query by userId
-  @@index([createdAt])        // สำหรับ orderBy createdAt
-  @@index([paid])             // สำหรับ filter by paid status
-  @@index([email])            // สำหรับ search by email
-  @@index([userId, payPrice]) // สำหรับ findFirst query ใน POST
-  @@index([startDate, endDate]) // สำหรับ date range queries
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  packages  Json     // Store all packages as a JSON array
+  payPrice  Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
+  startDate DateTime // Package start date
+  endDate   DateTime // Package end date
+  paid      Boolean  @default(false)
+  email     String
+  name      String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("package_selections")
 }
@@ -50,23 +42,23 @@ model Post {
 
 model User {
   id            String             @id @default(uuid())
-  createdAt     DateTime
-  updatedAt     DateTime
-  username        String?     @unique
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  username      String?            @unique
   displayUsername String?
   name          String
   email         String             @unique
   lineId        String?            @unique
-  emailVerified Boolean
+  emailVerified Boolean            @default(false)
   image         String?
   role          UserRole           @default(USER)
-  banned        Boolean?
+  banned        Boolean?           @default(false)
   banReason     String?
   banExpires    DateTime?
-  stripeCustomerId String?
   deletedAt     DateTime?
   isDeleted     Boolean            @default(false)
   accounts      Account[]
+  stripeCustomerId String?
   packages      PackageSelection[]
   posts         Post[]
   sessions      Session[]
