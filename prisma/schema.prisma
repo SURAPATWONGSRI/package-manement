@@ -11,8 +11,6 @@ datasource db {
 
 model PackageSelection {
   id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   userId    String
   packages  Json     // Store all packages as a JSON array
   payPrice  Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
@@ -22,54 +20,54 @@ model PackageSelection {
   email     String
   name      String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("package_selections")
 }
 
-model Post {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  title     String
-  content   String
-  userId    String
-  deletedAt DateTime?
-  isDeleted Boolean   @default(false)
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+// model Post {
+//   id        String    @id @default(uuid())
+//   title     String
+//   content   String
+//   userId    String
+//   deletedAt DateTime?
+//   isDeleted Boolean   @default(false)
+//   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   createdAt DateTime  @default(now())
+//   updatedAt DateTime  @updatedAt
 
-  @@map("posts")
-}
+//   @@map("posts")
+// }
 
 model User {
-  id            String             @id @default(uuid())
-  createdAt     DateTime           @default(now())
-  updatedAt     DateTime           @updatedAt
-  username      String?            @unique
+  id              String             @id @default(uuid())
+  username        String?            @unique
   displayUsername String?
-  name          String
-  email         String             @unique
-  lineId        String?            @unique
-  emailVerified Boolean            @default(false)
-  image         String?
-  role          UserRole           @default(USER)
-  banned        Boolean?           @default(false)
-  banReason     String?
-  banExpires    DateTime?
-  deletedAt     DateTime?
-  isDeleted     Boolean            @default(false)
-  accounts      Account[]
+  name            String
+  email           String             @unique
+  lineId          String?            @unique
+  emailVerified   Boolean            @default(false)
+  image           String?
+  role            UserRole           @default(USER)
+  banned          Boolean?           @default(false)
+  banReason       String?
+  banExpires      DateTime?
+  deletedAt       DateTime?
+  isDeleted       Boolean            @default(false)
   stripeCustomerId String?
-  packages      PackageSelection[]
-  posts         Post[]
-  sessions      Session[]
+  accounts        Account[]
+  packages        PackageSelection[]
+
+  sessions        Session[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
 
   @@map("users")
 }
 
 model Session {
   id             String    @id @default(uuid())
-  createdAt      DateTime
-  updatedAt      DateTime
   expiresAt      DateTime
   token          String    @unique
   ipAddress      String?
@@ -79,14 +77,14 @@ model Session {
   deletedAt      DateTime?
   isDeleted      Boolean   @default(false)
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   @@map("sessions")
 }
 
 model Account {
   id                    String    @id @default(uuid())
-  createdAt             DateTime
-  updatedAt             DateTime
   accountId             String
   providerId            String
   accessToken           String?
@@ -100,19 +98,21 @@ model Account {
   deletedAt             DateTime?
   isDeleted             Boolean   @default(false)
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 
   @@map("accounts")
 }
 
 model Verification {
   id         String    @id @default(uuid())
-  createdAt  DateTime?
-  updatedAt  DateTime?
   identifier String
   value      String
   expiresAt  DateTime
   deletedAt  DateTime?
   isDeleted  Boolean   @default(false)
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
 
   @@map("verifications")
 }
