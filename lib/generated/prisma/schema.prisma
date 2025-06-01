@@ -13,31 +13,17 @@ model PackageSelection {
   userId    String
   packages  Json // Store all packages as a JSON array
   payPrice  Decimal  @db.Decimal(10, 2) // Total price with 2 decimal places
-  startDate DateTime // Package start date
-  endDate   DateTime // Package end date
   paid      Boolean  @default(false)
   email     String
   name      String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startDate DateTime // Package start date
+  endDate   DateTime // Package end date
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("package_selections")
 }
-
-// model Post {
-//   id        String    @id @default(uuid())
-//   title     String
-//   content   String
-//   userId    String
-//   deletedAt DateTime?
-//   isDeleted Boolean   @default(false)
-//   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   createdAt DateTime  @default(now())
-//   updatedAt DateTime  @updatedAt
-
-//   @@map("posts")
-// }
 
 model User {
   id               String             @id @default(uuid())
