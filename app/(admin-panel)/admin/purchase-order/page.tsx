@@ -25,13 +25,6 @@ import { Loader2, RefreshCw, Search, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-interface PackageItem {
-  symbol: string;
-  timeframe: string;
-  startDate: string;
-  endDate: string;
-}
-
 interface PackageSelection {
   id: string;
   createdAt: string;
@@ -39,12 +32,18 @@ interface PackageSelection {
   userId: string;
   name: string;
   email: string;
-  packages: PackageItem[];
+  symbol: string;
+  timeframe: string;
   payPrice: number;
   startDate: string;
   endDate: string;
   paid: boolean;
-  stripeCustomerId?: string;
+  user?: {
+    id: string;
+    name: string;
+    email: string;
+    image?: string;
+  };
 }
 
 const PurchaseOrderPage = () => {
@@ -81,7 +80,8 @@ const PurchaseOrderPage = () => {
       const data = await response.json();
 
       if (data.success) {
-        setPackageSelections(data.data || []);
+        const selections = Array.isArray(data.data) ? data.data : [];
+        setPackageSelections(selections);
       } else {
         throw new Error(data.message || "Failed to fetch data");
       }
@@ -100,6 +100,11 @@ const PurchaseOrderPage = () => {
 
   // Filter function
   const filterSelections = useCallback(() => {
+    if (!packageSelections || !Array.isArray(packageSelections)) {
+      setFilteredSelections([]);
+      return;
+    }
+
     let filtered = packageSelections;
 
     if (searchTerm) {
@@ -119,8 +124,8 @@ const PurchaseOrderPage = () => {
     }
 
     if (symbolFilter !== "all") {
-      filtered = filtered.filter((selection) =>
-        selection.packages.some((pkg) => pkg.symbol === symbolFilter)
+      filtered = filtered.filter(
+        (selection) => selection.symbol === symbolFilter
       );
     }
 
@@ -129,11 +134,11 @@ const PurchaseOrderPage = () => {
 
   const getUniqueSymbols = () => {
     const symbols = new Set<string>();
-    packageSelections.forEach((selection) => {
-      selection.packages.forEach((pkg) => {
-        symbols.add(pkg.symbol);
+    if (packageSelections && Array.isArray(packageSelections)) {
+      packageSelections.forEach((selection) => {
+        symbols.add(selection.symbol);
       });
-    });
+    }
     return Array.from(symbols).sort();
   };
 
@@ -247,7 +252,7 @@ const PurchaseOrderPage = () => {
             <SelectContent>
               <SelectItem value="all">ทั้งหมด</SelectItem>
               <SelectItem value="paid">ชำระแล้ว</SelectItem>
-              <SelectItem value="unpaid">ยังไม่ชำระ</SelectItem>
+              <SelectItem value="unpaid">ยกเลิกชำระ</SelectItem>
             </SelectContent>
           </Select>
 
@@ -258,11 +263,13 @@ const PurchaseOrderPage = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">ทั้งหมด</SelectItem>
-              {getUniqueSymbols().map((symbol) => (
-                <SelectItem key={symbol} value={symbol}>
-                  {symbol}
-                </SelectItem>
-              ))}
+              {!loading &&
+                packageSelections &&
+                getUniqueSymbols().map((symbol) => (
+                  <SelectItem key={symbol} value={symbol}>
+                    {symbol}
+                  </SelectItem>
+                ))}
             </SelectContent>
           </Select>
 
@@ -345,25 +352,23 @@ const PurchaseOrderPage = () => {
                     <TableCell>
                       <div>
                         <div className="font-semibold text-sm">
-                          {selection.name}
+                          {selection.name || "N/A"}
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {selection.email}
+                          {selection.email || "N/A"}
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="space-y-1">
-                        {selection.packages.map((pkg, index) => (
-                          <div key={index} className="flex gap-2">
-                            <Badge variant="secondary" className="text-xs">
-                              {pkg.symbol}
-                            </Badge>
-                            <Badge variant="outline" className="text-xs">
-                              {pkg.timeframe}
-                            </Badge>
-                          </div>
-                        ))}
+                        <div className="flex gap-2">
+                          <Badge variant="secondary" className="text-xs">
+                            {selection.symbol || "N/A"}
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {selection.timeframe || "N/A"}
+                          </Badge>
+                        </div>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -384,7 +389,7 @@ const PurchaseOrderPage = () => {
                         variant={selection.paid ? "default" : "secondary"}
                         className="text-xs"
                       >
-                        {selection.paid ? "ชำระแล้ว" : "ยังไม่ชำระ"}
+                        {selection.paid ? "ชำระแล้ว" : "ยกเลิกชำระ"}
                       </Badge>
                     </TableCell>
                     <TableCell>

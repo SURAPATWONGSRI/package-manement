@@ -31,8 +31,8 @@ export function AdminHeader({ session }: AdminHeaderProps) {
       <div className="flex items-center gap-4 px-4">
         {/* สามารถเพิ่ม user info หรือ action buttons ตรงนี้ได้ */}
         {session?.user && (
-          <span className="text-sm text-muted-foreground">
-            Welcome, {session.user.name}
+          <span className="text-xs text-muted-foreground">
+            Hi, {session.user.name}
           </span>
         )}
       </div>

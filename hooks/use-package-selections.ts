@@ -9,12 +9,12 @@ interface PackageSelection {
   userId: string;
   name: string;
   email: string;
-  packages: any[];
+  symbol: string;
+  timeframe: string;
   payPrice: number;
   startDate: string;
   endDate: string;
   paid: boolean;
-  stripeCustomerId?: string;
   user: {
     id: string;
     name: string;
