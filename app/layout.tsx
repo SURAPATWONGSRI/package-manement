@@ -62,8 +62,6 @@ export const metadata: Metadata = {
     template: "%s | Package Management",
     default: "Package Management",
   },
-  description:
-    "ระบบจัดการพัสดุที่ทันสมัย ช่วยให้คุณบริหารพัสดุได้อย่างมีประสิทธิภาพ",
 };
 
 export default function RootLayout({

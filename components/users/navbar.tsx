@@ -1,11 +1,21 @@
 "use client";
 
-import { signOut, useSession } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { toast } from "sonner";
 import { NavUserMain } from "./nav-user";
+
+type Session = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    image?: string | null;
+    role?: string;
+  };
+} | null;
 
 type UserData = {
   name: string;
@@ -13,6 +23,10 @@ type UserData = {
   avatar: string;
   isAdmin?: boolean;
 };
+
+interface NavbarUserProps {
+  session: Session;
+}
 
 // Extract Logo component to prevent re-rendering when user state changes
 const Logo = memo(function Logo() {
@@ -36,33 +50,23 @@ const UserSkeleton = memo(function UserSkeleton() {
   );
 });
 
-export const NavbarUser = memo(function NavbarUser() {
+export const NavbarUser = memo(function NavbarUser({
+  session,
+}: NavbarUserProps) {
   const router = useRouter();
-  const { data: session } = useSession();
 
-  // Use client-side rendering for user data to avoid hydration mismatch
-  const [mounted, setMounted] = useState(false);
-  const [userData, setUserData] = useState<UserData>({
-    name: "",
-    email: "",
-    avatar: "",
-  });
-
-  // Mount effect - runs only once
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Update user data effect - only runs when session changes
-  useEffect(() => {
-    if (session?.user) {
-      setUserData({
-        name: session.user.name || "User",
-        email: session.user.email || "",
-        avatar: session.user.image || "",
-        isAdmin: session.user.role === "ADMIN" || false,
-      });
+  // Transform session data directly without useState and useEffect
+  const userData: UserData = useMemo(() => {
+    if (!session?.user) {
+      return { name: "", email: "", avatar: "" };
     }
+
+    return {
+      name: session.user.name || "User",
+      email: session.user.email || "",
+      avatar: session.user.image || "",
+      isAdmin: session.user.role === "ADMIN",
+    };
   }, [session]);
 
   // Memoize sign out handler to prevent recreation on each render
@@ -87,11 +91,11 @@ export const NavbarUser = memo(function NavbarUser() {
 
   // Memoize the user component to avoid re-renders
   const userComponent = useMemo(() => {
-    if (mounted && session?.user) {
+    if (session?.user) {
       return <NavUserMain user={userData} onSignOut={handleSignOut} />;
     }
     return <UserSkeleton />;
-  }, [mounted, session?.user, userData, handleSignOut]);
+  }, [session?.user, userData, handleSignOut]);
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b bg-background">

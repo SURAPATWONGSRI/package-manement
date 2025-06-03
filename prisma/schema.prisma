@@ -36,11 +36,7 @@ model User {
   emailVerified   Boolean            @default(false)
   image           String?
   role            UserRole           @default(USER)
-  banned          Boolean?           @default(false)
-  banReason       String?
-  banExpires      DateTime?
-  deletedAt       DateTime?
-  isDeleted       Boolean            @default(false)
+
   stripeCustomerId String?
   accounts        Account[]
   packages        PackageSelection[]
@@ -48,6 +44,11 @@ model User {
   sessions        Session[]
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
+  banned          Boolean?           @default(false)
+  banReason       String?
+  banExpires      DateTime?
+  deletedAt       DateTime?
+  isDeleted       Boolean            @default(false)
 
   @@map("users")
 }
@@ -55,16 +56,18 @@ model User {
 model Session {
   id             String    @id @default(uuid())
   expiresAt      DateTime
+  userId         String
   token          String    @unique
   ipAddress      String?
   userAgent      String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   impersonatedBy String?
-  userId         String
+
   deletedAt      DateTime?
   isDeleted      Boolean   @default(false)
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+
 
   @@map("sessions")
 }
@@ -73,20 +76,21 @@ model Account {
   id                    String    @id @default(uuid())
   accountId             String
   providerId            String
+
+  password              String?
+  userId                String
+
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  deletedAt             DateTime?
+  isDeleted             Boolean   @default(false)
   accessToken           String?
   refreshToken          String?
   idToken               String?
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
   scope                 String?
-  password              String?
-  userId                String
-  deletedAt             DateTime?
-  isDeleted             Boolean   @default(false)
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-
   @@map("accounts")
 }
 

@@ -2331,14 +2331,14 @@ export namespace Prisma {
     emailVerified: boolean | null
     image: string | null
     role: $Enums.UserRole | null
+    stripeCustomerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean | null
-    stripeCustomerId: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2351,14 +2351,14 @@ export namespace Prisma {
     emailVerified: boolean | null
     image: string | null
     role: $Enums.UserRole | null
+    stripeCustomerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean | null
-    stripeCustomerId: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2371,14 +2371,14 @@ export namespace Prisma {
     emailVerified: number
     image: number
     role: number
+    stripeCustomerId: number
+    createdAt: number
+    updatedAt: number
     banned: number
     banReason: number
     banExpires: number
     deletedAt: number
     isDeleted: number
-    stripeCustomerId: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -2393,14 +2393,14 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    stripeCustomerId?: true
+    createdAt?: true
+    updatedAt?: true
     banned?: true
     banReason?: true
     banExpires?: true
     deletedAt?: true
     isDeleted?: true
-    stripeCustomerId?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2413,14 +2413,14 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    stripeCustomerId?: true
+    createdAt?: true
+    updatedAt?: true
     banned?: true
     banReason?: true
     banExpires?: true
     deletedAt?: true
     isDeleted?: true
-    stripeCustomerId?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2433,14 +2433,14 @@ export namespace Prisma {
     emailVerified?: true
     image?: true
     role?: true
+    stripeCustomerId?: true
+    createdAt?: true
+    updatedAt?: true
     banned?: true
     banReason?: true
     banExpires?: true
     deletedAt?: true
     isDeleted?: true
-    stripeCustomerId?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -2526,14 +2526,14 @@ export namespace Prisma {
     emailVerified: boolean
     image: string | null
     role: $Enums.UserRole
+    stripeCustomerId: string | null
+    createdAt: Date
+    updatedAt: Date
     banned: boolean | null
     banReason: string | null
     banExpires: Date | null
     deletedAt: Date | null
     isDeleted: boolean
-    stripeCustomerId: string | null
-    createdAt: Date
-    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -2563,14 +2563,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
-    stripeCustomerId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -2589,17 +2589,17 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: boolean
     role?: boolean
+    stripeCustomerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     banned?: boolean
     banReason?: boolean
     banExpires?: boolean
     deletedAt?: boolean
     isDeleted?: boolean
-    stripeCustomerId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted" | "stripeCustomerId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "displayUsername" | "name" | "email" | "lineId" | "emailVerified" | "image" | "role" | "stripeCustomerId" | "createdAt" | "updatedAt" | "banned" | "banReason" | "banExpires" | "deletedAt" | "isDeleted", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     packages?: boolean | User$packagesArgs<ExtArgs>
@@ -2624,14 +2624,14 @@ export namespace Prisma {
       emailVerified: boolean
       image: string | null
       role: $Enums.UserRole
+      stripeCustomerId: string | null
+      createdAt: Date
+      updatedAt: Date
       banned: boolean | null
       banReason: string | null
       banExpires: Date | null
       deletedAt: Date | null
       isDeleted: boolean
-      stripeCustomerId: string | null
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -3013,14 +3013,14 @@ export namespace Prisma {
     readonly emailVerified: FieldRef<"User", 'Boolean'>
     readonly image: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly stripeCustomerId: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly banned: FieldRef<"User", 'Boolean'>
     readonly banReason: FieldRef<"User", 'String'>
     readonly banExpires: FieldRef<"User", 'DateTime'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
     readonly isDeleted: FieldRef<"User", 'Boolean'>
-    readonly stripeCustomerId: FieldRef<"User", 'String'>
-    readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -3467,43 +3467,43 @@ export namespace Prisma {
   export type SessionMinAggregateOutputType = {
     id: string | null
     expiresAt: Date | null
+    userId: string | null
     token: string | null
     ipAddress: string | null
     userAgent: string | null
-    impersonatedBy: string | null
-    userId: string | null
-    deletedAt: Date | null
-    isDeleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    impersonatedBy: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type SessionMaxAggregateOutputType = {
     id: string | null
     expiresAt: Date | null
+    userId: string | null
     token: string | null
     ipAddress: string | null
     userAgent: string | null
-    impersonatedBy: string | null
-    userId: string | null
-    deletedAt: Date | null
-    isDeleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    impersonatedBy: string | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
   }
 
   export type SessionCountAggregateOutputType = {
     id: number
     expiresAt: number
+    userId: number
     token: number
     ipAddress: number
     userAgent: number
-    impersonatedBy: number
-    userId: number
-    deletedAt: number
-    isDeleted: number
     createdAt: number
     updatedAt: number
+    impersonatedBy: number
+    deletedAt: number
+    isDeleted: number
     _all: number
   }
 
@@ -3511,43 +3511,43 @@ export namespace Prisma {
   export type SessionMinAggregateInputType = {
     id?: true
     expiresAt?: true
+    userId?: true
     token?: true
     ipAddress?: true
     userAgent?: true
-    impersonatedBy?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
     createdAt?: true
     updatedAt?: true
+    impersonatedBy?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type SessionMaxAggregateInputType = {
     id?: true
     expiresAt?: true
+    userId?: true
     token?: true
     ipAddress?: true
     userAgent?: true
-    impersonatedBy?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
     createdAt?: true
     updatedAt?: true
+    impersonatedBy?: true
+    deletedAt?: true
+    isDeleted?: true
   }
 
   export type SessionCountAggregateInputType = {
     id?: true
     expiresAt?: true
+    userId?: true
     token?: true
     ipAddress?: true
     userAgent?: true
-    impersonatedBy?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
     createdAt?: true
     updatedAt?: true
+    impersonatedBy?: true
+    deletedAt?: true
+    isDeleted?: true
     _all?: true
   }
 
@@ -3626,15 +3626,15 @@ export namespace Prisma {
   export type SessionGroupByOutputType = {
     id: string
     expiresAt: Date
+    userId: string
     token: string
     ipAddress: string | null
     userAgent: string | null
-    impersonatedBy: string | null
-    userId: string
-    deletedAt: Date | null
-    isDeleted: boolean
     createdAt: Date
     updatedAt: Date
+    impersonatedBy: string | null
+    deletedAt: Date | null
+    isDeleted: boolean
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -3657,15 +3657,15 @@ export namespace Prisma {
   export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     expiresAt?: boolean
+    userId?: boolean
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    impersonatedBy?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    impersonatedBy?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
@@ -3674,18 +3674,18 @@ export namespace Prisma {
   export type SessionSelectScalar = {
     id?: boolean
     expiresAt?: boolean
+    userId?: boolean
     token?: boolean
     ipAddress?: boolean
     userAgent?: boolean
-    impersonatedBy?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    impersonatedBy?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiresAt" | "token" | "ipAddress" | "userAgent" | "impersonatedBy" | "userId" | "deletedAt" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "expiresAt" | "userId" | "token" | "ipAddress" | "userAgent" | "createdAt" | "updatedAt" | "impersonatedBy" | "deletedAt" | "isDeleted", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3698,15 +3698,15 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       expiresAt: Date
+      userId: string
       token: string
       ipAddress: string | null
       userAgent: string | null
-      impersonatedBy: string | null
-      userId: string
-      deletedAt: Date | null
-      isDeleted: boolean
       createdAt: Date
       updatedAt: Date
+      impersonatedBy: string | null
+      deletedAt: Date | null
+      isDeleted: boolean
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -4079,15 +4079,15 @@ export namespace Prisma {
   interface SessionFieldRefs {
     readonly id: FieldRef<"Session", 'String'>
     readonly expiresAt: FieldRef<"Session", 'DateTime'>
+    readonly userId: FieldRef<"Session", 'String'>
     readonly token: FieldRef<"Session", 'String'>
     readonly ipAddress: FieldRef<"Session", 'String'>
     readonly userAgent: FieldRef<"Session", 'String'>
-    readonly impersonatedBy: FieldRef<"Session", 'String'>
-    readonly userId: FieldRef<"Session", 'String'>
-    readonly deletedAt: FieldRef<"Session", 'DateTime'>
-    readonly isDeleted: FieldRef<"Session", 'Boolean'>
     readonly createdAt: FieldRef<"Session", 'DateTime'>
     readonly updatedAt: FieldRef<"Session", 'DateTime'>
+    readonly impersonatedBy: FieldRef<"Session", 'String'>
+    readonly deletedAt: FieldRef<"Session", 'DateTime'>
+    readonly isDeleted: FieldRef<"Session", 'Boolean'>
   }
     
 
@@ -4463,54 +4463,54 @@ export namespace Prisma {
     id: string | null
     accountId: string | null
     providerId: string | null
+    password: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
     accessTokenExpiresAt: Date | null
     refreshTokenExpiresAt: Date | null
     scope: string | null
-    password: string | null
-    userId: string | null
-    deletedAt: Date | null
-    isDeleted: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AccountMaxAggregateOutputType = {
     id: string | null
     accountId: string | null
     providerId: string | null
+    password: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    deletedAt: Date | null
+    isDeleted: boolean | null
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
     accessTokenExpiresAt: Date | null
     refreshTokenExpiresAt: Date | null
     scope: string | null
-    password: string | null
-    userId: string | null
-    deletedAt: Date | null
-    isDeleted: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
   }
 
   export type AccountCountAggregateOutputType = {
     id: number
     accountId: number
     providerId: number
+    password: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    deletedAt: number
+    isDeleted: number
     accessToken: number
     refreshToken: number
     idToken: number
     accessTokenExpiresAt: number
     refreshTokenExpiresAt: number
     scope: number
-    password: number
-    userId: number
-    deletedAt: number
-    isDeleted: number
-    createdAt: number
-    updatedAt: number
     _all: number
   }
 
@@ -4519,54 +4519,54 @@ export namespace Prisma {
     id?: true
     accountId?: true
     providerId?: true
+    password?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    deletedAt?: true
+    isDeleted?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
     accessTokenExpiresAt?: true
     refreshTokenExpiresAt?: true
     scope?: true
-    password?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AccountMaxAggregateInputType = {
     id?: true
     accountId?: true
     providerId?: true
+    password?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    deletedAt?: true
+    isDeleted?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
     accessTokenExpiresAt?: true
     refreshTokenExpiresAt?: true
     scope?: true
-    password?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
-    createdAt?: true
-    updatedAt?: true
   }
 
   export type AccountCountAggregateInputType = {
     id?: true
     accountId?: true
     providerId?: true
+    password?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    deletedAt?: true
+    isDeleted?: true
     accessToken?: true
     refreshToken?: true
     idToken?: true
     accessTokenExpiresAt?: true
     refreshTokenExpiresAt?: true
     scope?: true
-    password?: true
-    userId?: true
-    deletedAt?: true
-    isDeleted?: true
-    createdAt?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -4646,18 +4646,18 @@ export namespace Prisma {
     id: string
     accountId: string
     providerId: string
+    password: string | null
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date | null
+    isDeleted: boolean
     accessToken: string | null
     refreshToken: string | null
     idToken: string | null
     accessTokenExpiresAt: Date | null
     refreshTokenExpiresAt: Date | null
     scope: string | null
-    password: string | null
-    userId: string
-    deletedAt: Date | null
-    isDeleted: boolean
-    createdAt: Date
-    updatedAt: Date
     _count: AccountCountAggregateOutputType | null
     _min: AccountMinAggregateOutputType | null
     _max: AccountMaxAggregateOutputType | null
@@ -4681,18 +4681,18 @@ export namespace Prisma {
     id?: boolean
     accountId?: boolean
     providerId?: boolean
+    password?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
     accessTokenExpiresAt?: boolean
     refreshTokenExpiresAt?: boolean
     scope?: boolean
-    password?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
@@ -4702,21 +4702,21 @@ export namespace Prisma {
     id?: boolean
     accountId?: boolean
     providerId?: boolean
+    password?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    isDeleted?: boolean
     accessToken?: boolean
     refreshToken?: boolean
     idToken?: boolean
     accessTokenExpiresAt?: boolean
     refreshTokenExpiresAt?: boolean
     scope?: boolean
-    password?: boolean
-    userId?: boolean
-    deletedAt?: boolean
-    isDeleted?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
   }
 
-  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope" | "password" | "userId" | "deletedAt" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "accountId" | "providerId" | "password" | "userId" | "createdAt" | "updatedAt" | "deletedAt" | "isDeleted" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "scope", ExtArgs["result"]["account"]>
   export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -4730,18 +4730,18 @@ export namespace Prisma {
       id: string
       accountId: string
       providerId: string
+      password: string | null
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+      deletedAt: Date | null
+      isDeleted: boolean
       accessToken: string | null
       refreshToken: string | null
       idToken: string | null
       accessTokenExpiresAt: Date | null
       refreshTokenExpiresAt: Date | null
       scope: string | null
-      password: string | null
-      userId: string
-      deletedAt: Date | null
-      isDeleted: boolean
-      createdAt: Date
-      updatedAt: Date
     }, ExtArgs["result"]["account"]>
     composites: {}
   }
@@ -5115,18 +5115,18 @@ export namespace Prisma {
     readonly id: FieldRef<"Account", 'String'>
     readonly accountId: FieldRef<"Account", 'String'>
     readonly providerId: FieldRef<"Account", 'String'>
+    readonly password: FieldRef<"Account", 'String'>
+    readonly userId: FieldRef<"Account", 'String'>
+    readonly createdAt: FieldRef<"Account", 'DateTime'>
+    readonly updatedAt: FieldRef<"Account", 'DateTime'>
+    readonly deletedAt: FieldRef<"Account", 'DateTime'>
+    readonly isDeleted: FieldRef<"Account", 'Boolean'>
     readonly accessToken: FieldRef<"Account", 'String'>
     readonly refreshToken: FieldRef<"Account", 'String'>
     readonly idToken: FieldRef<"Account", 'String'>
     readonly accessTokenExpiresAt: FieldRef<"Account", 'DateTime'>
     readonly refreshTokenExpiresAt: FieldRef<"Account", 'DateTime'>
     readonly scope: FieldRef<"Account", 'String'>
-    readonly password: FieldRef<"Account", 'String'>
-    readonly userId: FieldRef<"Account", 'String'>
-    readonly deletedAt: FieldRef<"Account", 'DateTime'>
-    readonly isDeleted: FieldRef<"Account", 'Boolean'>
-    readonly createdAt: FieldRef<"Account", 'DateTime'>
-    readonly updatedAt: FieldRef<"Account", 'DateTime'>
   }
     
 
@@ -6444,14 +6444,14 @@ export namespace Prisma {
     emailVerified: 'emailVerified',
     image: 'image',
     role: 'role',
+    stripeCustomerId: 'stripeCustomerId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     banned: 'banned',
     banReason: 'banReason',
     banExpires: 'banExpires',
     deletedAt: 'deletedAt',
-    isDeleted: 'isDeleted',
-    stripeCustomerId: 'stripeCustomerId',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    isDeleted: 'isDeleted'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -6460,15 +6460,15 @@ export namespace Prisma {
   export const SessionScalarFieldEnum: {
     id: 'id',
     expiresAt: 'expiresAt',
+    userId: 'userId',
     token: 'token',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
-    impersonatedBy: 'impersonatedBy',
-    userId: 'userId',
-    deletedAt: 'deletedAt',
-    isDeleted: 'isDeleted',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    impersonatedBy: 'impersonatedBy',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -6478,18 +6478,18 @@ export namespace Prisma {
     id: 'id',
     accountId: 'accountId',
     providerId: 'providerId',
+    password: 'password',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt',
+    isDeleted: 'isDeleted',
     accessToken: 'accessToken',
     refreshToken: 'refreshToken',
     idToken: 'idToken',
     accessTokenExpiresAt: 'accessTokenExpiresAt',
     refreshTokenExpiresAt: 'refreshTokenExpiresAt',
-    scope: 'scope',
-    password: 'password',
-    userId: 'userId',
-    deletedAt: 'deletedAt',
-    isDeleted: 'isDeleted',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    scope: 'scope'
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -6567,8 +6567,8 @@ export namespace Prisma {
     email: 'email',
     lineId: 'lineId',
     image: 'image',
-    banReason: 'banReason',
-    stripeCustomerId: 'stripeCustomerId'
+    stripeCustomerId: 'stripeCustomerId',
+    banReason: 'banReason'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -6576,11 +6576,11 @@ export namespace Prisma {
 
   export const SessionOrderByRelevanceFieldEnum: {
     id: 'id',
+    userId: 'userId',
     token: 'token',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
-    impersonatedBy: 'impersonatedBy',
-    userId: 'userId'
+    impersonatedBy: 'impersonatedBy'
   };
 
   export type SessionOrderByRelevanceFieldEnum = (typeof SessionOrderByRelevanceFieldEnum)[keyof typeof SessionOrderByRelevanceFieldEnum]
@@ -6590,12 +6590,12 @@ export namespace Prisma {
     id: 'id',
     accountId: 'accountId',
     providerId: 'providerId',
+    password: 'password',
+    userId: 'userId',
     accessToken: 'accessToken',
     refreshToken: 'refreshToken',
     idToken: 'idToken',
-    scope: 'scope',
-    password: 'password',
-    userId: 'userId'
+    scope: 'scope'
   };
 
   export type AccountOrderByRelevanceFieldEnum = (typeof AccountOrderByRelevanceFieldEnum)[keyof typeof AccountOrderByRelevanceFieldEnum]
@@ -6775,14 +6775,14 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
-    stripeCustomerId?: StringNullableFilter<"User"> | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     packages?: PackageSelectionListRelationFilter
     sessions?: SessionListRelationFilter
@@ -6798,14 +6798,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
     role?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     packages?: PackageSelectionOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
@@ -6825,14 +6825,14 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     image?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    stripeCustomerId?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     banned?: BoolNullableFilter<"User"> | boolean | null
     banReason?: StringNullableFilter<"User"> | string | null
     banExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     isDeleted?: BoolFilter<"User"> | boolean
-    stripeCustomerId?: StringNullableFilter<"User"> | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     packages?: PackageSelectionListRelationFilter
     sessions?: SessionListRelationFilter
@@ -6848,14 +6848,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrderInput | SortOrder
     role?: SortOrder
+    stripeCustomerId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     banned?: SortOrderInput | SortOrder
     banReason?: SortOrderInput | SortOrder
     banExpires?: SortOrderInput | SortOrder
     deletedAt?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
-    stripeCustomerId?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -6874,14 +6874,14 @@ export namespace Prisma {
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     banned?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
     banReason?: StringNullableWithAggregatesFilter<"User"> | string | null
     banExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isDeleted?: BoolWithAggregatesFilter<"User"> | boolean
-    stripeCustomerId?: StringNullableWithAggregatesFilter<"User"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type SessionWhereInput = {
@@ -6890,30 +6890,30 @@ export namespace Prisma {
     NOT?: SessionWhereInput | SessionWhereInput[]
     id?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
     token?: StringFilter<"Session"> | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
-    impersonatedBy?: StringNullableFilter<"Session"> | string | null
-    userId?: StringFilter<"Session"> | string
-    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    isDeleted?: BoolFilter<"Session"> | boolean
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type SessionOrderByWithRelationInput = {
     id?: SortOrder
     expiresAt?: SortOrder
+    userId?: SortOrder
     token?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    impersonatedBy?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrderInput | SortOrder
-    isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    impersonatedBy?: SortOrderInput | SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     user?: UserOrderByWithRelationInput
     _relevance?: SessionOrderByRelevanceInput
   }
@@ -6925,29 +6925,29 @@ export namespace Prisma {
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
     expiresAt?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
-    impersonatedBy?: StringNullableFilter<"Session"> | string | null
-    userId?: StringFilter<"Session"> | string
-    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    isDeleted?: BoolFilter<"Session"> | boolean
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "token">
 
   export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
     expiresAt?: SortOrder
+    userId?: SortOrder
     token?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
-    impersonatedBy?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrderInput | SortOrder
-    isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    impersonatedBy?: SortOrderInput | SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -6959,15 +6959,15 @@ export namespace Prisma {
     NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Session"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    userId?: StringWithAggregatesFilter<"Session"> | string
     token?: StringWithAggregatesFilter<"Session"> | string
     ipAddress?: StringNullableWithAggregatesFilter<"Session"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    impersonatedBy?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    userId?: StringWithAggregatesFilter<"Session"> | string
-    deletedAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
-    isDeleted?: BoolWithAggregatesFilter<"Session"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    impersonatedBy?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Session"> | boolean
   }
 
   export type AccountWhereInput = {
@@ -6977,18 +6977,18 @@ export namespace Prisma {
     id?: StringFilter<"Account"> | string
     accountId?: StringFilter<"Account"> | string
     providerId?: StringFilter<"Account"> | string
+    password?: StringNullableFilter<"Account"> | string | null
+    userId?: StringFilter<"Account"> | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
     accessToken?: StringNullableFilter<"Account"> | string | null
     refreshToken?: StringNullableFilter<"Account"> | string | null
     idToken?: StringNullableFilter<"Account"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     refreshTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     scope?: StringNullableFilter<"Account"> | string | null
-    password?: StringNullableFilter<"Account"> | string | null
-    userId?: StringFilter<"Account"> | string
-    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
-    isDeleted?: BoolFilter<"Account"> | boolean
-    createdAt?: DateTimeFilter<"Account"> | Date | string
-    updatedAt?: DateTimeFilter<"Account"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -6996,18 +6996,18 @@ export namespace Prisma {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
+    password?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
     accessTokenExpiresAt?: SortOrderInput | SortOrder
     refreshTokenExpiresAt?: SortOrderInput | SortOrder
     scope?: SortOrderInput | SortOrder
-    password?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrderInput | SortOrder
-    isDeleted?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     _relevance?: AccountOrderByRelevanceInput
   }
@@ -7019,18 +7019,18 @@ export namespace Prisma {
     NOT?: AccountWhereInput | AccountWhereInput[]
     accountId?: StringFilter<"Account"> | string
     providerId?: StringFilter<"Account"> | string
+    password?: StringNullableFilter<"Account"> | string | null
+    userId?: StringFilter<"Account"> | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
     accessToken?: StringNullableFilter<"Account"> | string | null
     refreshToken?: StringNullableFilter<"Account"> | string | null
     idToken?: StringNullableFilter<"Account"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     refreshTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     scope?: StringNullableFilter<"Account"> | string | null
-    password?: StringNullableFilter<"Account"> | string | null
-    userId?: StringFilter<"Account"> | string
-    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
-    isDeleted?: BoolFilter<"Account"> | boolean
-    createdAt?: DateTimeFilter<"Account"> | Date | string
-    updatedAt?: DateTimeFilter<"Account"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -7038,18 +7038,18 @@ export namespace Prisma {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
+    password?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    deletedAt?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
     accessToken?: SortOrderInput | SortOrder
     refreshToken?: SortOrderInput | SortOrder
     idToken?: SortOrderInput | SortOrder
     accessTokenExpiresAt?: SortOrderInput | SortOrder
     refreshTokenExpiresAt?: SortOrderInput | SortOrder
     scope?: SortOrderInput | SortOrder
-    password?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrderInput | SortOrder
-    isDeleted?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
     _count?: AccountCountOrderByAggregateInput
     _max?: AccountMaxOrderByAggregateInput
     _min?: AccountMinOrderByAggregateInput
@@ -7062,18 +7062,18 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Account"> | string
     accountId?: StringWithAggregatesFilter<"Account"> | string
     providerId?: StringWithAggregatesFilter<"Account"> | string
+    password?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    userId?: StringWithAggregatesFilter<"Account"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+    deletedAt?: DateTimeNullableWithAggregatesFilter<"Account"> | Date | string | null
+    isDeleted?: BoolWithAggregatesFilter<"Account"> | boolean
     accessToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
     refreshToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
     idToken?: StringNullableWithAggregatesFilter<"Account"> | string | null
     accessTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"Account"> | Date | string | null
     refreshTokenExpiresAt?: DateTimeNullableWithAggregatesFilter<"Account"> | Date | string | null
     scope?: StringNullableWithAggregatesFilter<"Account"> | string | null
-    password?: StringNullableWithAggregatesFilter<"Account"> | string | null
-    userId?: StringWithAggregatesFilter<"Account"> | string
-    deletedAt?: DateTimeNullableWithAggregatesFilter<"Account"> | Date | string | null
-    isDeleted?: BoolWithAggregatesFilter<"Account"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
   }
 
   export type VerificationWhereInput = {
@@ -7251,14 +7251,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -7274,14 +7274,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -7297,14 +7297,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -7320,14 +7320,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -7343,14 +7343,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -7363,14 +7363,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -7383,14 +7383,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateInput = {
@@ -7399,26 +7399,26 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateInput = {
     id?: string
     expiresAt: Date | string
+    userId: string
     token: string
     ipAddress?: string | null
     userAgent?: string | null
-    impersonatedBy?: string | null
-    userId: string
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    impersonatedBy?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUpdateInput = {
@@ -7427,40 +7427,40 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SessionCreateManyInput = {
     id?: string
     expiresAt: Date | string
+    userId: string
     token: string
     ipAddress?: string | null
     userAgent?: string | null
-    impersonatedBy?: string | null
-    userId: string
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    impersonatedBy?: string | null
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
   }
 
   export type SessionUpdateManyMutationInput = {
@@ -7469,42 +7469,42 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountCreateInput = {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAccountsInput
   }
 
@@ -7512,35 +7512,35 @@ export namespace Prisma {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    userId: string
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAccountsNestedInput
   }
 
@@ -7548,71 +7548,71 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyInput = {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    userId: string
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VerificationCreateInput = {
@@ -7987,14 +7987,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
-    stripeCustomerId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -8007,14 +8007,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
-    stripeCustomerId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -8027,14 +8027,14 @@ export namespace Prisma {
     emailVerified?: SortOrder
     image?: SortOrder
     role?: SortOrder
+    stripeCustomerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     banned?: SortOrder
     banReason?: SortOrder
     banExpires?: SortOrder
     deletedAt?: SortOrder
     isDeleted?: SortOrder
-    stripeCustomerId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8096,43 +8096,43 @@ export namespace Prisma {
   export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
     expiresAt?: SortOrder
+    userId?: SortOrder
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
-    impersonatedBy?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    impersonatedBy?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type SessionMaxOrderByAggregateInput = {
     id?: SortOrder
     expiresAt?: SortOrder
+    userId?: SortOrder
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
-    impersonatedBy?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    impersonatedBy?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
     id?: SortOrder
     expiresAt?: SortOrder
+    userId?: SortOrder
     token?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
-    impersonatedBy?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    impersonatedBy?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
   }
 
   export type AccountOrderByRelevanceInput = {
@@ -8145,54 +8145,54 @@ export namespace Prisma {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
+    password?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
     refreshTokenExpiresAt?: SortOrder
     scope?: SortOrder
-    password?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AccountMaxOrderByAggregateInput = {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
+    password?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
     refreshTokenExpiresAt?: SortOrder
     scope?: SortOrder
-    password?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AccountMinOrderByAggregateInput = {
     id?: SortOrder
     accountId?: SortOrder
     providerId?: SortOrder
+    password?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    deletedAt?: SortOrder
+    isDeleted?: SortOrder
     accessToken?: SortOrder
     refreshToken?: SortOrder
     idToken?: SortOrder
     accessTokenExpiresAt?: SortOrder
     refreshTokenExpiresAt?: SortOrder
     scope?: SortOrder
-    password?: SortOrder
-    userId?: SortOrder
-    deletedAt?: SortOrder
-    isDeleted?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type VerificationOrderByRelevanceInput = {
@@ -8679,14 +8679,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -8701,14 +8701,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8739,14 +8739,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -8761,14 +8761,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8777,34 +8777,34 @@ export namespace Prisma {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountUncheckedCreateWithoutUserInput = {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountCreateOrConnectWithoutUserInput = {
@@ -8859,11 +8859,11 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type SessionUncheckedCreateWithoutUserInput = {
@@ -8872,11 +8872,11 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type SessionCreateOrConnectWithoutUserInput = {
@@ -8912,18 +8912,18 @@ export namespace Prisma {
     id?: StringFilter<"Account"> | string
     accountId?: StringFilter<"Account"> | string
     providerId?: StringFilter<"Account"> | string
+    password?: StringNullableFilter<"Account"> | string | null
+    userId?: StringFilter<"Account"> | string
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
+    isDeleted?: BoolFilter<"Account"> | boolean
     accessToken?: StringNullableFilter<"Account"> | string | null
     refreshToken?: StringNullableFilter<"Account"> | string | null
     idToken?: StringNullableFilter<"Account"> | string | null
     accessTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     refreshTokenExpiresAt?: DateTimeNullableFilter<"Account"> | Date | string | null
     scope?: StringNullableFilter<"Account"> | string | null
-    password?: StringNullableFilter<"Account"> | string | null
-    userId?: StringFilter<"Account"> | string
-    deletedAt?: DateTimeNullableFilter<"Account"> | Date | string | null
-    isDeleted?: BoolFilter<"Account"> | boolean
-    createdAt?: DateTimeFilter<"Account"> | Date | string
-    updatedAt?: DateTimeFilter<"Account"> | Date | string
   }
 
   export type PackageSelectionUpsertWithWhereUniqueWithoutUserInput = {
@@ -8981,15 +8981,15 @@ export namespace Prisma {
     NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
     id?: StringFilter<"Session"> | string
     expiresAt?: DateTimeFilter<"Session"> | Date | string
+    userId?: StringFilter<"Session"> | string
     token?: StringFilter<"Session"> | string
     ipAddress?: StringNullableFilter<"Session"> | string | null
     userAgent?: StringNullableFilter<"Session"> | string | null
-    impersonatedBy?: StringNullableFilter<"Session"> | string | null
-    userId?: StringFilter<"Session"> | string
-    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
-    isDeleted?: BoolFilter<"Session"> | boolean
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
+    impersonatedBy?: StringNullableFilter<"Session"> | string | null
+    deletedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
+    isDeleted?: BoolFilter<"Session"> | boolean
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -9002,14 +9002,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
   }
@@ -9024,14 +9024,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -9062,14 +9062,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
   }
@@ -9084,14 +9084,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -9106,14 +9106,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     packages?: PackageSelectionCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -9128,14 +9128,14 @@ export namespace Prisma {
     emailVerified?: boolean
     image?: string | null
     role?: $Enums.UserRole
+    stripeCustomerId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     banned?: boolean | null
     banReason?: string | null
     banExpires?: Date | string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    stripeCustomerId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
     packages?: PackageSelectionUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -9166,14 +9166,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: PackageSelectionUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -9188,14 +9188,14 @@ export namespace Prisma {
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     image?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     banned?: NullableBoolFieldUpdateOperationsInput | boolean | null
     banReason?: NullableStringFieldUpdateOperationsInput | string | null
     banExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    stripeCustomerId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     packages?: PackageSelectionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -9204,17 +9204,17 @@ export namespace Prisma {
     id?: string
     accountId: string
     providerId: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    isDeleted?: boolean
     accessToken?: string | null
     refreshToken?: string | null
     idToken?: string | null
     accessTokenExpiresAt?: Date | string | null
     refreshTokenExpiresAt?: Date | string | null
     scope?: string | null
-    password?: string | null
-    deletedAt?: Date | string | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type PackageSelectionCreateManyUserInput = {
@@ -9236,62 +9236,62 @@ export namespace Prisma {
     token: string
     ipAddress?: string | null
     userAgent?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     impersonatedBy?: string | null
     deletedAt?: Date | string | null
     isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     accountId?: StringFieldUpdateOperationsInput | string
     providerId?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     idToken?: NullableStringFieldUpdateOperationsInput | string | null
     accessTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokenExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     scope?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PackageSelectionUpdateWithoutUserInput = {
@@ -9339,11 +9339,11 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateWithoutUserInput = {
@@ -9352,11 +9352,11 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyWithoutUserInput = {
@@ -9365,11 +9365,11 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     impersonatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -8,13 +8,28 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { signOut, useSession } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 import { LayoutDashboard, Printer, ReceiptText, Users } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { toast } from "sonner";
 import { TeamSwitcher } from "./team-switcher";
+
+type Session = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    image?: string | null;
+    role?: string;
+  };
+} | null;
+
+interface AppSidebarProps {
+  session: Session;
+  variant?: "sidebar" | "floating" | "inset";
+}
 
 // Server-safe loading component for NavUser
 const NavUserSkeleton = () => (
@@ -62,17 +77,22 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  session,
+  ...props
+}: AppSidebarProps & React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
-  const { data: session } = useSession();
 
-  const userData: UserData = {
-    name: session?.user?.name || "User",
-    email: session?.user?.email || "",
-    avatar: session?.user?.image || "",
-  };
+  const userData: UserData = React.useMemo(
+    () => ({
+      name: session?.user?.name || "User",
+      email: session?.user?.email || "",
+      avatar: session?.user?.image || "",
+    }),
+    [session]
+  );
 
-  const handleSignOut = async () => {
+  const handleSignOut = React.useCallback(async () => {
     try {
       await signOut({
         fetchOptions: {
@@ -89,7 +109,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       console.error("Sign out error:", error);
       toast.error("Failed to sign out");
     }
-  };
+  }, [router]);
 
   return (
     <Sidebar collapsible="icon" {...props}>

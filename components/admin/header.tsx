@@ -4,7 +4,21 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export function AdminHeader() {
+type Session = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    image?: string | null;
+    role?: string;
+  };
+} | null;
+
+interface AdminHeaderProps {
+  session: Session;
+}
+
+export function AdminHeader({ session }: AdminHeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b">
       <div className="flex items-center gap-2 px-3">
@@ -14,7 +28,14 @@ export function AdminHeader() {
           <DynamicBreadcrumb />
         </Breadcrumb>
       </div>
-      <div className="flex items-center gap-4 px-4"></div>
+      <div className="flex items-center gap-4 px-4">
+        {/* สามารถเพิ่ม user info หรือ action buttons ตรงนี้ได้ */}
+        {session?.user && (
+          <span className="text-sm text-muted-foreground">
+            Welcome, {session.user.name}
+          </span>
+        )}
+      </div>
     </header>
   );
 }
