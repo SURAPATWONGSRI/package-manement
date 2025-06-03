@@ -1309,6 +1309,8 @@ export namespace Prisma {
   export type PackageSelectionMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    symbol: $Enums.SymbolType | null
+    timeframe: $Enums.Timeframe | null
     payPrice: Decimal | null
     paid: boolean | null
     email: string | null
@@ -1322,6 +1324,8 @@ export namespace Prisma {
   export type PackageSelectionMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    symbol: $Enums.SymbolType | null
+    timeframe: $Enums.Timeframe | null
     payPrice: Decimal | null
     paid: boolean | null
     email: string | null
@@ -1335,7 +1339,8 @@ export namespace Prisma {
   export type PackageSelectionCountAggregateOutputType = {
     id: number
     userId: number
-    packages: number
+    symbol: number
+    timeframe: number
     payPrice: number
     paid: number
     email: number
@@ -1359,6 +1364,8 @@ export namespace Prisma {
   export type PackageSelectionMinAggregateInputType = {
     id?: true
     userId?: true
+    symbol?: true
+    timeframe?: true
     payPrice?: true
     paid?: true
     email?: true
@@ -1372,6 +1379,8 @@ export namespace Prisma {
   export type PackageSelectionMaxAggregateInputType = {
     id?: true
     userId?: true
+    symbol?: true
+    timeframe?: true
     payPrice?: true
     paid?: true
     email?: true
@@ -1385,7 +1394,8 @@ export namespace Prisma {
   export type PackageSelectionCountAggregateInputType = {
     id?: true
     userId?: true
-    packages?: true
+    symbol?: true
+    timeframe?: true
     payPrice?: true
     paid?: true
     email?: true
@@ -1486,7 +1496,8 @@ export namespace Prisma {
   export type PackageSelectionGroupByOutputType = {
     id: string
     userId: string
-    packages: JsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal
     paid: boolean
     email: string
@@ -1519,7 +1530,8 @@ export namespace Prisma {
   export type PackageSelectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    packages?: boolean
+    symbol?: boolean
+    timeframe?: boolean
     payPrice?: boolean
     paid?: boolean
     email?: boolean
@@ -1536,7 +1548,8 @@ export namespace Prisma {
   export type PackageSelectionSelectScalar = {
     id?: boolean
     userId?: boolean
-    packages?: boolean
+    symbol?: boolean
+    timeframe?: boolean
     payPrice?: boolean
     paid?: boolean
     email?: boolean
@@ -1547,7 +1560,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "packages" | "payPrice" | "paid" | "email" | "name" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["packageSelection"]>
+  export type PackageSelectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "symbol" | "timeframe" | "payPrice" | "paid" | "email" | "name" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["packageSelection"]>
   export type PackageSelectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -1560,7 +1573,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      packages: Prisma.JsonValue
+      symbol: $Enums.SymbolType
+      timeframe: $Enums.Timeframe
       payPrice: Prisma.Decimal
       paid: boolean
       email: string
@@ -1941,7 +1955,8 @@ export namespace Prisma {
   interface PackageSelectionFieldRefs {
     readonly id: FieldRef<"PackageSelection", 'String'>
     readonly userId: FieldRef<"PackageSelection", 'String'>
-    readonly packages: FieldRef<"PackageSelection", 'Json'>
+    readonly symbol: FieldRef<"PackageSelection", 'SymbolType'>
+    readonly timeframe: FieldRef<"PackageSelection", 'Timeframe'>
     readonly payPrice: FieldRef<"PackageSelection", 'Decimal'>
     readonly paid: FieldRef<"PackageSelection", 'Boolean'>
     readonly email: FieldRef<"PackageSelection", 'String'>
@@ -6420,7 +6435,8 @@ export namespace Prisma {
   export const PackageSelectionScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    packages: 'packages',
+    symbol: 'symbol',
+    timeframe: 'timeframe',
     payPrice: 'payPrice',
     paid: 'paid',
     email: 'email',
@@ -6517,30 +6533,6 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-  export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
-  };
-
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
   export const PackageSelectionOrderByRelevanceFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -6623,16 +6615,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'SymbolType'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+  export type EnumSymbolTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SymbolType'>
     
 
 
   /**
-   * Reference to a field of type 'QueryMode'
+   * Reference to a field of type 'Timeframe'
    */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+  export type EnumTimeframeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Timeframe'>
     
 
 
@@ -6680,7 +6672,8 @@ export namespace Prisma {
     NOT?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
     id?: StringFilter<"PackageSelection"> | string
     userId?: StringFilter<"PackageSelection"> | string
-    packages?: JsonFilter<"PackageSelection">
+    symbol?: EnumSymbolTypeFilter<"PackageSelection"> | $Enums.SymbolType
+    timeframe?: EnumTimeframeFilter<"PackageSelection"> | $Enums.Timeframe
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
@@ -6695,7 +6688,8 @@ export namespace Prisma {
   export type PackageSelectionOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    packages?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
     email?: SortOrder
@@ -6714,7 +6708,8 @@ export namespace Prisma {
     OR?: PackageSelectionWhereInput[]
     NOT?: PackageSelectionWhereInput | PackageSelectionWhereInput[]
     userId?: StringFilter<"PackageSelection"> | string
-    packages?: JsonFilter<"PackageSelection">
+    symbol?: EnumSymbolTypeFilter<"PackageSelection"> | $Enums.SymbolType
+    timeframe?: EnumTimeframeFilter<"PackageSelection"> | $Enums.Timeframe
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
@@ -6729,7 +6724,8 @@ export namespace Prisma {
   export type PackageSelectionOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    packages?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
     email?: SortOrder
@@ -6751,7 +6747,8 @@ export namespace Prisma {
     NOT?: PackageSelectionScalarWhereWithAggregatesInput | PackageSelectionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PackageSelection"> | string
     userId?: StringWithAggregatesFilter<"PackageSelection"> | string
-    packages?: JsonWithAggregatesFilter<"PackageSelection">
+    symbol?: EnumSymbolTypeWithAggregatesFilter<"PackageSelection"> | $Enums.SymbolType
+    timeframe?: EnumTimeframeWithAggregatesFilter<"PackageSelection"> | $Enums.Timeframe
     payPrice?: DecimalWithAggregatesFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolWithAggregatesFilter<"PackageSelection"> | boolean
     email?: StringWithAggregatesFilter<"PackageSelection"> | string
@@ -7146,7 +7143,8 @@ export namespace Prisma {
 
   export type PackageSelectionCreateInput = {
     id?: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -7161,7 +7159,8 @@ export namespace Prisma {
   export type PackageSelectionUncheckedCreateInput = {
     id?: string
     userId: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -7174,7 +7173,8 @@ export namespace Prisma {
 
   export type PackageSelectionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -7189,7 +7189,8 @@ export namespace Prisma {
   export type PackageSelectionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -7203,7 +7204,8 @@ export namespace Prisma {
   export type PackageSelectionCreateManyInput = {
     id?: string
     userId: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -7216,7 +7218,8 @@ export namespace Prisma {
 
   export type PackageSelectionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -7230,7 +7233,8 @@ export namespace Prisma {
   export type PackageSelectionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -7706,28 +7710,19 @@ export namespace Prisma {
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type EnumSymbolTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SymbolType | EnumSymbolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SymbolType[]
+    notIn?: $Enums.SymbolType[]
+    not?: NestedEnumSymbolTypeFilter<$PrismaModel> | $Enums.SymbolType
+  }
+
+  export type EnumTimeframeFilter<$PrismaModel = never> = {
+    equals?: $Enums.Timeframe | EnumTimeframeFieldRefInput<$PrismaModel>
+    in?: $Enums.Timeframe[]
+    notIn?: $Enums.Timeframe[]
+    not?: NestedEnumTimeframeFilter<$PrismaModel> | $Enums.Timeframe
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -7771,7 +7766,8 @@ export namespace Prisma {
   export type PackageSelectionCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    packages?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
     email?: SortOrder
@@ -7789,6 +7785,8 @@ export namespace Prisma {
   export type PackageSelectionMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
     email?: SortOrder
@@ -7802,6 +7800,8 @@ export namespace Prisma {
   export type PackageSelectionMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    symbol?: SortOrder
+    timeframe?: SortOrder
     payPrice?: SortOrder
     paid?: SortOrder
     email?: SortOrder
@@ -7833,31 +7833,25 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type EnumSymbolTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SymbolType | EnumSymbolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SymbolType[]
+    notIn?: $Enums.SymbolType[]
+    not?: NestedEnumSymbolTypeWithAggregatesFilter<$PrismaModel> | $Enums.SymbolType
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _min?: NestedEnumSymbolTypeFilter<$PrismaModel>
+    _max?: NestedEnumSymbolTypeFilter<$PrismaModel>
+  }
+
+  export type EnumTimeframeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Timeframe | EnumTimeframeFieldRefInput<$PrismaModel>
+    in?: $Enums.Timeframe[]
+    notIn?: $Enums.Timeframe[]
+    not?: NestedEnumTimeframeWithAggregatesFilter<$PrismaModel> | $Enums.Timeframe
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTimeframeFilter<$PrismaModel>
+    _max?: NestedEnumTimeframeFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -8244,6 +8238,14 @@ export namespace Prisma {
     set?: string
   }
 
+  export type EnumSymbolTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SymbolType
+  }
+
+  export type EnumTimeframeFieldUpdateOperationsInput = {
+    set?: $Enums.Timeframe
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -8453,6 +8455,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedEnumSymbolTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SymbolType | EnumSymbolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SymbolType[]
+    notIn?: $Enums.SymbolType[]
+    not?: NestedEnumSymbolTypeFilter<$PrismaModel> | $Enums.SymbolType
+  }
+
+  export type NestedEnumTimeframeFilter<$PrismaModel = never> = {
+    equals?: $Enums.Timeframe | EnumTimeframeFieldRefInput<$PrismaModel>
+    in?: $Enums.Timeframe[]
+    notIn?: $Enums.Timeframe[]
+    not?: NestedEnumTimeframeFilter<$PrismaModel> | $Enums.Timeframe
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[]
@@ -8508,28 +8524,25 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue
-    lte?: InputJsonValue
-    gt?: InputJsonValue
-    gte?: InputJsonValue
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type NestedEnumSymbolTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SymbolType | EnumSymbolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SymbolType[]
+    notIn?: $Enums.SymbolType[]
+    not?: NestedEnumSymbolTypeWithAggregatesFilter<$PrismaModel> | $Enums.SymbolType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSymbolTypeFilter<$PrismaModel>
+    _max?: NestedEnumSymbolTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTimeframeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Timeframe | EnumTimeframeFieldRefInput<$PrismaModel>
+    in?: $Enums.Timeframe[]
+    notIn?: $Enums.Timeframe[]
+    not?: NestedEnumTimeframeWithAggregatesFilter<$PrismaModel> | $Enums.Timeframe
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTimeframeFilter<$PrismaModel>
+    _max?: NestedEnumTimeframeFilter<$PrismaModel>
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -8819,7 +8832,8 @@ export namespace Prisma {
 
   export type PackageSelectionCreateWithoutUserInput = {
     id?: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -8832,7 +8846,8 @@ export namespace Prisma {
 
   export type PackageSelectionUncheckedCreateWithoutUserInput = {
     id?: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -8948,7 +8963,8 @@ export namespace Prisma {
     NOT?: PackageSelectionScalarWhereInput | PackageSelectionScalarWhereInput[]
     id?: StringFilter<"PackageSelection"> | string
     userId?: StringFilter<"PackageSelection"> | string
-    packages?: JsonFilter<"PackageSelection">
+    symbol?: EnumSymbolTypeFilter<"PackageSelection"> | $Enums.SymbolType
+    timeframe?: EnumTimeframeFilter<"PackageSelection"> | $Enums.Timeframe
     payPrice?: DecimalFilter<"PackageSelection"> | Decimal | DecimalJsLike | number | string
     paid?: BoolFilter<"PackageSelection"> | boolean
     email?: StringFilter<"PackageSelection"> | string
@@ -9219,7 +9235,8 @@ export namespace Prisma {
 
   export type PackageSelectionCreateManyUserInput = {
     id?: string
-    packages: JsonNullValueInput | InputJsonValue
+    symbol: $Enums.SymbolType
+    timeframe: $Enums.Timeframe
     payPrice: Decimal | DecimalJsLike | number | string
     paid?: boolean
     email: string
@@ -9296,7 +9313,8 @@ export namespace Prisma {
 
   export type PackageSelectionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -9309,7 +9327,8 @@ export namespace Prisma {
 
   export type PackageSelectionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string
@@ -9322,7 +9341,8 @@ export namespace Prisma {
 
   export type PackageSelectionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    packages?: JsonNullValueInput | InputJsonValue
+    symbol?: EnumSymbolTypeFieldUpdateOperationsInput | $Enums.SymbolType
+    timeframe?: EnumTimeframeFieldUpdateOperationsInput | $Enums.Timeframe
     payPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     paid?: BoolFieldUpdateOperationsInput | boolean
     email?: StringFieldUpdateOperationsInput | string

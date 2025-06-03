@@ -4,51 +4,50 @@ generator client {
 }
 
 datasource db {
-  provider  = "mysql"
-  url       = env("DATABASE_URL")
-
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model PackageSelection {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   userId    String
-  packages  Json     // Store all packages as a JSON array
-  payPrice  Decimal  @db.Decimal(10, 2)  // Total price with 2 decimal places
-  paid      Boolean  @default(false)
+  symbol    SymbolType
+  timeframe Timeframe
+  payPrice  Decimal    @db.Decimal(10, 2)
+  paid      Boolean    @default(false)
   email     String
   name      String
-  startDate DateTime // Package start date
-  endDate   DateTime // Package end date
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startDate DateTime
+  endDate   DateTime
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId], map: "package_selections_userId_fkey")
   @@map("package_selections")
 }
 
 model User {
-  id              String             @id @default(uuid())
-  username        String?            @unique
-  displayUsername String?
-  name            String
-  email           String             @unique
-  lineId          String?            @unique
-  emailVerified   Boolean            @default(false)
-  image           String?
-  role            UserRole           @default(USER)
-
+  id               String             @id @default(uuid())
+  username         String?            @unique
+  displayUsername  String?
+  name             String
+  email            String             @unique
+  lineId           String?            @unique
+  emailVerified    Boolean            @default(false)
+  image            String?
+  role             UserRole           @default(USER)
   stripeCustomerId String?
-  accounts        Account[]
-  packages        PackageSelection[]
-
-  sessions        Session[]
-  createdAt       DateTime           @default(now())
-  updatedAt       DateTime           @updatedAt
-  banned          Boolean?           @default(false)
-  banReason       String?
-  banExpires      DateTime?
-  deletedAt       DateTime?
-  isDeleted       Boolean            @default(false)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  banned           Boolean?           @default(false)
+  banReason        String?
+  banExpires       DateTime?
+  deletedAt        DateTime?
+  isDeleted        Boolean            @default(false)
+  accounts         Account[]
+  packages         PackageSelection[]
+  sessions         Session[]
 
   @@map("users")
 }
@@ -63,12 +62,11 @@ model Session {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   impersonatedBy String?
-
   deletedAt      DateTime?
   isDeleted      Boolean   @default(false)
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-
+  @@index([userId], map: "sessions_userId_fkey")
   @@map("sessions")
 }
 
@@ -76,11 +74,8 @@ model Account {
   id                    String    @id @default(uuid())
   accountId             String
   providerId            String
-
   password              String?
   userId                String
-
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   deletedAt             DateTime?
@@ -91,6 +86,9 @@ model Account {
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
   scope                 String?
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "accounts_userId_fkey")
   @@map("accounts")
 }
 

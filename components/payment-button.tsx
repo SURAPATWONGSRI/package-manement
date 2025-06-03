@@ -37,29 +37,56 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
   const { data: session } = useSession();
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [randomPrice, setRandomPrice] = useState<number | null>(null);
+  const [packagePrices, setPackagePrices] = useState<Map<number, number>>(
+    new Map()
+  );
+  const [createdRecordIds, setCreatedRecordIds] = useState<string[]>([]);
 
-  // Generate random price with 2 decimal places (100.xx THB)
-  const generateRandomPrice = () => {
-    if (randomPrice === null) {
-      // Generate random cents (00-99) for the decimal part
-      const randomCents = Math.floor(Math.random() * 100);
-      const price = 100 + randomCents / 100;
-      setRandomPrice(parseFloat(price.toFixed(2)));
-      return price;
+  // Generate unique random price for each package with 2 decimal places
+  const generateUniquePrice = (packageId: number): number => {
+    if (packagePrices.has(packageId)) {
+      return packagePrices.get(packageId)!;
     }
-    return randomPrice;
+
+    let newPrice: number;
+    let attempts = 0;
+    const maxAttempts = 1000;
+
+    do {
+      // Generate random decimal part (00-99)
+      const randomCents = Math.floor(Math.random() * 100);
+      newPrice = parseFloat((100 + randomCents / 100).toFixed(2));
+      attempts++;
+    } while (
+      Array.from(packagePrices.values()).includes(newPrice) &&
+      attempts < maxAttempts
+    );
+
+    // If we couldn't find a unique price after many attempts, use timestamp-based approach
+    if (attempts >= maxAttempts) {
+      const timestamp = Date.now() % 10000; // Last 4 digits of timestamp
+      const cents = timestamp % 100; // Convert to cents (00-99)
+      newPrice = parseFloat((100 + cents / 100).toFixed(2));
+    }
+
+    setPackagePrices((prev) => new Map(prev).set(packageId, newPrice));
+    return newPrice;
   };
 
   const selectedPackages = Object.entries(selections)
     .filter(([, selection]) => selection.symbol && selection.timeframe)
-    .map(([packageId, selection]) => ({
-      packageId: parseInt(packageId),
-      symbol: selection.symbol,
-      timeframe: selection.timeframe,
-    }));
+    .map(([packageId, selection]) => {
+      const pkgId = parseInt(packageId);
+      const price = generateUniquePrice(pkgId);
+      return {
+        packageId: pkgId,
+        symbol: selection.symbol,
+        timeframe: selection.timeframe,
+        price: price,
+      };
+    });
 
-  const totalPrice = selectedPackages.length > 0 ? generateRandomPrice() : 0;
+  const totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
   const isFormValid = startDate && selectedPackages.length > 0;
   const endDate = startDate ? addMonths(startDate, 3) : new Date();
 
@@ -83,7 +110,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
         timeframe: pkg.timeframe,
         startDate: startDate!.toISOString(),
         endDate: endDate.toISOString(),
-        payPrice: totalPrice,
+        payPrice: pkg.price, // ใช้ราคาเฉพาะของแต่ละแพ็คเกจ
         paid: false, // Set to false initially
         userId: session!.user.id,
         name: session!.user.name || "",
@@ -109,6 +136,14 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
 
       console.log("Package selections saved to DB with paid=false:", dbResult);
 
+      // เก็บ record IDs สำหรับใช้ในการอัพเดทสถานะการชำระเงิน
+      if (dbResult.data && Array.isArray(dbResult.data)) {
+        const recordIds = dbResult.data.map(
+          (record: { id: string }) => record.id
+        );
+        setCreatedRecordIds(recordIds);
+      }
+
       // Now show payment modal
       setShowPaymentModal(true);
     } catch (error) {
@@ -121,17 +156,16 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
 
   const handlePaymentSuccess = async () => {
     try {
-      // Update payment status to paid=true after successful payment
+      // Update payment status to paid=true for all created records
       const updateResponse = await fetch(
-        "/api/package-selections/update-payment",
+        "/api/package-selections/update-payment-by-ids",
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userId: session!.user.id,
-            payPrice: totalPrice,
+            recordIds: createdRecordIds, // ส่ง record IDs ที่สร้างไว้แล้ว
             paid: true,
           }),
         }
@@ -261,6 +295,12 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                               <span>Period: </span>
                               <span className="font-medium">
                                 {pkg.timeframe}
+                              </span>
+                            </div>
+                            <div>
+                              <span>Price: </span>
+                              <span className="font-medium text-emerald-600">
+                                ฿{pkg.price.toFixed(2)}
                               </span>
                             </div>
                           </div>

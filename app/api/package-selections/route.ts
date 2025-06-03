@@ -1,11 +1,22 @@
+import { SymbolType, Timeframe } from "@/lib/generated/prisma";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-const validateSymbol = (symbol: string) =>
-  ["EURUSD", "USDJPY", "GOLD", "BTCUSD"].includes(symbol) ? symbol : "EURUSD";
+const validateSymbol = (symbol: string): SymbolType => {
+  const validSymbols = Object.values(SymbolType);
+  if (validSymbols.includes(symbol as SymbolType)) {
+    return symbol as SymbolType;
+  }
+  return SymbolType.EURUSD; // Default value
+};
 
-const validateTimeframe = (timeframe: string) =>
-  ["M15", "M30", "H1", "D1"].includes(timeframe) ? timeframe : "M15";
+const validateTimeframe = (timeframe: string): Timeframe => {
+  const validTimeframes = Object.values(Timeframe);
+  if (validTimeframes.includes(timeframe as Timeframe)) {
+    return timeframe as Timeframe;
+  }
+  return Timeframe.M15; // Default value
+};
 
 export async function POST(req: Request) {
   try {
@@ -18,51 +29,27 @@ export async function POST(req: Request) {
       );
     }
 
-    const selectionsByUser = selections.reduce((acc, selection) => {
-      if (!selection.userId || !selection.email) return acc;
+    const createdSelections = [];
 
-      if (!acc[selection.userId]) {
-        acc[selection.userId] = {
+    // สร้าง record แยกสำหรับแต่ละ package ที่เลือก
+    for (const selection of selections) {
+      if (!selection.userId || !selection.email) {
+        continue; // ข้าม selection ที่ไม่มีข้อมูลครบถ้วน
+      }
+
+      const paidStatus = selection.paid ?? false;
+
+      // สร้าง record แยกสำหรับแต่ละ package
+      const createdRecord = await prisma.packageSelection.create({
+        data: {
           userId: selection.userId,
           name: selection.name || "Unknown",
           email: selection.email || "unknown@example.com",
-          packages: [],
-          payPrice: 0.0,
-          startDateISO: selection.startDate,
-          endDateISO: selection.endDate,
-        };
-      }
-
-      acc[selection.userId].packages.push({
-        symbol: validateSymbol(selection.symbol),
-        timeframe: validateTimeframe(selection.timeframe),
-        startDate: selection.startDate,
-        endDate: selection.endDate,
-      });
-
-      acc[selection.userId].payPrice = parseFloat(
-        selection.payPrice.toFixed(2)
-      );
-      return acc;
-    }, {});
-
-    const createdSelections = [];
-
-    for (const userId in selectionsByUser) {
-      const userData = selectionsByUser[userId];
-      const paidStatus =
-        selections.find((s) => s.userId === userData.userId)?.paid ?? false;
-
-      // แทนที่ raw SQL ด้วย Prisma client
-      const createdRecord = await prisma.packageSelection.create({
-        data: {
-          userId: userData.userId,
-          name: userData.name,
-          email: userData.email,
-          packages: userData.packages,
-          payPrice: userData.payPrice.toString(),
-          startDate: new Date(userData.startDateISO),
-          endDate: new Date(userData.endDateISO),
+          symbol: validateSymbol(selection.symbol),
+          timeframe: validateTimeframe(selection.timeframe),
+          payPrice: selection.payPrice?.toString() || "100.00", // ใช้ราคาที่ส่งมาจาก frontend
+          startDate: new Date(selection.startDate),
+          endDate: new Date(selection.endDate),
           paid: paidStatus,
         },
       });
@@ -72,7 +59,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "Package selections saved successfully",
+      message: `Package selections saved successfully. Created ${createdSelections.length} records.`,
       data: createdSelections,
     });
   } catch (error: unknown) {
@@ -128,7 +115,8 @@ export async function GET(req: Request) {
       userId: selection.userId,
       name: selection.name,
       email: selection.email,
-      packages: selection.packages,
+      symbol: selection.symbol,
+      timeframe: selection.timeframe,
       payPrice: parseFloat(selection.payPrice.toString()),
       startDate: selection.startDate.toISOString(),
       endDate: selection.endDate.toISOString(),
