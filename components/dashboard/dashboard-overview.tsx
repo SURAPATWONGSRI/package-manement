@@ -31,8 +31,8 @@ export function DashboardOverview() {
 
     const totalOrders = data.length;
     const totalRevenue = data.reduce((sum, order) => sum + order.payPrice, 0);
-    const paidOrders = data.filter((order) => order.paid).length;
-    const uniqueUsers = new Set(data.map((order) => order.userId)).size;
+    const paidOrders = data.filter((order) => order.paid === "YES").length;
+    const uniqueUsers = new Set(data.map((order) => order.username)).size;
     const paidRate = totalOrders > 0 ? (paidOrders / totalOrders) * 100 : 0;
 
     return {

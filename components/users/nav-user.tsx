@@ -16,6 +16,7 @@ import { memo } from "react";
 interface UserProfile {
   name: string;
   email: string;
+  username: string;
   avatar: string;
   isAdmin?: boolean;
 }
@@ -63,7 +64,7 @@ export const NavUserMain = memo(({ user, onSignOut }: NavUserProps) => {
           {user.name}
         </span>
         <span className="truncate text-xs font-sans text-muted-foreground/80">
-          {user.email}
+          {user.username}
         </span>
       </div>
 
@@ -90,7 +91,7 @@ export const NavUserMain = memo(({ user, onSignOut }: NavUserProps) => {
                   {user.name}
                 </p>
                 <p className="text-xs text-muted-foreground/80 mt-1">
-                  {user.email}
+                  {user.username}
                 </p>
               </div>
             </div>

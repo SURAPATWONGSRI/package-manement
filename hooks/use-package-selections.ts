@@ -3,24 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface PackageSelection {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
   name: string;
-  email: string;
+  username: string;
+  image: string | null;
   symbol: string;
   timeframe: string;
   payPrice: number;
-  startDate: string;
-  endDate: string;
-  paid: boolean;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    image?: string;
-  };
+  paid: string; // "YES" or "NO"
+  startDate: string; // YYYY-MM-DD format
+  endDate: string; // YYYY-MM-DD format
 }
 
 interface UsePackageSelectionsReturn {

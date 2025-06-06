@@ -11,6 +11,7 @@ type Session = {
   user: {
     id: string;
     name: string;
+    username: string;
     email: string;
     image?: string | null;
     role?: string;
@@ -20,6 +21,7 @@ type Session = {
 type UserData = {
   name: string;
   email: string;
+  username: string;
   avatar: string;
   isAdmin?: boolean;
 };
@@ -58,10 +60,11 @@ export const NavbarUser = memo(function NavbarUser({
   // Transform session data directly without useState and useEffect
   const userData: UserData = useMemo(() => {
     if (!session?.user) {
-      return { name: "", email: "", avatar: "" };
+      return { name: "", email: "", username: "", avatar: "" };
     }
 
     return {
+      username: session.user.username || "",
       name: session.user.name || "User",
       email: session.user.email || "",
       avatar: session.user.image || "",

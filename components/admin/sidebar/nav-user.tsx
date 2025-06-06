@@ -23,6 +23,7 @@ interface UserProfile {
   name?: string;
   email?: string;
   avatar?: string;
+  username?: string;
 }
 
 interface NavUserProps {
@@ -86,7 +87,7 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
                   {user.name || "User"}
                 </span>
                 <span className="truncate text-xs font-sans text-muted-foreground">
-                  {user.email || "No email"}
+                  {user.username || "No email"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" aria-hidden="true" />
@@ -106,7 +107,7 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
                     {user.name || "User"}
                   </div>
                   <div className="text-xs font-sans font-medium text-muted-foreground truncate">
-                    {user.email || "No email"}
+                    {user.username || "No email"}
                   </div>
                 </div>
               </div>

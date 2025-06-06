@@ -9,7 +9,13 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { signOut } from "@/lib/auth-client";
-import { LayoutDashboard, Printer, ReceiptText, Users } from "lucide-react";
+import {
+  Box,
+  LayoutDashboard,
+  Printer,
+  ReceiptText,
+  Users,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -21,6 +27,7 @@ type Session = {
     id: string;
     name: string;
     email: string;
+    username: string;
     image?: string | null;
     role?: string;
   };
@@ -58,6 +65,7 @@ const DynamicNavUser = dynamic(
 type UserData = {
   name?: string;
   email?: string;
+  username?: string;
   avatar?: string;
 };
 
@@ -65,6 +73,7 @@ const navItems = [
   { title: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
   { title: "Users", href: "/admin/users", icon: Users },
   { title: "Purchase Order", href: "/admin/purchase-order", icon: ReceiptText },
+  { title: "Packages", href: "/admin/packages", icon: Box },
 ];
 
 const data = {
@@ -85,6 +94,7 @@ export function AppSidebar({
 
   const userData: UserData = React.useMemo(
     () => ({
+      username: session?.user?.username || "",
       name: session?.user?.name || "User",
       email: session?.user?.email || "",
       avatar: session?.user?.image || "",

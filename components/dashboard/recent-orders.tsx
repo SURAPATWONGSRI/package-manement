@@ -4,18 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { memo, useMemo } from "react";
 
 interface PackageSelection {
-  id: string;
-  createdAt: string;
   name: string;
-  email: string;
+  username: string;
+  image: string | null;
+  symbol: string;
+  timeframe: string;
   payPrice: number;
-  paid: boolean;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    image?: string;
-  };
+  paid: string; // "YES" or "NO"
+  startDate: string; // YYYY-MM-DD format
+  endDate: string; // YYYY-MM-DD format
 }
 
 interface RecentOrdersProps {
@@ -38,8 +35,6 @@ const RecentOrdersComponent = ({ orders }: RecentOrdersProps) => {
       year: "numeric",
       month: "short",
       day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
       timeZone: "Asia/Bangkok",
     });
 
@@ -78,24 +73,22 @@ const RecentOrdersComponent = ({ orders }: RecentOrdersProps) => {
           </div>
         ) : (
           <div className="space-y-4">
-            {displayedOrders.map((order) => (
+            {displayedOrders.map((order, index) => (
               <div
-                key={order.id}
+                key={`${order.name}-${order.username}-${index}`}
                 className="flex items-center justify-between p-3 rounded-lg border bg-card/50 hover:bg-card transition-colors"
               >
                 <div className="flex items-center space-x-3">
                   <Avatar className="h-10 w-10">
-                    <AvatarImage src={order.user.image} />
+                    <AvatarImage src={order.image || undefined} />
                     <AvatarFallback className="text-xs font-medium">
-                      {getInitials(order.user.name || order.name)}
+                      {getInitials(order.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium truncate">
-                      {order.user.name || order.name}
-                    </p>
+                    <p className="text-sm font-medium truncate">{order.name}</p>
                     <p className="text-xs text-muted-foreground truncate">
-                      {order.user.email || order.email}
+                      @{order.username}
                     </p>
                   </div>
                 </div>
@@ -106,14 +99,15 @@ const RecentOrdersComponent = ({ orders }: RecentOrdersProps) => {
                       {formatPrice(order.payPrice)}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {formatDate(order.createdAt)}
+                      {formatDate(order.startDate)} -{" "}
+                      {formatDate(order.endDate)}
                     </p>
                   </div>
                   <Badge
-                    variant={order.paid ? "default" : "secondary"}
+                    variant={order.paid === "YES" ? "default" : "secondary"}
                     className="shrink-0"
                   >
-                    {order.paid ? "ชำระแล้ว" : "ยกเลิกชำระ"}
+                    {order.paid === "YES" ? "ชำระแล้ว" : "ยกเลิกชำระ"}
                   </Badge>
                 </div>
               </div>

@@ -37,57 +37,36 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
   const { data: session } = useSession();
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [packagePrices, setPackagePrices] = useState<Map<number, number>>(
-    new Map()
-  );
   const [createdRecordIds, setCreatedRecordIds] = useState<string[]>([]);
 
-  // Generate unique random price for each package with 2 decimal places
-  const generateUniquePrice = (packageId: number): number => {
-    if (packagePrices.has(packageId)) {
-      return packagePrices.get(packageId)!;
-    }
-
-    let newPrice: number;
-    let attempts = 0;
-    const maxAttempts = 1000;
-
-    do {
-      // Generate random decimal part (00-99)
-      const randomCents = Math.floor(Math.random() * 100);
-      newPrice = parseFloat((100 + randomCents / 100).toFixed(2));
-      attempts++;
-    } while (
-      Array.from(packagePrices.values()).includes(newPrice) &&
-      attempts < maxAttempts
-    );
-
-    // If we couldn't find a unique price after many attempts, use timestamp-based approach
-    if (attempts >= maxAttempts) {
-      const timestamp = Date.now() % 10000; // Last 4 digits of timestamp
-      const cents = timestamp % 100; // Convert to cents (00-99)
-      newPrice = parseFloat((100 + cents / 100).toFixed(2));
-    }
-
-    setPackagePrices((prev) => new Map(prev).set(packageId, newPrice));
-    return newPrice;
+  // Bundle pricing: Generate random price for all 3 packages together
+  const generateBundlePrice = () => {
+    // สุ่มเลขทศนิยม 2 ตำแหน่ง (01-99) สำหรับ 100.xx
+    const randomCents = Math.floor(Math.random() * 99) + 1; // 1-99
+    const centString = randomCents.toString().padStart(2, "0"); // แปลงเป็น 01-99
+    return parseFloat(`100.${centString}`); // 100.01 ถึง 100.99
   };
+
+  const [bundlePrice] = useState(() => generateBundlePrice());
+  const REQUIRED_PACKAGES = 3; // ต้องเลือกครบ 3 แพ็คเกจ
 
   const selectedPackages = Object.entries(selections)
     .filter(([, selection]) => selection.symbol && selection.timeframe)
     .map(([packageId, selection]) => {
       const pkgId = parseInt(packageId);
-      const price = generateUniquePrice(pkgId);
       return {
         packageId: pkgId,
         symbol: selection.symbol,
         timeframe: selection.timeframe,
-        price: price,
+        price: bundlePrice, // ใช้ราคาบันเดิลเต็มสำหรับทุกแพ็คเกจ
       };
     });
 
-  const totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
-  const isFormValid = startDate && selectedPackages.length > 0;
+  // Bundle pricing logic: only allow if all 3 packages are selected
+  const totalPrice =
+    selectedPackages.length === REQUIRED_PACKAGES ? bundlePrice : 0;
+  const isFormValid =
+    startDate && selectedPackages.length === REQUIRED_PACKAGES;
   const endDate = startDate ? addMonths(startDate, 3) : new Date();
 
   const handlePaymentClick = async () => {
@@ -97,7 +76,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
     }
 
     if (!isFormValid) {
-      toast.error("กรุณาเลือกวันที่เริ่มต้นและแพ็คเกจอย่างน้อย 1 แพ็คเกจ");
+      toast.error("กรุณาเลือกวันที่เริ่มต้นและแพ็คเกจครบทั้ง 3 แพ็คเกจ");
       return;
     }
 
@@ -110,7 +89,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
         timeframe: pkg.timeframe,
         startDate: startDate!.toISOString(),
         endDate: endDate.toISOString(),
-        payPrice: pkg.price, // ใช้ราคาเฉพาะของแต่ละแพ็คเกจ
+        payPrice: totalPrice, // ใช้ราคารวมทั้งหมดแทนการแบ่ง
         paid: false, // Set to false initially
         userId: session!.user.id,
         name: session!.user.name || "",
@@ -231,6 +210,8 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
     <>
       <div className="grid gap-6">
         <div className="grid place-items-center">
+          {/* แสดงราคาสรุปก่อนกดปุ่มชำระเงิน */}
+
           <Button
             onClick={handlePaymentClick}
             disabled={!isFormValid || loading}
@@ -242,8 +223,10 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
               : !session?.user
               ? "เข้าสู่ระบบเพื่อชำระเงิน"
               : isFormValid
-              ? "ชำระเงิน"
-              : "กรุณาเลือกแพ็คเกจ"}
+              ? `ชำระเงิน`
+              : selectedPackages.length === 0
+              ? "กรุณาเลือกแพ็คเกจ"
+              : `กรุณาเลือกครบทั้ง 3 แพ็คเกจ (เลือกแล้ว ${selectedPackages.length}/${REQUIRED_PACKAGES})`}
           </Button>
         </div>
       </div>
@@ -298,9 +281,9 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                               </span>
                             </div>
                             <div>
-                              <span>Price: </span>
+                              <span>ราคาแพ็คเกจ: </span>
                               <span className="font-medium text-emerald-600">
-                                ฿{pkg.price.toFixed(2)}
+                                ฿{bundlePrice.toFixed(2)} (ราคาบันเดิล)
                               </span>
                             </div>
                           </div>
@@ -357,6 +340,10 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
                       <div className="flex justify-between text-sm">
                         <span>จำนวนแพ็คเกจ:</span>
                         <span>{selectedPackages.length} แพ็คเกจ</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span>ราคาบันเดิล (3 แพ็คเกจ):</span>
+                        <span>฿{bundlePrice.toFixed(2)}</span>
                       </div>
 
                       <Separator />

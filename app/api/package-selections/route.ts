@@ -102,26 +102,30 @@ export async function GET(req: Request) {
         skip: offset,
         orderBy: { createdAt: "asc" }, // index ที่ createdAt จะช่วยที่นี่
         include: {
-          user: { select: { id: true, name: true, email: true, image: true } },
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              username: true,
+              image: true,
+            },
+          },
         },
       }),
       prisma.packageSelection.count({ where: whereClause }),
     ]);
 
     const formattedSelections = packageSelections.map((selection) => ({
-      id: selection.id,
-      createdAt: selection.createdAt.toISOString(),
-      updatedAt: selection.updatedAt.toISOString(),
-      userId: selection.userId,
       name: selection.name,
-      email: selection.email,
+      username: selection.user?.username || "N/A",
+      image: selection.user?.image || null,
       symbol: selection.symbol,
       timeframe: selection.timeframe,
       payPrice: parseFloat(selection.payPrice.toString()),
-      startDate: selection.startDate.toISOString(),
-      endDate: selection.endDate.toISOString(),
-      paid: selection.paid,
-      user: selection.user,
+      paid: selection.paid ? "YES" : "NO",
+      startDate: selection.startDate.toISOString().split("T")[0], // YYYY-MM-DD format
+      endDate: selection.endDate.toISOString().split("T")[0], // YYYY-MM-DD format
     }));
 
     return NextResponse.json(

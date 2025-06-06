@@ -54,6 +54,7 @@ export async function PATCH(req: Request) {
             id: true,
             name: true,
             email: true,
+            username: true,
             image: true,
           },
         },

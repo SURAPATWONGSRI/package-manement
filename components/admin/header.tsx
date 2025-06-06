@@ -7,6 +7,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 type Session = {
   user: {
     id: string;
+    username: string;
     name: string;
     email: string;
     image?: string | null;
@@ -32,7 +33,7 @@ export function AdminHeader({ session }: AdminHeaderProps) {
         {/* สามารถเพิ่ม user info หรือ action buttons ตรงนี้ได้ */}
         {session?.user && (
           <span className="text-xs text-muted-foreground">
-            Hi, {session.user.name}
+            Hi, {session.user.username}
           </span>
         )}
       </div>

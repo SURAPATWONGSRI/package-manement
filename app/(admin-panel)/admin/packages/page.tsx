@@ -37,7 +37,7 @@ interface PackageSelection {
   endDate: string; // YYYY-MM-DD format
 }
 
-const PurchaseOrderPage = () => {
+const PackagesPage = () => {
   const [packageSelections, setPackageSelections] = useState<
     PackageSelection[]
   >([]);
@@ -51,6 +51,14 @@ const PurchaseOrderPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [symbolFilter, setSymbolFilter] = useState<string>("all");
+
+  // const getInitials = (name: string) =>
+  //   name
+  //     .split(" ")
+  //     .map((word) => word.charAt(0))
+  //     .join("")
+  //     .toUpperCase()
+  //     .slice(0, 2);
 
   const fetchPackageSelections = async () => {
     try {
@@ -196,7 +204,7 @@ const PurchaseOrderPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl sm:text-1xl font-bold tracking-tight mb-1 sm:mb-2">
-            Purchase Orders
+            Package
           </h1>
           <p className="text-muted-foreground">คำสั่งซื้อและข้อมูลแพ็คเกจ</p>
         </div>
@@ -213,7 +221,7 @@ const PurchaseOrderPage = () => {
           <div className="relative min-w-[300px]">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="ค้นหาชื่อหรืออีเมล..."
+              placeholder="ค้นหาชื่อหรือ username..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -314,11 +322,11 @@ const PurchaseOrderPage = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>ลูกค้า</TableHead>
-                  <TableHead>แพ็คเกจ</TableHead>
-                  <TableHead>ราคา</TableHead>
-                  <TableHead>ระยะเวลา</TableHead>
-                  <TableHead>สถานะ</TableHead>
+                  <TableHead>User</TableHead>
+                  <TableHead>Symbol</TableHead>
+                  <TableHead>PayPrice</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Paid</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -327,12 +335,20 @@ const PurchaseOrderPage = () => {
                     key={`${selection.name}-${selection.username}-${index}`}
                   >
                     <TableCell>
-                      <div>
-                        <div className="font-semibold text-sm">
-                          {selection.name || "N/A"}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {selection.username || "N/A"}
+                      <div className="flex items-center space-x-3">
+                        {/* <Avatar className="h-10 w-10">
+                          <AvatarImage src={selection.image || undefined} />
+                          <AvatarFallback className="text-xs font-medium">
+                            {getInitials(selection.name)}
+                          </AvatarFallback>
+                        </Avatar> */}
+                        <div>
+                          <div className="font-semibold text-sm">
+                            {selection.name || "N/A"}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {selection.username || "N/A"}
+                          </div>
                         </div>
                       </div>
                     </TableCell>
@@ -368,7 +384,7 @@ const PurchaseOrderPage = () => {
                         }
                         className="text-xs"
                       >
-                        {selection.paid === "YES" ? "ชำระแล้ว" : "ยกเลิกชำระ"}
+                        {selection.paid === "YES" ? "YES" : "NO"}
                       </Badge>
                     </TableCell>
                   </TableRow>
@@ -382,4 +398,4 @@ const PurchaseOrderPage = () => {
   );
 };
 
-export default PurchaseOrderPage;
+export default PackagesPage;

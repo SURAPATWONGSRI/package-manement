@@ -16,12 +16,13 @@ model PackageSelection {
   payPrice  Decimal    @db.Decimal(10, 2)
   paid      Boolean    @default(false)
   email     String
+
   name      String
   startDate DateTime
   endDate   DateTime
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId], map: "package_selections_userId_fkey")
   @@map("package_selections")

@@ -16,6 +16,7 @@ model PackageSelection {
   payPrice  Decimal    @db.Decimal(10, 2)
   paid      Boolean    @default(false)
   email     String
+
   name      String
   startDate DateTime
   endDate   DateTime
