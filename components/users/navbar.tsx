@@ -1,22 +1,12 @@
 "use client";
 
 import { signOut } from "@/lib/auth-client";
+import { AuthSession } from "@/types/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { memo, useCallback, useMemo } from "react";
 import { toast } from "sonner";
 import { NavUserMain } from "./nav-user";
-
-type Session = {
-  user: {
-    id: string;
-    name: string;
-    username: string;
-    email: string;
-    image?: string | null;
-    role?: string;
-  };
-} | null;
 
 type UserData = {
   name: string;
@@ -27,7 +17,7 @@ type UserData = {
 };
 
 interface NavbarUserProps {
-  session: Session;
+  session: AuthSession;
 }
 
 // Extract Logo component to prevent re-rendering when user state changes

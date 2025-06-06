@@ -3,20 +3,10 @@ import { DynamicBreadcrumb } from "@/components/admin/dynamic-breadcrumb";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-
-type Session = {
-  user: {
-    id: string;
-    username: string;
-    name: string;
-    email: string;
-    image?: string | null;
-    role?: string;
-  };
-} | null;
+import { AuthSession } from "@/types/auth";
 
 interface AdminHeaderProps {
-  session: Session;
+  session: AuthSession;
 }
 
 export function AdminHeader({ session }: AdminHeaderProps) {
@@ -33,7 +23,7 @@ export function AdminHeader({ session }: AdminHeaderProps) {
         {/* สามารถเพิ่ม user info หรือ action buttons ตรงนี้ได้ */}
         {session?.user && (
           <span className="text-xs text-muted-foreground">
-            Hi, {session.user.username}
+            Hi, {session.user.username || session.user.name}
           </span>
         )}
       </div>

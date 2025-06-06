@@ -9,6 +9,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { signOut } from "@/lib/auth-client";
+import { AuthSession } from "@/types/auth";
 import {
   Box,
   LayoutDashboard,
@@ -22,19 +23,8 @@ import * as React from "react";
 import { toast } from "sonner";
 import { TeamSwitcher } from "./team-switcher";
 
-type Session = {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    username: string;
-    image?: string | null;
-    role?: string;
-  };
-} | null;
-
 interface AppSidebarProps {
-  session: Session;
+  session: AuthSession;
   variant?: "sidebar" | "floating" | "inset";
 }
 
