@@ -37,7 +37,7 @@ export default async function page() {
   // Check if user is admin based on permissions result
   const isAdmin = FULL_POST_ACCESS.success;
   return (
-    <div className="container mx-auto max-w-4xl py-10 px-4 md:px-6">
+    <div className="space-y-6 md:space-y-8 w-full">
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           {session.user.image ? (
@@ -59,21 +59,23 @@ export default async function page() {
           )}
 
           <div className="space-y-1">
-            <h1 className="text-2xl font-semibold">{session.user.name}</h1>
-            <p className="text-muted-foreground text-sm">
-              Email : {session.user.email}
+            <h1 className="text-2xl font-semibold font-sans">
+              {session.user.name}
+            </h1>
+            <p className="text-muted-foreground font-sans">
+              {session.user.email}
             </p>
             {session.user.lineId && (
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-muted-foreground">Line ID :</span>
-                <span className="font-medium font-sans">
-                  {session.user.lineId}
+                <span className="text-muted-foreground font-sans">
+                  Line ID:
                 </span>
+                <span className="font-sans">{session.user.lineId}</span>
               </div>
             )}
             {isAdmin && (
-              <Badge className="mt-2 rounded-lg" variant="default">
-                Admin
+              <Badge className="mt-2" variant="default">
+                <p className="font-sans">Admin</p>
               </Badge>
             )}
           </div>

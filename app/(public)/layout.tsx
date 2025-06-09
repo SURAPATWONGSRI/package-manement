@@ -1,24 +1,36 @@
-import { Footer } from "@/components/footers";
-import { NavbarUser } from "@/components/users/navbar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { UserHeader } from "@/components/users/header";
+import { UserSidebar } from "@/components/users/sidebar/app-sidebar";
 import { auth } from "@/lib/auth";
+import { Metadata } from "next";
 import { headers } from "next/headers";
-import React from "react";
+import { ReactNode } from "react";
 
-export default async function PublicLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Package Management",
+    default: "Package Management | ระบบจัดการพัสดุ",
+  },
+  description: "ระบบจัดการพัสดุสำหรับผู้ใช้งาน",
+};
+
+interface PublicLayoutProps {
+  children: ReactNode;
+}
+
+export default async function PublicLayout({ children }: PublicLayoutProps) {
+  // Fetch session on server-side for user components
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavbarUser session={session} />
-      <main className="flex-grow container mx-auto p-4">{children}</main>
-
-      <Footer />
-    </div>
+    <SidebarProvider>
+      <UserSidebar variant="inset" session={session} />
+      <SidebarInset>
+        <UserHeader session={session} />
+        <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

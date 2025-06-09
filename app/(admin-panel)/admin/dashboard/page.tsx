@@ -11,10 +11,10 @@ function AdminDashboardPage({ session }: AdminPageProps) {
     <div className="space-y-6 md:space-y-8 w-full">
       <div>
         <h1 className="text-2xl sm:text-1xl font-bold tracking-tight mb-1 sm:mb-2">
-          Admin Dashboard
+          Dashboard
         </h1>
         <p className="text-muted-foreground">
-          Welcome 👋, {session?.user?.name || "Administrator"}.
+          Welcome 👋, {session?.user?.username || "Administrator"}.
         </p>
       </div>
 

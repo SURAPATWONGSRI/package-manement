@@ -126,6 +126,7 @@ export async function GET(req: Request) {
       paid: selection.paid ? "YES" : "NO",
       startDate: selection.startDate.toISOString().split("T")[0], // YYYY-MM-DD format
       endDate: selection.endDate.toISOString().split("T")[0], // YYYY-MM-DD format
+      createdAt: selection.createdAt.toISOString(), // เพิ่ม createdAt
     }));
 
     return NextResponse.json(

@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { useSession } from "@/lib/auth-client";
 import { addMonths, format } from "date-fns";
 import { th } from "date-fns/locale";
-import { Calendar, Package } from "lucide-react";
+import { Calendar, CheckCircle, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -36,6 +36,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
   const router = useRouter();
   const { data: session } = useSession();
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [createdRecordIds, setCreatedRecordIds] = useState<string[]>([]);
 
@@ -186,18 +187,11 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
       }
 
       setShowPaymentModal(false);
-      toast.success("ชำระเงินสำเร็จ! ");
-
-      // Redirect to public success page
-      router.push("/payment/success");
+      setShowSuccessModal(true);
     } catch (error) {
       console.error("Error updating payment status:", error);
       setShowPaymentModal(false);
-      toast.error(
-        "ชำระเงินสำเร็จ แต่เกิดข้อผิดพลาดในการอัพเดทสถานะ กรุณาติดต่อฝ่ายสนับสนุน"
-      );
-      // Still redirect to success page since payment went through
-      router.push("/payment/success");
+      setShowSuccessModal(true);
     }
   };
 
@@ -373,6 +367,53 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
               </Card>
 
               {/* Additional Information */}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <div className="flex flex-col items-center space-y-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                <CheckCircle className="w-8 h-8 text-green-600" />
+              </div>
+              <DialogTitle className="text-xl text-center">
+                ชำระเงินสำเร็จ!
+              </DialogTitle>
+              <DialogDescription className="text-center">
+                ขอบคุณสำหรับการซื้อแพ็คเกจ
+                สามารถดูรายละเอียดการซื้อได้ที่หน้าประวัติการซื้อ
+              </DialogDescription>
+            </div>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="flex justify-between text-sm">
+                <span>จำนวนแพ็คเกจ:</span>
+                <span className="font-medium">
+                  {selectedPackages.length} แพ็คเกจ
+                </span>
+              </div>
+              <div className="flex justify-between text-sm mt-2">
+                <span>ยอดชำระ:</span>
+                <span className="font-bold text-green-600">
+                  ฿{totalPrice.toFixed(2)}
+                </span>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <Button
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  router.push("/historypay");
+                }}
+                className="w-full"
+              >
+                ไปที่ประวัติการซื้อ
+              </Button>
             </div>
           </div>
         </DialogContent>
