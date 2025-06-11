@@ -72,7 +72,7 @@ export function PaymentButton({ startDate, selections }: PaymentButtonProps) {
 
   const handlePaymentClick = async () => {
     if (!session?.user) {
-      router.push("/sign-in?callbackUrl=/main");
+      router.push("/login?callbackUrl=/main");
       return;
     }
 

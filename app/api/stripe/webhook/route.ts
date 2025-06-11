@@ -10,18 +10,33 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 export async function POST(req: Request) {
   try {
     const body = await req.text();
-    const sig = req.headers.get("stripe-signature")!;
+    const sig = req.headers.get("stripe-signature");
 
     let event: Stripe.Event;
 
-    try {
-      event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
-    } catch (err: unknown) {
-      console.error(
-        "Webhook signature verification failed:",
-        err instanceof Error ? err.message : "Unknown error"
+    // Skip signature verification in development or if no signature
+    if (process.env.NODE_ENV === "development" && !sig) {
+      console.log("Development mode: Skipping signature verification");
+      // For testing, parse the body directly
+      event = JSON.parse(body);
+    } else if (sig && endpointSecret) {
+      try {
+        event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+      } catch (err: unknown) {
+        console.error(
+          "Webhook signature verification failed:",
+          err instanceof Error ? err.message : "Unknown error"
+        );
+        return NextResponse.json(
+          { error: "Invalid signature" },
+          { status: 400 }
+        );
+      }
+    } else {
+      return NextResponse.json(
+        { error: "Missing signature or secret" },
+        { status: 400 }
       );
-      return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
     // Handle the event
@@ -36,26 +51,32 @@ export async function POST(req: Request) {
           if (metadata?.packages) {
             const packages = JSON.parse(metadata.packages);
 
-            await fetch(
-              `${process.env.NEXT_PUBLIC_API_URL}/api/webhooks/discord`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
+            const webhookUrl =
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:3000/api/webhooks/discord"
+                : `${process.env.NEXT_PUBLIC_API_URL}/api/webhooks/discord`;
+
+            const response = await fetch(webhookUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                type: "stripe_payment_success",
+                data: {
+                  paymentIntentId: paymentIntent.id,
+                  userName: metadata.userName || "Unknown",
+                  userEmail: metadata.userEmail || "Unknown",
+                  packages: packages,
+                  amount: (paymentIntent.amount / 100).toFixed(2),
+                  currency: paymentIntent.currency.toUpperCase(),
                 },
-                body: JSON.stringify({
-                  type: "stripe_payment_success",
-                  data: {
-                    paymentIntentId: paymentIntent.id,
-                    userName: metadata.userName || "Unknown",
-                    userEmail: metadata.userEmail || "Unknown",
-                    packages: packages,
-                    amount: (paymentIntent.amount / 100).toFixed(2),
-                    currency: paymentIntent.currency.toUpperCase(),
-                  },
-                }),
-              }
-            );
+              }),
+            });
+
+            if (!response.ok) {
+              console.error("Discord webhook failed:", await response.text());
+            }
           }
         } catch (webhookError) {
           console.error(
@@ -73,25 +94,31 @@ export async function POST(req: Request) {
         try {
           const metadata = failedPayment.metadata;
 
-          await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/webhooks/discord`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
+          const webhookUrl =
+            process.env.NODE_ENV === "development"
+              ? "http://localhost:3000/api/webhooks/discord"
+              : `${process.env.NEXT_PUBLIC_API_URL}/api/webhooks/discord`;
+
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              type: "payment_failed",
+              data: {
+                paymentIntentId: failedPayment.id,
+                userName: metadata?.userName || "Unknown",
+                userEmail: metadata?.userEmail || "Unknown",
+                amount: (failedPayment.amount / 100).toFixed(2),
+                currency: failedPayment.currency.toUpperCase(),
               },
-              body: JSON.stringify({
-                type: "payment_failed",
-                data: {
-                  paymentIntentId: failedPayment.id,
-                  userName: metadata?.userName || "Unknown",
-                  userEmail: metadata?.userEmail || "Unknown",
-                  amount: (failedPayment.amount / 100).toFixed(2),
-                  currency: failedPayment.currency.toUpperCase(),
-                },
-              }),
-            }
-          );
+            }),
+          });
+
+          if (!response.ok) {
+            console.error("Discord webhook failed:", await response.text());
+          }
         } catch (webhookError) {
           console.error(
             "Discord webhook error for failed payment:",

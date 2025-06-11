@@ -1,182 +1,209 @@
 import { NextResponse } from "next/server";
 
-const DISCORD_WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1377595317960179742/y9lBmIRH4LOYf2KVdeBrVOQagYQ9vWcFXVSRnJmnpKG3G3cgPgPAHwDGDW0HK48B-HnN";
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL!;
+
+// Define types for webhook data
+interface Package {
+  packageId: string;
+  symbol: string;
+  timeframe: string;
+}
+
+interface PaymentSuccessData {
+  userName: string;
+  userEmail: string;
+  totalPrice: number;
+  packages: Package[];
+  startDate: string;
+  endDate: string;
+}
+
+interface StripePaymentSuccessData {
+  userName: string;
+  userEmail: string;
+  amount: string;
+  currency: string;
+  paymentIntentId: string;
+  packages: Package[];
+}
+
+interface PaymentFailedData {
+  userName: string;
+  userEmail: string;
+  amount: string;
+  currency: string;
+  paymentIntentId: string;
+}
+
+type WebhookData =
+  | PaymentSuccessData
+  | StripePaymentSuccessData
+  | PaymentFailedData;
+
+// Helper function to create package list
+function createPackageList(packages: Package[]) {
+  return packages
+    .map(
+      (pkg) => `• Package ${pkg.packageId}: ${pkg.symbol} (${pkg.timeframe})`
+    )
+    .join("\n");
+}
+
+// Helper function to create Discord embed
+function createDiscordEmbed(type: string, data: WebhookData) {
+  const baseEmbed = {
+    timestamp: new Date().toISOString(),
+  };
+
+  switch (type) {
+    case "payment_success":
+      const successData = data as PaymentSuccessData;
+      return {
+        embeds: [
+          {
+            ...baseEmbed,
+            title: "🎉 ชำระเงินสำเร็จ",
+            color: 0x00ff00,
+            fields: [
+              {
+                name: "👤 ลูกค้า",
+                value: `${successData.userName}\n${successData.userEmail}`,
+                inline: true,
+              },
+              {
+                name: "💰 ยอดชำระ",
+                value: `฿${successData.totalPrice.toFixed(2)}`,
+                inline: true,
+              },
+              {
+                name: "📦 แพ็คเกจที่เลือก",
+                value: createPackageList(successData.packages),
+                inline: false,
+              },
+              {
+                name: "📅 ระยะเวลาใช้งาน",
+                value: `${successData.startDate} ถึง ${successData.endDate}`,
+                inline: false,
+              },
+            ],
+            footer: { text: "Package Management System" },
+          },
+        ],
+      };
+
+    case "stripe_payment_success":
+      const stripeData = data as StripePaymentSuccessData;
+      return {
+        embeds: [
+          {
+            ...baseEmbed,
+            title: "💳 Stripe Payment Confirmed",
+            color: 0x0099ff,
+            fields: [
+              {
+                name: "👤 Customer",
+                value: `${stripeData.userName}\n${stripeData.userEmail}`,
+                inline: true,
+              },
+              {
+                name: "💰 Amount",
+                value: `${stripeData.amount} ${stripeData.currency}`,
+                inline: true,
+              },
+              {
+                name: "🔗 Payment Intent ID",
+                value: stripeData.paymentIntentId,
+                inline: true,
+              },
+              {
+                name: "📦 Packages",
+                value: createPackageList(stripeData.packages),
+                inline: false,
+              },
+            ],
+            footer: { text: "Stripe Webhook" },
+          },
+        ],
+      };
+
+    case "payment_failed":
+      const failedData = data as PaymentFailedData;
+      return {
+        embeds: [
+          {
+            ...baseEmbed,
+            title: "❌ ชำระเงินไม่สำเร็จ",
+            color: 0xff0000,
+            fields: [
+              {
+                name: "👤 ลูกค้า",
+                value: `${failedData.userName}\n${failedData.userEmail}`,
+                inline: true,
+              },
+              {
+                name: "💰 ยอดเงิน",
+                value: `${failedData.amount} ${failedData.currency}`,
+                inline: true,
+              },
+              {
+                name: "🔗 Payment Intent ID",
+                value: failedData.paymentIntentId,
+                inline: true,
+              },
+            ],
+            footer: { text: "Payment Failed Alert" },
+          },
+        ],
+      };
+
+    default:
+      throw new Error("Invalid webhook type");
+  }
+}
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { type, data } = body;
-
-    let discordMessage;
-
-    switch (type) {
-      case "payment_success":
-        const {
-          userName,
-          userEmail,
-          packages,
-          totalPrice,
-          startDate,
-          endDate,
-        } = data;
-        const packageList = packages
-          .map(
-            (pkg: { packageId: string; symbol: string; timeframe: string }) =>
-              `• Package ${pkg.packageId}: ${pkg.symbol} (${pkg.timeframe})`
-          )
-          .join("\n");
-
-        discordMessage = {
-          embeds: [
-            {
-              title: "🎉 ชำระเงินสำเร็จ",
-              color: 0x00ff00, // Green color
-              fields: [
-                {
-                  name: "👤 ลูกค้า",
-                  value: `${userName}\n${userEmail}`,
-                  inline: true,
-                },
-                {
-                  name: "💰 ยอดชำระ",
-                  value: `฿${totalPrice.toFixed(2)}`,
-                  inline: true,
-                },
-                {
-                  name: "📦 แพ็คเกจที่เลือก",
-                  value: packageList,
-                  inline: false,
-                },
-                {
-                  name: "📅 ระยะเวลาใช้งาน",
-                  value: `${startDate} ถึง ${endDate}`,
-                  inline: false,
-                },
-              ],
-              timestamp: new Date().toISOString(),
-              footer: {
-                text: "Package Management System",
-              },
-            },
-          ],
-        };
-        break;
-
-      case "stripe_payment_success":
-        const {
-          paymentIntentId,
-          userName: stripeUserName,
-          userEmail: stripeUserEmail,
-          packages: stripePackages,
-          amount,
-          currency,
-        } = data;
-        const stripePackageList = stripePackages
-          .map(
-            (pkg: { packageId: string; symbol: string; timeframe: string }) =>
-              `• Package ${pkg.packageId}: ${pkg.symbol} (${pkg.timeframe})`
-          )
-          .join("\n");
-
-        discordMessage = {
-          embeds: [
-            {
-              title: "💳 Stripe Payment Confirmed",
-              color: 0x0099ff, // Blue color
-              fields: [
-                {
-                  name: "👤 Customer",
-                  value: `${stripeUserName}\n${stripeUserEmail}`,
-                  inline: true,
-                },
-                {
-                  name: "💰 Amount",
-                  value: `${amount} ${currency}`,
-                  inline: true,
-                },
-                {
-                  name: "🔗 Payment Intent ID",
-                  value: paymentIntentId,
-                  inline: true,
-                },
-                {
-                  name: "📦 Packages",
-                  value: stripePackageList,
-                  inline: false,
-                },
-              ],
-              timestamp: new Date().toISOString(),
-              footer: {
-                text: "Stripe Webhook",
-              },
-            },
-          ],
-        };
-        break;
-
-      case "payment_failed":
-        const {
-          paymentIntentId: failedId,
-          userName: failedUserName,
-          userEmail: failedUserEmail,
-          amount: failedAmount,
-          currency: failedCurrency,
-        } = data;
-
-        discordMessage = {
-          embeds: [
-            {
-              title: "❌ ชำระเงินไม่สำเร็จ",
-              color: 0xff0000, // Red color
-              fields: [
-                {
-                  name: "👤 ลูกค้า",
-                  value: `${failedUserName}\n${failedUserEmail}`,
-                  inline: true,
-                },
-                {
-                  name: "💰 ยอดเงิน",
-                  value: `${failedAmount} ${failedCurrency}`,
-                  inline: true,
-                },
-                {
-                  name: "🔗 Payment Intent ID",
-                  value: failedId,
-                  inline: true,
-                },
-              ],
-              timestamp: new Date().toISOString(),
-              footer: {
-                text: "Payment Failed Alert",
-              },
-            },
-          ],
-        };
-        break;
-
-      default:
-        return NextResponse.json(
-          { error: "Invalid webhook type" },
-          { status: 400 }
-        );
+    // Skip Discord webhook in development if URL is not set
+    if (!DISCORD_WEBHOOK_URL) {
+      console.log("Discord webhook URL not configured, skipping...");
+      return NextResponse.json({ success: true, skipped: true });
     }
 
-    // Send to Discord
-    const discordResponse = await fetch(DISCORD_WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(discordMessage),
-    });
+    const { type, data } = await req.json();
 
-    if (!discordResponse.ok) {
-      throw new Error(`Discord webhook failed: ${discordResponse.status}`);
+    // Create Discord message
+    const discordMessage = createDiscordEmbed(type, data);
+
+    // Send to Discord with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    try {
+      const discordResponse = await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(discordMessage),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!discordResponse.ok) {
+        const errorText = await discordResponse.text();
+        console.error("Discord webhook error:", {
+          status: discordResponse.status,
+          statusText: discordResponse.statusText,
+          body: errorText,
+        });
+        throw new Error(`Discord webhook failed: ${discordResponse.status}`);
+      }
+
+      console.log("Discord webhook sent successfully for type:", type);
+      return NextResponse.json({ success: true });
+    } catch (fetchError) {
+      clearTimeout(timeoutId);
+      throw fetchError;
     }
-
-    console.log("Discord webhook sent successfully for type:", type);
-    return NextResponse.json({ success: true });
   } catch (error: unknown) {
     console.error("Discord webhook error:", error);
     return NextResponse.json(
