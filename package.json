@@ -68,5 +68,12 @@
       "native",
       "rhel-openssl-3.0.x"
     ]
+  },
+  "output": {
+    "export": {
+      "copy": [
+        "./node_modules/.prisma"
+      ]
+    }
   }
 }

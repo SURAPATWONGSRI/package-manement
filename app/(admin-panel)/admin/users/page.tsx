@@ -57,11 +57,17 @@ async function UsersTable() {
 
   // รวมข้อมูล
   const userLineIds = Object.fromEntries(
-    dbUsers.map((user) => [user.id, user.lineId])
+    dbUsers.map((user: { id: string; lineId: string | null }) => [
+      user.id,
+      user.lineId,
+    ])
   );
 
   const userImages = Object.fromEntries(
-    dbUsers.map((user) => [user.id, user.image])
+    dbUsers.map((user: { id: string; image: string | null }) => [
+      user.id,
+      user.image,
+    ])
   );
 
   // เพิ่ม lineId และ image เข้าไปในข้อมูลผู้ใช้
