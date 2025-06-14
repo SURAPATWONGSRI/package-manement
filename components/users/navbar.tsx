@@ -4,7 +4,7 @@ import { signOut } from "@/lib/auth-client";
 import { AuthSession } from "@/types/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import * as React from "react";
+import { memo, useCallback, useMemo } from "react";
 import { toast } from "sonner";
 import { NavUserMain } from "./nav-user";
 
@@ -21,7 +21,7 @@ interface NavbarUserProps {
 }
 
 // Extract Logo component to prevent re-rendering when user state changes
-const Logo = React.memo(function Logo() {
+const Logo = memo(function Logo() {
   return (
     <Link
       href="/main"
@@ -36,19 +36,19 @@ const Logo = React.memo(function Logo() {
 });
 
 // Extract UserSkeleton to a separate component
-const UserSkeleton = React.memo(function UserSkeleton() {
+const UserSkeleton = memo(function UserSkeleton() {
   return (
     <div className="h-8 w-8 rounded-full bg-secondary animate-pulse"></div>
   );
 });
 
-export const NavbarUser = React.memo(function NavbarUser({
+export const NavbarUser = memo(function NavbarUser({
   session,
 }: NavbarUserProps) {
   const router = useRouter();
 
   // Transform session data directly without useState and useEffect
-  const userData: UserData = React.useMemo(() => {
+  const userData: UserData = useMemo(() => {
     if (!session?.user) {
       return { name: "", email: "", username: "", avatar: "" };
     }
@@ -63,7 +63,7 @@ export const NavbarUser = React.memo(function NavbarUser({
   }, [session]);
 
   // Memoize sign out handler to prevent recreation on each render
-  const handleSignOut = React.useCallback(async () => {
+  const handleSignOut = useCallback(async () => {
     try {
       await signOut({
         fetchOptions: {
@@ -83,7 +83,7 @@ export const NavbarUser = React.memo(function NavbarUser({
   }, [router]);
 
   // Memoize the user component to avoid re-renders
-  const userComponent = React.useMemo(() => {
+  const userComponent = useMemo(() => {
     if (session?.user) {
       return <NavUserMain user={userData} onSignOut={handleSignOut} />;
     }

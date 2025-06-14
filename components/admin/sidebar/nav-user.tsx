@@ -1,6 +1,7 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { ChevronsUpDown, House, LogOut, Settings } from "lucide-react";
+import { ChevronDown, Home, LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 
 // Define proper types for component props
@@ -24,6 +25,7 @@ interface UserProfile {
   email?: string;
   avatar?: string;
   username?: string;
+  role?: string;
 }
 
 interface NavUserProps {
@@ -34,7 +36,7 @@ interface NavUserProps {
 // Component to render user avatar consistently
 const UserAvatar = ({
   user,
-  className = "h-8 w-8 rounded-lg",
+  className = "h-9 w-9 border-2 border-primary/10",
 }: {
   user: UserProfile;
   className?: string;
@@ -47,7 +49,7 @@ const UserAvatar = ({
         src={user.avatar || undefined}
         alt={`${user.name || "User"}'s avatar`}
       />
-      <AvatarFallback className="rounded-lg bg-zinc-100">
+      <AvatarFallback className="bg-primary/10 text-primary font-medium">
         {userInitial}
       </AvatarFallback>
     </Avatar>
@@ -61,79 +63,106 @@ export function NavUser({ user, onSignOut }: NavUserProps) {
   const menuItems = [
     {
       href: "/main",
-      icon: <House className="mr-2 size-4" aria-hidden="true" />,
-      label: "Back To Main Page",
+      icon: <Home className="mr-2 size-4" aria-hidden="true" />,
+      label: "Main Dashboard",
+    },
+    {
+      href: "/admin/profile",
+      icon: <User className="mr-2 size-4" aria-hidden="true" />,
+      label: "My Profile",
     },
     {
       href: "/admin/setting",
       icon: <Settings className="mr-2 size-4" aria-hidden="true" />,
-      label: "Setting",
+      label: "Settings",
     },
   ];
 
   return (
     <SidebarMenu>
-      <SidebarMenuItem>
+      <SidebarMenuItem className="px-2 py-1.5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="w-full p-2 rounded-xl transition-all hover:bg-accent group relative
+                         data-[state=open]:bg-accent"
               aria-label="User menu"
             >
-              <UserAvatar user={user} />
-              <div className="flex flex-col gap-0.5 overflow-hidden text-left">
-                <span className="truncate font-medium font-sans text-sm">
-                  {user.name || "User"}
-                </span>
-                <span className="truncate text-xs font-sans text-muted-foreground">
-                  {user.username || "No email"}
-                </span>
+              <div className="flex items-center gap-3">
+                <UserAvatar user={user} />
+                <div className="flex flex-col gap-0.5 overflow-hidden text-left">
+                  <span className="truncate font-medium text-sm group-hover:text-primary">
+                    {user.name || "User"}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="truncate text-xs text-muted-foreground">
+                      {user.username || "No username"}
+                    </span>
+                    {user.role && (
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] py-0 px-1.5 h-4"
+                      >
+                        {user.role}
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+                <ChevronDown
+                  className="ml-auto size-4 opacity-70"
+                  aria-hidden="true"
+                />
               </div>
-              <ChevronsUpDown className="ml-auto size-4" aria-hidden="true" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-xl"
             side={isMobile ? "bottom" : "right"}
             align="end"
-            sideOffset={4}
+            sideOffset={8}
           >
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="px-2 py-1.5 flex items-center gap-2">
-                <UserAvatar user={user} />
+              <div className="p-3 flex items-center gap-3 bg-accent/40 rounded-t-lg">
+                <UserAvatar user={user} className="h-10 w-10" />
                 <div>
-                  <div className="text-sm font-sans font-medium">
+                  <div className="text-sm font-medium">
                     {user.name || "User"}
                   </div>
-                  <div className="text-xs font-sans font-medium text-muted-foreground truncate">
-                    {user.username || "No email"}
+                  <div className="text-xs text-muted-foreground truncate">
+                    {user.username || "No username"}
                   </div>
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-
-            {menuItems.map((item, index) => (
-              <DropdownMenuItem asChild key={index}>
-                <Link
-                  href={item.href}
-                  className="flex items-center  cursor-pointer"
+            <div className="p-2 space-y-1">
+              {menuItems.map((item, index) => (
+                <DropdownMenuItem
+                  asChild
+                  key={index}
+                  className="rounded-lg py-2"
                 >
-                  {item.icon}
-                  <span className="text-sm font-sans ">{item.label}</span>
-                </Link>
-              </DropdownMenuItem>
-            ))}
+                  <Link
+                    href={item.href}
+                    className="flex items-center cursor-pointer"
+                  >
+                    {item.icon}
+                    <span className="text-sm">{item.label}</span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
 
-            <DropdownMenuItem
-              onClick={onSignOut}
-              className="text-destructive"
-              aria-label="Log out"
-            >
-              <LogOut className="mr-2 size-4" aria-hidden="true" />
-              <span className="text-sm font-sans">Log out</span>
-            </DropdownMenuItem>
+              <DropdownMenuSeparator className="my-1" />
+
+              <DropdownMenuItem
+                onClick={onSignOut}
+                className="text-destructive rounded-lg py-2"
+                aria-label="Log out"
+              >
+                <LogOut className="mr-2 size-4" aria-hidden="true" />
+                <span className="text-sm">Log out</span>
+              </DropdownMenuItem>
+            </div>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

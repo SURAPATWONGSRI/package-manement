@@ -15,6 +15,9 @@ export async function middleware(req: NextRequest) {
   const isLoginPage = pathname === "/login";
   const isRegisterPage = pathname === "/register";
   const isProfilePage = pathname === "/profile";
+  const isMainPage = pathname === "/main" || pathname.startsWith("/main/");
+  const isHistoryPage = pathname === "/historypay";
+  const isSettingPage = pathname === "/setting";
 
   // ถ้าล็อกอินแล้ว ห้ามเข้า /login
   if (isLoggedIn && isLoginPage) {
@@ -26,8 +29,11 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/main", req.url));
   }
 
-  // ถ้าไม่ได้ล็อกอินแล้วเข้าหน้า /profile ให้กลับไป /login
-  if (!isLoggedIn && isProfilePage) {
+  // ถ้าไม่ได้ล็อกอินแต่พยายามเข้าหน้าที่ต้อง login
+  if (
+    !isLoggedIn &&
+    (isProfilePage || isMainPage || isHistoryPage || isSettingPage)
+  ) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -45,5 +51,15 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/admin", "/login", "/register", "/profile"],
+  matcher: [
+    "/admin/:path*",
+    "/admin",
+    "/login",
+    "/register",
+    "/profile",
+    "/main",
+    "/main/:path*",
+    "/historypay",
+    "/setting",
+  ],
 };

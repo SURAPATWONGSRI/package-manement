@@ -28,7 +28,7 @@ export default async function PublicLayout({ children }: PublicLayoutProps) {
     <SidebarProvider>
       <UserSidebar variant="inset" session={session} />
       <SidebarInset>
-        <UserHeader session={session} />
+        <UserHeader />
         <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>

@@ -2,38 +2,33 @@
 
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { signOut } from "@/lib/auth-client";
-import { AuthSession } from "@/types/auth";
-import { NavUserMain } from "./nav-user";
+import { usePathname } from "next/navigation";
 
-interface UserHeaderProps {
-  session: AuthSession;
-}
+export function UserHeader() {
+  const pathname = usePathname();
 
-export function UserHeader({ session }: UserHeaderProps) {
-  const handleSignOut = async () => {
-    await signOut();
+  // สร้างชื่อหน้าจากพาธปัจจุบัน
+  const getPageTitle = () => {
+    const path = pathname.split("/").filter(Boolean);
+    if (path.length === 0) return "หน้าหลัก";
+
+    const lastSegment = path[path.length - 1];
+    // แปลง kebab-case หรือ snake_case เป็นคำที่อ่านได้
+    const formattedSegment = lastSegment
+      .replace(/-|_/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+
+    return formattedSegment;
   };
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between border-b">
-      <div className="flex items-center gap-2 px-3">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex items-center gap-3 px-4">
         <SidebarTrigger />
-        <Separator orientation="vertical" className="mr-2 h-4" />
-      </div>
-      <div className="flex items-center gap-4 px-4">
-        {session?.user && (
-          <NavUserMain
-            user={{
-              name: session.user.name || "",
-              email: session.user.email || "",
-              username: session.user.username || "",
-              avatar: session.user.image || "",
-              isAdmin: session.user.role === "ADMIN",
-            }}
-            onSignOut={handleSignOut}
-          />
-        )}
+        <Separator orientation="vertical" className="h-5" />
+        <div className="text-lg font-medium tracking-tight hidden sm:block">
+          {getPageTitle()}
+        </div>
       </div>
     </header>
   );
